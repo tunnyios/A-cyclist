@@ -1,15 +1,13 @@
 //
-//  ViewController.h
+//  ACTabBarController.h
 //  A-cyclist
 //
-//  Created by tunny on 15/7/13.
+//  Created by tunny on 15/7/14.
 //  Copyright (c) 2015年 tunny. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface ACTabBarController : UITabBarController
 
 @end
-

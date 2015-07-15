@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "ACGlobal.h"
+#import "ACTabBarController.h"
 
 @interface AppDelegate ()
 
@@ -16,7 +18,19 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
+    //1. 创建window
+    self.window = [[UIWindow alloc] initWithFrame:ACScreenBounds];
+
+    //2. 创建tabbarController
+    ACTabBarController *tabBarController = [[ACTabBarController alloc] init];
+
+    //设置根控制器
+    self.window.rootViewController = tabBarController;
+    
+    //3. 显示window
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
