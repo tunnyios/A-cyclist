@@ -48,7 +48,7 @@
     UINavigationController *settingNav = [settingSB instantiateInitialViewController];
     UIViewController *settingVc = settingNav.topViewController;
     [self creatChildViewController:settingVc title:@"更多" icon:@"tab_more_iphone_5" selectedIcon:@"tab_more_white_iphone_5"];
-    settingVc.view.backgroundColor = [UIColor colorWithRandom];
+//    settingVc.view.backgroundColor = [UIColor colorWithRandom];
     
     self.viewControllers = @[profileVc,
                              rankingNav,

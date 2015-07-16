@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A261B0001B5762D1006C8917 /* ACSettingGroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A261AFFF1B5762D1006C8917 /* ACSettingGroupModel.m */; };
+		A261B0031B577058006C8917 /* ACSettingViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A261B0021B577058006C8917 /* ACSettingViewCell.m */; };
+		A261B0421B57810A006C8917 /* ACSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A261B0411B57810A006C8917 /* ACSettingViewController.m */; };
+		A261B0451B579D82006C8917 /* ACArrowSettingCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A261B0441B579D82006C8917 /* ACArrowSettingCellModel.m */; };
+		A261B0481B57A3BF006C8917 /* ACBlankSettingCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A261B0471B57A3BF006C8917 /* ACBlankSettingCellModel.m */; };
+		A261B04B1B57AA87006C8917 /* ACLogoutSettingViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A261B04A1B57AA87006C8917 /* ACLogoutSettingViewCell.m */; };
+		A261B04D1B57AC56006C8917 /* ACLogoutSettingViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A261B04C1B57AC56006C8917 /* ACLogoutSettingViewCell.xib */; };
 		A28BFEC71B53A2CC00A712F1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A28BFEC61B53A2CC00A712F1 /* Images.xcassets */; };
 		A28BFECA1B53A2CC00A712F1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A28BFEC81B53A2CC00A712F1 /* LaunchScreen.xib */; };
 		A28BFED61B53A2CD00A712F1 /* A_cyclistTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A28BFED51B53A2CD00A712F1 /* A_cyclistTests.m */; };
@@ -21,6 +28,8 @@
 		A2D483AC1B5515B700BC8406 /* ACTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D483AB1B5515B700BC8406 /* ACTabBarController.m */; };
 		A2D483B61B5516E300BC8406 /* UIColor+Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D483B51B5516E300BC8406 /* UIColor+Tools.m */; };
 		A2D483B91B5525B200BC8406 /* HCTabBar5ContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D483B81B5525B200BC8406 /* HCTabBar5ContentView.m */; };
+		A2F040EB1B563A51004FBF3D /* ACBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2F040EA1B563A51004FBF3D /* ACBaseTableViewController.m */; };
+		A2F875121B5676630075F323 /* ACSettingCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2F875111B5676630075F323 /* ACSettingCellModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +43,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A261AFFE1B5762D1006C8917 /* ACSettingGroupModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACSettingGroupModel.h; sourceTree = "<group>"; };
+		A261AFFF1B5762D1006C8917 /* ACSettingGroupModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACSettingGroupModel.m; sourceTree = "<group>"; };
+		A261B0011B577058006C8917 /* ACSettingViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACSettingViewCell.h; sourceTree = "<group>"; };
+		A261B0021B577058006C8917 /* ACSettingViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACSettingViewCell.m; sourceTree = "<group>"; };
+		A261B0401B57810A006C8917 /* ACSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACSettingViewController.h; sourceTree = "<group>"; };
+		A261B0411B57810A006C8917 /* ACSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACSettingViewController.m; sourceTree = "<group>"; };
+		A261B0431B579D82006C8917 /* ACArrowSettingCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACArrowSettingCellModel.h; sourceTree = "<group>"; };
+		A261B0441B579D82006C8917 /* ACArrowSettingCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACArrowSettingCellModel.m; sourceTree = "<group>"; };
+		A261B0461B57A3BF006C8917 /* ACBlankSettingCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACBlankSettingCellModel.h; sourceTree = "<group>"; };
+		A261B0471B57A3BF006C8917 /* ACBlankSettingCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACBlankSettingCellModel.m; sourceTree = "<group>"; };
+		A261B0491B57AA87006C8917 /* ACLogoutSettingViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACLogoutSettingViewCell.h; sourceTree = "<group>"; };
+		A261B04A1B57AA87006C8917 /* ACLogoutSettingViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACLogoutSettingViewCell.m; sourceTree = "<group>"; };
+		A261B04C1B57AC56006C8917 /* ACLogoutSettingViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ACLogoutSettingViewCell.xib; sourceTree = "<group>"; };
 		A28BFEB61B53A2CC00A712F1 /* A-cyclist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "A-cyclist.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A28BFEBA1B53A2CC00A712F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A28BFEC61B53A2CC00A712F1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -57,6 +79,10 @@
 		A2D483B51B5516E300BC8406 /* UIColor+Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Tools.m"; sourceTree = "<group>"; };
 		A2D483B71B5525B200BC8406 /* HCTabBar5ContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCTabBar5ContentView.h; sourceTree = "<group>"; };
 		A2D483B81B5525B200BC8406 /* HCTabBar5ContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCTabBar5ContentView.m; sourceTree = "<group>"; };
+		A2F040E91B563A51004FBF3D /* ACBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACBaseTableViewController.h; sourceTree = "<group>"; };
+		A2F040EA1B563A51004FBF3D /* ACBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACBaseTableViewController.m; sourceTree = "<group>"; };
+		A2F875101B5676630075F323 /* ACSettingCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACSettingCellModel.h; sourceTree = "<group>"; };
+		A2F875111B5676630075F323 /* ACSettingCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACSettingCellModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +103,55 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A261B0391B5780E7006C8917 /* About */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = About;
+			sourceTree = "<group>";
+		};
+		A261B03A1B5780E7006C8917 /* Clean */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Clean;
+			sourceTree = "<group>";
+		};
+		A261B03B1B5780E7006C8917 /* OffMaps */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = OffMaps;
+			sourceTree = "<group>";
+		};
+		A261B03C1B5780E7006C8917 /* Praise */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Praise;
+			sourceTree = "<group>";
+		};
+		A261B03D1B5780E7006C8917 /* ProfileInfo */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ProfileInfo;
+			sourceTree = "<group>";
+		};
+		A261B03E1B5780E7006C8917 /* Push */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Push;
+			sourceTree = "<group>";
+		};
+		A261B03F1B5780E7006C8917 /* UploadLog */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UploadLog;
+			sourceTree = "<group>";
+		};
 		A28BFEAD1B53A2CC00A712F1 = {
 			isa = PBXGroup;
 			children = (
@@ -398,6 +473,17 @@
 		A28BFF041B53B35B00A712F1 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				A261B0391B5780E7006C8917 /* About */,
+				A261B03A1B5780E7006C8917 /* Clean */,
+				A261B03B1B5780E7006C8917 /* OffMaps */,
+				A261B03C1B5780E7006C8917 /* Praise */,
+				A261B03D1B5780E7006C8917 /* ProfileInfo */,
+				A261B03E1B5780E7006C8917 /* Push */,
+				A261B03F1B5780E7006C8917 /* UploadLog */,
+				A2F040E91B563A51004FBF3D /* ACBaseTableViewController.h */,
+				A2F040EA1B563A51004FBF3D /* ACBaseTableViewController.m */,
+				A261B0401B57810A006C8917 /* ACSettingViewController.h */,
+				A261B0411B57810A006C8917 /* ACSettingViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -405,6 +491,14 @@
 		A28BFF051B53B35B00A712F1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A2F875101B5676630075F323 /* ACSettingCellModel.h */,
+				A2F875111B5676630075F323 /* ACSettingCellModel.m */,
+				A261AFFE1B5762D1006C8917 /* ACSettingGroupModel.h */,
+				A261AFFF1B5762D1006C8917 /* ACSettingGroupModel.m */,
+				A261B0431B579D82006C8917 /* ACArrowSettingCellModel.h */,
+				A261B0441B579D82006C8917 /* ACArrowSettingCellModel.m */,
+				A261B0461B57A3BF006C8917 /* ACBlankSettingCellModel.h */,
+				A261B0471B57A3BF006C8917 /* ACBlankSettingCellModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -413,6 +507,11 @@
 			isa = PBXGroup;
 			children = (
 				A28BFF1D1B53F9FD00A712F1 /* setting.storyboard */,
+				A261B0011B577058006C8917 /* ACSettingViewCell.h */,
+				A261B0021B577058006C8917 /* ACSettingViewCell.m */,
+				A261B0491B57AA87006C8917 /* ACLogoutSettingViewCell.h */,
+				A261B04A1B57AA87006C8917 /* ACLogoutSettingViewCell.m */,
+				A261B04C1B57AC56006C8917 /* ACLogoutSettingViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -526,6 +625,7 @@
 				A28BFECA1B53A2CC00A712F1 /* LaunchScreen.xib in Resources */,
 				A28BFF161B53F98200A712F1 /* cycling.storyboard in Resources */,
 				A28BFF1C1B53F9E900A712F1 /* route.storyboard in Resources */,
+				A261B04D1B57AC56006C8917 /* ACLogoutSettingViewCell.xib in Resources */,
 				A28BFF181B53F9AD00A712F1 /* profile.storyboard in Resources */,
 				A28BFF1E1B53F9FD00A712F1 /* setting.storyboard in Resources */,
 				A28BFEC71B53A2CC00A712F1 /* Images.xcassets in Resources */,
@@ -548,11 +648,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				A28BFF091B53B35B00A712F1 /* AppDelegate.m in Sources */,
+				A261B0031B577058006C8917 /* ACSettingViewCell.m in Sources */,
+				A261B0451B579D82006C8917 /* ACArrowSettingCellModel.m in Sources */,
+				A261B0421B57810A006C8917 /* ACSettingViewController.m in Sources */,
+				A2F040EB1B563A51004FBF3D /* ACBaseTableViewController.m in Sources */,
+				A261B04B1B57AA87006C8917 /* ACLogoutSettingViewCell.m in Sources */,
+				A2F875121B5676630075F323 /* ACSettingCellModel.m in Sources */,
 				A2D483B91B5525B200BC8406 /* HCTabBar5ContentView.m in Sources */,
+				A261B0001B5762D1006C8917 /* ACSettingGroupModel.m in Sources */,
 				A2D483AC1B5515B700BC8406 /* ACTabBarController.m in Sources */,
 				A28BFF141B53BECC00A712F1 /* ACGlobal.m in Sources */,
 				A28BFF0A1B53B35B00A712F1 /* main.m in Sources */,
 				A2D483B61B5516E300BC8406 /* UIColor+Tools.m in Sources */,
+				A261B0481B57A3BF006C8917 /* ACBlankSettingCellModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
