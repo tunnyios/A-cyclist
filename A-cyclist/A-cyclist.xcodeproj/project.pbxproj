@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A218F7031B5A3F33007CBADA /* ACLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A218F7021B5A3F33007CBADA /* ACLoginViewController.m */; };
+		A218F7051B5A3FB2007CBADA /* ACLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A218F7041B5A3FB2007CBADA /* ACLogin.storyboard */; };
 		A261B0001B5762D1006C8917 /* ACSettingGroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A261AFFF1B5762D1006C8917 /* ACSettingGroupModel.m */; };
 		A261B0031B577058006C8917 /* ACSettingViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A261B0021B577058006C8917 /* ACSettingViewCell.m */; };
 		A261B0421B57810A006C8917 /* ACSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A261B0411B57810A006C8917 /* ACSettingViewController.m */; };
@@ -14,6 +16,7 @@
 		A261B0481B57A3BF006C8917 /* ACBlankSettingCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A261B0471B57A3BF006C8917 /* ACBlankSettingCellModel.m */; };
 		A261B04B1B57AA87006C8917 /* ACLogoutSettingViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A261B04A1B57AA87006C8917 /* ACLogoutSettingViewCell.m */; };
 		A261B04D1B57AC56006C8917 /* ACLogoutSettingViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A261B04C1B57AC56006C8917 /* ACLogoutSettingViewCell.xib */; };
+		A2845E931B5A9FBE006E0CE0 /* ACRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2845E921B5A9FBE006E0CE0 /* ACRegisterViewController.m */; };
 		A28BFEC71B53A2CC00A712F1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A28BFEC61B53A2CC00A712F1 /* Images.xcassets */; };
 		A28BFECA1B53A2CC00A712F1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A28BFEC81B53A2CC00A712F1 /* LaunchScreen.xib */; };
 		A28BFED61B53A2CD00A712F1 /* A_cyclistTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A28BFED51B53A2CD00A712F1 /* A_cyclistTests.m */; };
@@ -43,6 +46,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A218F7011B5A3F33007CBADA /* ACLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACLoginViewController.h; sourceTree = "<group>"; };
+		A218F7021B5A3F33007CBADA /* ACLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACLoginViewController.m; sourceTree = "<group>"; };
+		A218F7041B5A3FB2007CBADA /* ACLogin.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ACLogin.storyboard; sourceTree = "<group>"; };
 		A261AFFE1B5762D1006C8917 /* ACSettingGroupModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACSettingGroupModel.h; sourceTree = "<group>"; };
 		A261AFFF1B5762D1006C8917 /* ACSettingGroupModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACSettingGroupModel.m; sourceTree = "<group>"; };
 		A261B0011B577058006C8917 /* ACSettingViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACSettingViewCell.h; sourceTree = "<group>"; };
@@ -56,6 +62,8 @@
 		A261B0491B57AA87006C8917 /* ACLogoutSettingViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACLogoutSettingViewCell.h; sourceTree = "<group>"; };
 		A261B04A1B57AA87006C8917 /* ACLogoutSettingViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACLogoutSettingViewCell.m; sourceTree = "<group>"; };
 		A261B04C1B57AC56006C8917 /* ACLogoutSettingViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ACLogoutSettingViewCell.xib; sourceTree = "<group>"; };
+		A2845E911B5A9FBE006E0CE0 /* ACRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACRegisterViewController.h; sourceTree = "<group>"; };
+		A2845E921B5A9FBE006E0CE0 /* ACRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACRegisterViewController.m; sourceTree = "<group>"; };
 		A28BFEB61B53A2CC00A712F1 /* A-cyclist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "A-cyclist.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A28BFEBA1B53A2CC00A712F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A28BFEC61B53A2CC00A712F1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -103,6 +111,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A218F7001B5A3F09007CBADA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A218F7041B5A3FB2007CBADA /* ACLogin.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		A261B0391B5780E7006C8917 /* About */ = {
 			isa = PBXGroup;
 			children = (
@@ -209,9 +225,9 @@
 		A28BFEDF1B53B35B00A712F1 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				A28BFEE81B53B35B00A712F1 /* Lib */,
 				A28BFEE01B53B35B00A712F1 /* Auth */,
 				A28BFEE41B53B35B00A712F1 /* Cycling */,
-				A28BFEE81B53B35B00A712F1 /* Lib */,
 				A28BFEE91B53B35B00A712F1 /* Main */,
 				A28BFEF31B53B35B00A712F1 /* NewFeature */,
 				A28BFEF71B53B35B00A712F1 /* Profile */,
@@ -226,9 +242,9 @@
 		A28BFEE01B53B35B00A712F1 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				A218F7001B5A3F09007CBADA /* View */,
 				A28BFEE11B53B35B00A712F1 /* Controller */,
 				A28BFEE21B53B35B00A712F1 /* Model */,
-				A28BFEE31B53B35B00A712F1 /* View */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -236,6 +252,10 @@
 		A28BFEE11B53B35B00A712F1 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				A218F7011B5A3F33007CBADA /* ACLoginViewController.h */,
+				A218F7021B5A3F33007CBADA /* ACLoginViewController.m */,
+				A2845E911B5A9FBE006E0CE0 /* ACRegisterViewController.h */,
+				A2845E921B5A9FBE006E0CE0 /* ACRegisterViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -245,13 +265,6 @@
 			children = (
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		A28BFEE31B53B35B00A712F1 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		A28BFEE41B53B35B00A712F1 /* Cycling */ = {
@@ -626,6 +639,7 @@
 				A28BFF161B53F98200A712F1 /* cycling.storyboard in Resources */,
 				A28BFF1C1B53F9E900A712F1 /* route.storyboard in Resources */,
 				A261B04D1B57AC56006C8917 /* ACLogoutSettingViewCell.xib in Resources */,
+				A218F7051B5A3FB2007CBADA /* ACLogin.storyboard in Resources */,
 				A28BFF181B53F9AD00A712F1 /* profile.storyboard in Resources */,
 				A28BFF1E1B53F9FD00A712F1 /* setting.storyboard in Resources */,
 				A28BFEC71B53A2CC00A712F1 /* Images.xcassets in Resources */,
@@ -655,10 +669,12 @@
 				A261B04B1B57AA87006C8917 /* ACLogoutSettingViewCell.m in Sources */,
 				A2F875121B5676630075F323 /* ACSettingCellModel.m in Sources */,
 				A2D483B91B5525B200BC8406 /* HCTabBar5ContentView.m in Sources */,
+				A218F7031B5A3F33007CBADA /* ACLoginViewController.m in Sources */,
 				A261B0001B5762D1006C8917 /* ACSettingGroupModel.m in Sources */,
 				A2D483AC1B5515B700BC8406 /* ACTabBarController.m in Sources */,
 				A28BFF141B53BECC00A712F1 /* ACGlobal.m in Sources */,
 				A28BFF0A1B53B35B00A712F1 /* main.m in Sources */,
+				A2845E931B5A9FBE006E0CE0 /* ACRegisterViewController.m in Sources */,
 				A2D483B61B5516E300BC8406 /* UIColor+Tools.m in Sources */,
 				A261B0481B57A3BF006C8917 /* ACBlankSettingCellModel.m in Sources */,
 			);

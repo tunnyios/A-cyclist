@@ -23,10 +23,11 @@
     self.window = [[UIWindow alloc] initWithFrame:ACScreenBounds];
 
     //2. 创建tabbarController
-    ACTabBarController *tabBarController = [[ACTabBarController alloc] init];
+    UIStoryboard *loginSB = [UIStoryboard storyboardWithName:@"ACLogin" bundle:nil];
+//    ACTabBarController *tabBarController = [[ACTabBarController alloc] init];
 
     //设置根控制器
-    self.window.rootViewController = tabBarController;
+    self.window.rootViewController = loginSB.instantiateInitialViewController;
     
     //3. 显示window
     [self.window makeKeyAndVisible];
