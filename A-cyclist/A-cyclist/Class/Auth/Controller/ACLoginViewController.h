@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HCBaseKeyboardViewController.h"
 
-@interface ACLoginViewController : UIViewController
+@interface ACLoginViewController : HCBaseKeyboardViewController
 
 @end

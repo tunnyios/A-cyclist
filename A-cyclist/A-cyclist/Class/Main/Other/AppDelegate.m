@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "ACGlobal.h"
 #import "ACTabBarController.h"
+#import <BmobSDK/Bmob.h>
 
 @interface AppDelegate ()
 
@@ -19,13 +20,24 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    [Bmob registerWithAppKey:ACBmobAppKey];
+    
     //1. 创建window
     self.window = [[UIWindow alloc] initWithFrame:ACScreenBounds];
 
-    //2. 创建tabbarController
+    //2. 设置根控制器
+//    BmobUser *bUser = [BmobUser getCurrentUser];
+//    if (bUser) {
+//        //创建tabbarController
+//        ACTabBarController *tabBarController = [[ACTabBarController alloc] init];
+//        //设置根控制器
+//        self.window.rootViewController = tabBarController;
+//    } else {
+//        UIStoryboard *loginSB = [UIStoryboard storyboardWithName:@"ACLogin" bundle:nil];
+//        //设置根控制器
+//        self.window.rootViewController = loginSB.instantiateInitialViewController;
+//    }
     UIStoryboard *loginSB = [UIStoryboard storyboardWithName:@"ACLogin" bundle:nil];
-//    ACTabBarController *tabBarController = [[ACTabBarController alloc] init];
-
     //设置根控制器
     self.window.rootViewController = loginSB.instantiateInitialViewController;
     

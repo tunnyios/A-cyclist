@@ -21,7 +21,7 @@ NSString * const ACLoginSuccess = @"登录成功";
 NSString * const ACRegisterSuccess = @"注册成功";
 
 /** 登录失败 */
-NSString * const ACLoginFail = @"登录失败";
+NSString * const ACLoginError = @"登录失败";
 /** 注册失败 */
 NSString * const ACRegisterError = @"注册失败";
 /** 邮件格式错误 */

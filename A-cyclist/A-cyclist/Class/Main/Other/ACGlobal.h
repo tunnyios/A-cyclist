@@ -24,7 +24,7 @@ extern NSString * const ACLoginSuccess;
 extern NSString * const ACRegisterSuccess;
 
 /** 登录失败 */
-extern NSString * const ACLoginFail;
+extern NSString * const ACLoginError;
 /** 注册失败 */
 extern NSString * const ACRegisterError;
 /** 邮件格式错误 */

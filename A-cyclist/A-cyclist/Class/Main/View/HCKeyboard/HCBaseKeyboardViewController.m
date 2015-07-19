@@ -12,6 +12,7 @@
 @interface HCBaseKeyboardViewController () <HCKeyboardToolDelegate>
 /** 用来存储所有的textField */
 @property (nonatomic, copy) NSArray *textFieldArray;
+
 @end
 
 @implementation HCBaseKeyboardViewController
@@ -68,6 +69,11 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - 实现键盘toolbarView的代理方法
