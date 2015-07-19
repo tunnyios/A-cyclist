@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A204B0941B5B30F7004C0A6C /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = A204B0931B5B30F7004C0A6C /* NSString+Extension.m */; };
+		A204B15F1B5B506B004C0A6C /* HCBaseKeyboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A204B15A1B5B506B004C0A6C /* HCBaseKeyboardViewController.m */; };
+		A204B1601B5B506B004C0A6C /* HCKeyboardTool.m in Sources */ = {isa = PBXBuildFile; fileRef = A204B15D1B5B506B004C0A6C /* HCKeyboardTool.m */; };
+		A204B1611B5B506B004C0A6C /* HCKeyboardTool.xib in Resources */ = {isa = PBXBuildFile; fileRef = A204B15E1B5B506B004C0A6C /* HCKeyboardTool.xib */; };
 		A218F7031B5A3F33007CBADA /* ACLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A218F7021B5A3F33007CBADA /* ACLoginViewController.m */; };
 		A218F7051B5A3FB2007CBADA /* ACLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A218F7041B5A3FB2007CBADA /* ACLogin.storyboard */; };
 		A261B0001B5762D1006C8917 /* ACSettingGroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A261AFFF1B5762D1006C8917 /* ACSettingGroupModel.m */; };
@@ -17,6 +21,22 @@
 		A261B04B1B57AA87006C8917 /* ACLogoutSettingViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A261B04A1B57AA87006C8917 /* ACLogoutSettingViewCell.m */; };
 		A261B04D1B57AC56006C8917 /* ACLogoutSettingViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A261B04C1B57AC56006C8917 /* ACLogoutSettingViewCell.xib */; };
 		A2845E931B5A9FBE006E0CE0 /* ACRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2845E921B5A9FBE006E0CE0 /* ACRegisterViewController.m */; };
+		A2845E951B5AB0F2006E0CE0 /* BmobSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2845E941B5AB0F2006E0CE0 /* BmobSDK.framework */; };
+		A2845E971B5AB10D006E0CE0 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2845E961B5AB10D006E0CE0 /* CoreLocation.framework */; };
+		A2845E991B5AB112006E0CE0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2845E981B5AB112006E0CE0 /* Security.framework */; };
+		A2845E9B1B5AB126006E0CE0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2845E9A1B5AB126006E0CE0 /* CoreGraphics.framework */; };
+		A2845E9D1B5AB12C006E0CE0 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2845E9C1B5AB12C006E0CE0 /* MobileCoreServices.framework */; };
+		A2845E9F1B5AB13E006E0CE0 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2845E9E1B5AB13E006E0CE0 /* CFNetwork.framework */; };
+		A2845EA11B5AB143006E0CE0 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2845EA01B5AB143006E0CE0 /* CoreTelephony.framework */; };
+		A2845EA31B5AB156006E0CE0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2845EA21B5AB156006E0CE0 /* SystemConfiguration.framework */; };
+		A2845EA51B5AB15C006E0CE0 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A2845EA41B5AB15C006E0CE0 /* libz.1.2.5.dylib */; };
+		A2845EA71B5AB17C006E0CE0 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A2845EA61B5AB17C006E0CE0 /* libsqlite3.dylib */; };
+		A2845EA91B5AB186006E0CE0 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A2845EA81B5AB186006E0CE0 /* libicucore.dylib */; };
+		A2845EAB1B5AB198006E0CE0 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2845EAA1B5AB198006E0CE0 /* AVFoundation.framework */; };
+		A2845EAD1B5AB19D006E0CE0 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2845EAC1B5AB19D006E0CE0 /* MediaPlayer.framework */; };
+		A2845EB41B5AB825006E0CE0 /* MBProgressHUD+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = A2845EB01B5AB825006E0CE0 /* MBProgressHUD+MJ.m */; };
+		A2845EB51B5AB825006E0CE0 /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A2845EB11B5AB825006E0CE0 /* MBProgressHUD.bundle */; };
+		A2845EB61B5AB825006E0CE0 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A2845EB31B5AB825006E0CE0 /* MBProgressHUD.m */; };
 		A28BFEC71B53A2CC00A712F1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A28BFEC61B53A2CC00A712F1 /* Images.xcassets */; };
 		A28BFECA1B53A2CC00A712F1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A28BFEC81B53A2CC00A712F1 /* LaunchScreen.xib */; };
 		A28BFED61B53A2CD00A712F1 /* A_cyclistTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A28BFED51B53A2CD00A712F1 /* A_cyclistTests.m */; };
@@ -46,6 +66,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A204B0921B5B30F7004C0A6C /* NSString+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extension.h"; sourceTree = "<group>"; };
+		A204B0931B5B30F7004C0A6C /* NSString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extension.m"; sourceTree = "<group>"; };
+		A204B1591B5B506B004C0A6C /* HCBaseKeyboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCBaseKeyboardViewController.h; sourceTree = "<group>"; };
+		A204B15A1B5B506B004C0A6C /* HCBaseKeyboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCBaseKeyboardViewController.m; sourceTree = "<group>"; };
+		A204B15C1B5B506B004C0A6C /* HCKeyboardTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCKeyboardTool.h; sourceTree = "<group>"; };
+		A204B15D1B5B506B004C0A6C /* HCKeyboardTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCKeyboardTool.m; sourceTree = "<group>"; };
+		A204B15E1B5B506B004C0A6C /* HCKeyboardTool.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HCKeyboardTool.xib; sourceTree = "<group>"; };
 		A218F7011B5A3F33007CBADA /* ACLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACLoginViewController.h; sourceTree = "<group>"; };
 		A218F7021B5A3F33007CBADA /* ACLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACLoginViewController.m; sourceTree = "<group>"; };
 		A218F7041B5A3FB2007CBADA /* ACLogin.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ACLogin.storyboard; sourceTree = "<group>"; };
@@ -64,6 +91,24 @@
 		A261B04C1B57AC56006C8917 /* ACLogoutSettingViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ACLogoutSettingViewCell.xib; sourceTree = "<group>"; };
 		A2845E911B5A9FBE006E0CE0 /* ACRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACRegisterViewController.h; sourceTree = "<group>"; };
 		A2845E921B5A9FBE006E0CE0 /* ACRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACRegisterViewController.m; sourceTree = "<group>"; };
+		A2845E941B5AB0F2006E0CE0 /* BmobSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BmobSDK.framework; sourceTree = "<group>"; };
+		A2845E961B5AB10D006E0CE0 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		A2845E981B5AB112006E0CE0 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		A2845E9A1B5AB126006E0CE0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		A2845E9C1B5AB12C006E0CE0 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		A2845E9E1B5AB13E006E0CE0 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		A2845EA01B5AB143006E0CE0 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		A2845EA21B5AB156006E0CE0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		A2845EA41B5AB15C006E0CE0 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
+		A2845EA61B5AB17C006E0CE0 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		A2845EA81B5AB186006E0CE0 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		A2845EAA1B5AB198006E0CE0 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		A2845EAC1B5AB19D006E0CE0 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		A2845EAF1B5AB825006E0CE0 /* MBProgressHUD+MJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+MJ.h"; sourceTree = "<group>"; };
+		A2845EB01B5AB825006E0CE0 /* MBProgressHUD+MJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+MJ.m"; sourceTree = "<group>"; };
+		A2845EB11B5AB825006E0CE0 /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
+		A2845EB21B5AB825006E0CE0 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		A2845EB31B5AB825006E0CE0 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		A28BFEB61B53A2CC00A712F1 /* A-cyclist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "A-cyclist.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A28BFEBA1B53A2CC00A712F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A28BFEC61B53A2CC00A712F1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -98,6 +143,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2845EAD1B5AB19D006E0CE0 /* MediaPlayer.framework in Frameworks */,
+				A2845EAB1B5AB198006E0CE0 /* AVFoundation.framework in Frameworks */,
+				A2845EA91B5AB186006E0CE0 /* libicucore.dylib in Frameworks */,
+				A2845EA71B5AB17C006E0CE0 /* libsqlite3.dylib in Frameworks */,
+				A2845EA51B5AB15C006E0CE0 /* libz.1.2.5.dylib in Frameworks */,
+				A2845EA31B5AB156006E0CE0 /* SystemConfiguration.framework in Frameworks */,
+				A2845EA11B5AB143006E0CE0 /* CoreTelephony.framework in Frameworks */,
+				A2845E9F1B5AB13E006E0CE0 /* CFNetwork.framework in Frameworks */,
+				A2845E9D1B5AB12C006E0CE0 /* MobileCoreServices.framework in Frameworks */,
+				A2845E9B1B5AB126006E0CE0 /* CoreGraphics.framework in Frameworks */,
+				A2845E991B5AB112006E0CE0 /* Security.framework in Frameworks */,
+				A2845E971B5AB10D006E0CE0 /* CoreLocation.framework in Frameworks */,
+				A2845E951B5AB0F2006E0CE0 /* BmobSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,6 +169,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A204B1581B5B506B004C0A6C /* HCKeyboard */ = {
+			isa = PBXGroup;
+			children = (
+				A204B1591B5B506B004C0A6C /* HCBaseKeyboardViewController.h */,
+				A204B15A1B5B506B004C0A6C /* HCBaseKeyboardViewController.m */,
+				A204B15B1B5B506B004C0A6C /* View */,
+			);
+			path = HCKeyboard;
+			sourceTree = "<group>";
+		};
+		A204B15B1B5B506B004C0A6C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A204B15C1B5B506B004C0A6C /* HCKeyboardTool.h */,
+				A204B15D1B5B506B004C0A6C /* HCKeyboardTool.m */,
+				A204B15E1B5B506B004C0A6C /* HCKeyboardTool.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		A218F7001B5A3F09007CBADA /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,9 +246,33 @@
 			path = UploadLog;
 			sourceTree = "<group>";
 		};
+		A2845EAE1B5AB825006E0CE0 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				A2845EAF1B5AB825006E0CE0 /* MBProgressHUD+MJ.h */,
+				A2845EB01B5AB825006E0CE0 /* MBProgressHUD+MJ.m */,
+				A2845EB11B5AB825006E0CE0 /* MBProgressHUD.bundle */,
+				A2845EB21B5AB825006E0CE0 /* MBProgressHUD.h */,
+				A2845EB31B5AB825006E0CE0 /* MBProgressHUD.m */,
+			);
+			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
 		A28BFEAD1B53A2CC00A712F1 = {
 			isa = PBXGroup;
 			children = (
+				A2845EAC1B5AB19D006E0CE0 /* MediaPlayer.framework */,
+				A2845EAA1B5AB198006E0CE0 /* AVFoundation.framework */,
+				A2845EA81B5AB186006E0CE0 /* libicucore.dylib */,
+				A2845EA61B5AB17C006E0CE0 /* libsqlite3.dylib */,
+				A2845EA41B5AB15C006E0CE0 /* libz.1.2.5.dylib */,
+				A2845EA21B5AB156006E0CE0 /* SystemConfiguration.framework */,
+				A2845EA01B5AB143006E0CE0 /* CoreTelephony.framework */,
+				A2845E9E1B5AB13E006E0CE0 /* CFNetwork.framework */,
+				A2845E9C1B5AB12C006E0CE0 /* MobileCoreServices.framework */,
+				A2845E9A1B5AB126006E0CE0 /* CoreGraphics.framework */,
+				A2845E981B5AB112006E0CE0 /* Security.framework */,
+				A2845E961B5AB10D006E0CE0 /* CoreLocation.framework */,
 				A28BFEB81B53A2CC00A712F1 /* A-cyclist */,
 				A28BFED21B53A2CD00A712F1 /* A-cyclistTests */,
 				A28BFEB71B53A2CC00A712F1 /* Products */,
@@ -302,6 +404,8 @@
 		A28BFEE81B53B35B00A712F1 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				A2845EAE1B5AB825006E0CE0 /* MBProgressHUD */,
+				A2845E941B5AB0F2006E0CE0 /* BmobSDK.framework */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -539,6 +643,7 @@
 		A2D1ECF31B550E3A00344246 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A204B1581B5B506B004C0A6C /* HCKeyboard */,
 				A2D483B71B5525B200BC8406 /* HCTabBar5ContentView.h */,
 				A2D483B81B5525B200BC8406 /* HCTabBar5ContentView.m */,
 			);
@@ -548,6 +653,8 @@
 		A2D483B31B5516CD00BC8406 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				A204B0921B5B30F7004C0A6C /* NSString+Extension.h */,
+				A204B0931B5B30F7004C0A6C /* NSString+Extension.m */,
 				A2D483B41B5516E300BC8406 /* UIColor+Tools.h */,
 				A2D483B51B5516E300BC8406 /* UIColor+Tools.m */,
 			);
@@ -639,9 +746,11 @@
 				A28BFF161B53F98200A712F1 /* cycling.storyboard in Resources */,
 				A28BFF1C1B53F9E900A712F1 /* route.storyboard in Resources */,
 				A261B04D1B57AC56006C8917 /* ACLogoutSettingViewCell.xib in Resources */,
+				A204B1611B5B506B004C0A6C /* HCKeyboardTool.xib in Resources */,
 				A218F7051B5A3FB2007CBADA /* ACLogin.storyboard in Resources */,
 				A28BFF181B53F9AD00A712F1 /* profile.storyboard in Resources */,
 				A28BFF1E1B53F9FD00A712F1 /* setting.storyboard in Resources */,
+				A2845EB51B5AB825006E0CE0 /* MBProgressHUD.bundle in Resources */,
 				A28BFEC71B53A2CC00A712F1 /* Images.xcassets in Resources */,
 				A28BFF1A1B53F9D700A712F1 /* ranking.storyboard in Resources */,
 			);
@@ -667,12 +776,17 @@
 				A261B0421B57810A006C8917 /* ACSettingViewController.m in Sources */,
 				A2F040EB1B563A51004FBF3D /* ACBaseTableViewController.m in Sources */,
 				A261B04B1B57AA87006C8917 /* ACLogoutSettingViewCell.m in Sources */,
+				A204B0941B5B30F7004C0A6C /* NSString+Extension.m in Sources */,
+				A204B15F1B5B506B004C0A6C /* HCBaseKeyboardViewController.m in Sources */,
 				A2F875121B5676630075F323 /* ACSettingCellModel.m in Sources */,
 				A2D483B91B5525B200BC8406 /* HCTabBar5ContentView.m in Sources */,
+				A2845EB41B5AB825006E0CE0 /* MBProgressHUD+MJ.m in Sources */,
+				A204B1601B5B506B004C0A6C /* HCKeyboardTool.m in Sources */,
 				A218F7031B5A3F33007CBADA /* ACLoginViewController.m in Sources */,
 				A261B0001B5762D1006C8917 /* ACSettingGroupModel.m in Sources */,
 				A2D483AC1B5515B700BC8406 /* ACTabBarController.m in Sources */,
 				A28BFF141B53BECC00A712F1 /* ACGlobal.m in Sources */,
+				A2845EB61B5AB825006E0CE0 /* MBProgressHUD.m in Sources */,
 				A28BFF0A1B53B35B00A712F1 /* main.m in Sources */,
 				A2845E931B5A9FBE006E0CE0 /* ACRegisterViewController.m in Sources */,
 				A2D483B61B5516E300BC8406 /* UIColor+Tools.m in Sources */,
@@ -794,6 +908,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/A-cyclist/Class/Lib",
+				);
 				INFOPLIST_FILE = "A-cyclist/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -804,6 +922,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/A-cyclist/Class/Lib",
+				);
 				INFOPLIST_FILE = "A-cyclist/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
