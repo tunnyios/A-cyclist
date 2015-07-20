@@ -26,5 +26,9 @@ NSString * const ACLoginError = @"登录失败";
 NSString * const ACRegisterError = @"注册失败";
 /** 邮件格式错误 */
 NSString * const ACErrorEmail = @"邮箱不合法";
+/** 邮箱地址不能为空 */
+NSString * const ACEmptyEmail = @"请填写邮箱地址";
 /** 用户名格式错误 */
 NSString * const ACErrorUserName = @"昵称中不能包含(除_以外的)特殊字符， 最短3个字符最长不超过16个字符";
+/** 密码不合法 */
+NSString * const ACPasswordError = @"密码不能为空";

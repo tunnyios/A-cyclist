@@ -8,6 +8,7 @@
 
 #import "HCBaseKeyboardViewController.h"
 #import "HCKeyboardTool.h"
+#import "ACGlobal.h"
 
 @interface HCBaseKeyboardViewController () <HCKeyboardToolDelegate>
 /** 用来存储所有的textField */
@@ -63,7 +64,7 @@
             self.view.transform = CGAffineTransformMakeTranslation(0, changeFrame);
         }];
     }
-    NSLog(@"%@", nofi);
+    DLog(@"%@", nofi);
 }
 
 - (void)didReceiveMemoryWarning {

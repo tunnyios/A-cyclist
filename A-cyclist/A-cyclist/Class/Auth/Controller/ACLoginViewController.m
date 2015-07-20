@@ -7,10 +7,12 @@
 //
 
 #import "ACLoginViewController.h"
-#import <BmobSDK/Bmob.h>
+#import "ACDataBaseTool.h"
 #import "ACGlobal.h"
 #import "NSString+Extension.h"
 #import "MBProgressHUD+MJ.h"
+#import "ACUserModel.h"
+
 
 @interface ACLoginViewController ()
 /** 输入框容器View */
@@ -42,20 +44,28 @@
 - (IBAction)login
 {
     NSString *email = _loginEmail.text;
-    if ([email isAvailEmail]) {
-        [BmobUser loginInbackgroundWithAccount:email andPassword:_loginPwd.text block:^(BmobUser *user, NSError *error) {
-            if (user) {
-                [MBProgressHUD showSuccess:ACLoginSuccess];
-                DLog(@"user #%@#", user);
-                //跳转至主控制器
-            } else {
-                [MBProgressHUD showError:ACLoginError];
-                return;
-            }
-        }];
-    } else {
+    if (![email isAvailEmail]) {
         [MBProgressHUD showError:ACErrorEmail];
+        return;
     }
+    
+    NSString *pwd = _loginPwd.text;
+    if (!pwd) {
+        [MBProgressHUD showError:ACPasswordError];
+        return;
+    }
+    
+    //登录
+    [ACDataBaseTool loginWithAccount:email passWord:pwd block:^(ACUserModel *user, NSError *error) {
+        if (user) {
+            [MBProgressHUD showSuccess:ACLoginSuccess];
+            DLog(@"user #%@#", user);
+            //跳转至主控制器
+        } else {
+            [MBProgressHUD showError:ACLoginError];
+            return;
+        }
+    }];
 }
 
 /**
@@ -77,10 +87,23 @@
  */
 - (IBAction)findPwd
 {
-    if ([self.loginEmail.text isAvailEmail]) {
+    NSString *email = self.loginEmail.text;
+    if ([email isAvailEmail]) {
         //从数据库中查找匹配的邮箱地址
+        NSString *sql = [NSString stringWithFormat:@"select * from _User where email = '%@'", email];
+        DLog(@"sql #%@#",sql);
+        
+        [ACDataBaseTool queryWithSQL:sql pValues:nil block:^(NSArray *result, NSError *error) {
+            DLog(@"result #%@# error #%@#", result, error);
+            if (result.count > 0) {    //找到匹配的邮箱地址
+                [ACDataBaseTool restPasswordWithEmail:email];
+                [MBProgressHUD showSuccess:@"重置密码的邮件已经发送至您的邮箱"];
+            } else {
+                [MBProgressHUD showError:@"输入的邮箱还未注册"];
+            }
+        }];
     } else {
-        [MBProgressHUD showError:ACErrorEmail];
+        [MBProgressHUD showError:ACEmptyEmail];
     }
 }
 

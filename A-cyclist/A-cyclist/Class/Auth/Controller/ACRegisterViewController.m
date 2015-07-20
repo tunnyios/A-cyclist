@@ -7,7 +7,7 @@
 //
 
 #import "ACRegisterViewController.h"
-#import <BmobSDK/Bmob.h>
+#import "ACDataBaseTool.h"
 #import "ACGlobal.h"
 #import "NSString+Extension.h"
 #import "MBProgressHUD+MJ.h"
@@ -50,27 +50,26 @@
  */
 - (IBAction)register
 {
-    BmobUser *bUser = [[BmobUser alloc] init];
-    
     NSString *email = _registerEmail.text;
-    if ([email isAvailEmail]) {
-        [bUser setEmail:email];
-    } else {
+    if (![email isAvailEmail]) {
         [MBProgressHUD showError:ACErrorEmail];
         return;
     }
-    
+
     NSString *nickName = _registerName.text;
-    if ([nickName isAvailUserName]) {
-//        [bUser setUserName:nickName];
-        bUser.username = nickName;
-    } else {
+    if (![nickName isAvailUserName]) {
         [MBProgressHUD showError:ACErrorUserName];
         return;
     }
     
-    [bUser setPassword:_registerPwd.text];
-    [bUser signUpInBackgroundWithBlock:^(BOOL isSuccessful, NSError *error) {
+    NSString *pwd = _registerPwd.text;
+    if (!pwd) {
+        [MBProgressHUD showError:ACPasswordError];
+        return;
+    }
+    
+    /* 邮箱注册 */
+    [ACDataBaseTool signUpWithUserName:nickName email:email passWord:pwd block:^(BOOL isSuccessful, NSError *error) {
         if (isSuccessful) {
             [MBProgressHUD hideHUD];
             [MBProgressHUD showSuccess:ACRegisterSuccess];

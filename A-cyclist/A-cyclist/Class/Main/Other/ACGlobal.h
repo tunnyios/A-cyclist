@@ -29,9 +29,12 @@ extern NSString * const ACLoginError;
 extern NSString * const ACRegisterError;
 /** 邮件格式错误 */
 extern NSString * const ACErrorEmail;
+/** 邮箱地址不能为空 */
+extern NSString * const ACEmptyEmail;
 /** 用户名格式错误 */
 extern NSString * const ACErrorUserName;
-
+/** 密码不合法 */
+extern NSString * const ACPasswordError;
 
 
 // 宏定义
