@@ -12,6 +12,9 @@
 #import "ACTabBarController.h"
 #import <BmobSDK/Bmob.h>
 #import "WeiboSDK.h"
+#import "HCHttpTool.h"
+#import "ACDataBaseTool.h"
+#import "ACCacheDataTool.h"
 
 @interface AppDelegate ()<WeiboSDKDelegate>
 
@@ -88,20 +91,65 @@
     NSString *accessToken = [(WBAuthorizeResponse *)response accessToken];
     NSString *uid = [(WBAuthorizeResponse *)response userID];
     NSDate *expiresDate = [(WBAuthorizeResponse *)response expirationDate];
-    NSLog(@"acessToken:%@",accessToken);
-    NSLog(@"UserId:%@",uid);
-    NSLog(@"expiresDate:%@",expiresDate);
+    DLog(@"acessToken:%@",accessToken);
+    DLog(@"UserId:%@",uid);
+    DLog(@"expiresDate:%@",expiresDate);
     if (!accessToken || !uid || !expiresDate) {
         return;
     }
+    
+
     
     NSDictionary *dic = @{@"access_token":accessToken,@"uid":uid,@"expirationDate":expiresDate};
     //通过授权信息注册登录
     [BmobUser loginInBackgroundWithAuthorDictionary:dic platform:BmobSNSPlatformSinaWeibo block:^(BmobUser *user, NSError *error) {
         if (error) {
-            NSLog(@"weibo login error:%@",error);
+            DLog(@"weibo login error:%@",error);
         } else if (user){
-            NSLog(@"user objectid is :%@",user.objectId);
+            DLog(@"user objectid is :%@",user.objectId);
+            //1. 发送请求从新浪微博获取用户详细信息
+            NSString *url = @"https://api.weibo.com/2/users/show.json";
+            NSDictionary *params = @{@"access_token" : accessToken,
+                                     @"uid" : uid};
+            [HCHttpTool GET:url parameters:params success:^(id responseObject) {
+                DLog(@"%@", responseObject);
+                /*
+                 avatar_large
+                 avatar_hd
+                 profile_image_url
+                 location
+                 screen_name
+                 */
+                //2. 更新的数据到数据库中
+                NSDictionary *dict = @{@"username" : responseObject[@"screen_name"],
+                                       @"profile_image_url" : responseObject[@"profile_image_url"],
+                                       @"avatar_large" : responseObject[@"avatar_large"],
+                                       @"location" : responseObject[@"location"],
+                                       @"gender" : responseObject[@"gender"]
+                                       };
+                NSArray *keys = @[@"username", @"profile_image_url", @"avatar_large", @"location", @"gender"];
+                [ACDataBaseTool updateUserInfoWithDict:dict andKeys:keys withResultBlock:^(BOOL isSuccessful, NSError *error) {
+                    DLog(@"isSuccessful is %d, error is %@", isSuccessful, error);
+                }];
+                
+                //3. 本地缓存
+                ACUserModel *user = [ACDataBaseTool getCurrentUser];
+                DLog(@"user is %@", user);
+                [ACCacheDataTool saveUserInfo:user];
+                
+            } failure:^(NSError *error) {
+                DLog(@"获取用户信息失败 error:%@", error);
+            }];
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             //跳转
             //创建tabbarController
             ACTabBarController *tabBarController = [[ACTabBarController alloc] init];

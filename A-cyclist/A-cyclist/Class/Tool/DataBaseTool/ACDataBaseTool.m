@@ -45,15 +45,7 @@
     [BmobUser loginInbackgroundWithAccount:account andPassword:pwd block:^(BmobUser *user, NSError *error) {
         NSLog(@"bmobuser #%@#", user);
         if (block) {
-            ACUserModel *ACUser = [[ACUserModel alloc] init];
-            ACUser.className = user.className;
-            ACUser.username = user.username;
-            ACUser.email = user.email;
-            ACUser.mobilePhoneNumber = user.mobilePhoneNumber;
-            ACUser.objectId = user.objectId;
-            ACUser.createdAt = user.createdAt;
-            ACUser.updatedAt = user.updatedAt;
-            ACUser.emailVerified = [user objectForKey:@"emailVerified"];
+            ACUserModel *ACUser = [ACUserModel userWithBmobUser:user];
             
             block(ACUser, error);
         }
@@ -68,7 +60,39 @@
     [BmobUser requestPasswordResetInBackgroundWithEmail:email];
 }
 
+/**
+ *  更新用户资料
+ *
+ *  @param dict  用户表的键值对儿
+ *  @param block 结果信息
+ */
++ (void)updateUserInfoWithDict:(NSDictionary *)dict andKeys:(NSArray *)keys withResultBlock:(void (^)(BOOL, NSError *))block
+{
+    BmobUser *bUser = [BmobUser getCurrentUser];
+    
+    for (NSString *key in keys) {
+        [bUser setObject:dict[key] forKey:key];
+    }
+    [bUser updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+        if (block) {
+            block(isSuccessful, error);
+        }
+    }];
+}
+
 #pragma mark - 查询相关
+
+/**
+ *  从数据库中获取当前用户信息
+ */
++ (ACUserModel *)getCurrentUser
+{
+    BmobUser *user = [BmobUser getCurrentUser];
+    ACUserModel *ACUser = [ACUserModel userWithBmobUser:user];
+    
+    return ACUser;
+}
+
 /**
  *  根据sql语句来查询数据库
  *

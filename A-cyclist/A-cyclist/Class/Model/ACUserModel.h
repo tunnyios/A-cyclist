@@ -7,9 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BmobSDK/Bmob.h>
 
-@interface ACUserModel : NSObject
+
+@class BmobUser;
+@interface ACUserModel : NSObject <NSCoding>
 /**  用户名 */
 @property (copy, nonatomic) NSString *username;
 
@@ -25,16 +26,24 @@
 /** 邮箱是否验证 */
 @property (nonatomic, assign) BOOL emailVerified;
 
+/** 位置 */
+@property (nonatomic, copy) NSString *location;
+
+/** 性别，m：男、f：女、n：未知 */
+@property (nonatomic, copy) NSString *gender;
+
 /**
     头像
  {
-     @"thumbnail_pic" : @"",
-     @"lage_pic" : @"",
+     @"profile_image_url" : @"",
+     @"avatar_large" : @"",
      @"width" : @"",
      @"height" : @""
  }
  */
-@property (nonatomic, strong) NSDictionary *avatar;
+@property (nonatomic, copy) NSString *profile_image_url;
+@property (nonatomic, copy) NSString *avatar_large;
+
 
 /**	BmobObject对象的id */
 @property(nonatomic,copy)NSString *objectId;
@@ -47,4 +56,7 @@
 
 /** BmobObject对象的表名 */
 @property(nonatomic,copy)NSString * className;
+
+
++ (instancetype)userWithBmobUser:(BmobUser *)user;
 @end
