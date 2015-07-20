@@ -10,8 +10,9 @@
 #import "ACDataBaseTool.h"
 #import "ACGlobal.h"
 #import "NSString+Extension.h"
-#import "MBProgressHUD+MJ.h"
+#import "ACShowAlertTool.h"
 #import "ACUserModel.h"
+#import "WeiboSDK.h"
 
 
 @interface ACLoginViewController ()
@@ -45,24 +46,24 @@
 {
     NSString *email = _loginEmail.text;
     if (![email isAvailEmail]) {
-        [MBProgressHUD showError:ACErrorEmail];
+        [ACShowAlertTool showError:ACErrorEmail];
         return;
     }
     
     NSString *pwd = _loginPwd.text;
     if (!pwd) {
-        [MBProgressHUD showError:ACPasswordError];
+        [ACShowAlertTool showError:ACPasswordError];
         return;
     }
     
     //登录
     [ACDataBaseTool loginWithAccount:email passWord:pwd block:^(ACUserModel *user, NSError *error) {
         if (user) {
-            [MBProgressHUD showSuccess:ACLoginSuccess];
+            [ACShowAlertTool showSuccess:ACLoginSuccess];
             DLog(@"user #%@#", user);
             //跳转至主控制器
         } else {
-            [MBProgressHUD showError:ACLoginError];
+            [ACShowAlertTool showError:ACLoginError];
             return;
         }
     }];
@@ -97,13 +98,13 @@
             DLog(@"result #%@# error #%@#", result, error);
             if (result.count > 0) {    //找到匹配的邮箱地址
                 [ACDataBaseTool restPasswordWithEmail:email];
-                [MBProgressHUD showSuccess:@"重置密码的邮件已经发送至您的邮箱"];
+                [ACShowAlertTool showSuccess:ACRegisterSuccess];
             } else {
-                [MBProgressHUD showError:@"输入的邮箱还未注册"];
+                [ACShowAlertTool showError:ACRegisterError];
             }
         }];
     } else {
-        [MBProgressHUD showError:ACEmptyEmail];
+        [ACShowAlertTool showError:ACEmptyEmail];
     }
 }
 
@@ -115,7 +116,18 @@
 
 - (IBAction)weboLogin
 {
-    
+    if([WeiboSDK isWeiboAppInstalled]){
+        //向新浪发送请求
+        WBAuthorizeRequest *request = [WBAuthorizeRequest request];
+        request.redirectURI = @"https://api.weibo.com/oauth2/default.html";
+        request.scope = @"all";
+        [WeiboSDK sendRequest:request];
+        
+        DLog(@"微博按钮点击");
+    } else {
+        [ACShowAlertTool showError:ACSinaLoginError];
+        
+    }
 }
 
 - (IBAction)wechatLogin

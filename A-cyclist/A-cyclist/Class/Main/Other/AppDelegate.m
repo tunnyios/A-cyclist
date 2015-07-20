@@ -8,10 +8,12 @@
 
 #import "AppDelegate.h"
 #import "ACGlobal.h"
+#import "UIColor+Tools.h"
 #import "ACTabBarController.h"
 #import <BmobSDK/Bmob.h>
+#import "WeiboSDK.h"
 
-@interface AppDelegate ()
+@interface AppDelegate ()<WeiboSDKDelegate>
 
 @end
 
@@ -21,10 +23,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     [Bmob registerWithAppKey:ACBmobAppKey];
+    [WeiboSDK enableDebugMode:YES];
+    [WeiboSDK registerApp:ACSinaAppKey];
     
     //1. 创建window
     self.window = [[UIWindow alloc] initWithFrame:ACScreenBounds];
-
+    
     //2. 设置根控制器
 //    BmobUser *bUser = [BmobUser getCurrentUser];
 //    if (bUser) {
@@ -68,5 +72,47 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+#pragma mark - 重写两个handle方法
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
+    return [WeiboSDK handleOpenURL:url delegate:self];
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
+    return [WeiboSDK handleOpenURL:url delegate:self];
+}
+
+# pragma mark - 新浪回调
+//收到回复时的回调
+- (void)didReceiveWeiboResponse:(WBBaseResponse *)response{
+    NSString *accessToken = [(WBAuthorizeResponse *)response accessToken];
+    NSString *uid = [(WBAuthorizeResponse *)response userID];
+    NSDate *expiresDate = [(WBAuthorizeResponse *)response expirationDate];
+    NSLog(@"acessToken:%@",accessToken);
+    NSLog(@"UserId:%@",uid);
+    NSLog(@"expiresDate:%@",expiresDate);
+    if (!accessToken || !uid || !expiresDate) {
+        return;
+    }
+    
+    NSDictionary *dic = @{@"access_token":accessToken,@"uid":uid,@"expirationDate":expiresDate};
+    //通过授权信息注册登录
+    [BmobUser loginInBackgroundWithAuthorDictionary:dic platform:BmobSNSPlatformSinaWeibo block:^(BmobUser *user, NSError *error) {
+        if (error) {
+            NSLog(@"weibo login error:%@",error);
+        } else if (user){
+            NSLog(@"user objectid is :%@",user.objectId);
+            //跳转
+            //创建tabbarController
+            ACTabBarController *tabBarController = [[ACTabBarController alloc] init];
+            self.window.rootViewController = tabBarController;
+        }
+    }];
+}
+
+//发送请求时的回调
+-(void)didReceiveWeiboRequest:(WBBaseRequest *)request{
+}
+
 
 @end

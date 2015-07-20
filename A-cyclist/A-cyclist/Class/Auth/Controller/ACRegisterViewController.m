@@ -10,7 +10,7 @@
 #import "ACDataBaseTool.h"
 #import "ACGlobal.h"
 #import "NSString+Extension.h"
-#import "MBProgressHUD+MJ.h"
+#import "ACShowAlertTool.h"
 
 @interface ACRegisterViewController ()
 /** 昵称 */
@@ -52,30 +52,29 @@
 {
     NSString *email = _registerEmail.text;
     if (![email isAvailEmail]) {
-        [MBProgressHUD showError:ACErrorEmail];
+        [ACShowAlertTool showError:ACErrorEmail];
         return;
     }
 
     NSString *nickName = _registerName.text;
     if (![nickName isAvailUserName]) {
-        [MBProgressHUD showError:ACErrorUserName];
+        [ACShowAlertTool showError:ACErrorUserName];
         return;
     }
     
     NSString *pwd = _registerPwd.text;
     if (!pwd) {
-        [MBProgressHUD showError:ACPasswordError];
+        [ACShowAlertTool showError:ACPasswordError];
         return;
     }
     
     /* 邮箱注册 */
     [ACDataBaseTool signUpWithUserName:nickName email:email passWord:pwd block:^(BOOL isSuccessful, NSError *error) {
         if (isSuccessful) {
-            [MBProgressHUD hideHUD];
-            [MBProgressHUD showSuccess:ACRegisterSuccess];
+            [ACShowAlertTool showSuccess:ACRegisterSuccess];
             //跳转至主控制器
         } else {
-            [MBProgressHUD showError:ACRegisterError];
+            [ACShowAlertTool showError:ACRegisterError];
             return;
         }
     }];

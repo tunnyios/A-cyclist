@@ -12,6 +12,8 @@
 #pragma mark - 授权信息
 /** Bmob授权 */
 NSString * const ACBmobAppKey = @"ff5b5ae23656f82ba51044b03ad5975a";
+/** 新浪微博授权 */
+NSString * const ACSinaAppKey = @"3238796127";
 
 
 #pragma mark - 提示信息
@@ -20,8 +22,14 @@ NSString * const ACLoginSuccess = @"登录成功";
 /** 注册成功 */
 NSString * const ACRegisterSuccess = @"注册成功";
 
+/** 重置密码 */
+NSString * const ACRestPasswordSuccess = @"重置密码的邮件已经发送至您的邮箱";
+NSString * const ACRestPasswordError = @"输入的邮箱还未注册";
+
 /** 登录失败 */
 NSString * const ACLoginError = @"登录失败";
+/** 新浪微博登录失败 */
+NSString * const ACSinaLoginError = @"没有安装新浪微博客户端";
 /** 注册失败 */
 NSString * const ACRegisterError = @"注册失败";
 /** 邮件格式错误 */

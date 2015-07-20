@@ -15,6 +15,8 @@
 #pragma mark - 授权信息
 /** Bmob授权 */
 extern NSString * const ACBmobAppKey;
+/** 新浪微博授权 */
+extern NSString * const ACSinaAppKey;
 
 
 #pragma mark - 提示信息
@@ -23,8 +25,14 @@ extern NSString * const ACLoginSuccess;
 /** 注册成功 */
 extern NSString * const ACRegisterSuccess;
 
+/** 重置密码 */
+extern NSString * const ACRestPasswordSuccess;
+extern NSString * const ACRestPasswordError;
+
 /** 登录失败 */
 extern NSString * const ACLoginError;
+/** 新浪微博登录失败 */
+extern NSString * const ACSinaLoginError;
 /** 注册失败 */
 extern NSString * const ACRegisterError;
 /** 邮件格式错误 */
