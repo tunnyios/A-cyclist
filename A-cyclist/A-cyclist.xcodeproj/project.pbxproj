@@ -99,7 +99,7 @@
 		A28BFEC71B53A2CC00A712F1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A28BFEC61B53A2CC00A712F1 /* Images.xcassets */; };
 		A28BFECA1B53A2CC00A712F1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A28BFEC81B53A2CC00A712F1 /* LaunchScreen.xib */; };
 		A28BFED61B53A2CD00A712F1 /* A_cyclistTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A28BFED51B53A2CD00A712F1 /* A_cyclistTests.m */; };
-		A28BFF091B53B35B00A712F1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A28BFEF01B53B35B00A712F1 /* AppDelegate.m */; };
+		A28BFF091B53B35B00A712F1 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = A28BFEF01B53B35B00A712F1 /* AppDelegate.mm */; };
 		A28BFF0A1B53B35B00A712F1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A28BFEF11B53B35B00A712F1 /* main.m */; };
 		A28BFF141B53BECC00A712F1 /* ACGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = A28BFF131B53BECC00A712F1 /* ACGlobal.m */; };
 		A28BFF161B53F98200A712F1 /* cycling.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A28BFF151B53F98200A712F1 /* cycling.storyboard */; };
@@ -107,6 +107,8 @@
 		A28BFF1A1B53F9D700A712F1 /* ranking.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A28BFF191B53F9D700A712F1 /* ranking.storyboard */; };
 		A28BFF1C1B53F9E900A712F1 /* route.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A28BFF1B1B53F9E900A712F1 /* route.storyboard */; };
 		A28BFF1E1B53F9FD00A712F1 /* setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A28BFF1D1B53F9FD00A712F1 /* setting.storyboard */; };
+		A2AD90BD1B5FAAB100847F72 /* BaiduMapAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AD90BC1B5FAAB100847F72 /* BaiduMapAPI.framework */; };
+		A2AD90BF1B5FAAE200847F72 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AD90BE1B5FAAE200847F72 /* OpenGLES.framework */; };
 		A2D483AC1B5515B700BC8406 /* ACTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D483AB1B5515B700BC8406 /* ACTabBarController.m */; };
 		A2D483B61B5516E300BC8406 /* UIColor+Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D483B51B5516E300BC8406 /* UIColor+Tools.m */; };
 		A2D483B91B5525B200BC8406 /* HCTabBar5ContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D483B81B5525B200BC8406 /* HCTabBar5ContentView.m */; };
@@ -299,7 +301,7 @@
 		A28BFED41B53A2CD00A712F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A28BFED51B53A2CD00A712F1 /* A_cyclistTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = A_cyclistTests.m; sourceTree = "<group>"; };
 		A28BFEEF1B53B35B00A712F1 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		A28BFEF01B53B35B00A712F1 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		A28BFEF01B53B35B00A712F1 /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
 		A28BFEF11B53B35B00A712F1 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A28BFF121B53BE2F00A712F1 /* ACGlobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACGlobal.h; sourceTree = "<group>"; };
 		A28BFF131B53BECC00A712F1 /* ACGlobal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACGlobal.m; sourceTree = "<group>"; };
@@ -308,6 +310,8 @@
 		A28BFF191B53F9D700A712F1 /* ranking.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ranking.storyboard; sourceTree = "<group>"; };
 		A28BFF1B1B53F9E900A712F1 /* route.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = route.storyboard; sourceTree = "<group>"; };
 		A28BFF1D1B53F9FD00A712F1 /* setting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = setting.storyboard; sourceTree = "<group>"; };
+		A2AD90BC1B5FAAB100847F72 /* BaiduMapAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI.framework; sourceTree = "<group>"; };
+		A2AD90BE1B5FAAE200847F72 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		A2D483AA1B5515B700BC8406 /* ACTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACTabBarController.h; sourceTree = "<group>"; };
 		A2D483AB1B5515B700BC8406 /* ACTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACTabBarController.m; sourceTree = "<group>"; };
 		A2D483B41B5516E300BC8406 /* UIColor+Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Tools.h"; sourceTree = "<group>"; };
@@ -325,6 +329,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2AD90BF1B5FAAE200847F72 /* OpenGLES.framework in Frameworks */,
 				A266D9C01B5CAFB000D4B326 /* libz.dylib in Frameworks */,
 				A266D9BE1B5CAF6A00D4B326 /* Foundation.framework in Frameworks */,
 				A266D9BC1B5CAF6300D4B326 /* UIKit.framework in Frameworks */,
@@ -342,6 +347,7 @@
 				A2845EA11B5AB143006E0CE0 /* CoreTelephony.framework in Frameworks */,
 				A2845E9F1B5AB13E006E0CE0 /* CFNetwork.framework in Frameworks */,
 				A2845E9D1B5AB12C006E0CE0 /* MobileCoreServices.framework in Frameworks */,
+				A2AD90BD1B5FAAB100847F72 /* BaiduMapAPI.framework in Frameworks */,
 				A2845E9B1B5AB126006E0CE0 /* CoreGraphics.framework in Frameworks */,
 				A2845E971B5AB10D006E0CE0 /* CoreLocation.framework in Frameworks */,
 				A2845E951B5AB0F2006E0CE0 /* BmobSDK.framework in Frameworks */,
@@ -644,6 +650,7 @@
 		A28BFEAD1B53A2CC00A712F1 = {
 			isa = PBXGroup;
 			children = (
+				A2AD90BE1B5FAAE200847F72 /* OpenGLES.framework */,
 				A266D9BF1B5CAFB000D4B326 /* libz.dylib */,
 				A266D9BD1B5CAF6A00D4B326 /* Foundation.framework */,
 				A266D9BB1B5CAF6300D4B326 /* UIKit.framework */,
@@ -794,6 +801,7 @@
 		A28BFEE81B53B35B00A712F1 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				A2AD90BC1B5FAAB100847F72 /* BaiduMapAPI.framework */,
 				A26143251B5E22D6007EA45C /* SDWebImage */,
 				A266D9ED1B5D11D200D4B326 /* fmdb */,
 				A266D9C41B5CF9CD00D4B326 /* AFNetworking */,
@@ -837,7 +845,7 @@
 			isa = PBXGroup;
 			children = (
 				A28BFEEF1B53B35B00A712F1 /* AppDelegate.h */,
-				A28BFEF01B53B35B00A712F1 /* AppDelegate.m */,
+				A28BFEF01B53B35B00A712F1 /* AppDelegate.mm */,
 				A28BFEF11B53B35B00A712F1 /* main.m */,
 				A28BFF121B53BE2F00A712F1 /* ACGlobal.h */,
 				A28BFF131B53BECC00A712F1 /* ACGlobal.m */,
@@ -1181,7 +1189,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A204B1661B5B8232004C0A6C /* ACDataBaseTool.m in Sources */,
-				A28BFF091B53B35B00A712F1 /* AppDelegate.m in Sources */,
+				A28BFF091B53B35B00A712F1 /* AppDelegate.mm in Sources */,
 				A261B0031B577058006C8917 /* ACSettingViewCell.m in Sources */,
 				A266D9DE1B5CF9CD00D4B326 /* AFURLRequestSerialization.m in Sources */,
 				A261B0451B579D82006C8917 /* ACArrowSettingCellModel.m in Sources */,

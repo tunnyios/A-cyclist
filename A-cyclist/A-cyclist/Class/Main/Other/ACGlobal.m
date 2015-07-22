@@ -14,6 +14,8 @@
 NSString * const ACBmobAppKey = @"ff5b5ae23656f82ba51044b03ad5975a";
 /** 新浪微博授权 */
 NSString * const ACSinaAppKey = @"3238796127";
+/** 百度地图微博授权 */
+NSString * const ACBaiduAppKey = @"sVLUnWrBkQpHrpKc8d0QeNFO";
 
 
 #pragma mark - 提示信息

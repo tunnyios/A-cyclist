@@ -68,23 +68,22 @@
  */
 + (void)updateUserInfoWith:(ACUserModel *)user withResultBlock:(void (^)(BOOL, NSError *))block
 {
-    NSDictionary *dict = @{@"username" : user.username,
-                           @"password" : user.password,
-                           @"email" : user.email,
-                           @"email" : user.mobilePhoneNumber,
-                           @"email" : user.location,
-                           @"email" : user.gender,
-                           @"profile_image_url" : user.profile_image_url,
-                           @"avatar_large" : user.avatar_large,
-                           };
-    NSArray *keys = @[@"username", @"password", @"email", @"email", @"email", @"email", @"profile_image_url", @"avatar_large"];
+    BmobUser *bUser = [BmobUser getCurrentUser];
     
-    [ACDataBaseTool updateUserInfoWithDict:dict andKeys:keys withResultBlock:^(BOOL isSuccessful, NSError *error) {
+    [bUser setObject:user.username forKey:@"username"];
+    [bUser setObject:user.password forKey:@"password"];
+    [bUser setObject:user.email forKey:@"email"];
+    [bUser setObject:user.mobilePhoneNumber forKey:@"mobilePhoneNumber"];
+    [bUser setObject:user.location forKey:@"location"];
+    [bUser setObject:user.gender forKey:@"gender"];
+    [bUser setObject:user.profile_image_url forKey:@"profile_image_url"];
+    [bUser setObject:user.avatar_large forKey:@"avatar_large"];
+    
+    [bUser updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
         if (block) {
             block(isSuccessful, error);
         }
     }];
-    
 }
 
 + (void)updateUserInfoWithDict:(NSDictionary *)dict andKeys:(NSArray *)keys withResultBlock:(void (^)(BOOL, NSError *))block

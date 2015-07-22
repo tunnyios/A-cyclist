@@ -17,19 +17,37 @@
 #import "ACSettingViewCell.h"
 #import "ACPhotoSettingCellModel.h"
 #import "ACChangeNameController.h"
+#import <BaiduMapAPI/BMapKit.h>
 
-@interface ACSettingProfileInfoViewController () <ACChangeNameDelegate>
+@interface ACSettingProfileInfoViewController () <ACChangeNameDelegate, BMKLocationServiceDelegate, BMKGeoCodeSearchDelegate>
 /** 用户数据模型 */
 @property (nonatomic, strong) ACUserModel *user;
+/** 百度定位服务 */
+@property (nonatomic, strong) BMKLocationService *bmkLocationService;
+/** 地理位置信息 */
+//@property (nonatomic, copy) NSString *userLocation;
 
 @end
 
 @implementation ACSettingProfileInfoViewController
 
+- (BMKLocationService *)bmkLocationService
+{
+    if (_bmkLocationService == nil) {
+        //初始化BMKLocationService
+        _bmkLocationService = [[BMKLocationService alloc]init];
+        _bmkLocationService.delegate = self;
+    }
+    
+    return _bmkLocationService;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(saveClicked)];
+    //指定最小距离更新(米)
+    [BMKLocationService setLocationDistanceFilter:1000.f];
     
     //1. 读取本地数据库，展示数据
     self.user = [ACCacheDataTool getUserInfo];
@@ -108,6 +126,12 @@
     }
 }
 
+- (void)dealloc
+{
+    //视图销毁时，停止定位
+    [self.bmkLocationService stopUserLocationService];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -173,7 +197,57 @@
  */
 - (void)changeLocationWith:(NSIndexPath *)indexPath
 {
-    
+    //启动LocationService
+    [self.bmkLocationService startUserLocationService];
+}
+
+#pragma mark - BMKLocationServieDelegate
+
+/**
+ *  处理位置坐标更新
+ *
+ *  @param userLocation
+ */
+- (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
+{
+    DLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
+    //根据坐标返地理编码
+    BMKGeoCodeSearch *geocodesearch = [[BMKGeoCodeSearch alloc] init];
+    geocodesearch.delegate = self;
+    BMKReverseGeoCodeOption *reverseGeocodeSearchOption = [[BMKReverseGeoCodeOption alloc]init];
+    reverseGeocodeSearchOption.reverseGeoPoint = userLocation.location.coordinate;
+    BOOL flag = [geocodesearch reverseGeoCode:reverseGeocodeSearchOption];
+    if(flag)
+    {
+        DLog(@"反geo检索发送成功");
+    }
+    else
+    {
+        DLog(@"反geo检索发送失败");
+    }
+
+}
+
+#pragma mark - geoCoderSearchDelegate
+
+/**
+ *  获取反向地理编码结果
+ *
+ *  @param searcher
+ *  @param result
+ *  @param error
+ */
+- (void)onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error
+{
+    if (error == 0) {
+        self.user.location = [NSString stringWithFormat:@"%@ %@", result.addressDetail.city, result.addressDetail.district];
+        
+        DLog(@"user.location is %@", self.user.location);
+        //设置tableView的数据
+        ACArrowWithSubtitleSettingCellModel *model = [self.dataList[0] cellList][3];
+        model.subTitle = self.user.location;
+        [self.tableView reloadData];
+    }
 }
 
 #pragma mark - changeNameDelegate

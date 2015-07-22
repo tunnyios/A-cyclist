@@ -17,6 +17,8 @@
 extern NSString * const ACBmobAppKey;
 /** 新浪微博授权 */
 extern NSString * const ACSinaAppKey;
+/** 百度地图授权 */
+extern NSString * const ACBaiduAppKey;
 
 
 #pragma mark - 提示信息
