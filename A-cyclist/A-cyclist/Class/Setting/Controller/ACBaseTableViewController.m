@@ -110,7 +110,7 @@
     
     //2.执行对应的选中操作
     if (cellModel.option) {
-        cellModel.option();
+        cellModel.option(indexPath);
     }
     
     //3.跳转至下一控制器

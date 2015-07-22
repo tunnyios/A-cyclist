@@ -24,6 +24,7 @@
 + (void)restPasswordWithEmail:(NSString *)email;
 
 /** 更新用户资料 */
++ (void)updateUserInfoWith:(ACUserModel *)user withResultBlock:(void (^)(BOOL isSuccessful, NSError *error))block;
 + (void)updateUserInfoWithDict:(NSDictionary *)dict andKeys:(NSArray *)keys withResultBlock:(void (^) (BOOL isSuccessful, NSError *error))block;
 
 

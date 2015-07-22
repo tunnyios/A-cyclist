@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+
 /** 在模型中定义block，保存每个cell对应的操作 */
-typedef void(^ACSettingCellModelOption)();
+typedef void(^ACSettingCellModelOption)(NSIndexPath *);
 
 @interface ACSettingCellModel : NSObject
 /** title */

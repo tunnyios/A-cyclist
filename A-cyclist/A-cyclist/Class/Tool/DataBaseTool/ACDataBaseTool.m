@@ -66,6 +66,27 @@
  *  @param dict  用户表的键值对儿
  *  @param block 结果信息
  */
++ (void)updateUserInfoWith:(ACUserModel *)user withResultBlock:(void (^)(BOOL, NSError *))block
+{
+    NSDictionary *dict = @{@"username" : user.username,
+                           @"password" : user.password,
+                           @"email" : user.email,
+                           @"email" : user.mobilePhoneNumber,
+                           @"email" : user.location,
+                           @"email" : user.gender,
+                           @"profile_image_url" : user.profile_image_url,
+                           @"avatar_large" : user.avatar_large,
+                           };
+    NSArray *keys = @[@"username", @"password", @"email", @"email", @"email", @"email", @"profile_image_url", @"avatar_large"];
+    
+    [ACDataBaseTool updateUserInfoWithDict:dict andKeys:keys withResultBlock:^(BOOL isSuccessful, NSError *error) {
+        if (block) {
+            block(isSuccessful, error);
+        }
+    }];
+    
+}
+
 + (void)updateUserInfoWithDict:(NSDictionary *)dict andKeys:(NSArray *)keys withResultBlock:(void (^)(BOOL, NSError *))block
 {
     BmobUser *bUser = [BmobUser getCurrentUser];

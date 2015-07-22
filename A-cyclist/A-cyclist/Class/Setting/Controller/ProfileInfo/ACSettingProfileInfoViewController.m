@@ -8,6 +8,7 @@
 
 #import "ACSettingProfileInfoViewController.h"
 #import "ACCacheDataTool.h"
+#import "ACDataBaseTool.h"
 #import "ACUserModel.h"
 #import "ACGlobal.h"
 #import "ACBlankSettingCellModel.h"
@@ -28,6 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(saveClicked)];
     
     //1. 读取本地数据库，展示数据
     self.user = [ACCacheDataTool getUserInfo];
@@ -46,15 +48,15 @@
 {
     //数据部分
     ACPhotoSettingCellModel *cell0 = [ACPhotoSettingCellModel photoSettingCellWithTitle:@"头像" photo:user.profile_image_url];
-    cell0.option = ^(){
+    cell0.option = ^(NSIndexPath *indexPath){
         //设置头像
-        [self changeAvatar];
+        [self changeAvatarWith:indexPath];
     };
     
     ACArrowWithSubtitleSettingCellModel *cell1 = [ACArrowWithSubtitleSettingCellModel arrowWithSubtitleCellWithTitle:@"昵称" subTitle:user.username icon:nil];
-    cell1.option = ^(){
+    cell1.option = ^(NSIndexPath *indexPath){
         //修改昵称
-        [self changeNickname];
+        [self changeNicknameWith:indexPath];
     };
     
     NSString *gender = @"";
@@ -64,15 +66,15 @@
         gender = @"女";
     }
     ACBlankSettingCellModel *cell2 = [ACBlankSettingCellModel blankSettingCellWithTitle:@"性别" subTitle:gender icon:nil];
-    cell2.option = ^(){
+    cell2.option = ^(NSIndexPath *indexPath){
         //设置性别
-        [self changeGender];
+        [self changeGenderWith:indexPath];
     };
     
     ACBlankSettingCellModel *cell3 = [ACBlankSettingCellModel blankSettingCellWithTitle:@"地区" subTitle:(user.location ? user.location : @"未填写") icon:nil];
-    cell3.option = ^(){
+    cell3.option = ^(NSIndexPath *indexPath){
         //定位
-        [self changeLocation];
+        [self changeLocationWith:indexPath];
     };
     
     ACBlankSettingCellModel *cell4 = [ACBlankSettingCellModel blankSettingCellWithTitle:@"邮箱" subTitle:(user.email ? user.email : @"未填写") icon:nil];
@@ -116,7 +118,7 @@
 /**
  *  设置头像
  */
-- (void)changeAvatar
+- (void)changeAvatarWith:(NSIndexPath *)indexPath
 {
     //1. 弹出UIAlertController选择图片或者相机
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"选择" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
@@ -135,7 +137,7 @@
 /**
  *  设置昵称
  */
-- (void)changeNickname
+- (void)changeNicknameWith:(NSIndexPath *)indexPath
 {
     //弹出控制器
     ACChangeNameController *changeNameVC = [[ACChangeNameController alloc] initWithNibName:@"ACChangeNameController" bundle:nil];
@@ -148,15 +150,28 @@
 /**
  *  设置性别
  */
-- (void)changeGender
+- (void)changeGenderWith:(NSIndexPath *)indexPath
 {
+    NSString *subTitle = @"";
+    if ([self.user.gender isEqualToString:@"m"]) {
+        self.user.gender = @"f";
+        subTitle = @"女";
+    } else {
+        self.user.gender = @"m";
+        subTitle = @"男";
+    }
     
+    //修改对应行的模型数据
+    ACBlankSettingCellModel *model = [self.dataList[indexPath.section] cellList][indexPath.row];
+    model.subTitle = subTitle;
+    
+    [self.tableView reloadData];
 }
 
 /**
  *  设置位置
  */
-- (void)changeLocation
+- (void)changeLocationWith:(NSIndexPath *)indexPath
 {
     
 }
@@ -174,6 +189,18 @@
     model.subTitle = name;
     
     [self.tableView reloadData];
+}
+
+#pragma mark - 保存按钮的事件点击
+- (void)saveClicked
+{
+    //1. 保存到本地缓存
+    [ACCacheDataTool updateUserInfo:self.user withObjectId:self.user.objectId];
+    
+    //2. 保存到数据库
+    [ACDataBaseTool updateUserInfoWith:self.user withResultBlock:^(BOOL isSuccessful, NSError *error) {
+        DLog(@"保存用户信息成功到数据库");
+    }];
 }
 
 @end
