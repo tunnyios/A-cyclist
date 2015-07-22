@@ -11,8 +11,11 @@
 @class ACUserModel;
 @interface ACCacheDataTool : NSObject
 
-/** 存储用户数据到本地数据库sqlite3 */
-+ (void)saveUserInfo:(ACUserModel *)user;
+/** 存储一条用户数据到本地数据库sqlite3 */
++ (void)saveUserInfo:(ACUserModel *)user withObjectId:(NSString *)objectId;
+
+/** 更新一条用户数据到本地数据库 */
++ (void)updateUserInfo:(ACUserModel *)user  withObjectId:(NSString *)objectId;
 
 /** 读取本地缓存的用户数据 */
 + (ACUserModel *)getUserInfo;

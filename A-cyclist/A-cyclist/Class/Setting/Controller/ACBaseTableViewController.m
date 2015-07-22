@@ -30,6 +30,12 @@
     return _dataList;
 }
 
+- (instancetype)init
+{
+    return [super initWithStyle:UITableViewStyleGrouped];
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -63,11 +69,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {   
-    if ((self.dataList.count - 1) == indexPath.section) {
-        ACLogoutSettingViewCell *cell = [ACLogoutSettingViewCell settingViewCellWithTableView:tableView];
-        return cell;
-    }
-    
     ACSettingViewCell *cell = [ACSettingViewCell settingViewCellWithTableView:tableView];
 
     //取分组模型
@@ -118,7 +119,6 @@
         if (arrowModel.destClass) {
             //弹出下一个控制器
             UIViewController *vc = [[arrowModel.destClass alloc] init];
-            vc.view.backgroundColor = [UIColor colorWithRandom];
             [self.navigationController pushViewController:vc animated:YES];
         }
     }

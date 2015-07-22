@@ -13,6 +13,8 @@
 #import "ACShowAlertTool.h"
 #import "ACUserModel.h"
 #import "WeiboSDK.h"
+#import "ACTabBarController.h"
+#import "ACCacheDataTool.h"
 
 
 @interface ACLoginViewController ()
@@ -61,7 +63,20 @@
         if (user) {
             [ACShowAlertTool showSuccess:ACLoginSuccess];
             DLog(@"user #%@#", user);
+            
+            //缓存数据到本地
+            [ACCacheDataTool saveUserInfo:user withObjectId:user.objectId];
+            
+            /* 手动移除通知，并退出键盘 */
+            [self.view endEditing:YES];
+            [[NSNotificationCenter defaultCenter] removeObserver:self];
+            
             //跳转至主控制器
+            UIWindow *window = [UIApplication sharedApplication].keyWindow;
+            ACTabBarController *tabBarController = [[ACTabBarController alloc] init];
+            
+            window.rootViewController = tabBarController;
+            [self.navigationController pushViewController:tabBarController animated:YES];
         } else {
             [ACShowAlertTool showError:ACLoginError];
             return;

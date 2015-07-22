@@ -12,6 +12,8 @@
 #import "ACArrowSettingCellModel.h"
 #import "ACBlankSettingCellModel.h"
 #import "ACSettingProfileInfoViewController.h"
+#import "ACSettingViewCell.h"
+#import "ACLogoutSettingViewCell.h"
 
 @interface ACSettingViewController ()
 
@@ -87,6 +89,25 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ((self.dataList.count - 1) == indexPath.section) {
+        ACLogoutSettingViewCell *cell = [ACLogoutSettingViewCell settingViewCellWithTableView:tableView];
+        return cell;
+    }
+    
+    ACSettingViewCell *cell = [ACSettingViewCell settingViewCellWithTableView:tableView];
+    
+    //取分组模型
+    ACSettingGroupModel *group = self.dataList[indexPath.section];
+    //取cell模型
+    ACSettingCellModel *cellModel = group.cellList[indexPath.row];
+    
+    cell.cellModel = cellModel;
+    
+    return cell;
+}
 /*
 #pragma mark - Navigation
 

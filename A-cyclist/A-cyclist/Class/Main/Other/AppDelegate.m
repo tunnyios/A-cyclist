@@ -15,6 +15,7 @@
 #import "HCHttpTool.h"
 #import "ACDataBaseTool.h"
 #import "ACCacheDataTool.h"
+#import "ACUserModel.h"
 
 @interface AppDelegate ()<WeiboSDKDelegate>
 
@@ -33,20 +34,21 @@
     self.window = [[UIWindow alloc] initWithFrame:ACScreenBounds];
     
     //2. 设置根控制器
-//    BmobUser *bUser = [BmobUser getCurrentUser];
-//    if (bUser) {
-//        //创建tabbarController
-//        ACTabBarController *tabBarController = [[ACTabBarController alloc] init];
-//        //设置根控制器
-//        self.window.rootViewController = tabBarController;
-//    } else {
-//        UIStoryboard *loginSB = [UIStoryboard storyboardWithName:@"ACLogin" bundle:nil];
-//        //设置根控制器
-//        self.window.rootViewController = loginSB.instantiateInitialViewController;
-//    }
-    UIStoryboard *loginSB = [UIStoryboard storyboardWithName:@"ACLogin" bundle:nil];
+    ACUserModel *user = [ACCacheDataTool getUserInfo];
+    if (user) {
+        //创建tabbarController
+        ACTabBarController *tabBarController = [[ACTabBarController alloc] init];
+        //设置根控制器
+        self.window.rootViewController = tabBarController;
+    } else {
+        UIStoryboard *loginSB = [UIStoryboard storyboardWithName:@"ACLogin" bundle:nil];
+        //设置根控制器
+        self.window.rootViewController = loginSB.instantiateInitialViewController;
+    }
+    
+//    UIStoryboard *loginSB = [UIStoryboard storyboardWithName:@"ACLogin" bundle:nil];
     //设置根控制器
-    self.window.rootViewController = loginSB.instantiateInitialViewController;
+//    self.window.rootViewController = loginSB.instantiateInitialViewController;
     
     //3. 显示window
     [self.window makeKeyAndVisible];
@@ -135,7 +137,7 @@
                 //3. 本地缓存
                 ACUserModel *user = [ACDataBaseTool getCurrentUser];
                 DLog(@"user is %@", user);
-                [ACCacheDataTool saveUserInfo:user];
+                [ACCacheDataTool saveUserInfo:user withObjectId:user.objectId];
                 
             } failure:^(NSError *error) {
                 DLog(@"获取用户信息失败 error:%@", error);

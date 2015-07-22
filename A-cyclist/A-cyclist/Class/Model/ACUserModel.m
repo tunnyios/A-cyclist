@@ -42,6 +42,7 @@
     [aCoder encodeObject:self.profile_image_url forKey:@"profile_image_url"];
     [aCoder encodeObject:self.avatar_large forKey:@"avatar_large"];
     [aCoder encodeObject:self.gender forKey:@"gender"];
+    [aCoder encodeObject:self.objectId forKey:@"objectId"];
 }
 
 /**
@@ -58,6 +59,7 @@
         self.profile_image_url = [aDecoder decodeObjectForKey:@"profile_image_url"];
         self.avatar_large = [aDecoder decodeObjectForKey:@"avatar_large"];
         self.gender = [aDecoder decodeObjectForKey:@"gender"];
+        self.objectId = [aDecoder decodeObjectForKey:@"objectId"];
     }
     
     return self;
