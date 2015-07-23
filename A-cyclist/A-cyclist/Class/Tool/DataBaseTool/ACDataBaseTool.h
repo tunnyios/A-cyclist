@@ -36,6 +36,17 @@
 /** 根据sql语句来查询数据库, 返回对象数组 */
 + (void)queryWithSQL:(NSString *)bql pValues:(NSArray *)pVlaues block:(void (^)(NSArray *result, NSError *error))block;
 
+#pragma mark - 文件相关
 
+/** 上传文件到服务器 */
++ (void)uploadFileWithFilename:(NSString *)fileName fileData:(NSData *)data block:(void (^)(BOOL isSuccessful, NSError *error, NSString *filename, NSString *url))block progress:(void (^)(CGFloat progress))progressBlock;
+
+/** 获取开启SecretKey安全验证后的url签名 */
++ (NSString *)signUrlWithFilename:(NSString *)filename url:(NSString *)urlString;
+
+/** 在服务器上对上传的图片进行缩略图处理,并上传到服务器 */
++ (void)thumbnailImageWithFilename:(NSString *)filename ruleID:(NSUInteger)ruleNumber resultBlock:(void (^)(BOOL isSuccessful, NSError *error, NSString *filename, NSString *url))block;
+
++ (void)thumbnailImageBySpecifiesTheWidth:(NSInteger)width height:(NSInteger)height quality:(NSInteger)quality sourceImageUrl:(NSString *)imageUrl resultBlock:(void (^)(NSString *filename, NSString *url, NSError *error))block;
 
 @end

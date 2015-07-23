@@ -18,6 +18,19 @@ NSString * const ACSinaAppKey = @"3238796127";
 NSString * const ACBaiduAppKey = @"sVLUnWrBkQpHrpKc8d0QeNFO";
 
 
+#pragma mark - Bmob数据库相关常量
+/** BmobURL地址AccessKey */
+NSString * const ACBmobAccessKey = @"1c75e4df89d6730f2b0a9f39b8694286";
+/** BmobURL地址SecretKey */
+NSString * const ACBmobSecretKey = @"0357";
+/** BmobURL有效访问时间(单位秒) */
+int const ACBmobValidTime = 86400;
+/** Bmob服务器缩略图规格 50x50 */
+NSUInteger const ACBmobThumbnailRuleID = 1;
+/** Bmob服务器缩略图规格 180x180 */
+NSUInteger const ACBmobMiddleRuleID = 2;
+
+
 #pragma mark - 提示信息
 /** 登录成功 */
 NSString * const ACLoginSuccess = @"登录成功";

@@ -7,11 +7,14 @@
 //  头像cell
 
 #import "ACSettingCellModel.h"
+#import <UIKit/UIKit.h>
 
 @interface ACPhotoSettingCellModel : ACSettingCellModel
 /** photo */
-@property (nonatomic, copy) NSString *photo;
+@property (nonatomic, copy) NSString *photoURL;
 
-+ (instancetype)photoSettingCellWithTitle:(NSString *)title photo:(NSString *)photo;
+@property (nonatomic, strong) UIImage *photoImage;
+
++ (instancetype)photoSettingCellWithTitle:(NSString *)title photoURL:(NSString *)photoURL orPhotoImage:(UIImage *)photoImage;
 
 @end

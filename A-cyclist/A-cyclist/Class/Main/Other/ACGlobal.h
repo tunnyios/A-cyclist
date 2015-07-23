@@ -21,6 +21,19 @@ extern NSString * const ACSinaAppKey;
 extern NSString * const ACBaiduAppKey;
 
 
+#pragma mark - Bmob数据相关常量
+/** BmobURL地址AccessKey */
+extern NSString * const ACBmobAccessKey;
+/** BmobURL地址SecretKey */
+extern NSString * const ACBmobSecretKey;
+/** BmobURL有效访问时间(单位秒) 一天*/
+extern int const ACBmobValidTime;
+/** Bmob服务器缩略图规格 50x50 */
+extern NSUInteger const ACBmobThumbnailRuleID;
+/** Bmob服务器缩略图规格 180x180 */
+extern NSUInteger const ACBmobMiddleRuleID;
+
+
 #pragma mark - 提示信息
 /** 登录成功 */
 extern NSString * const ACLoginSuccess;

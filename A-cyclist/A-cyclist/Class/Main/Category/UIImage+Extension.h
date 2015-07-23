@@ -15,7 +15,7 @@
 
 /** 裁剪图片 */
 + (instancetype)clipImageWithImage:(UIImage *)image border:(CGFloat)border borderColor:(UIColor *)color;
-+ (UIView *)clipImageWithView:(UIView *)view border:(CGFloat)border borderColor:(UIColor *)color radius:(CGFloat)radius;
++ (void)clipImageWithView:(UIImageView *)view border:(CGFloat)border borderColor:(UIColor *)color radius:(CGFloat)radius;
 
 /** 拉伸图片 */
 + (instancetype)imageWithStretchWithName:(NSString *)name;

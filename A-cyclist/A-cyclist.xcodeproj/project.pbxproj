@@ -113,6 +113,7 @@
 		A2D483B61B5516E300BC8406 /* UIColor+Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D483B51B5516E300BC8406 /* UIColor+Tools.m */; };
 		A2D483B91B5525B200BC8406 /* HCTabBar5ContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D483B81B5525B200BC8406 /* HCTabBar5ContentView.m */; };
 		A2F040EB1B563A51004FBF3D /* ACBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2F040EA1B563A51004FBF3D /* ACBaseTableViewController.m */; };
+		A2F7FE401B5FD6BF0000D6EA /* VPImageCropperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2F7FE3F1B5FD6BF0000D6EA /* VPImageCropperViewController.m */; };
 		A2F875121B5676630075F323 /* ACSettingCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2F875111B5676630075F323 /* ACSettingCellModel.m */; };
 /* End PBXBuildFile section */
 
@@ -320,6 +321,8 @@
 		A2D483B81B5525B200BC8406 /* HCTabBar5ContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCTabBar5ContentView.m; sourceTree = "<group>"; };
 		A2F040E91B563A51004FBF3D /* ACBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACBaseTableViewController.h; sourceTree = "<group>"; };
 		A2F040EA1B563A51004FBF3D /* ACBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACBaseTableViewController.m; sourceTree = "<group>"; };
+		A2F7FE3E1B5FD6BF0000D6EA /* VPImageCropperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VPImageCropperViewController.h; sourceTree = "<group>"; };
+		A2F7FE3F1B5FD6BF0000D6EA /* VPImageCropperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VPImageCropperViewController.m; sourceTree = "<group>"; };
 		A2F875101B5676630075F323 /* ACSettingCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACSettingCellModel.h; sourceTree = "<group>"; };
 		A2F875111B5676630075F323 /* ACSettingCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACSettingCellModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -801,6 +804,7 @@
 		A28BFEE81B53B35B00A712F1 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				A2F7FE3D1B5FD6BF0000D6EA /* VPImageCropper */,
 				A2AD90BC1B5FAAB100847F72 /* BaiduMapAPI.framework */,
 				A26143251B5E22D6007EA45C /* SDWebImage */,
 				A266D9ED1B5D11D200D4B326 /* fmdb */,
@@ -1077,6 +1081,15 @@
 			path = Category;
 			sourceTree = "<group>";
 		};
+		A2F7FE3D1B5FD6BF0000D6EA /* VPImageCropper */ = {
+			isa = PBXGroup;
+			children = (
+				A2F7FE3E1B5FD6BF0000D6EA /* VPImageCropperViewController.h */,
+				A2F7FE3F1B5FD6BF0000D6EA /* VPImageCropperViewController.m */,
+			);
+			path = VPImageCropper;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1232,6 +1245,7 @@
 				A266D9E81B5CFA0B00D4B326 /* HCFileParamsModel.m in Sources */,
 				A266D9F91B5D11D200D4B326 /* FMDatabase.m in Sources */,
 				A266D9FD1B5D11D200D4B326 /* FMResultSet.m in Sources */,
+				A2F7FE401B5FD6BF0000D6EA /* VPImageCropperViewController.m in Sources */,
 				A261B0001B5762D1006C8917 /* ACSettingGroupModel.m in Sources */,
 				A261435E1B5E4AF7007EA45C /* ACChangeNameController.m in Sources */,
 				A26143511B5E22D6007EA45C /* UIImage+GIF.m in Sources */,

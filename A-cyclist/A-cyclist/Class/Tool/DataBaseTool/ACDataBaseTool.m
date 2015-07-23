@@ -8,6 +8,8 @@
 
 #import "ACDataBaseTool.h"
 #import "ACUserModel.h"
+#import "ACGlobal.h"
+#import <BmobSDK/BmobProFile.h>
 
 @implementation ACDataBaseTool
 
@@ -138,6 +140,85 @@
         }];
     }
 }
+
+#pragma mark - 文件相关
+
+/**
+ *  使用NSData的方式上传文件到Bmob数据库
+ *
+ *  PS:利用文件名的方式下载：下载的文件存放路径为：Library/Caches/DownloadFile/
+ *
+ *  @param fileName      文件名
+ *  @param data          NSData
+ *  @param block         返回结果
+            fileName    返回文件名(可用作文件下载的参数)
+            url         并非完整的URL，只是最终访问的url的一部分
+ *  @param progressBlock
+ */
++ (void)uploadFileWithFilename:(NSString *)fileName fileData:(NSData *)data block:(void (^)(BOOL, NSError *, NSString *, NSString *))block progress:(void (^)(CGFloat))progressBlock
+{
+    [BmobProFile uploadFileWithFilename:fileName fileData:data block:^(BOOL isSuccessful, NSError *error, NSString *filename, NSString *url,BmobFile *bmobFile) {
+        DLog(@"database: filename:%@\n url:%@\n bmobfile.filename:%@\n bmobfile.group:%@ bmobfile.url:%@", fileName, url, bmobFile.name, bmobFile.group, bmobFile.url);
+        if (block) {
+            block(isSuccessful, error, bmobFile.name, bmobFile.url);
+        }
+    } progress:^(CGFloat progress) {
+        if (progressBlock) {
+            progressBlock(progress);
+        }
+    }];
+}
+
+/**
+ *  获取开启SecretKey安全验证后的url签名
+ *
+ *  @param filename  上传后返回的文件名
+ *  @param urlString 上传后返回的文件url地址
+ *  @param validTime 有效访问时间 单位：秒
+ *
+ *  @return 返回完整的url地址，可以使用http方式下载的url地址
+ */
++ (NSString *)signUrlWithFilename:(NSString *)filename url:(NSString *)urlString
+{
+    NSString *url = [BmobProFile signUrlWithFilename:filename url:urlString validTime:ACBmobValidTime accessKey:ACBmobAccessKey secretKey:ACBmobSecretKey];
+    
+    return url;
+}
+
+/**
+ *  在服务器上对上传的图片进行缩略图处理,并上传到服务器
+ *
+ *  @param filename
+ *  @param ruleNumber   缩略图规格ID
+ *  @param block
+ */
++ (void)thumbnailImageWithFilename:(NSString *)filename ruleID:(NSUInteger)ruleNumber resultBlock:(void (^)(BOOL, NSError *, NSString *, NSString *))block
+{
+    //对文件名为4E80C2958534450DB1D5DF5A97777A0A.jpg进行规格ID为2的缩略图处理
+    [BmobProFile thumbnailImageWithFilename:filename ruleID:ruleNumber resultBlock:^(BOOL isSuccessful, NSError *error, NSString *filename, NSString *url, BmobFile *file) {
+        
+        DLog(@"thumbnail:\n filename:%@\n url:%@\n bmobfile:%@\n error:%@\n isSuccessful:%d\n", filename, url, file, error, isSuccessful);
+        
+        if (block) {
+            block(isSuccessful, error, filename, url);
+        }
+    }];
+}
+
+
++ (void)thumbnailImageBySpecifiesTheWidth:(NSInteger)width height:(NSInteger)height quality:(NSInteger)quality sourceImageUrl:(NSString *)imageUrl resultBlock:(void (^)(NSString *, NSString *, NSError *))block
+{
+    [BmobImage thumbnailImageBySpecifiesTheWidth:width height:height quality:quality sourceImageUrl:imageUrl outputType:kBmobImageOutputBmobFile resultBlock:^(id object, NSError *error) {
+        
+        DLog(@"object is %@\n error is %@\n", object, error);
+        BmobFile *imageFile = (BmobFile *)object;
+        if (block) {
+            block(imageFile.name, imageFile.url, error);
+        }
+    }];
+
+}
+
 
 
 

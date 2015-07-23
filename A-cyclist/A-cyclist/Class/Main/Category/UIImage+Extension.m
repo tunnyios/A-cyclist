@@ -82,7 +82,7 @@
     return newImage;
 }
 
-+ (UIView *)clipImageWithView:(UIView *)view border:(CGFloat)border borderColor:(UIColor *)color radius:(CGFloat)radius
++ (void)clipImageWithView:(UIImageView *)view border:(CGFloat)border borderColor:(UIColor *)color radius:(CGFloat)radius
 {
     //4行代码搞定 裁剪图片为圆形带边框
     view.layer.cornerRadius = radius; //图形的圆角半径
@@ -90,7 +90,11 @@
     view.layer.borderColor = color.CGColor;
     view.layer.borderWidth = border;
     
-    return view;
+    //附加参数(可不要)
+    view.layer.shadowColor = [UIColor blackColor].CGColor;
+    view.layer.shadowOffset = CGSizeMake(4, 4);
+    view.layer.shadowOpacity = 0.5;
+    view.layer.shadowRadius = 2.0;
 }
 
 /**

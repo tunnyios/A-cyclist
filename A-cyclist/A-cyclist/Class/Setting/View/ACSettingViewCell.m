@@ -16,7 +16,23 @@
 #import "UIImageView+WebCache.h"
 #import "UIImage+Extension.h"
 
+@interface ACSettingViewCell ()
+/** small头像ImageView */
+@property (nonatomic, strong) UIImageView *smallProtraitView;
+@end
+
 @implementation ACSettingViewCell
+
+- (UIImageView *)smallProtraitView
+{
+    if (_smallProtraitView == nil) {
+        _smallProtraitView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
+        [_smallProtraitView setContentMode:UIViewContentModeScaleAspectFill];
+        [_smallProtraitView setClipsToBounds:YES];
+    }
+    
+    return _smallProtraitView;
+}
 
 - (void)setCellModel:(ACSettingCellModel *)cellModel
 {
@@ -41,30 +57,27 @@
         self.detailTextLabel.text = nil;
         
     } else if ([cellModel isKindOfClass:[ACPhotoSettingCellModel class]]) {
+        ACPhotoSettingCellModel *photoModel = (ACPhotoSettingCellModel *)cellModel;
         self.detailTextLabel.text = nil;
         self.accessoryView.hidden = NO;
         //下载图片
-        ACPhotoSettingCellModel *photoModel = (ACPhotoSettingCellModel *)cellModel;
-        NSURL *url = [NSURL URLWithString:photoModel.photo];
-        SDWebImageManager *manager = [SDWebImageManager sharedManager];
-        [manager downloadImageWithURL:url
-                              options:0
-                             progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-                                 // progression tracking code
-                             }
-                            completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-                                UIImage *newImage = nil;
-                                
-                                UIImageView *photoView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
-                                if (image) {
-                                    newImage = [UIImage clipImageWithImage:image border:5 borderColor:[UIColor blueColor]];
-
-                                } else {
-                                    newImage = [UIImage clipImageWithImage:[UIImage imageNamed:@"signup_avatar_default"] border:5 borderColor:[UIColor blueColor]];
-                                }
-                                photoView.image = newImage;
-                                self.accessoryView = photoView;
-                            }];
+        if (photoModel.photoImage) {
+            self.smallProtraitView.image = photoModel.photoImage;
+        } else {
+            //根据url下载图片
+            NSURL *url = [NSURL URLWithString:photoModel.photoURL];
+            [self.smallProtraitView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"signup_avatar_default"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                if (image) {
+                    DLog(@"url下载头像成功");
+                } else {
+                    DLog(@"url下载头像失败");
+                }
+            }];
+        }
+        
+        //裁剪图片
+        [UIImage clipImageWithView:self.smallProtraitView border:5 borderColor:[UIColor blueColor] radius:(self.smallProtraitView.bounds.size.width * 0.5)];
+        self.accessoryView = self.smallProtraitView;
     } else {
         self.accessoryView.hidden = YES;
         self.detailTextLabel.text = nil;

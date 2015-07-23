@@ -7,15 +7,18 @@
 //
 
 #import "ACPhotoSettingCellModel.h"
+#import "UIImageView+WebCache.h"
+#import "UIImage+Extension.h"
 
 @implementation ACPhotoSettingCellModel
 
-+ (instancetype)photoSettingCellWithTitle:(NSString *)title photo:(NSString *)photo
++ (instancetype)photoSettingCellWithTitle:(NSString *)title photoURL:(NSString *)photoURL orPhotoImage:(UIImage *)photoImage
 {
-    ACPhotoSettingCellModel *cellModel = [[self alloc] init];
+    __block ACPhotoSettingCellModel *cellModel = [[self alloc] init];
     
     cellModel.title = title;
-    cellModel.photo = photo;
+    cellModel.photoImage = photoImage;
+    cellModel.photoURL = photoURL;
     
     return cellModel;
 }
