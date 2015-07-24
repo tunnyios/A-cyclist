@@ -13,6 +13,8 @@
 		A204B1611B5B506B004C0A6C /* HCKeyboardTool.xib in Resources */ = {isa = PBXBuildFile; fileRef = A204B15E1B5B506B004C0A6C /* HCKeyboardTool.xib */; };
 		A204B1661B5B8232004C0A6C /* ACDataBaseTool.m in Sources */ = {isa = PBXBuildFile; fileRef = A204B1651B5B8232004C0A6C /* ACDataBaseTool.m */; };
 		A204B16A1B5BE144004C0A6C /* ACUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A204B1691B5BE144004C0A6C /* ACUserModel.m */; };
+		A2082E681B61FBEB00CA3325 /* ACCyclingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2082E671B61FBEB00CA3325 /* ACCyclingViewController.m */; };
+		A2082E6A1B62259800CA3325 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A2082E691B62259800CA3325 /* mapapi.bundle */; };
 		A218F7031B5A3F33007CBADA /* ACLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A218F7021B5A3F33007CBADA /* ACLoginViewController.m */; };
 		A218F7051B5A3FB2007CBADA /* ACLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A218F7041B5A3FB2007CBADA /* ACLogin.storyboard */; };
 		A26143211B5DFA6C007EA45C /* ACArrowWithSubtitleSettingCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A26143201B5DFA6C007EA45C /* ACArrowWithSubtitleSettingCellModel.m */; };
@@ -139,6 +141,9 @@
 		A204B1651B5B8232004C0A6C /* ACDataBaseTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACDataBaseTool.m; sourceTree = "<group>"; };
 		A204B1681B5BE144004C0A6C /* ACUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACUserModel.h; sourceTree = "<group>"; };
 		A204B1691B5BE144004C0A6C /* ACUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACUserModel.m; sourceTree = "<group>"; };
+		A2082E661B61FBEB00CA3325 /* ACCyclingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACCyclingViewController.h; sourceTree = "<group>"; };
+		A2082E671B61FBEB00CA3325 /* ACCyclingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACCyclingViewController.m; sourceTree = "<group>"; };
+		A2082E691B62259800CA3325 /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mapapi.bundle; sourceTree = "<group>"; };
 		A218F7011B5A3F33007CBADA /* ACLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACLoginViewController.h; sourceTree = "<group>"; };
 		A218F7021B5A3F33007CBADA /* ACLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACLoginViewController.m; sourceTree = "<group>"; };
 		A218F7041B5A3FB2007CBADA /* ACLogin.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ACLogin.storyboard; sourceTree = "<group>"; };
@@ -797,6 +802,8 @@
 			isa = PBXGroup;
 			children = (
 				A28BFF151B53F98200A712F1 /* cycling.storyboard */,
+				A2082E661B61FBEB00CA3325 /* ACCyclingViewController.h */,
+				A2082E671B61FBEB00CA3325 /* ACCyclingViewController.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -804,8 +811,9 @@
 		A28BFEE81B53B35B00A712F1 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
-				A2F7FE3D1B5FD6BF0000D6EA /* VPImageCropper */,
 				A2AD90BC1B5FAAB100847F72 /* BaiduMapAPI.framework */,
+				A2082E691B62259800CA3325 /* mapapi.bundle */,
+				A2F7FE3D1B5FD6BF0000D6EA /* VPImageCropper */,
 				A26143251B5E22D6007EA45C /* SDWebImage */,
 				A266D9ED1B5D11D200D4B326 /* fmdb */,
 				A266D9C41B5CF9CD00D4B326 /* AFNetworking */,
@@ -1184,6 +1192,7 @@
 				A28BFF1A1B53F9D700A712F1 /* ranking.storyboard in Resources */,
 				A266D9AF1B5C9FE600D4B326 /* WeiboSDK.bundle in Resources */,
 				A261435F1B5E4AF7007EA45C /* ACChangeNameController.xib in Resources */,
+				A2082E6A1B62259800CA3325 /* mapapi.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1247,6 +1256,7 @@
 				A266D9FD1B5D11D200D4B326 /* FMResultSet.m in Sources */,
 				A2F7FE401B5FD6BF0000D6EA /* VPImageCropperViewController.m in Sources */,
 				A261B0001B5762D1006C8917 /* ACSettingGroupModel.m in Sources */,
+				A2082E681B61FBEB00CA3325 /* ACCyclingViewController.m in Sources */,
 				A261435E1B5E4AF7007EA45C /* ACChangeNameController.m in Sources */,
 				A26143511B5E22D6007EA45C /* UIImage+GIF.m in Sources */,
 				A26143531B5E22D6007EA45C /* UIImage+WebP.m in Sources */,
