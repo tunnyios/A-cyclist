@@ -25,14 +25,23 @@
     
     // 获取当前的位置
     CGPoint current = [touch locationInView:self];
-    NSLog(@"current is %@", NSStringFromCGPoint(current));
     CGFloat x = [UIScreen mainScreen].bounds.size.width;
     if (current.x >= x + 10) {
         //在地图上
-        NSLog(@"在地图上, 不滚动");
+        NSLog(@"在地图上, 不滚动, view class is %@", view.class);
         return YES;
     } else {
+        return [super touchesShouldBegin:touches withEvent:event inContentView:view];
+    }
+}
+
+- (BOOL)touchesShouldCancelInContentView:(UIView *)view
+{
+    NSLog(@"cancle class is %@", view.class);
+    if ([view isKindOfClass:NSClassFromString(@"TapDetectingView")]) {
         return NO;
+    } else {
+        return [super touchesShouldCancelInContentView:view];
     }
 }
 

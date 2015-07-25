@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" delaysContentTouches="NO" canCancelContentTouches="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q31-LI-x8K" customClass="ACScrollView">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" delaysContentTouches="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q31-LI-x8K" customClass="ACScrollView">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="86h-4y-NJg" userLabel="主contentView">
@@ -38,6 +38,9 @@
                                                                 <state key="normal" image="RidingPage_icon_StarRiding">
                                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                                 </state>
+                                                                <connections>
+                                                                    <action selector="startCycling" destination="Dop-uh-c46" eventType="touchUpInside" id="Xb0-HY-eny"/>
+                                                                </connections>
                                                             </button>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_textfield_mid" translatesAutoresizingMaskIntoConstraints="NO" id="PKJ-IY-xla">
                                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
@@ -45,18 +48,21 @@
                                                                     <constraint firstAttribute="height" constant="1" id="YtA-mm-hu2"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sym-Ix-RYF" userLabel="启动暂停Button">
+                                                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sym-Ix-RYF" userLabel="启动暂停Button">
                                                                 <rect key="frame" x="55" y="35" width="49" height="49"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="49" id="8QU-rO-l5w"/>
                                                                     <constraint firstAttribute="width" constant="49" id="Xac-hE-mG6"/>
                                                                 </constraints>
-                                                                <state key="normal" image="icon_begin_off">
+                                                                <state key="normal" image="icon_stop_off">
                                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                                 </state>
-                                                                <state key="selected" image="icon_stop_off"/>
+                                                                <state key="selected" image="icon_begin_off"/>
+                                                                <connections>
+                                                                    <action selector="beginOrPause" destination="Dop-uh-c46" eventType="touchUpInside" id="26k-bl-FwM"/>
+                                                                </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SDF-8G-Nni" userLabel="完成Button">
+                                                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SDF-8G-Nni" userLabel="完成Button">
                                                                 <rect key="frame" x="214" y="35" width="49" height="49"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="49" id="3mS-mm-UYK"/>
@@ -65,6 +71,9 @@
                                                                 <state key="normal" image="icon_finish_off">
                                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                                 </state>
+                                                                <connections>
+                                                                    <action selector="endCycling" destination="Dop-uh-c46" eventType="touchUpInside" id="IxW-gT-DO1"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" red="0.85710306950000004" green="0.55026193189999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -671,7 +680,10 @@
                     </view>
                     <connections>
                         <outlet property="contentViewWidth" destination="2Ty-KP-u10" id="msb-lg-20f"/>
+                        <outlet property="endBtn" destination="SDF-8G-Nni" id="oMe-Rd-ZFv"/>
                         <outlet property="mapViewLeading" destination="Kmm-UM-4ci" id="khU-6K-xh5"/>
+                        <outlet property="pauseBtn" destination="Sym-Ix-RYF" id="KgE-89-LD8"/>
+                        <outlet property="startBtn" destination="4wb-f5-7da" id="SFZ-Wb-KeN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JCd-Pk-lEa" userLabel="First Responder" sceneMemberID="firstResponder"/>
