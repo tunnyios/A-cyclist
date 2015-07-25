@@ -38,7 +38,7 @@
     routeVc.view.backgroundColor = [UIColor colorWithRandom];
 
     UIViewController *cyclingVc = [cyclingSB instantiateInitialViewController];
-    cyclingVc.view.backgroundColor = [UIColor colorWithRandom];
+//    cyclingVc.view.backgroundColor = [UIColor colorWithRandom];
     
     UINavigationController *rankingNav = [rankingSB instantiateInitialViewController];
     UIViewController *rankingVc = rankingNav.topViewController;
