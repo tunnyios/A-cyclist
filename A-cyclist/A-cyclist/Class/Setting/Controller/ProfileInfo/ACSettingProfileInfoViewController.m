@@ -294,17 +294,6 @@
                     
                 }
             }];
-            
-//            [ACDataBaseTool thumbnailImageWithFilename:filename ruleID:ACBmobThumbnailRuleID resultBlock:^(BOOL isSuccessful, NSError *error, NSString *filename, NSString *url) {
-//                if (isSuccessful) {
-//                    DLog(@"2filename:%@\n url:%@\n", filename, url);
-//                    //获取缩略图的完整url, 并设置到用户数据模型中,点击保存按钮后
-//                    self.user.profile_image_url = [ACDataBaseTool signUrlWithFilename:filename url:url];
-//                } else {
-//                    DLog(@"2error:%@", error);
-//                }
-//            }];
-            
         } progress:^(CGFloat progress) {
             
         }];

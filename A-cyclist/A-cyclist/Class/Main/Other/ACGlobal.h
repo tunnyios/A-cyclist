@@ -69,4 +69,5 @@ extern NSString * const ACPasswordError;
 #endif
 
 #define ACScreenBounds  [UIScreen mainScreen].bounds
+#define iOS8 ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0)
 

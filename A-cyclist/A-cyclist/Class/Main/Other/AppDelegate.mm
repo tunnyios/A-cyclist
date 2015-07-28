@@ -17,10 +17,12 @@
 #import "ACCacheDataTool.h"
 #import "ACUserModel.h"
 #import <BaiduMapAPI/BMapKit.h>
+#import <AVFoundation/AVFoundation.h>
 
 @interface AppDelegate () <WeiboSDKDelegate>
 /** 百度地图管理者 */
 @property (nonatomic, strong) BMKMapManager *bmkMapManager;
+@property (nonatomic, strong) AVAudioPlayer *player;
 
 @end
 
@@ -76,6 +78,31 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
+    //向操作系统申请后台运行资格，能维持多久， 是不确定的
+    __block UIBackgroundTaskIdentifier task = [application beginBackgroundTaskWithExpirationHandler:^{
+        //当申请的后台运行时间已过期，则会执行这个block
+        //关闭后台运行
+        [application endBackgroundTask:task];
+    }];
+    
+    if (!iOS8) {
+        // 播放,一个没有声音的Mp3,目的是需要告诉苹果,我在播放东西,并不需要让用户听到.
+        // 创建本地播放对象
+        // url:要播放文件的url
+        // 获取url,从bundle里面获取
+        // 获取本地播放文件的url
+        NSURL *url = [[NSBundle mainBundle] URLForResource:@"silence.mp3" withExtension:nil];
+        AVAudioPlayer *player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
+        _player = player;
+        
+        // -1无限播放
+        player.numberOfLoops = -1;
+        
+        [player prepareToPlay];
+        
+        [player play];
+    }
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {

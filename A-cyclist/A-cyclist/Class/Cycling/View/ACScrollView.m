@@ -31,18 +31,25 @@
         NSLog(@"在地图上, 不滚动, view class is %@", view.class);
         return YES;
     } else {
-        return [super touchesShouldBegin:touches withEvent:event inContentView:view];
+        if ([view isKindOfClass:[UIButton class]]) {
+            return YES;
+        }
+//        return [super touchesShouldBegin:touches withEvent:event inContentView:view];
+        return NO;
     }
 }
 
 - (BOOL)touchesShouldCancelInContentView:(UIView *)view
 {
-    NSLog(@"cancle class is %@", view.class);
-    if ([view isKindOfClass:NSClassFromString(@"TapDetectingView")]) {
-        return NO;
-    } else {
-        return [super touchesShouldCancelInContentView:view];
-    }
+    return NO;
+//    NSLog(@"cancle class is %@", view.class);
+//    if ([view isKindOfClass:NSClassFromString(@"TapDetectingView")] ||
+//        [view isKindOfClass:NSClassFromString(@"SingleCircleView")]) {
+//        return NO;
+//    } else {
+////        return [super touchesShouldCancelInContentView:view];
+//        return NO;
+//    }
 }
 
 

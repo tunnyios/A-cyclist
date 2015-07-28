@@ -14,7 +14,7 @@
 		A204B1661B5B8232004C0A6C /* ACDataBaseTool.m in Sources */ = {isa = PBXBuildFile; fileRef = A204B1651B5B8232004C0A6C /* ACDataBaseTool.m */; };
 		A204B16A1B5BE144004C0A6C /* ACUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A204B1691B5BE144004C0A6C /* ACUserModel.m */; };
 		A2082E6A1B62259800CA3325 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A2082E691B62259800CA3325 /* mapapi.bundle */; };
-		A2082E6D1B62993400CA3325 /* ACCyclingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2082E6C1B62993400CA3325 /* ACCyclingViewController.m */; };
+		A2082E6D1B62993400CA3325 /* ACCyclingViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = A2082E6C1B62993400CA3325 /* ACCyclingViewController.mm */; };
 		A2082E701B62996F00CA3325 /* ACCyclingArgumentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2082E6F1B62996F00CA3325 /* ACCyclingArgumentsViewController.m */; };
 		A2082ECE1B634EE200CA3325 /* ACScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2082ECD1B634EE200CA3325 /* ACScrollView.m */; };
 		A218F7031B5A3F33007CBADA /* ACLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A218F7021B5A3F33007CBADA /* ACLoginViewController.m */; };
@@ -113,6 +113,7 @@
 		A28BFF1E1B53F9FD00A712F1 /* setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A28BFF1D1B53F9FD00A712F1 /* setting.storyboard */; };
 		A2AD90BD1B5FAAB100847F72 /* BaiduMapAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AD90BC1B5FAAB100847F72 /* BaiduMapAPI.framework */; };
 		A2AD90BF1B5FAAE200847F72 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AD90BE1B5FAAE200847F72 /* OpenGLES.framework */; };
+		A2D207131B67435B00214B09 /* silence.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A2D207111B67435B00214B09 /* silence.mp3 */; };
 		A2D483AC1B5515B700BC8406 /* ACTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D483AB1B5515B700BC8406 /* ACTabBarController.m */; };
 		A2D483B61B5516E300BC8406 /* UIColor+Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D483B51B5516E300BC8406 /* UIColor+Tools.m */; };
 		A2D483B91B5525B200BC8406 /* HCTabBar5ContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D483B81B5525B200BC8406 /* HCTabBar5ContentView.m */; };
@@ -145,7 +146,7 @@
 		A204B1691B5BE144004C0A6C /* ACUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACUserModel.m; sourceTree = "<group>"; };
 		A2082E691B62259800CA3325 /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mapapi.bundle; sourceTree = "<group>"; };
 		A2082E6B1B62993400CA3325 /* ACCyclingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACCyclingViewController.h; sourceTree = "<group>"; };
-		A2082E6C1B62993400CA3325 /* ACCyclingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACCyclingViewController.m; sourceTree = "<group>"; };
+		A2082E6C1B62993400CA3325 /* ACCyclingViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ACCyclingViewController.mm; sourceTree = "<group>"; };
 		A2082E6E1B62996F00CA3325 /* ACCyclingArgumentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACCyclingArgumentsViewController.h; sourceTree = "<group>"; };
 		A2082E6F1B62996F00CA3325 /* ACCyclingArgumentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACCyclingArgumentsViewController.m; sourceTree = "<group>"; };
 		A2082ECC1B634EE200CA3325 /* ACScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACScrollView.h; sourceTree = "<group>"; };
@@ -324,6 +325,7 @@
 		A28BFF1D1B53F9FD00A712F1 /* setting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = setting.storyboard; sourceTree = "<group>"; };
 		A2AD90BC1B5FAAB100847F72 /* BaiduMapAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI.framework; sourceTree = "<group>"; };
 		A2AD90BE1B5FAAE200847F72 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		A2D207111B67435B00214B09 /* silence.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = silence.mp3; sourceTree = "<group>"; };
 		A2D483AA1B5515B700BC8406 /* ACTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACTabBarController.h; sourceTree = "<group>"; };
 		A2D483AB1B5515B700BC8406 /* ACTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACTabBarController.m; sourceTree = "<group>"; };
 		A2D483B41B5516E300BC8406 /* UIColor+Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Tools.h"; sourceTree = "<group>"; };
@@ -712,6 +714,7 @@
 		A28BFEB91B53A2CC00A712F1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A2D207101B67435B00214B09 /* Mp3 */,
 				A28BFEBA1B53A2CC00A712F1 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -794,7 +797,7 @@
 			isa = PBXGroup;
 			children = (
 				A2082E6B1B62993400CA3325 /* ACCyclingViewController.h */,
-				A2082E6C1B62993400CA3325 /* ACCyclingViewController.m */,
+				A2082E6C1B62993400CA3325 /* ACCyclingViewController.mm */,
 				A2082E6E1B62996F00CA3325 /* ACCyclingArgumentsViewController.h */,
 				A2082E6F1B62996F00CA3325 /* ACCyclingArgumentsViewController.m */,
 			);
@@ -1084,6 +1087,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		A2D207101B67435B00214B09 /* Mp3 */ = {
+			isa = PBXGroup;
+			children = (
+				A2D207111B67435B00214B09 /* silence.mp3 */,
+			);
+			path = Mp3;
+			sourceTree = "<group>";
+		};
 		A2D483B31B5516CD00BC8406 /* Category */ = {
 			isa = PBXGroup;
 			children = (
@@ -1189,6 +1200,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2D207131B67435B00214B09 /* silence.mp3 in Resources */,
 				A28BFECA1B53A2CC00A712F1 /* LaunchScreen.xib in Resources */,
 				A28BFF161B53F98200A712F1 /* cycling.storyboard in Resources */,
 				A28BFF1C1B53F9E900A712F1 /* route.storyboard in Resources */,
@@ -1268,7 +1280,7 @@
 				A266D9FD1B5D11D200D4B326 /* FMResultSet.m in Sources */,
 				A2F7FE401B5FD6BF0000D6EA /* VPImageCropperViewController.m in Sources */,
 				A261B0001B5762D1006C8917 /* ACSettingGroupModel.m in Sources */,
-				A2082E6D1B62993400CA3325 /* ACCyclingViewController.m in Sources */,
+				A2082E6D1B62993400CA3325 /* ACCyclingViewController.mm in Sources */,
 				A261435E1B5E4AF7007EA45C /* ACChangeNameController.m in Sources */,
 				A26143511B5E22D6007EA45C /* UIImage+GIF.m in Sources */,
 				A26143531B5E22D6007EA45C /* UIImage+WebP.m in Sources */,
