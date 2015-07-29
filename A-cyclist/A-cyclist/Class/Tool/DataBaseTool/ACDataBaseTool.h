@@ -10,7 +10,7 @@
 #import <BmobSDK/Bmob.h>
 
 
-@class ACUserModel;
+@class ACUserModel, ACRouteModel;
 @interface ACDataBaseTool : NSObject
 
 #pragma mark - 账户相关
@@ -27,11 +27,21 @@
 + (void)updateUserInfoWith:(ACUserModel *)user withResultBlock:(void (^)(BOOL isSuccessful, NSError *error))block;
 + (void)updateUserInfoWithDict:(NSDictionary *)dict andKeys:(NSArray *)keys withResultBlock:(void (^) (BOOL isSuccessful, NSError *error))block;
 
-
-#pragma mark - BQL查询类
-
 /** 获取当前用户对象 */
 + (ACUserModel *)getCurrentUser;
+
+
+#pragma mark - 路线数据相关
+/** 添加一条路线数据到数据库 */
++ (void)addRouteWith:(ACRouteModel *)route userObjectId:(NSString *)objectId resultBlock:(void (^) (BOOL isSuccessful, NSError *error))block;
+
+/** 更新一条路线数据到数据库 */
+
+/** 根据用户id获取当前用户的路线列表 */
++ (void)getRouteListWithUserObjectId:(NSString *)objectId resultBlock:(void (^) (NSArray *routes, NSError *error))block;
+
+
+#pragma mark - BQL查询类
 
 /** 根据sql语句来查询数据库, 返回对象数组 */
 + (void)queryWithSQL:(NSString *)bql pValues:(NSArray *)pVlaues block:(void (^)(NSArray *result, NSError *error))block;

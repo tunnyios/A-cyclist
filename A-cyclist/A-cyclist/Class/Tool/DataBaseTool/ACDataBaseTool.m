@@ -10,6 +10,9 @@
 #import "ACUserModel.h"
 #import "ACGlobal.h"
 #import <BmobSDK/BmobProFile.h>
+#import "ACRouteModel.h"
+#import "ACStepModel.h"
+
 
 @implementation ACDataBaseTool
 
@@ -102,8 +105,6 @@
     }];
 }
 
-#pragma mark - 查询相关
-
 /**
  *  从数据库中获取当前用户信息
  */
@@ -115,14 +116,93 @@
     return ACUser;
 }
 
+
+#pragma mark - 路线数据相关
+
++ (void)addRouteWith:(ACRouteModel *)route userObjectId:(NSString *)objectId resultBlock:(void (^)(BOOL, NSError *))block
+{
+    BmobObject *post = [BmobObject objectWithClassName:@"personRoute"];
+    
+    //设置共享路线参数
+    [post setObject:route.isShared forKey:@"isShared"];
+    [post setObject:route.hotLevel forKey:@"hotLevel"];
+    [post setObject:route.imageList forKey:@"imageList"];
+    //设置路线基本参数
+    [post setObject:route.routeName forKey:@"routeName"];
+    
+    //将数组对象转数组字典
+    NSMutableArray *steps = [NSMutableArray array];
+    [route.steps enumerateObjectsUsingBlock:^(ACStepModel *step, NSUInteger idx, BOOL *stop) {
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        [dict setObject:step.altitude forKey:@"altitude"];
+        [dict setObject:step.latitude forKey:@"latitude"];
+        [dict setObject:step.longitude forKey:@"longitude"];
+        
+        [steps addObject:dict];
+    }];
+    
+    [post setObject:steps forKey:@"steps"];
+    [post setObject:route.distance forKey:@"distance"];
+    [post setObject:route.time forKey:@"time"];
+    [post setObject:route.averageSpeed forKey:@"averageSpeed"];
+    [post setObject:route.maxSpeed forKey:@"maxSpeed"];
+    [post setObject:route.userObjectId forKey:@"userObjectId"];
+    
+    //设置帖子关联的作者记录
+    BmobUser *author = [BmobUser objectWithoutDatatWithClassName:@"_User" objectId:objectId];
+    [post setObject:author forKey:@"user"];
+    
+    //异步保存
+    [post saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+        if (block) {
+            block(isSuccessful, error);
+        }
+    }];
+}
+
 /**
- *  根据sql语句来查询数据库
+ *  根据用户id获取数据库中的路线列表
+ *  (约束关联对象查询)
+ *  @param objectId
+ *
+ *  @return 路线对象数组
+ */
++ (void)getRouteListWithUserObjectId:(NSString *)objectId resultBlock:(void (^)(NSArray *, NSError *))block
+{
+    BmobQuery *bquery = [BmobQuery queryWithClassName:@"personRoute"];
+    
+    //构造约束条件
+    BmobQuery *inQuery = [BmobQuery queryWithClassName:@"_User"];
+    [inQuery whereKey:@"objectId" equalTo:objectId];
+    
+    //匹配查询
+    [bquery whereKey:@"user" matchesQuery:inQuery];
+    [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+        if (block) {
+            block(array, error);
+        }
+        
+//        if (error) {
+//            NSLog(@"%@",error);
+//        } else if (array){
+//            for (BmobObject *post in array) {
+//                NSLog(@"%@",[post objectForKey:@"title"]);
+//            }
+//        }
+    }];
+}
+
+
+#pragma mark - 查询相关
+
+/**
+ *  根据sql语句来普通查询数据库
  *
  *  @param bql       sql语句
  *  @param pVlaues   ?占位符的替代物
  *  @param block     id result:存的是对象数组
  */
-+ (void)queryWithSQL:(NSString *)bql pValues:(NSArray *)pVlaues block:(void (^)(NSArray *result, NSError *error))block
++ (void)queryWithSQL:(NSString *)bql pValues:(NSArray *)pVlaues block:(void (^)(NSArray *, NSError *))block
 {
     BmobQuery   *bquery = [[BmobQuery alloc] init];
     
@@ -204,7 +284,6 @@
         }
     }];
 }
-
 
 + (void)thumbnailImageBySpecifiesTheWidth:(NSInteger)width height:(NSInteger)height quality:(NSInteger)quality sourceImageUrl:(NSString *)imageUrl resultBlock:(void (^)(NSString *, NSString *, NSError *))block
 {

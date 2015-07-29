@@ -113,7 +113,11 @@
 		A28BFF1E1B53F9FD00A712F1 /* setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A28BFF1D1B53F9FD00A712F1 /* setting.storyboard */; };
 		A2AD90BD1B5FAAB100847F72 /* BaiduMapAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AD90BC1B5FAAB100847F72 /* BaiduMapAPI.framework */; };
 		A2AD90BF1B5FAAE200847F72 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AD90BE1B5FAAE200847F72 /* OpenGLES.framework */; };
+		A2CE5A4B1B6879860071AC59 /* ACRouteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2CE5A4A1B6879860071AC59 /* ACRouteModel.m */; };
+		A2CE5A4E1B687F130071AC59 /* ACStepModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2CE5A4D1B687F130071AC59 /* ACStepModel.m */; };
+		A2CE5A511B6909940071AC59 /* NSArray+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = A2CE5A501B6909940071AC59 /* NSArray+Log.m */; };
 		A2D207131B67435B00214B09 /* silence.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A2D207111B67435B00214B09 /* silence.mp3 */; };
+		A2D2071B1B67ACD000214B09 /* cyclingArguments.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2D2071A1B67ACD000214B09 /* cyclingArguments.storyboard */; };
 		A2D483AC1B5515B700BC8406 /* ACTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D483AB1B5515B700BC8406 /* ACTabBarController.m */; };
 		A2D483B61B5516E300BC8406 /* UIColor+Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D483B51B5516E300BC8406 /* UIColor+Tools.m */; };
 		A2D483B91B5525B200BC8406 /* HCTabBar5ContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D483B81B5525B200BC8406 /* HCTabBar5ContentView.m */; };
@@ -325,7 +329,14 @@
 		A28BFF1D1B53F9FD00A712F1 /* setting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = setting.storyboard; sourceTree = "<group>"; };
 		A2AD90BC1B5FAAB100847F72 /* BaiduMapAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI.framework; sourceTree = "<group>"; };
 		A2AD90BE1B5FAAE200847F72 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		A2CE5A491B6879860071AC59 /* ACRouteModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACRouteModel.h; sourceTree = "<group>"; };
+		A2CE5A4A1B6879860071AC59 /* ACRouteModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACRouteModel.m; sourceTree = "<group>"; };
+		A2CE5A4C1B687F130071AC59 /* ACStepModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACStepModel.h; sourceTree = "<group>"; };
+		A2CE5A4D1B687F130071AC59 /* ACStepModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACStepModel.m; sourceTree = "<group>"; };
+		A2CE5A4F1B6909940071AC59 /* NSArray+Log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Log.h"; sourceTree = "<group>"; };
+		A2CE5A501B6909940071AC59 /* NSArray+Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Log.m"; sourceTree = "<group>"; };
 		A2D207111B67435B00214B09 /* silence.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = silence.mp3; sourceTree = "<group>"; };
+		A2D2071A1B67ACD000214B09 /* cyclingArguments.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = cyclingArguments.storyboard; sourceTree = "<group>"; };
 		A2D483AA1B5515B700BC8406 /* ACTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACTabBarController.h; sourceTree = "<group>"; };
 		A2D483AB1B5515B700BC8406 /* ACTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACTabBarController.m; sourceTree = "<group>"; };
 		A2D483B41B5516E300BC8406 /* UIColor+Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Tools.h"; sourceTree = "<group>"; };
@@ -414,6 +425,10 @@
 			children = (
 				A204B1681B5BE144004C0A6C /* ACUserModel.h */,
 				A204B1691B5BE144004C0A6C /* ACUserModel.m */,
+				A2CE5A491B6879860071AC59 /* ACRouteModel.h */,
+				A2CE5A4A1B6879860071AC59 /* ACRouteModel.m */,
+				A2CE5A4C1B687F130071AC59 /* ACStepModel.h */,
+				A2CE5A4D1B687F130071AC59 /* ACStepModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -817,6 +832,7 @@
 				A28BFF151B53F98200A712F1 /* cycling.storyboard */,
 				A2082ECC1B634EE200CA3325 /* ACScrollView.h */,
 				A2082ECD1B634EE200CA3325 /* ACScrollView.m */,
+				A2D2071A1B67ACD000214B09 /* cyclingArguments.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1098,6 +1114,8 @@
 		A2D483B31B5516CD00BC8406 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				A2CE5A4F1B6909940071AC59 /* NSArray+Log.h */,
+				A2CE5A501B6909940071AC59 /* NSArray+Log.m */,
 				A26143571B5E2660007EA45C /* UIImage+Extension.h */,
 				A26143581B5E2660007EA45C /* UIImage+Extension.m */,
 				A266D9841B5C7D5900D4B326 /* NSDate+Extension.h */,
@@ -1201,6 +1219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2D207131B67435B00214B09 /* silence.mp3 in Resources */,
+				A2D2071B1B67ACD000214B09 /* cyclingArguments.storyboard in Resources */,
 				A28BFECA1B53A2CC00A712F1 /* LaunchScreen.xib in Resources */,
 				A28BFF161B53F98200A712F1 /* cycling.storyboard in Resources */,
 				A28BFF1C1B53F9E900A712F1 /* route.storyboard in Resources */,
@@ -1265,12 +1284,14 @@
 				A266D9B41B5CA14F00D4B326 /* ACShowAlertTool.m in Sources */,
 				A266D9EC1B5D0A0400D4B326 /* ACCacheDataTool.m in Sources */,
 				A266D99F1B5C881700D4B326 /* NSObject+MJProperty.m in Sources */,
+				A2CE5A511B6909940071AC59 /* NSArray+Log.m in Sources */,
 				A204B16A1B5BE144004C0A6C /* ACUserModel.m in Sources */,
 				A2845EB41B5AB825006E0CE0 /* MBProgressHUD+MJ.m in Sources */,
 				A2082ECE1B634EE200CA3325 /* ACScrollView.m in Sources */,
 				A204B1601B5B506B004C0A6C /* HCKeyboardTool.m in Sources */,
 				A266D9FA1B5D11D200D4B326 /* FMDatabaseAdditions.m in Sources */,
 				A218F7031B5A3F33007CBADA /* ACLoginViewController.m in Sources */,
+				A2CE5A4B1B6879860071AC59 /* ACRouteModel.m in Sources */,
 				A266D9DC1B5CF9CD00D4B326 /* AFSecurityPolicy.m in Sources */,
 				A266D9E01B5CF9CD00D4B326 /* AFURLSessionManager.m in Sources */,
 				A26143551B5E22D6007EA45C /* UIImageView+WebCache.m in Sources */,
@@ -1294,6 +1315,7 @@
 				A266D9D91B5CF9CD00D4B326 /* AFHTTPRequestOperationManager.m in Sources */,
 				A266D99D1B5C881700D4B326 /* NSObject+MJCoding.m in Sources */,
 				A26143521B5E22D6007EA45C /* UIImage+MultiFormat.m in Sources */,
+				A2CE5A4E1B687F130071AC59 /* ACStepModel.m in Sources */,
 				A26143591B5E2660007EA45C /* UIImage+Extension.m in Sources */,
 				A266D9D81B5CF9CD00D4B326 /* AFHTTPRequestOperation.m in Sources */,
 				A28BFF0A1B53B35B00A712F1 /* main.m in Sources */,

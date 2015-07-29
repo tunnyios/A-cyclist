@@ -9,6 +9,11 @@
 #import "ACCyclingViewController.h"
 #import <BaiduMapAPI/BMapKit.h>
 #import "ACGlobal.h"
+#import "ACUserModel.h"
+#import "ACRouteModel.h"
+#import "ACStepModel.h"
+#import "ACDataBaseTool.h"
+#import "ACCacheDataTool.h"
 
 
 typedef enum : NSUInteger {
@@ -175,6 +180,9 @@ typedef enum : NSUInteger {
     
     UIAlertAction *cancleAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
     UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        //1. 保存到数据库，以及缓存中
+        [self saveData];
+        
         //2. 结束，隐藏暂停和结束按钮，显示开始按钮
         //3. 执行结束功能，分析此次骑行状态
         //跳转控制器
@@ -244,9 +252,11 @@ typedef enum : NSUInteger {
  */
 - (void)startTrailRouteWithUserLocation:(BMKUserLocation *)userLocation
 {
-//    CLLocationCoordinate2D userLocationCoor = userLocation.location.coordinate;
     CLLocation *location = userLocation.location;
-//    CLLocation *location = [[CLLocation alloc] initWithLatitude:userLocationCoor.latitude longitude:userLocationCoor.longitude];
+    NSString *latitude = [NSString stringWithFormat:@"%f", location.coordinate.latitude];
+    NSString *longitude = [NSString stringWithFormat:@"%f", location.coordinate.longitude];
+    NSString *altitude = [NSString stringWithFormat:@"%ld", (long)location.altitude];
+    ACStepModel *step = [ACStepModel stepModelWithLatitude:latitude longitude:longitude altitude:altitude];
     
     //1. 每5米记录一个点
     if (self.locationArrayM.count > 0) {
@@ -261,7 +271,7 @@ typedef enum : NSUInteger {
     [self updateCyclingParamsInfoWithLocation:location];
     
     //3. 记录
-    [self.locationArrayM addObject:location];
+    [self.locationArrayM addObject:step];
     DLog(@"count %lu", (unsigned long)self.locationArrayM.count);
     self.preLocation = location;
     
@@ -311,7 +321,6 @@ typedef enum : NSUInteger {
         //海拔高度
         self.altitude.text = [NSString stringWithFormat:@"%.0f M", location.altitude];
         
-        
         DLog(@"这次距离：%f米\n, 这次耗时：%f秒\n, 瞬时速度:%fkm/h\n, 总路程：%f米\n, 总时间:%f秒\n, 平均速度:%f\n", distance, timeInterval, location.speed * 3.6, self.totleDistance, self.totleTime, averageSpeed * 3.6);
     }
 }
@@ -324,7 +333,12 @@ typedef enum : NSUInteger {
     //轨迹点
     NSUInteger count = self.locationArrayM.count;
     BMKMapPoint *tempPoints = new BMKMapPoint[count];
-    [self.locationArrayM enumerateObjectsUsingBlock:^(CLLocation *location, NSUInteger idx, BOOL *stop) {
+    
+    [self.locationArrayM enumerateObjectsUsingBlock:^(ACStepModel *step, NSUInteger idx, BOOL *stop) {
+        
+        CLLocationDegrees latitude = [step.latitude doubleValue];
+        CLLocationDegrees longitude = [step.longitude doubleValue];
+        CLLocation *location = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
         BMKMapPoint locationPoint = BMKMapPointForCoordinate(location.coordinate);
         tempPoints[idx] = locationPoint;
         
@@ -517,7 +531,7 @@ typedef enum : NSUInteger {
 
 - (void)didUpdateUserHeading:(BMKUserLocation *)userLocation
 {
-    NSLog(@"%f", userLocation.heading.magneticHeading);
+    DLog(@"%f", userLocation.heading.magneticHeading);
     //将角度转弧度
     CGFloat angle = (userLocation.heading.magneticHeading * M_PI) / 180;
     self.compass.layer.transform = CATransform3DMakeRotation(-angle, 0, 0, 1);
@@ -558,7 +572,6 @@ typedef enum : NSUInteger {
 }
 
 
-
 #pragma mark - BMKGeoCodeSearchDelegate
 
 /**
@@ -573,12 +586,43 @@ typedef enum : NSUInteger {
     if (error == 0) {
         //设置骑行者当前的地区数据
         self.userZone.text = [NSString stringWithFormat:@"%@ %@", result.addressDetail.city, result.addressDetail.district];
-        
         DLog(@"userZone is %@", self.userZone.text);
-        //刷新界面
-//        [self.view reloadData];
     }
 }
+
+
+#pragma mark - 数据的存储操作
+- (void)saveData
+{
+    //1. 获取当前用户
+    ACUserModel *userModel = [ACCacheDataTool getUserInfo];
+    
+    ACRouteModel *route = [[ACRouteModel alloc] init];
+    route.routeName = nil;
+    route.steps = self.locationArrayM;
+    route.distance = [NSNumber numberWithDouble:self.totleDistance];
+    route.time = [NSString stringWithFormat:@"%f", self.totleTime];
+    route.averageSpeed = self.currentAverageSpeed.text;
+    route.maxSpeed = self.currentMaxSpeed.text;
+    route.isShared = 0;
+    route.hotLevel = nil;
+    route.imageList = nil;
+    route.userObjectId = userModel.objectId;
+
+    DLog(@"route.steps is %@\n, route is %@", route.steps, route);
+    //存储到缓存
+    [ACCacheDataTool addRouteWith:route withUserObjectId:userModel.objectId];
+    
+    //存储到数据库
+    [ACDataBaseTool addRouteWith:route userObjectId:userModel.objectId resultBlock:^(BOOL isSuccessful, NSError *error) {
+        if (isSuccessful) {
+            DLog(@"存储路线到数据库成功");
+        } else {
+            DLog(@"存储路线到数据库失败 error is %@", error);
+        }
+    }];
+}
+
 
 #pragma mark - 更新约束
 
@@ -591,15 +635,5 @@ typedef enum : NSUInteger {
     self.contentViewWidth.constant = CGRectGetWidth([UIScreen mainScreen].bounds) * 2;
     self.mapViewLeading.constant = CGRectGetWidth([UIScreen mainScreen].bounds);
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

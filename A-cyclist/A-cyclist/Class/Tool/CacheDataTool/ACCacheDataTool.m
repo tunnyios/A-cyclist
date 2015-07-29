@@ -25,8 +25,11 @@ static FMDatabase *_db;
     
     //创建表
     [_db executeUpdate:@"CREATE TABLE IF NOT EXISTS t_user (id integer PRIMARY KEY, user blob NOT NULL, objectId text NOT NULL UNIQUE);"];
+    [_db executeUpdate:@"CREATE TABLE IF NOT EXISTS t_personRoute (id integer PRIMARY KEY, route blob NOT NULL, userObjectId text NOT NULL UNIQUE);"];
 }
 
+
+#pragma mark - 用户相关
 /**
  *  保存一条UserInfo到本地数据库
  */
@@ -70,5 +73,46 @@ static FMDatabase *_db;
     }
     return [statuses lastObject];
 }
+
+#pragma mark - 路线相关
+
+/**
+ *  为本地缓存添加一条路线记录
+ *
+ *  @param route
+ *  @param objectId 对应用户的objectId
+ */
++ (void)addRouteWith:(ACRouteModel *)route withUserObjectId:(NSString *)objectId
+{
+    //转换成NSData
+    NSData *routeData = [NSKeyedArchiver archivedDataWithRootObject:route];
+    
+    [_db executeUpdateWithFormat:@"INSERT INTO t_personRoute(route, userObjectId) VALUES (%@, %@);", routeData, objectId];
+    
+    DLog(@"保存UserInfo到本地数据库成功");
+}
+
+/**
+ *  根据用户id获取用户的所有路线
+ *
+ *  @param objectId
+ *
+ *  @return 返回路线对象数组
+ */
++ (NSArray *)getUserRouteWithid:(NSString *)objectId
+{
+    NSMutableArray *routeList = [NSMutableArray array];
+    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM t_personRoute WHERE userObjectId = %@", objectId];
+    
+    // 执行SQL
+    FMResultSet *set = [_db executeQuery:sql];
+    while (set.next) {
+        NSData *routeData = [set objectForColumnName:@"route"];
+        ACRouteModel *route = [NSKeyedUnarchiver unarchiveObjectWithData:routeData];
+        [routeList addObject:route];
+    }
+    return routeList;
+}
+
 
 @end

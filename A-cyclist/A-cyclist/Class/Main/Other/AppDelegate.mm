@@ -148,7 +148,7 @@
     [BmobUser loginInBackgroundWithAuthorDictionary:dic platform:BmobSNSPlatformSinaWeibo block:^(BmobUser *user, NSError *error) {
         if (error) {
             DLog(@"weibo login error:%@",error);
-        } else if (user){
+        } else if (user) {
             DLog(@"user objectid is :%@",user.objectId);
             //1. 发送请求从新浪微博获取用户详细信息
             NSString *url = @"https://api.weibo.com/2/users/show.json";
