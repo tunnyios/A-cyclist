@@ -8,16 +8,16 @@
         <!--Cycling View Controller-->
         <scene sceneID="mta-i0-MfQ">
             <objects>
-                <viewController id="Dop-uh-c46" customClass="ACCyclingViewController" sceneMemberID="viewController">
+                <viewController wantsFullScreenLayout="YES" id="Dop-uh-c46" customClass="ACCyclingViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dX5-UC-HWD"/>
                         <viewControllerLayoutGuide type="bottom" id="v1J-PL-ng7"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="BF3-Ru-8MS">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" delaysContentTouches="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q31-LI-x8K" customClass="ACScrollView">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q31-LI-x8K" customClass="ACScrollView">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="86h-4y-NJg" userLabel="主contentView">
@@ -693,11 +693,148 @@
                         <outlet property="pauseBtn" destination="Sym-Ix-RYF" id="KgE-89-LD8"/>
                         <outlet property="startBtn" destination="4wb-f5-7da" id="SFZ-Wb-KeN"/>
                         <outlet property="userZone" destination="i4k-7r-62o" id="JhC-JQ-mm7"/>
+                        <segue destination="QIZ-wa-ptC" kind="show" identifier="cyclingArgument" id="Sz5-ps-gAf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JCd-Pk-lEa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="992" y="-158"/>
+            <point key="canvasLocation" x="467" y="-343"/>
+        </scene>
+        <!--Navigation View Controller-->
+        <scene sceneID="WTm-H2-29B">
+            <objects>
+                <navigationController id="QIZ-wa-ptC" customClass="ACNavigationViewController" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Def-bS-Vt1">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="FLH-gb-d6b" kind="relationship" relationship="rootViewController" id="L0i-X3-UX7"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hKa-rf-TRc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1131" y="-331"/>
+        </scene>
+        <!--轨迹详情-->
+        <scene sceneID="zY3-Er-8m0">
+            <objects>
+                <viewController storyboardIdentifier="cyclingArguments" useStoryboardIdentifierAsRestorationIdentifier="YES" id="FLH-gb-d6b" customClass="ACCyclingArgumentsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Yak-KA-2NL"/>
+                        <viewControllerLayoutGuide type="bottom" id="8jN-F3-cxM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jpd-QE-eKM">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Fe-FZ-RWx" userLabel="topView">
+                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                                <color key="backgroundColor" red="1" green="0.75084802370000003" blue="0.37039774939999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="99u-9s-Ifg"/>
+                                </constraints>
+                            </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" delaysContentTouches="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hNF-iE-ZNc" customClass="ACCyclingArgumentScrollView">
+                                <rect key="frame" x="0.0" y="108" width="600" height="492"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zdl-TQ-DVw" userLabel="contentView">
+                                        <rect key="frame" x="0.0" y="0.0" width="960" height="492"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jdz-s4-rfs" userLabel="leftView">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="492"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SRd-8e-jPe" userLabel="bottomView">
+                                                        <rect key="frame" x="0.0" y="372" width="320" height="120"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="120" id="b5S-jg-yD2"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="geT-uS-phO" customClass="BMKMapView">
+                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="372"/>
+                                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </view>
+                                                </subviews>
+                                                <color key="backgroundColor" red="0.9588322239" green="1" blue="0.66141322979999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstItem="SRd-8e-jPe" firstAttribute="leading" secondItem="Jdz-s4-rfs" secondAttribute="leading" id="6NN-6Q-PEZ"/>
+                                                    <constraint firstItem="SRd-8e-jPe" firstAttribute="top" secondItem="geT-uS-phO" secondAttribute="bottom" id="6b7-SP-b8g"/>
+                                                    <constraint firstAttribute="trailing" secondItem="geT-uS-phO" secondAttribute="trailing" id="BPF-dq-le2"/>
+                                                    <constraint firstAttribute="bottom" secondItem="SRd-8e-jPe" secondAttribute="bottom" id="Ne6-OE-7Qd"/>
+                                                    <constraint firstItem="geT-uS-phO" firstAttribute="top" secondItem="Jdz-s4-rfs" secondAttribute="top" id="RW6-Qt-mga"/>
+                                                    <constraint firstItem="geT-uS-phO" firstAttribute="leading" secondItem="Jdz-s4-rfs" secondAttribute="leading" id="iF6-pm-gyu"/>
+                                                    <constraint firstAttribute="trailing" secondItem="SRd-8e-jPe" secondAttribute="trailing" id="qul-il-awU"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="69y-Vr-xxm" userLabel="middleView">
+                                                <rect key="frame" x="320" y="0.0" width="320" height="492"/>
+                                                <color key="backgroundColor" red="0.85710306950000004" green="0.55026193189999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ewf-Yh-AhX">
+                                                <rect key="frame" x="640" y="0.0" width="320" height="492"/>
+                                                <color key="backgroundColor" red="0.49880647960000002" green="0.7893179655" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="960" id="0gL-UE-IEi"/>
+                                            <constraint firstAttribute="bottom" secondItem="Jdz-s4-rfs" secondAttribute="bottom" id="5W4-He-2T7"/>
+                                            <constraint firstItem="69y-Vr-xxm" firstAttribute="leading" secondItem="Jdz-s4-rfs" secondAttribute="trailing" id="9rB-fN-HZq"/>
+                                            <constraint firstItem="69y-Vr-xxm" firstAttribute="top" secondItem="Zdl-TQ-DVw" secondAttribute="top" id="CWt-MQ-sTL"/>
+                                            <constraint firstAttribute="bottom" secondItem="69y-Vr-xxm" secondAttribute="bottom" id="FvG-o6-j92"/>
+                                            <constraint firstItem="69y-Vr-xxm" firstAttribute="leading" secondItem="Zdl-TQ-DVw" secondAttribute="leading" constant="320" id="P3U-qf-G3D"/>
+                                            <constraint firstItem="ewf-Yh-AhX" firstAttribute="leading" secondItem="Zdl-TQ-DVw" secondAttribute="leading" constant="640" id="SjR-RL-Enb"/>
+                                            <constraint firstItem="ewf-Yh-AhX" firstAttribute="top" secondItem="Zdl-TQ-DVw" secondAttribute="top" id="XyH-wB-Ys4"/>
+                                            <constraint firstAttribute="trailing" secondItem="ewf-Yh-AhX" secondAttribute="trailing" id="a1f-Fy-hTj"/>
+                                            <constraint firstItem="ewf-Yh-AhX" firstAttribute="leading" secondItem="69y-Vr-xxm" secondAttribute="trailing" id="dNe-Eg-6Mg"/>
+                                            <constraint firstItem="Jdz-s4-rfs" firstAttribute="top" secondItem="Zdl-TQ-DVw" secondAttribute="top" id="fHs-KE-GXx"/>
+                                            <constraint firstAttribute="bottom" secondItem="ewf-Yh-AhX" secondAttribute="bottom" id="neX-l8-noY"/>
+                                            <constraint firstItem="Jdz-s4-rfs" firstAttribute="leading" secondItem="Zdl-TQ-DVw" secondAttribute="leading" id="wUe-Lz-WyS"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="centerY" secondItem="Zdl-TQ-DVw" secondAttribute="centerY" id="7GI-VM-YVu"/>
+                                    <constraint firstAttribute="trailing" secondItem="Zdl-TQ-DVw" secondAttribute="trailing" id="E01-QA-nOd"/>
+                                    <constraint firstItem="Zdl-TQ-DVw" firstAttribute="top" secondItem="hNF-iE-ZNc" secondAttribute="top" id="MAw-mh-sHq"/>
+                                    <constraint firstItem="Zdl-TQ-DVw" firstAttribute="leading" secondItem="hNF-iE-ZNc" secondAttribute="leading" id="k7f-IB-acC"/>
+                                    <constraint firstAttribute="bottom" secondItem="Zdl-TQ-DVw" secondAttribute="bottom" id="rJX-PF-Fo9"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="8Fe-FZ-RWx" firstAttribute="top" secondItem="Yak-KA-2NL" secondAttribute="bottom" id="6d2-Qd-txe"/>
+                            <constraint firstAttribute="trailing" secondItem="8Fe-FZ-RWx" secondAttribute="trailing" id="FCm-u8-8ZU"/>
+                            <constraint firstAttribute="bottom" secondItem="hNF-iE-ZNc" secondAttribute="bottom" id="QOr-BQ-vvB"/>
+                            <constraint firstItem="hNF-iE-ZNc" firstAttribute="leading" secondItem="jpd-QE-eKM" secondAttribute="leading" id="fZC-L1-dPz"/>
+                            <constraint firstAttribute="trailing" secondItem="hNF-iE-ZNc" secondAttribute="trailing" id="rbx-qo-oae"/>
+                            <constraint firstItem="8Fe-FZ-RWx" firstAttribute="leading" secondItem="jpd-QE-eKM" secondAttribute="leading" id="vAl-UE-wZP"/>
+                            <constraint firstItem="hNF-iE-ZNc" firstAttribute="top" secondItem="8Fe-FZ-RWx" secondAttribute="bottom" id="zQG-sL-CE9"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="轨迹详情" id="sft-EF-DYd">
+                        <barButtonItem key="leftBarButtonItem" image="xingzhe_back" id="a5i-22-1Vd">
+                            <connections>
+                                <action selector="cancle:" destination="FLH-gb-d6b" id="ufe-bF-sMz"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="contentViewWidth" destination="0gL-UE-IEi" id="4vM-aH-V2N"/>
+                        <outlet property="middleViewLeading" destination="P3U-qf-G3D" id="aSD-si-RUc"/>
+                        <outlet property="rightViewLeading" destination="SjR-RL-Enb" id="RaP-tg-HBg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NTM-G8-PFl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1131" y="467"/>
         </scene>
     </scenes>
     <resources>
@@ -718,6 +855,7 @@
         <image name="rtu_routeSearch_icn_slider_distance" width="20" height="20"/>
         <image name="weather_b:zx_white" width="130" height="123"/>
         <image name="weatherline" width="2" height="20"/>
+        <image name="xingzhe_back" width="20" height="20"/>
         <image name="xingzhe_sporttype_bike" width="64" height="64"/>
     </resources>
 </document>

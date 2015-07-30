@@ -121,6 +121,8 @@
 		A2D483AC1B5515B700BC8406 /* ACTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D483AB1B5515B700BC8406 /* ACTabBarController.m */; };
 		A2D483B61B5516E300BC8406 /* UIColor+Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D483B51B5516E300BC8406 /* UIColor+Tools.m */; };
 		A2D483B91B5525B200BC8406 /* HCTabBar5ContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D483B81B5525B200BC8406 /* HCTabBar5ContentView.m */; };
+		A2EB8DDA1B69F706008F5D48 /* ACNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2EB8DD91B69F706008F5D48 /* ACNavigationViewController.m */; };
+		A2EB8DDD1B6A287D008F5D48 /* ACCyclingArgumentScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2EB8DDC1B6A287D008F5D48 /* ACCyclingArgumentScrollView.m */; };
 		A2F040EB1B563A51004FBF3D /* ACBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2F040EA1B563A51004FBF3D /* ACBaseTableViewController.m */; };
 		A2F7FE401B5FD6BF0000D6EA /* VPImageCropperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2F7FE3F1B5FD6BF0000D6EA /* VPImageCropperViewController.m */; };
 		A2F875121B5676630075F323 /* ACSettingCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2F875111B5676630075F323 /* ACSettingCellModel.m */; };
@@ -343,6 +345,10 @@
 		A2D483B51B5516E300BC8406 /* UIColor+Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Tools.m"; sourceTree = "<group>"; };
 		A2D483B71B5525B200BC8406 /* HCTabBar5ContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCTabBar5ContentView.h; sourceTree = "<group>"; };
 		A2D483B81B5525B200BC8406 /* HCTabBar5ContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCTabBar5ContentView.m; sourceTree = "<group>"; };
+		A2EB8DD81B69F706008F5D48 /* ACNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACNavigationViewController.h; sourceTree = "<group>"; };
+		A2EB8DD91B69F706008F5D48 /* ACNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACNavigationViewController.m; sourceTree = "<group>"; };
+		A2EB8DDB1B6A287D008F5D48 /* ACCyclingArgumentScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACCyclingArgumentScrollView.h; sourceTree = "<group>"; };
+		A2EB8DDC1B6A287D008F5D48 /* ACCyclingArgumentScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACCyclingArgumentScrollView.m; sourceTree = "<group>"; };
 		A2F040E91B563A51004FBF3D /* ACBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACBaseTableViewController.h; sourceTree = "<group>"; };
 		A2F040EA1B563A51004FBF3D /* ACBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACBaseTableViewController.m; sourceTree = "<group>"; };
 		A2F7FE3E1B5FD6BF0000D6EA /* VPImageCropperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VPImageCropperViewController.h; sourceTree = "<group>"; };
@@ -815,6 +821,8 @@
 				A2082E6C1B62993400CA3325 /* ACCyclingViewController.mm */,
 				A2082E6E1B62996F00CA3325 /* ACCyclingArgumentsViewController.h */,
 				A2082E6F1B62996F00CA3325 /* ACCyclingArgumentsViewController.m */,
+				A2EB8DD81B69F706008F5D48 /* ACNavigationViewController.h */,
+				A2EB8DD91B69F706008F5D48 /* ACNavigationViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -832,6 +840,8 @@
 				A28BFF151B53F98200A712F1 /* cycling.storyboard */,
 				A2082ECC1B634EE200CA3325 /* ACScrollView.h */,
 				A2082ECD1B634EE200CA3325 /* ACScrollView.m */,
+				A2EB8DDB1B6A287D008F5D48 /* ACCyclingArgumentScrollView.h */,
+				A2EB8DDC1B6A287D008F5D48 /* ACCyclingArgumentScrollView.m */,
 				A2D2071A1B67ACD000214B09 /* cyclingArguments.storyboard */,
 			);
 			path = View;
@@ -1269,6 +1279,7 @@
 				A26143481B5E22D6007EA45C /* NSData+ImageContentType.m in Sources */,
 				A266D9A01B5C881700D4B326 /* NSString+MJExtension.m in Sources */,
 				A266D9FB1B5D11D200D4B326 /* FMDatabasePool.m in Sources */,
+				A2EB8DDD1B6A287D008F5D48 /* ACCyclingArgumentScrollView.m in Sources */,
 				A266D99A1B5C881700D4B326 /* MJFoundation.m in Sources */,
 				A261B04B1B57AA87006C8917 /* ACLogoutSettingViewCell.m in Sources */,
 				A26143541B5E22D6007EA45C /* UIImageView+HighlightedWebCache.m in Sources */,
@@ -1303,6 +1314,7 @@
 				A261B0001B5762D1006C8917 /* ACSettingGroupModel.m in Sources */,
 				A2082E6D1B62993400CA3325 /* ACCyclingViewController.mm in Sources */,
 				A261435E1B5E4AF7007EA45C /* ACChangeNameController.m in Sources */,
+				A2EB8DDA1B69F706008F5D48 /* ACNavigationViewController.m in Sources */,
 				A26143511B5E22D6007EA45C /* UIImage+GIF.m in Sources */,
 				A26143531B5E22D6007EA45C /* UIImage+WebP.m in Sources */,
 				A266D9DD1B5CF9CD00D4B326 /* AFURLConnectionOperation.m in Sources */,

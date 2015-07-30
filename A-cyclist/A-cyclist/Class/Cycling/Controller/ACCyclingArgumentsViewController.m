@@ -7,8 +7,12 @@
 //
 
 #import "ACCyclingArgumentsViewController.h"
+#import "ACNavigationViewController.h"
 
 @interface ACCyclingArgumentsViewController ()
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentViewWidth;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *middleViewLeading;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *rightViewLeading;
 
 @end
 
@@ -17,11 +21,35 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    NSLog(@"######route %@", self.route);
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)cancle:(id)sender
+{
+    NSLog(@"########%@", [self.navigationController class]);
+    if ([self.navigationController isKindOfClass:[ACNavigationViewController class]]) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    } else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+#pragma mark - 约束
+- (void)updateViewConstraints
+{
+    [super updateViewConstraints];
+    
+    //动态修改约束
+    //设置scrollView的contentView的宽度为两个屏的宽度
+    self.contentViewWidth.constant = CGRectGetWidth([UIScreen mainScreen].bounds) * 3;
+    self.middleViewLeading.constant = CGRectGetWidth([UIScreen mainScreen].bounds);
+    self.rightViewLeading.constant = CGRectGetWidth([UIScreen mainScreen].bounds) * 2;
 }
 
 /*

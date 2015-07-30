@@ -14,6 +14,8 @@
 #import "ACStepModel.h"
 #import "ACDataBaseTool.h"
 #import "ACCacheDataTool.h"
+#import "ACCyclingArgumentsViewController.h"
+#import "ACNavigationViewController.h"
 
 
 typedef enum : NSUInteger {
@@ -40,6 +42,9 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) BMKLocationService *bmkLocationService;
 /** 计时器 */
 @property (nonatomic, strong) NSTimer *timer;
+/** 路线对象 */
+@property (nonatomic, strong) ACRouteModel *route;
+
 
 /* 轨迹记录 */
 /** 记录上一次的位置 */
@@ -82,6 +87,15 @@ typedef enum : NSUInteger {
 
 @implementation ACCyclingViewController
 
+- (ACRouteModel *)route
+{
+    if (_route == nil) {
+        _route = [[ACRouteModel alloc] init];
+    }
+    
+    return _route;
+}
+
 - (NSMutableArray *)locationArrayM
 {
     if (_locationArrayM == nil) {
@@ -94,7 +108,6 @@ typedef enum : NSUInteger {
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
     //1. 定位
     _bmkLocationService = [[BMKLocationService alloc] init];
     
@@ -134,6 +147,9 @@ typedef enum : NSUInteger {
  */
 - (IBAction)start
 {
+    //1. 开启骑行前清理各个lable的数值
+    [self cleanLabel];
+    
     [UIView animateWithDuration:1.0f animations:^{
         //1. 隐藏开始骑行按钮
         self.startBtn.alpha = 0;
@@ -171,6 +187,39 @@ typedef enum : NSUInteger {
 }
 
 /**
+ *  结束后隐藏暂停完成按钮
+ *  显示开始按钮
+ */
+- (void)hideBtn
+{
+    //1. 显示开始骑行按钮
+    self.startBtn.alpha = 1;
+    //2. 隐藏暂停和完成按钮
+    self.pauseBtn.alpha = 0;
+    self.endBtn.alpha = 0;
+    //3. 设置暂停按钮不选中
+    self.pauseBtn.selected = NO;
+    //4. 停止记录
+    [self stopRecord];
+    //5. 停止计时
+    [self stopTimer];
+}
+
+/**
+ *  开启骑行前清理各个lable的数值
+ */
+- (void)cleanLabel
+{
+    self.totleTime = 0;
+    self.totleDistance = 0;
+    self.currentSpeed.text = @"0.00";
+    self.currentMileage.text = @"0.00";
+    self.currentTimeConsuming.text = @"00:00:00";
+    self.currentAverageSpeed.text = @"0.00";
+    self.currentMaxSpeed.text = @"0.00";
+}
+
+/**
  *  完成、结束骑行
  */
 - (IBAction)endCycling
@@ -182,16 +231,31 @@ typedef enum : NSUInteger {
     UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         //1. 保存到数据库，以及缓存中
         [self saveData];
-        
         //2. 结束，隐藏暂停和结束按钮，显示开始按钮
-        //3. 执行结束功能，分析此次骑行状态
-        //跳转控制器
+        [self hideBtn];
+        //3. 执行结束功能，分析此次骑行状态，跳转控制器
+        [self performSegueWithIdentifier:@"cyclingArgument" sender:self.route];
         
     }];
     
     [alertVc addAction:cancleAction];
     [alertVc addAction:sureAction];
     [self presentViewController:alertVc animated:YES completion:nil];
+}
+
+/**
+ *  执行segue之前的准备工作
+ *  在执行segue之前调用，一般用来在两个控制器之间传值
+ *  两个控制器之间传值，一般都是在有数据的那个控制器里操作
+ *  @param segue
+ *  @param sender
+ */
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    ACNavigationViewController *nav = segue.destinationViewController;
+    ACCyclingArgumentsViewController *cyclingArgumentVc = [nav.viewControllers firstObject];
+
+    cyclingArgumentVc.route = sender;
 }
 
 #pragma mark - 骑行操作
@@ -219,7 +283,7 @@ typedef enum : NSUInteger {
 - (void)startRecord
 {
     //清理地图
-    [self clean];
+    [self cleanMap];
     
     self.trail = HCTrailStart;
 }
@@ -384,7 +448,7 @@ typedef enum : NSUInteger {
 /**
  *  清空数组以及地图上的轨迹
  */
-- (void)clean
+- (void)cleanMap
 {
     //清空数组
     [self.locationArrayM removeAllObjects];
@@ -458,7 +522,6 @@ typedef enum : NSUInteger {
 - (void)stopTimer
 {
     [self.timer invalidate];
-    self.totleTime = 0;
 }
 
 - (void)updateTimer:(NSTimer *)timer
@@ -597,24 +660,23 @@ typedef enum : NSUInteger {
     //1. 获取当前用户
     ACUserModel *userModel = [ACCacheDataTool getUserInfo];
     
-    ACRouteModel *route = [[ACRouteModel alloc] init];
-    route.routeName = nil;
-    route.steps = self.locationArrayM;
-    route.distance = [NSNumber numberWithDouble:self.totleDistance];
-    route.time = [NSString stringWithFormat:@"%f", self.totleTime];
-    route.averageSpeed = self.currentAverageSpeed.text;
-    route.maxSpeed = self.currentMaxSpeed.text;
-    route.isShared = 0;
-    route.hotLevel = nil;
-    route.imageList = nil;
-    route.userObjectId = userModel.objectId;
+    self.route.routeName = nil;
+    self.route.steps = self.locationArrayM;
+    self.route.distance = [NSNumber numberWithDouble:self.totleDistance];
+    self.route.time = [NSString stringWithFormat:@"%f", self.totleTime];
+    self.route.averageSpeed = self.currentAverageSpeed.text;
+    self.route.maxSpeed = self.currentMaxSpeed.text;
+    self.route.isShared = 0;
+    self.route.hotLevel = nil;
+    self.route.imageList = nil;
+    self.route.userObjectId = userModel.objectId;
 
-    DLog(@"route.steps is %@\n, route is %@", route.steps, route);
+    DLog(@"route.steps is %@\n, route is %@", self.route.steps, self.route);
     //存储到缓存
-    [ACCacheDataTool addRouteWith:route withUserObjectId:userModel.objectId];
+    [ACCacheDataTool addRouteWith:self.route withUserObjectId:userModel.objectId];
     
     //存储到数据库
-    [ACDataBaseTool addRouteWith:route userObjectId:userModel.objectId resultBlock:^(BOOL isSuccessful, NSError *error) {
+    [ACDataBaseTool addRouteWith:self.route userObjectId:userModel.objectId resultBlock:^(BOOL isSuccessful, NSError *error) {
         if (isSuccessful) {
             DLog(@"存储路线到数据库成功");
         } else {
