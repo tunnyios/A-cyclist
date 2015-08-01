@@ -16,6 +16,7 @@
 #import "ACCacheDataTool.h"
 #import "ACCyclingArgumentsViewController.h"
 #import "ACNavigationViewController.h"
+#import "NSDate+Extension.h"
 
 
 typedef enum : NSUInteger {
@@ -538,9 +539,10 @@ typedef enum : NSUInteger {
     NSInteger hour = seconds / (60 * 60);
     NSInteger minTemp = seconds % (60 * 60);
     NSInteger minute = minTemp / 60;
-    NSInteger second = minTemp % 60;
+//    NSInteger second = minTemp % 60;
     
-    NSString *time = [NSString stringWithFormat:@"%02ld:%02ld:%02ld", (long)hour, (long)minute, (long)second];
+    NSString *time = [NSString stringWithFormat:@"%02ld:%02ld", (long)hour, (long)minute];
+//    NSString *time = [NSString stringWithFormat:@"%02ld:%02ld:%02ld", (long)hour, (long)minute, (long)second];
     
     return time;
 }
@@ -660,7 +662,8 @@ typedef enum : NSUInteger {
     //1. 获取当前用户
     ACUserModel *userModel = [ACCacheDataTool getUserInfo];
     
-    self.route.routeName = nil;
+    NSString *timeName = [NSDate dateToString:[NSDate date] WithFormatter:@"yyyy-MM-dd HH:mm"];
+    self.route.routeName = timeName;
     self.route.steps = self.locationArrayM;
     self.route.distance = [NSNumber numberWithDouble:self.totleDistance];
     self.route.time = [NSString stringWithFormat:@"%f", self.totleTime];
