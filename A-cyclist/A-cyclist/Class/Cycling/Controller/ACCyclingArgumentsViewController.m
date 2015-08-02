@@ -9,9 +9,15 @@
 #import "ACCyclingArgumentsViewController.h"
 #import "ACNavigationViewController.h"
 #import "ACCyclingArgumentScrollView.h"
+#import "ACSettingGroupModel.h"
+#import "ACSettingCellModel.h"
+#import "ACCyclingDetailCell.h"
+#import "ACCyclingDetailModel.h"
+#import "ACRouteModel.h"
 #import "ACGlobal.h"
+#import "NSDate+Extension.h"
 
-@interface ACCyclingArgumentsViewController () <UIScrollViewDelegate>
+@interface ACCyclingArgumentsViewController () <UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource>
 /** 约束 */
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentViewWidth;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *middleViewLeading;
@@ -21,20 +27,46 @@
 @property (weak, nonatomic) IBOutlet UIButton *trailBtn;
 @property (weak, nonatomic) IBOutlet UIButton *graphicBtn;
 @property (weak, nonatomic) IBOutlet UIButton *dataBtn;
-
 /** scrollView */
 @property (weak, nonatomic) IBOutlet ACCyclingArgumentScrollView *cyclingArgumentScrollView;
+/** 详细参数tableView */
+@property (weak, nonatomic) IBOutlet UITableView *detialTableView;
+/** 数据数组(包含了groupModel，groupModel中又包含了cellModel) */
+@property (nonatomic, strong) NSMutableArray *dataList;
+
+/* 轨迹界面属性 */
+/** 路线名称 */
+@property (weak, nonatomic) IBOutlet UILabel *routeNameLabel;
+/** 骑行里程 */
+@property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
+/** 骑行耗时 */
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+/** 平均速度 */
+@property (weak, nonatomic) IBOutlet UILabel *averageSpeedLabel;
+/** 累计上升 */
+@property (weak, nonatomic) IBOutlet UILabel *ascendAltitudeLabel;
 
 
 @end
 
 @implementation ACCyclingArgumentsViewController
 
+- (NSMutableArray *)dataList
+{
+    if (_dataList == nil) {
+        _dataList = [NSMutableArray array];
+    }
+    
+    return _dataList;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    // Do any additional setup after loading the view
     //1. 最先展示轨迹
     [self trailBtnClick];
+    //2. 加载轨迹详细数据
+    [self setDetailData];
     
     DLog(@"######route %@", self.route);
     
@@ -71,6 +103,9 @@
     
     //2. 切换scrollView的View
     self.cyclingArgumentScrollView.contentOffset = CGPointMake(0, 0);
+    
+    //3. 设置轨迹界面数据
+    [self setTrailData];
 }
 
 /**
@@ -101,9 +136,94 @@
     //2. 切换scrollView的View
     CGFloat offsetX = self.view.bounds.size.width * 2;
     self.cyclingArgumentScrollView.contentOffset = CGPointMake(offsetX, 0);
+    
+    //3. 刷新tableView
+    [self.detialTableView reloadData];
+}
+
+
+#pragma mark - 设置轨迹界面数据
+
+- (void)setTrailData
+{
+    self.routeNameLabel.text = self.route.routeName;
+    self.distanceLabel.text = self.route.distance;
+    self.timeLabel.text = self.route.time;
+    self.ascendAltitudeLabel.text = self.route.ascendAltitude;
+    self.averageSpeedLabel.text = self.route.averageSpeed;
+}
+
+
+#pragma mark - 设置骑行详细数据
+
+- (void)setDetailData
+{
+    self.detialTableView.delegate = self;
+    self.detialTableView.dataSource = self;
+    self.detialTableView.sectionFooterHeight = 0;
+    self.detialTableView.sectionHeaderHeight = 20;
+    self.detialTableView.contentInset = UIEdgeInsetsMake(-30, 0, 0, 0);
+    
+    [self addGroup0];
+    [self addGroup1];
+    [self addGroup2];
+    [self addGroup3];
+}
+
+- (void)addGroup0
+{
+    //数据部分
+    ACCyclingDetailModel *cell0 = [ACCyclingDetailModel settingCellWithTitle:@"运动里程" subTitle:self.route.distance];
+    
+    ACSettingGroupModel *group = [[ACSettingGroupModel alloc] init];
+    group.cellList = @[cell0];
+    group.headerText = @"里程(km)";
+    
+    [self.dataList addObject:group];
+}
+
+- (void)addGroup1
+{
+    ACCyclingDetailModel *cell0 = [ACCyclingDetailModel settingCellWithTitle:@"平均速度" subTitle:self.route.averageSpeed];
+    ACCyclingDetailModel *cell1 = [ACCyclingDetailModel settingCellWithTitle:@"极速" subTitle:self.route.maxSpeed];
+    
+    ACSettingGroupModel *group = [[ACSettingGroupModel alloc] init];
+    group.cellList = @[cell0, cell1];
+    group.headerText = @"速度(km/h)";
+    
+    [self.dataList addObject:group];
+}
+
+- (void)addGroup2
+{
+    ACCyclingDetailModel *cell0 = [ACCyclingDetailModel settingCellWithTitle:@"累计上升" subTitle:self.route.ascendAltitude];
+    NSString *range = [NSString stringWithFormat:@"%@~%@", self.route.minAltitude, self.route.maxAltitude];
+    ACCyclingDetailModel *cell1 = [ACCyclingDetailModel settingCellWithTitle:@"海拔范围" subTitle:range];
+    
+    ACSettingGroupModel *group = [[ACSettingGroupModel alloc] init];
+    group.cellList = @[cell0, cell1];
+    group.headerText = @"海拔(m)";
+    
+    [self.dataList addObject:group];
+}
+
+- (void)addGroup3
+{
+    ACCyclingDetailModel *cell0 = [ACCyclingDetailModel settingCellWithTitle:@"骑行时间" subTitle:self.route.time];
+    NSString *creatTimeStr = [NSDate dateToString:self.route.createdAt WithFormatter:@"yyyy-MM-dd HH:mm"];
+    ACCyclingDetailModel *cell1 = [ACCyclingDetailModel settingCellWithTitle:@"开始时间" subTitle:creatTimeStr];
+    NSString *endTimeStr = [NSDate dateToString:self.route.cyclingEndTime WithFormatter:@"yyyy-MM-dd HH:mm"];
+    ACCyclingDetailModel *cell2 = [ACCyclingDetailModel settingCellWithTitle:@"结束时间" subTitle:endTimeStr];
+    
+    ACSettingGroupModel *group = [[ACSettingGroupModel alloc] init];
+    group.cellList = @[cell0, cell1, cell2];
+    group.headerText = @"时间(h:m)";
+    
+    [self.dataList addObject:group];
 }
 
 #pragma mark - scrollView代理
+
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     CGPoint currentPoint = scrollView.contentOffset;
@@ -113,22 +233,25 @@
     
     //根据page切换button
     switch (page) {
-        case 0:{
+        case 0:{    //轨迹
             self.trailBtn.selected = YES;
             self.graphicBtn.selected = NO;
             self.dataBtn.selected = NO;
             break;
         }
-        case 1:{
+        case 1:{    //图表
             self.trailBtn.selected = NO;
             self.graphicBtn.selected = YES;
             self.dataBtn.selected = NO;
             break;
         }
-        case 2:{
+        case 2:{    //数据
             self.trailBtn.selected = NO;
             self.graphicBtn.selected = NO;
             self.dataBtn.selected = YES;
+            
+            //添加数据View的数据
+            [self.detialTableView reloadData];
             break;
         }
         default:
@@ -137,7 +260,47 @@
     
 }
 
+
+#pragma mark - tableView代理方法和数据源方法
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return self.dataList.count;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    return [self.dataList[section] cellList].count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ACCyclingDetailCell *cell = [ACCyclingDetailCell settingViewCellWithTableView:tableView];
+    
+    //取分组模型
+    ACSettingGroupModel *group = self.dataList[indexPath.section];
+    //取cell模型
+    ACCyclingDetailModel *cellModel = group.cellList[indexPath.row];
+    
+    cell.cellModel = cellModel;
+    
+    return cell;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    //取分组模型
+    ACSettingGroupModel *group = self.dataList[section];
+    
+    UILabel *label = [[UILabel alloc] init];
+    label.text = group.headerText;
+    label.textColor = [UIColor grayColor];
+    label.font = [UIFont systemFontOfSize:13];
+    
+    return label;
+}
+
 #pragma mark - 约束
+
 - (void)updateViewConstraints
 {
     [super updateViewConstraints];

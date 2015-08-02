@@ -83,6 +83,21 @@ typedef enum : NSUInteger {
 /** 指南针 */
 @property (weak, nonatomic) IBOutlet UIImageView *compass;
 
+/* 上下坡 */
+/** 累计上升距离 */
+@property (nonatomic, assign) CLLocationDistance ascendingAltitude;
+/** 上坡时间 */
+@property (nonatomic, assign) NSTimeInterval ascendingTime;
+/** 上坡距离 */
+@property (nonatomic, assign) CLLocationDistance ascendingDistance;
+/** 下坡时间 */
+@property (nonatomic, assign) NSTimeInterval descendingTime;
+/** 下坡距离 */
+@property (nonatomic, assign) CLLocationDistance descendingDistance;
+/** 平地时间 */
+@property (nonatomic, assign) NSTimeInterval flatTime;
+/** 平地距离 */
+@property (nonatomic, assign) CLLocationDistance flatDistance;
 
 @end
 
@@ -159,6 +174,7 @@ typedef enum : NSUInteger {
         self.endBtn.alpha = 1;
         
     } completion:^(BOOL finished) {
+        self.route.createdAt = [NSDate date];
         //3. 开始骑行功能
         [self startCycling];
     }];
@@ -215,7 +231,7 @@ typedef enum : NSUInteger {
     self.totleDistance = 0;
     self.currentSpeed.text = @"0.00";
     self.currentMileage.text = @"0.00";
-    self.currentTimeConsuming.text = @"00:00:00";
+    self.currentTimeConsuming.text = @"00:00";
     self.currentAverageSpeed.text = @"0.00";
     self.currentMaxSpeed.text = @"0.00";
 }
@@ -385,6 +401,31 @@ typedef enum : NSUInteger {
         self.currentMaxSpeed.text = [NSString stringWithFormat:@"%.2f", maxSpeed * 3.6];
         //海拔高度
         self.altitude.text = [NSString stringWithFormat:@"%.0f M", location.altitude];
+
+        //计算上坡下坡
+        if (location.altitude - self.preLocation.altitude > 0) {
+            //海拔上升、上坡
+            //最高海拔
+            self.route.maxAltitude = [NSString stringWithFormat:@"%.0f", location.altitude];
+            self.ascendingTime += timeInterval;
+            self.ascendingDistance += distance;
+            //累计上升
+            self.ascendingAltitude += (location.altitude - self.preLocation.altitude);
+            
+        } else if (location.altitude - self.preLocation.altitude < 0) {
+            //海拔下降、下坡
+            //最低海拔
+            self.route.minAltitude = [NSString stringWithFormat:@"%.0f", location.altitude];
+            self.descendingTime += timeInterval;
+            self.descendingDistance += distance;
+            
+        } else {
+            //海拔不变、平地
+            self.route.maxAltitude = [NSString stringWithFormat:@"%.0f", location.altitude];
+            self.route.minAltitude = [NSString stringWithFormat:@"%.0f", location.altitude];
+            self.flatTime += timeInterval;
+            self.flatDistance += distance;
+        }
         
         DLog(@"这次距离：%f米\n, 这次耗时：%f秒\n, 瞬时速度:%fkm/h\n, 总路程：%f米\n, 总时间:%f秒\n, 平均速度:%f\n", distance, timeInterval, location.speed * 3.6, self.totleDistance, self.totleTime, averageSpeed * 3.6);
     }
@@ -661,19 +702,33 @@ typedef enum : NSUInteger {
 {
     //1. 获取当前用户
     ACUserModel *userModel = [ACCacheDataTool getUserInfo];
-    
+
     NSString *timeName = [NSDate dateToString:[NSDate date] WithFormatter:@"yyyy-MM-dd HH:mm"];
     self.route.routeName = timeName;
     self.route.steps = self.locationArrayM;
-    self.route.distance = [NSNumber numberWithDouble:self.totleDistance];
-    self.route.time = [NSString stringWithFormat:@"%f", self.totleTime];
+    self.route.distance = self.currentMileage.text;
+    self.route.time = self.currentTimeConsuming.text;
     self.route.averageSpeed = self.currentAverageSpeed.text;
     self.route.maxSpeed = self.currentMaxSpeed.text;
     self.route.isShared = 0;
     self.route.hotLevel = nil;
     self.route.imageList = nil;
     self.route.userObjectId = userModel.objectId;
-
+    
+    //上下坡相关
+    //    self.route.maxAltitude = [NSString stringWithFormat:@"%.0f", self.];
+    //    self.route.minAltitude = nil;
+    self.route.ascendAltitude = [NSString stringWithFormat:@"%.0f", self.ascendingAltitude];
+    self.route.ascendTime = [self dateWithSeconds:self.ascendingTime];
+    self.route.ascendDistance = [NSString stringWithFormat:@"%.2f", self.ascendingDistance * 0.001];
+    self.route.flatTime = [self dateWithSeconds:self.flatTime];
+    self.route.flatDistance = [NSString stringWithFormat:@"%.2f", self.flatDistance * 0.001];
+    self.route.descendTime = [self dateWithSeconds:self.descendingTime];
+    self.route.descendDistance = [NSString stringWithFormat:@"%.2f", self.descendingDistance * 0.001];
+    
+    //开始和结束时间
+    self.route.cyclingEndTime = [NSDate date];
+    
     DLog(@"route.steps is %@\n, route is %@", self.route.steps, self.route);
     //存储到缓存
     [ACCacheDataTool addRouteWith:self.route withUserObjectId:userModel.objectId];

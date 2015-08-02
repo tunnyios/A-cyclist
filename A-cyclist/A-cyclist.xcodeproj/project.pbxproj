@@ -16,7 +16,6 @@
 		A2082E6A1B62259800CA3325 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A2082E691B62259800CA3325 /* mapapi.bundle */; };
 		A2082E6D1B62993400CA3325 /* ACCyclingViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = A2082E6C1B62993400CA3325 /* ACCyclingViewController.mm */; };
 		A2082E701B62996F00CA3325 /* ACCyclingArgumentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2082E6F1B62996F00CA3325 /* ACCyclingArgumentsViewController.m */; };
-		A2082ECE1B634EE200CA3325 /* ACScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2082ECD1B634EE200CA3325 /* ACScrollView.m */; };
 		A218F7031B5A3F33007CBADA /* ACLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A218F7021B5A3F33007CBADA /* ACLoginViewController.m */; };
 		A218F7051B5A3FB2007CBADA /* ACLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A218F7041B5A3FB2007CBADA /* ACLogin.storyboard */; };
 		A26143211B5DFA6C007EA45C /* ACArrowWithSubtitleSettingCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A26143201B5DFA6C007EA45C /* ACArrowWithSubtitleSettingCellModel.m */; };
@@ -83,6 +82,12 @@
 		A266D9FB1B5D11D200D4B326 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = A266D9F31B5D11D200D4B326 /* FMDatabasePool.m */; };
 		A266D9FC1B5D11D200D4B326 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = A266D9F51B5D11D200D4B326 /* FMDatabaseQueue.m */; };
 		A266D9FD1B5D11D200D4B326 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = A266D9F81B5D11D200D4B326 /* FMResultSet.m */; };
+		A281C58B1B6DA4A900DF31C0 /* ACCyclingDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A281C58A1B6DA4A900DF31C0 /* ACCyclingDetailModel.m */; };
+		A281C58F1B6DD61E00DF31C0 /* ACScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = A281C58E1B6DD61E00DF31C0 /* ACScrollView.m */; };
+		A281C5951B6DD62500DF31C0 /* ACCyclingArgumentScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = A281C5921B6DD62500DF31C0 /* ACCyclingArgumentScrollView.m */; };
+		A281C5961B6DD62500DF31C0 /* ACCyclingDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A281C5941B6DD62500DF31C0 /* ACCyclingDetailCell.m */; };
+		A281C5991B6DD65B00DF31C0 /* ACLineChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = A281C5981B6DD65B00DF31C0 /* ACLineChartView.m */; };
+		A281C59C1B6DD70A00DF31C0 /* ACCircleChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = A281C59B1B6DD70A00DF31C0 /* ACCircleChartView.m */; };
 		A2845E931B5A9FBE006E0CE0 /* ACRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2845E921B5A9FBE006E0CE0 /* ACRegisterViewController.m */; };
 		A2845E951B5AB0F2006E0CE0 /* BmobSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2845E941B5AB0F2006E0CE0 /* BmobSDK.framework */; };
 		A2845E971B5AB10D006E0CE0 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2845E961B5AB10D006E0CE0 /* CoreLocation.framework */; };
@@ -122,7 +127,6 @@
 		A2D483B61B5516E300BC8406 /* UIColor+Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D483B51B5516E300BC8406 /* UIColor+Tools.m */; };
 		A2D483B91B5525B200BC8406 /* HCTabBar5ContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D483B81B5525B200BC8406 /* HCTabBar5ContentView.m */; };
 		A2EB8DDA1B69F706008F5D48 /* ACNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2EB8DD91B69F706008F5D48 /* ACNavigationViewController.m */; };
-		A2EB8DDD1B6A287D008F5D48 /* ACCyclingArgumentScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2EB8DDC1B6A287D008F5D48 /* ACCyclingArgumentScrollView.m */; };
 		A2F040EB1B563A51004FBF3D /* ACBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2F040EA1B563A51004FBF3D /* ACBaseTableViewController.m */; };
 		A2F7FE401B5FD6BF0000D6EA /* VPImageCropperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2F7FE3F1B5FD6BF0000D6EA /* VPImageCropperViewController.m */; };
 		A2F875121B5676630075F323 /* ACSettingCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2F875111B5676630075F323 /* ACSettingCellModel.m */; };
@@ -155,8 +159,6 @@
 		A2082E6C1B62993400CA3325 /* ACCyclingViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ACCyclingViewController.mm; sourceTree = "<group>"; };
 		A2082E6E1B62996F00CA3325 /* ACCyclingArgumentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACCyclingArgumentsViewController.h; sourceTree = "<group>"; };
 		A2082E6F1B62996F00CA3325 /* ACCyclingArgumentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACCyclingArgumentsViewController.m; sourceTree = "<group>"; };
-		A2082ECC1B634EE200CA3325 /* ACScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACScrollView.h; sourceTree = "<group>"; };
-		A2082ECD1B634EE200CA3325 /* ACScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACScrollView.m; sourceTree = "<group>"; };
 		A218F7011B5A3F33007CBADA /* ACLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACLoginViewController.h; sourceTree = "<group>"; };
 		A218F7021B5A3F33007CBADA /* ACLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACLoginViewController.m; sourceTree = "<group>"; };
 		A218F7041B5A3FB2007CBADA /* ACLogin.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ACLogin.storyboard; sourceTree = "<group>"; };
@@ -292,6 +294,18 @@
 		A266D9F61B5D11D200D4B326 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
 		A266D9F71B5D11D200D4B326 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		A266D9F81B5D11D200D4B326 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		A281C5891B6DA4A900DF31C0 /* ACCyclingDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACCyclingDetailModel.h; sourceTree = "<group>"; };
+		A281C58A1B6DA4A900DF31C0 /* ACCyclingDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACCyclingDetailModel.m; sourceTree = "<group>"; };
+		A281C58D1B6DD61E00DF31C0 /* ACScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACScrollView.h; sourceTree = "<group>"; };
+		A281C58E1B6DD61E00DF31C0 /* ACScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACScrollView.m; sourceTree = "<group>"; };
+		A281C5911B6DD62500DF31C0 /* ACCyclingArgumentScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACCyclingArgumentScrollView.h; sourceTree = "<group>"; };
+		A281C5921B6DD62500DF31C0 /* ACCyclingArgumentScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACCyclingArgumentScrollView.m; sourceTree = "<group>"; };
+		A281C5931B6DD62500DF31C0 /* ACCyclingDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACCyclingDetailCell.h; sourceTree = "<group>"; };
+		A281C5941B6DD62500DF31C0 /* ACCyclingDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACCyclingDetailCell.m; sourceTree = "<group>"; };
+		A281C5971B6DD65B00DF31C0 /* ACLineChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACLineChartView.h; sourceTree = "<group>"; };
+		A281C5981B6DD65B00DF31C0 /* ACLineChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACLineChartView.m; sourceTree = "<group>"; };
+		A281C59A1B6DD70A00DF31C0 /* ACCircleChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACCircleChartView.h; sourceTree = "<group>"; };
+		A281C59B1B6DD70A00DF31C0 /* ACCircleChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACCircleChartView.m; sourceTree = "<group>"; };
 		A2845E911B5A9FBE006E0CE0 /* ACRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACRegisterViewController.h; sourceTree = "<group>"; };
 		A2845E921B5A9FBE006E0CE0 /* ACRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACRegisterViewController.m; sourceTree = "<group>"; };
 		A2845E941B5AB0F2006E0CE0 /* BmobSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BmobSDK.framework; sourceTree = "<group>"; };
@@ -347,8 +361,6 @@
 		A2D483B81B5525B200BC8406 /* HCTabBar5ContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCTabBar5ContentView.m; sourceTree = "<group>"; };
 		A2EB8DD81B69F706008F5D48 /* ACNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACNavigationViewController.h; sourceTree = "<group>"; };
 		A2EB8DD91B69F706008F5D48 /* ACNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACNavigationViewController.m; sourceTree = "<group>"; };
-		A2EB8DDB1B6A287D008F5D48 /* ACCyclingArgumentScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACCyclingArgumentScrollView.h; sourceTree = "<group>"; };
-		A2EB8DDC1B6A287D008F5D48 /* ACCyclingArgumentScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACCyclingArgumentScrollView.m; sourceTree = "<group>"; };
 		A2F040E91B563A51004FBF3D /* ACBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACBaseTableViewController.h; sourceTree = "<group>"; };
 		A2F040EA1B563A51004FBF3D /* ACBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACBaseTableViewController.m; sourceTree = "<group>"; };
 		A2F7FE3E1B5FD6BF0000D6EA /* VPImageCropperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VPImageCropperViewController.h; sourceTree = "<group>"; };
@@ -672,6 +684,30 @@
 			path = fmdb;
 			sourceTree = "<group>";
 		};
+		A281C58C1B6DD61E00DF31C0 /* CyclingView */ = {
+			isa = PBXGroup;
+			children = (
+				A281C58D1B6DD61E00DF31C0 /* ACScrollView.h */,
+				A281C58E1B6DD61E00DF31C0 /* ACScrollView.m */,
+			);
+			path = CyclingView;
+			sourceTree = "<group>";
+		};
+		A281C5901B6DD62500DF31C0 /* ArgumentsView */ = {
+			isa = PBXGroup;
+			children = (
+				A281C5911B6DD62500DF31C0 /* ACCyclingArgumentScrollView.h */,
+				A281C5921B6DD62500DF31C0 /* ACCyclingArgumentScrollView.m */,
+				A281C5931B6DD62500DF31C0 /* ACCyclingDetailCell.h */,
+				A281C5941B6DD62500DF31C0 /* ACCyclingDetailCell.m */,
+				A281C5971B6DD65B00DF31C0 /* ACLineChartView.h */,
+				A281C5981B6DD65B00DF31C0 /* ACLineChartView.m */,
+				A281C59A1B6DD70A00DF31C0 /* ACCircleChartView.h */,
+				A281C59B1B6DD70A00DF31C0 /* ACCircleChartView.m */,
+			);
+			path = ArgumentsView;
+			sourceTree = "<group>";
+		};
 		A2845EAE1B5AB825006E0CE0 /* MBProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
@@ -830,6 +866,8 @@
 		A28BFEE61B53B35B00A712F1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A281C5891B6DA4A900DF31C0 /* ACCyclingDetailModel.h */,
+				A281C58A1B6DA4A900DF31C0 /* ACCyclingDetailModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -837,11 +875,9 @@
 		A28BFEE71B53B35B00A712F1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A281C5901B6DD62500DF31C0 /* ArgumentsView */,
+				A281C58C1B6DD61E00DF31C0 /* CyclingView */,
 				A28BFF151B53F98200A712F1 /* cycling.storyboard */,
-				A2082ECC1B634EE200CA3325 /* ACScrollView.h */,
-				A2082ECD1B634EE200CA3325 /* ACScrollView.m */,
-				A2EB8DDB1B6A287D008F5D48 /* ACCyclingArgumentScrollView.h */,
-				A2EB8DDC1B6A287D008F5D48 /* ACCyclingArgumentScrollView.m */,
 				A2D2071A1B67ACD000214B09 /* cyclingArguments.storyboard */,
 			);
 			path = View;
@@ -1279,7 +1315,6 @@
 				A26143481B5E22D6007EA45C /* NSData+ImageContentType.m in Sources */,
 				A266D9A01B5C881700D4B326 /* NSString+MJExtension.m in Sources */,
 				A266D9FB1B5D11D200D4B326 /* FMDatabasePool.m in Sources */,
-				A2EB8DDD1B6A287D008F5D48 /* ACCyclingArgumentScrollView.m in Sources */,
 				A266D99A1B5C881700D4B326 /* MJFoundation.m in Sources */,
 				A261B04B1B57AA87006C8917 /* ACLogoutSettingViewCell.m in Sources */,
 				A26143541B5E22D6007EA45C /* UIImageView+HighlightedWebCache.m in Sources */,
@@ -1291,14 +1326,15 @@
 				A2F875121B5676630075F323 /* ACSettingCellModel.m in Sources */,
 				A2D483B91B5525B200BC8406 /* HCTabBar5ContentView.m in Sources */,
 				A261434B1B5E22D6007EA45C /* SDWebImageDecoder.m in Sources */,
+				A281C59C1B6DD70A00DF31C0 /* ACCircleChartView.m in Sources */,
 				A261434E1B5E22D6007EA45C /* SDWebImageManager.m in Sources */,
+				A281C5991B6DD65B00DF31C0 /* ACLineChartView.m in Sources */,
 				A266D9B41B5CA14F00D4B326 /* ACShowAlertTool.m in Sources */,
 				A266D9EC1B5D0A0400D4B326 /* ACCacheDataTool.m in Sources */,
 				A266D99F1B5C881700D4B326 /* NSObject+MJProperty.m in Sources */,
 				A2CE5A511B6909940071AC59 /* NSArray+Log.m in Sources */,
 				A204B16A1B5BE144004C0A6C /* ACUserModel.m in Sources */,
 				A2845EB41B5AB825006E0CE0 /* MBProgressHUD+MJ.m in Sources */,
-				A2082ECE1B634EE200CA3325 /* ACScrollView.m in Sources */,
 				A204B1601B5B506B004C0A6C /* HCKeyboardTool.m in Sources */,
 				A266D9FA1B5D11D200D4B326 /* FMDatabaseAdditions.m in Sources */,
 				A218F7031B5A3F33007CBADA /* ACLoginViewController.m in Sources */,
@@ -1315,9 +1351,11 @@
 				A2082E6D1B62993400CA3325 /* ACCyclingViewController.mm in Sources */,
 				A261435E1B5E4AF7007EA45C /* ACChangeNameController.m in Sources */,
 				A2EB8DDA1B69F706008F5D48 /* ACNavigationViewController.m in Sources */,
+				A281C5961B6DD62500DF31C0 /* ACCyclingDetailCell.m in Sources */,
 				A26143511B5E22D6007EA45C /* UIImage+GIF.m in Sources */,
 				A26143531B5E22D6007EA45C /* UIImage+WebP.m in Sources */,
 				A266D9DD1B5CF9CD00D4B326 /* AFURLConnectionOperation.m in Sources */,
+				A281C58F1B6DD61E00DF31C0 /* ACScrollView.m in Sources */,
 				A2D483AC1B5515B700BC8406 /* ACTabBarController.m in Sources */,
 				A266D9E71B5CFA0B00D4B326 /* HCHttpTool.m in Sources */,
 				A266D9DB1B5CF9CD00D4B326 /* AFNetworkReachabilityManager.m in Sources */,
@@ -1330,6 +1368,7 @@
 				A2CE5A4E1B687F130071AC59 /* ACStepModel.m in Sources */,
 				A26143591B5E2660007EA45C /* UIImage+Extension.m in Sources */,
 				A266D9D81B5CF9CD00D4B326 /* AFHTTPRequestOperation.m in Sources */,
+				A281C58B1B6DA4A900DF31C0 /* ACCyclingDetailModel.m in Sources */,
 				A28BFF0A1B53B35B00A712F1 /* main.m in Sources */,
 				A266D99B1B5C881700D4B326 /* MJProperty.m in Sources */,
 				A266D9861B5C7D5900D4B326 /* NSDate+Extension.m in Sources */,
@@ -1340,6 +1379,7 @@
 				A266D9DA1B5CF9CD00D4B326 /* AFHTTPSessionManager.m in Sources */,
 				A266D9DF1B5CF9CD00D4B326 /* AFURLResponseSerialization.m in Sources */,
 				A261B0481B57A3BF006C8917 /* ACBlankSettingCellModel.m in Sources */,
+				A281C5951B6DD62500DF31C0 /* ACCyclingArgumentScrollView.m in Sources */,
 				A26143491B5E22D6007EA45C /* SDImageCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

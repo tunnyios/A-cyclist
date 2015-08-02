@@ -26,6 +26,20 @@
     [aCoder encodeObject:self.hotLevel forKey:@"hotLevel"];
     [aCoder encodeObject:self.imageList forKey:@"imageList"];
     [aCoder encodeObject:self.userObjectId forKey:@"userObjectId"];
+    
+    [aCoder encodeObject:self.maxAltitude forKey:@"maxAltitude"];
+    [aCoder encodeObject:self.minAltitude forKey:@"minAltitude"];
+    [aCoder encodeObject:self.ascendAltitude forKey:@"ascendAltitude"];
+    [aCoder encodeObject:self.ascendTime forKey:@"ascendTime"];
+    [aCoder encodeObject:self.ascendDistance forKey:@"ascendDistance"];
+    [aCoder encodeObject:self.flatTime forKey:@"flatTime"];
+    [aCoder encodeObject:self.flatDistance forKey:@"flatDistance"];
+    [aCoder encodeObject:self.descendTime forKey:@"descendTime"];
+    [aCoder encodeObject:self.descendDistance forKey:@"descendDistance"];
+    [aCoder encodeObject:self.kcal forKey:@"kcal"];
+    
+    [aCoder encodeObject:self.cyclingEndTime forKey:@"cyclingEndTime"];
+    [aCoder encodeObject:self.createdAt forKey:@"createdAt"];
 }
 
 /**
@@ -45,6 +59,20 @@
         self.hotLevel = [aDecoder decodeObjectForKey:@"hotLevel"];
         self.imageList = [aDecoder decodeObjectForKey:@"imageList"];
         self.userObjectId = [aDecoder decodeObjectForKey:@"userObjectId"];
+        
+        self.maxAltitude = [aDecoder decodeObjectForKey:@"maxAltitude"];
+        self.minAltitude = [aDecoder decodeObjectForKey:@"minAltitude"];
+        self.ascendAltitude = [aDecoder decodeObjectForKey:@"ascendAltitude"];
+        self.ascendTime = [aDecoder decodeObjectForKey:@"ascendTime"];
+        self.ascendDistance = [aDecoder decodeObjectForKey:@"ascendDistance"];
+        self.flatTime = [aDecoder decodeObjectForKey:@"flatTime"];
+        self.flatDistance = [aDecoder decodeObjectForKey:@"flatDistance"];
+        self.descendTime = [aDecoder decodeObjectForKey:@"descendTime"];
+        self.descendDistance = [aDecoder decodeObjectForKey:@"descendDistance"];
+        self.kcal = [aDecoder decodeObjectForKey:@"kcal"];
+        
+        self.cyclingEndTime = [aDecoder decodeObjectForKey:@"cyclingEndTime"];
+        self.createdAt = [aDecoder decodeObjectForKey:@"createdAt"];
     }
     
     return self;
@@ -54,7 +82,7 @@
 {
 //    return [NSString stringWithFormat:@" <%p:%@>\n {routeName = %@\n steps = %@\n distance = %@\n time = %@\n averageSpeed = %@\n maxSpeed = %@\n isShared = %@\n hotLevel = %@\n imageList = %@\n userObjectId = %@}", self.routeName, self, self.class, self.steps, self.distance, self.time, self.averageSpeed, self.maxSpeed, self.isShared, self.hotLevel, self.imageList, self.userObjectId];
     
-    return [NSString stringWithFormat:@"##########<%p : %@>\n {\n routeName = %@,\n steps = %@,\n distance = %@,\n time = %@,\n averageSpeed = %@,\n maxSpeed = %@,\n isShared = %@,\n hotLevel = %@,\n imageList = %@,\n userObjectId = %@\n}", self, self.class, self.routeName, self.steps, self.distance, self.time, self.averageSpeed, self.maxSpeed, self.isShared, self.hotLevel, self.imageList, self.userObjectId];
+    return [NSString stringWithFormat:@"##########<%p : %@>\n {\n routeName = %@,\n steps = %@,\n distance = %@,\n time = %@,\n averageSpeed = %@,\n maxSpeed = %@,\n maxAltitude = %@,\n minAltitude = %@,\n ascendAltitude = %@,\n ascendTime = %@,\n ascendDistance = %@,\n flatTime = %@,\n flatDistance = %@,\n descendTime = %@,\n descendDistance = %@,\n kcal = %@,\n isShared = %@,\n hotLevel = %@,\n imageList = %@,\n userObjectId = %@,\n createdAt = %@,\n cyclingEndTime = %@\n}", self, self.class, self.routeName, self.steps, self.distance, self.time, self.averageSpeed, self.maxSpeed, self.maxAltitude, self.minAltitude, self.ascendAltitude, self.ascendTime, self.ascendDistance, self.flatTime, self.flatDistance, self.descendTime, self.descendDistance, self.kcal, self.isShared, self.hotLevel, self.imageList, self.userObjectId, self.createdAt, self.cyclingEndTime];
 }
 
 @end

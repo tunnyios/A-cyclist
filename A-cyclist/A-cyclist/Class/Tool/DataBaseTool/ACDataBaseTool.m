@@ -148,6 +148,19 @@
     [post setObject:route.maxSpeed forKey:@"maxSpeed"];
     [post setObject:route.userObjectId forKey:@"userObjectId"];
     
+    [post setObject:route.maxAltitude forKey:@"maxAltitude"];
+    [post setObject:route.minAltitude forKey:@"minAltitude"];
+    [post setObject:route.ascendAltitude forKey:@"ascendAltitude"];
+    [post setObject:route.ascendTime forKey:@"ascendTime"];
+    [post setObject:route.ascendDistance forKey:@"ascendDistance"];
+    [post setObject:route.flatTime forKey:@"flatTime"];
+    [post setObject:route.flatDistance forKey:@"flatDistance"];
+    [post setObject:route.descendTime forKey:@"descendTime"];
+    [post setObject:route.descendDistance forKey:@"descendDistance"];
+    
+    [post setObject:route.cyclingEndTime forKey:@"cyclingEndTime"];
+    [post setObject:route.createdAt forKey:@"createdAt"];
+
     //设置帖子关联的作者记录
     BmobUser *author = [BmobUser objectWithoutDatatWithClassName:@"_User" objectId:objectId];
     [post setObject:author forKey:@"user"];
