@@ -130,6 +130,7 @@
 		A2F040EB1B563A51004FBF3D /* ACBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2F040EA1B563A51004FBF3D /* ACBaseTableViewController.m */; };
 		A2F7FE401B5FD6BF0000D6EA /* VPImageCropperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2F7FE3F1B5FD6BF0000D6EA /* VPImageCropperViewController.m */; };
 		A2F875121B5676630075F323 /* ACSettingCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2F875111B5676630075F323 /* ACSettingCellModel.m */; };
+		A2FB6FF61B6F65C60028731B /* ACLineChartLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FB6FF51B6F65C60028731B /* ACLineChartLabelView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -367,6 +368,8 @@
 		A2F7FE3F1B5FD6BF0000D6EA /* VPImageCropperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VPImageCropperViewController.m; sourceTree = "<group>"; };
 		A2F875101B5676630075F323 /* ACSettingCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACSettingCellModel.h; sourceTree = "<group>"; };
 		A2F875111B5676630075F323 /* ACSettingCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACSettingCellModel.m; sourceTree = "<group>"; };
+		A2FB6FF41B6F65C60028731B /* ACLineChartLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACLineChartLabelView.h; sourceTree = "<group>"; };
+		A2FB6FF51B6F65C60028731B /* ACLineChartLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACLineChartLabelView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -702,6 +705,8 @@
 				A281C5941B6DD62500DF31C0 /* ACCyclingDetailCell.m */,
 				A281C5971B6DD65B00DF31C0 /* ACLineChartView.h */,
 				A281C5981B6DD65B00DF31C0 /* ACLineChartView.m */,
+				A2FB6FF41B6F65C60028731B /* ACLineChartLabelView.h */,
+				A2FB6FF51B6F65C60028731B /* ACLineChartLabelView.m */,
 				A281C59A1B6DD70A00DF31C0 /* ACCircleChartView.h */,
 				A281C59B1B6DD70A00DF31C0 /* ACCircleChartView.m */,
 			);
@@ -1349,6 +1354,7 @@
 				A2F7FE401B5FD6BF0000D6EA /* VPImageCropperViewController.m in Sources */,
 				A261B0001B5762D1006C8917 /* ACSettingGroupModel.m in Sources */,
 				A2082E6D1B62993400CA3325 /* ACCyclingViewController.mm in Sources */,
+				A2FB6FF61B6F65C60028731B /* ACLineChartLabelView.m in Sources */,
 				A261435E1B5E4AF7007EA45C /* ACChangeNameController.m in Sources */,
 				A2EB8DDA1B69F706008F5D48 /* ACNavigationViewController.m in Sources */,
 				A281C5961B6DD62500DF31C0 /* ACCyclingDetailCell.m in Sources */,

@@ -9,6 +9,8 @@
 #import "ACCyclingArgumentsViewController.h"
 #import "ACNavigationViewController.h"
 #import "ACCyclingArgumentScrollView.h"
+#import "ACCircleChartView.h"
+#import "ACLineChartView.h"
 #import "ACSettingGroupModel.h"
 #import "ACSettingCellModel.h"
 #import "ACCyclingDetailCell.h"
@@ -46,6 +48,27 @@
 /** 累计上升 */
 @property (weak, nonatomic) IBOutlet UILabel *ascendAltitudeLabel;
 
+/* 图表界面属性 */
+/** circleChartView */
+@property (weak, nonatomic) IBOutlet ACCircleChartView *circleChartView;
+/** lineChartView */
+@property (weak, nonatomic) IBOutlet ACLineChartView *lineChartView;
+/** 最高海拔 */
+@property (weak, nonatomic) IBOutlet UILabel *chartMaxAltitudeLabel;
+/** 极速 */
+@property (weak, nonatomic) IBOutlet UILabel *chartMaxSpeedLabel;
+/** 上坡耗时 */
+@property (weak, nonatomic) IBOutlet UILabel *chartAscendTimeLabel;
+/** 上坡距离 */
+@property (weak, nonatomic) IBOutlet UILabel *charAscendDistanceLabel;
+/** 平地耗时 */
+@property (weak, nonatomic) IBOutlet UILabel *chartFlatTimeLabel;
+/** 平地距离 */
+@property (weak, nonatomic) IBOutlet UILabel *charFlatDistanceLabel;
+/** 下坡耗时 */
+@property (weak, nonatomic) IBOutlet UILabel *chartDescendTimeLabel;
+/** 下坡距离 */
+@property (weak, nonatomic) IBOutlet UILabel *chartDescendDistanceLabel;
 
 @end
 
@@ -67,6 +90,8 @@
     [self trailBtnClick];
     //2. 加载轨迹详细数据
     [self setDetailData];
+    [self setGraphicData];
+    self.circleChartView.route = self.route;
     
     DLog(@"######route %@", self.route);
     
@@ -121,6 +146,11 @@
     //2. 切换scrollView的View
     CGFloat offsetX = self.view.bounds.size.width;
     self.cyclingArgumentScrollView.contentOffset = CGPointMake(offsetX, 0);
+    
+    //3. 设置数据，刷新绘图
+    [self setGraphicData];
+    [self.circleChartView setNeedsDisplay];
+    [self.lineChartView setNeedsDisplay];
 }
 
 /**
@@ -154,8 +184,24 @@
 }
 
 
-#pragma mark - 设置骑行详细数据
+#pragma mark - 设置图表界面数据
+- (void)setGraphicData
+{
+    self.chartMaxAltitudeLabel.text = self.route.maxAltitude;
+    self.chartMaxSpeedLabel.text = self.route.maxSpeed;
+ 
+    self.chartAscendTimeLabel.text = self.route.ascendTime;
+    self.charAscendDistanceLabel.text = [NSString stringWithFormat:@"%@ km",self.route.ascendDistance];
+    self.chartFlatTimeLabel.text = self.route.flatTime;
+    self.charFlatDistanceLabel.text = [NSString stringWithFormat:@"%@ km",self.route.flatDistance];
+    self.chartDescendTimeLabel.text = self.route.descendTime;
+    self.chartDescendDistanceLabel.text = [NSString stringWithFormat:@"%@ km",self.route.descendDistance];
+    self.circleChartView.route = self.route;
+    self.lineChartView.route = self.route;
+}
 
+
+#pragma mark - 设置详细数据界面数据
 - (void)setDetailData
 {
     self.detialTableView.delegate = self;
@@ -210,7 +256,7 @@
 - (void)addGroup3
 {
     ACCyclingDetailModel *cell0 = [ACCyclingDetailModel settingCellWithTitle:@"骑行时间" subTitle:self.route.time];
-    NSString *creatTimeStr = [NSDate dateToString:self.route.createdAt WithFormatter:@"yyyy-MM-dd HH:mm"];
+    NSString *creatTimeStr = [NSDate dateToString:self.route.cyclingStartTime WithFormatter:@"yyyy-MM-dd HH:mm"];
     ACCyclingDetailModel *cell1 = [ACCyclingDetailModel settingCellWithTitle:@"开始时间" subTitle:creatTimeStr];
     NSString *endTimeStr = [NSDate dateToString:self.route.cyclingEndTime WithFormatter:@"yyyy-MM-dd HH:mm"];
     ACCyclingDetailModel *cell2 = [ACCyclingDetailModel settingCellWithTitle:@"结束时间" subTitle:endTimeStr];

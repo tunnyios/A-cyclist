@@ -15,6 +15,10 @@
 @property (nonatomic, copy) NSString *longitude;
 /** 海拔高度 */
 @property (nonatomic, copy) NSString *altitude;
+/** 当前速度 */
+@property (nonatomic, copy) NSString *currentSpeed;
+/** 两次位置距离差(单位米) */
+@property (nonatomic, copy) NSString *distanceInterval;
 
-+ (instancetype)stepModelWithLatitude:(NSString *)latitude longitude:(NSString *)longtitude altitude:(NSString *)altitude;
++ (instancetype)stepModelWithLatitude:(NSString *)latitude longitude:(NSString *)longtitude altitude:(NSString *)altitude currentSpeed:(NSString *)currentSpeed distanceInterval:(NSString *)distanceInterval;
 @end

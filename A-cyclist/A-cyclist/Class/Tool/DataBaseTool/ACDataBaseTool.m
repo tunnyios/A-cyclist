@@ -159,7 +159,7 @@
     [post setObject:route.descendDistance forKey:@"descendDistance"];
     
     [post setObject:route.cyclingEndTime forKey:@"cyclingEndTime"];
-    [post setObject:route.createdAt forKey:@"createdAt"];
+    [post setObject:route.cyclingStartTime forKey:@"cyclingStartTime"];
 
     //设置帖子关联的作者记录
     BmobUser *author = [BmobUser objectWithoutDatatWithClassName:@"_User" objectId:objectId];

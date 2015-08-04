@@ -58,6 +58,8 @@
 @property(nonatomic,strong)NSDate *updatedAt;
 /** BmobObject对象的生成时间 */
 @property(nonatomic,strong)NSDate *createdAt;
+/** 骑行开始时间 */
+@property (nonatomic, strong) NSDate *cyclingStartTime;
 /** 骑行结束时间 */
 @property (nonatomic, strong) NSDate *cyclingEndTime;
 

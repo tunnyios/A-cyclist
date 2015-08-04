@@ -50,6 +50,8 @@ typedef enum : NSUInteger {
 /* 轨迹记录 */
 /** 记录上一次的位置 */
 @property (nonatomic, strong) CLLocation *preLocation;
+/** 两次位置的距离差(单位米) */
+@property (nonatomic, copy) NSString *distanceInterval;
 /** 位置数组 */
 @property (nonatomic, strong) NSMutableArray *locationArrayM;
 /** 轨迹 */
@@ -78,8 +80,14 @@ typedef enum : NSUInteger {
 @property (weak, nonatomic) IBOutlet UILabel *currentAverageSpeed;
 /** 最高速度 */
 @property (weak, nonatomic) IBOutlet UILabel *currentMaxSpeed;
+/** 最大速度 m/s */
+@property (nonatomic, assign) CLLocationSpeed maxSpeed;
 /** 海拔高度 */
 @property (weak, nonatomic) IBOutlet UILabel *altitude;
+/** 最高海拔 */
+@property (nonatomic, assign) CLLocationDistance maxAltitude;
+/** 最低海拔 */
+@property (nonatomic, assign) CLLocationDistance minAltitude;
 /** 指南针 */
 @property (weak, nonatomic) IBOutlet UIImageView *compass;
 
@@ -174,7 +182,7 @@ typedef enum : NSUInteger {
         self.endBtn.alpha = 1;
         
     } completion:^(BOOL finished) {
-        self.route.createdAt = [NSDate date];
+        self.route.cyclingStartTime = [NSDate date];
         //3. 开始骑行功能
         [self startCycling];
     }];
@@ -334,11 +342,7 @@ typedef enum : NSUInteger {
 - (void)startTrailRouteWithUserLocation:(BMKUserLocation *)userLocation
 {
     CLLocation *location = userLocation.location;
-    NSString *latitude = [NSString stringWithFormat:@"%f", location.coordinate.latitude];
-    NSString *longitude = [NSString stringWithFormat:@"%f", location.coordinate.longitude];
-    NSString *altitude = [NSString stringWithFormat:@"%ld", (long)location.altitude];
-    ACStepModel *step = [ACStepModel stepModelWithLatitude:latitude longitude:longitude altitude:altitude];
-    
+
     //1. 每5米记录一个点
     if (self.locationArrayM.count > 0) {
         CLLocationDistance distance = [location distanceFromLocation:self.preLocation];
@@ -350,6 +354,13 @@ typedef enum : NSUInteger {
     
     //2. 每5米更新一次参数信息
     [self updateCyclingParamsInfoWithLocation:location];
+    
+    NSString *latitude = [NSString stringWithFormat:@"%f", location.coordinate.latitude];
+    NSString *longitude = [NSString stringWithFormat:@"%f", location.coordinate.longitude];
+    NSString *altitude = [NSString stringWithFormat:@"%ld", (long)location.altitude];
+    NSString *speed = [NSString stringWithFormat:@"%.2f", fabs(location.speed * 3.6)];
+    ACStepModel *step = [ACStepModel stepModelWithLatitude:latitude longitude:longitude altitude:altitude currentSpeed:speed distanceInterval:self.distanceInterval];
+                         
     
     //3. 记录
     [self.locationArrayM addObject:step];
@@ -380,6 +391,7 @@ typedef enum : NSUInteger {
     if (self.preLocation) {
         //计算上一次和这一次的距离差(直线距离)，这次距离
         CLLocationDistance distance = [location distanceFromLocation:self.preLocation];
+        self.distanceInterval = [NSString stringWithFormat:@"%.2f", distance];
         //计算两次的时间差,这次耗时
         NSTimeInterval timeInterval = [location.timestamp timeIntervalSinceDate:self.preLocation.timestamp];
         
@@ -397,16 +409,19 @@ typedef enum : NSUInteger {
         // 平均速度
         self.currentAverageSpeed.text = [NSString stringWithFormat:@"%.2f", averageSpeed * 3.6];
         // 最高速度
-        CLLocationSpeed maxSpeed = fabs(location.speed) > fabs(self.preLocation.speed) ? fabs(location.speed) : fabs(self.preLocation.speed);
-        self.currentMaxSpeed.text = [NSString stringWithFormat:@"%.2f", maxSpeed * 3.6];
+        self.maxSpeed = self.maxSpeed >= fabs(location.speed) ? self.maxSpeed : fabs(location.speed);
         //海拔高度
         self.altitude.text = [NSString stringWithFormat:@"%.0f M", location.altitude];
-
+        self.maxAltitude = self.maxAltitude >= location.altitude ? self.maxAltitude : location.altitude;
+        self.minAltitude = self.minAltitude <= location.altitude ? self.minAltitude : location.altitude;
+        //最高海拔
+        self.route.maxAltitude = [NSString stringWithFormat:@"%.0f", self.maxAltitude];
+        //最低海拔
+        self.route.minAltitude = [NSString stringWithFormat:@"%.0f", self.minAltitude];
+        
         //计算上坡下坡
         if (location.altitude - self.preLocation.altitude > 0) {
             //海拔上升、上坡
-            //最高海拔
-            self.route.maxAltitude = [NSString stringWithFormat:@"%.0f", location.altitude];
             self.ascendingTime += timeInterval;
             self.ascendingDistance += distance;
             //累计上升
@@ -414,21 +429,23 @@ typedef enum : NSUInteger {
             
         } else if (location.altitude - self.preLocation.altitude < 0) {
             //海拔下降、下坡
-            //最低海拔
-            self.route.minAltitude = [NSString stringWithFormat:@"%.0f", location.altitude];
             self.descendingTime += timeInterval;
             self.descendingDistance += distance;
             
         } else {
             //海拔不变、平地
-            self.route.maxAltitude = [NSString stringWithFormat:@"%.0f", location.altitude];
-            self.route.minAltitude = [NSString stringWithFormat:@"%.0f", location.altitude];
             self.flatTime += timeInterval;
             self.flatDistance += distance;
         }
         
-        DLog(@"这次距离：%f米\n, 这次耗时：%f秒\n, 瞬时速度:%fkm/h\n, 总路程：%f米\n, 总时间:%f秒\n, 平均速度:%f\n", distance, timeInterval, location.speed * 3.6, self.totleDistance, self.totleTime, averageSpeed * 3.6);
+        DLog(@"这次距离：%f米\n, 这次耗时：%f秒\n, 瞬时速度:%fkm/h\n, 总路程：%f米\n, 总时间:%f秒\n, 平均速度:%f\n, 极速:%f\n", distance, timeInterval, location.speed * 3.6, self.totleDistance, self.totleTime, averageSpeed * 3.6, self.maxSpeed * 3.6);
+    } else {
+        self.maxSpeed = fabs(location.speed);
+        self.maxAltitude = location.altitude;
+        self.minAltitude = location.altitude;
     }
+    //最高速度label
+    self.currentMaxSpeed.text = [NSString stringWithFormat:@"%.2f", self.maxSpeed * 3.6];
 }
 
 /**
