@@ -11,6 +11,7 @@
 #import "ACCyclingArgumentScrollView.h"
 #import "ACCircleChartView.h"
 #import "ACLineChartView.h"
+#import "ACStepModel.h"
 #import "ACSettingGroupModel.h"
 #import "ACSettingCellModel.h"
 #import "ACCyclingDetailCell.h"
@@ -18,8 +19,9 @@
 #import "ACRouteModel.h"
 #import "ACGlobal.h"
 #import "NSDate+Extension.h"
+#import <BaiduMapAPI/BMapKit.h>
 
-@interface ACCyclingArgumentsViewController () <UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface ACCyclingArgumentsViewController () <UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, BMKMapViewDelegate>
 /** 约束 */
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentViewWidth;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *middleViewLeading;
@@ -31,6 +33,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *dataBtn;
 /** scrollView */
 @property (weak, nonatomic) IBOutlet ACCyclingArgumentScrollView *cyclingArgumentScrollView;
+@property (weak, nonatomic) IBOutlet BMKMapView *bmkMapView;
 /** 详细参数tableView */
 @property (weak, nonatomic) IBOutlet UITableView *detialTableView;
 /** 数据数组(包含了groupModel，groupModel中又包含了cellModel) */
@@ -47,6 +50,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *averageSpeedLabel;
 /** 累计上升 */
 @property (weak, nonatomic) IBOutlet UILabel *ascendAltitudeLabel;
+/** 轨迹 */
+@property (nonatomic, strong) BMKPolyline *polyLine;
+/** 起点大头针 */
+@property (nonatomic, strong) BMKPointAnnotation *startPoint;
+/** 终点大头针 */
+@property (nonatomic, strong) BMKPointAnnotation *endPoint;
+
 
 /* 图表界面属性 */
 /** circleChartView */
@@ -102,6 +112,18 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [_bmkMapView viewWillAppear];
+    _bmkMapView.delegate = self; // 此处记得不用的时候需要置nil，否则影响内存的释放
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [_bmkMapView viewWillDisappear];
+    _bmkMapView.delegate = nil; // 不用时，置nil
+}
+
 
 #pragma mark - storyboard中的按钮监听点击事件
 /**
@@ -131,6 +153,7 @@
     
     //3. 设置轨迹界面数据
     [self setTrailData];
+    [ self onGetWalkPolyline];
 }
 
 /**
@@ -181,6 +204,143 @@
     self.timeLabel.text = self.route.time;
     self.ascendAltitudeLabel.text = self.route.ascendAltitude;
     self.averageSpeedLabel.text = self.route.averageSpeed;
+    
+    //这是地图轨迹
+    
+}
+
+/**
+ *  绘制骑行轨迹路线
+ */
+- (void)onGetWalkPolyline
+{
+    //移除原有的绘图
+    if (self.polyLine) {
+        [_bmkMapView removeOverlay:self.polyLine];
+    }
+    if (self.startPoint) {
+        [_bmkMapView removeAnnotation:self.startPoint];
+    }
+    if (self.endPoint) {
+        [_bmkMapView removeAnnotation:self.endPoint];
+    }
+    
+    //轨迹点
+    NSUInteger count = self.route.steps.count;
+    BMKMapPoint *tempPoints = new BMKMapPoint[count];
+    
+    [self.route.steps enumerateObjectsUsingBlock:^(ACStepModel *step, NSUInteger idx, BOOL *stop) {
+        
+        CLLocationDegrees latitude = [step.latitude doubleValue];
+        CLLocationDegrees longitude = [step.longitude doubleValue];
+        CLLocation *location = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
+        BMKMapPoint locationPoint = BMKMapPointForCoordinate(location.coordinate);
+        tempPoints[idx] = locationPoint;
+        
+        //设置起点
+        if (idx == 0) {
+            self.startPoint = [self creatPointWithLocaiton:location title:@"起点"];
+        }
+        //设置终点
+        if (idx == count - 1) {
+            self.endPoint = [self creatPointWithLocaiton:location title:@"终点"];
+        }
+    }];
+    
+    // 通过points构建BMKPolyline
+    self.polyLine = [BMKPolyline polylineWithPoints:tempPoints count:count];
+    
+    //添加路线,绘图
+    if (self.polyLine) {
+        [_bmkMapView addOverlay:self.polyLine];
+    }
+    delete []tempPoints;
+    [self mapViewFitPolyLine:self.polyLine];
+}
+
+/**
+ *  添加一个大头针
+ *
+ *  @param location
+ */
+- (BMKPointAnnotation *)creatPointWithLocaiton:(CLLocation *)location title:(NSString *)title;
+{
+    BMKPointAnnotation *point = [[BMKPointAnnotation alloc] init];
+    point.coordinate = location.coordinate;
+    point.title = title;
+    
+    [_bmkMapView addAnnotation:point];
+    
+    return point;
+}
+
+/**
+ *  根据polyline设置地图范围
+ *
+ *  @param polyLine
+ */
+- (void)mapViewFitPolyLine:(BMKPolyline *) polyLine {
+    CGFloat ltX, ltY, rbX, rbY;
+    if (polyLine.pointCount < 1) {
+        return;
+    }
+    BMKMapPoint pt = polyLine.points[0];
+    ltX = pt.x, ltY = pt.y;
+    rbX = pt.x, rbY = pt.y;
+    for (int i = 1; i < polyLine.pointCount; i++) {
+        BMKMapPoint pt = polyLine.points[i];
+        if (pt.x < ltX) {
+            ltX = pt.x;
+        }
+        if (pt.x > rbX) {
+            rbX = pt.x;
+        }
+        if (pt.y > ltY) {
+            ltY = pt.y;
+        }
+        if (pt.y < rbY) {
+            rbY = pt.y;
+        }
+    }
+    BMKMapRect rect;
+    rect.origin = BMKMapPointMake(ltX , ltY);
+    rect.size = BMKMapSizeMake(rbX - ltX, rbY - ltY);
+    [_bmkMapView setVisibleMapRect:rect];
+    _bmkMapView.zoomLevel = _bmkMapView.zoomLevel - 0.3;
+}
+
+
+#pragma mark - BMKMapViewDelegate
+
+- (BMKOverlayView *)mapView:(BMKMapView *)mapView viewForOverlay:(id<BMKOverlay>)overlay
+{
+    if ([overlay isKindOfClass:[BMKPolyline class]]) {
+        BMKPolylineView* polylineView = [[BMKPolylineView alloc] initWithOverlay:overlay];
+        polylineView.fillColor = [[UIColor cyanColor] colorWithAlphaComponent:1];
+        polylineView.strokeColor = [[UIColor blueColor] colorWithAlphaComponent:0.7];
+        polylineView.lineWidth = 3.0;
+        return polylineView;
+    }
+    return nil;
+}
+
+/**
+ *  只有在添加大头针的时候会调用，直接在viewDidload中不会调用
+ */
+- (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id <BMKAnnotation>)annotation
+{
+    NSString *AnnotationViewID = @"renameMark";
+    BMKPinAnnotationView *annotationView = (BMKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:AnnotationViewID];
+    if (annotationView == nil) {
+        annotationView = [[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationViewID];
+        // 设置颜色
+        annotationView.pinColor = BMKPinAnnotationColorPurple;
+        // 从天上掉下效果
+        annotationView.animatesDrop = YES;
+        // 设置可拖拽
+        annotationView.draggable = YES;
+    }
+    return annotationView;
 }
 
 

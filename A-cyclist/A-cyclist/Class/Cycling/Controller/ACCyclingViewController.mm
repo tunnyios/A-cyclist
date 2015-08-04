@@ -249,23 +249,38 @@ typedef enum : NSUInteger {
  */
 - (IBAction)endCycling
 {
-    //1. 弹框提醒是否结束
-    UIAlertController *alertVc = [UIAlertController alertControllerWithTitle:@"xxxxx" message:@"确定结束本次骑行吗？" preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *cancleAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-    UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        //1. 保存到数据库，以及缓存中
-        [self saveData];
-        //2. 结束，隐藏暂停和结束按钮，显示开始按钮
-        [self hideBtn];
-        //3. 执行结束功能，分析此次骑行状态，跳转控制器
-        [self performSegueWithIdentifier:@"cyclingArgument" sender:self.route];
+    if (self.totleDistance < 5) {
+        //提示轨迹太短，不保存记录
+        UIAlertController *alertVc = [UIAlertController alertControllerWithTitle:@"xxxxx" message:@"本次轨迹太短，将不会被保存" preferredStyle:UIAlertControllerStyleAlert];
         
-    }];
-    
-    [alertVc addAction:cancleAction];
-    [alertVc addAction:sureAction];
-    [self presentViewController:alertVc animated:YES completion:nil];
+        UIAlertAction *cancleAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            //结束，隐藏暂停和结束按钮，显示开始按钮
+            [self hideBtn];
+        }];
+        
+        [alertVc addAction:cancleAction];
+        [alertVc addAction:sureAction];
+        [self presentViewController:alertVc animated:YES completion:nil];
+    } else {
+        //1. 弹框提醒是否结束
+        UIAlertController *alertVc = [UIAlertController alertControllerWithTitle:@"xxxxx" message:@"确定结束本次骑行吗？" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *cancleAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            //1. 保存到数据库，以及缓存中
+            [self saveData];
+            //2. 结束，隐藏暂停和结束按钮，显示开始按钮
+            [self hideBtn];
+            //3. 执行结束功能，分析此次骑行状态，跳转控制器
+            [self performSegueWithIdentifier:@"cyclingArgument" sender:self.route];
+            
+        }];
+        
+        [alertVc addAction:cancleAction];
+        [alertVc addAction:sureAction];
+        [self presentViewController:alertVc animated:YES completion:nil];
+    }
 }
 
 /**
@@ -442,7 +457,7 @@ typedef enum : NSUInteger {
     } else {
         self.maxSpeed = fabs(location.speed);
         self.maxAltitude = location.altitude;
-        self.minAltitude = location.altitude;
+        self.minAltitude = 0;
     }
     //最高速度label
     self.currentMaxSpeed.text = [NSString stringWithFormat:@"%.2f", self.maxSpeed * 3.6];
@@ -466,9 +481,10 @@ typedef enum : NSUInteger {
         tempPoints[idx] = locationPoint;
         
         //设置起点
-        if (!self.startPoint) {
-            self.startPoint = [self creatPointWithLocaiton:location title:@"起点"];
+        if (self.startPoint) {
+            [_bmkMapView removeAnnotation:self.startPoint];
         }
+        self.startPoint = [self creatPointWithLocaiton:location title:@"起点"];
     }];
     
     //移除原有的绘图

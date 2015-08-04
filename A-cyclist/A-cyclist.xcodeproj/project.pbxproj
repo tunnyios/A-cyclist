@@ -15,7 +15,7 @@
 		A204B16A1B5BE144004C0A6C /* ACUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A204B1691B5BE144004C0A6C /* ACUserModel.m */; };
 		A2082E6A1B62259800CA3325 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A2082E691B62259800CA3325 /* mapapi.bundle */; };
 		A2082E6D1B62993400CA3325 /* ACCyclingViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = A2082E6C1B62993400CA3325 /* ACCyclingViewController.mm */; };
-		A2082E701B62996F00CA3325 /* ACCyclingArgumentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2082E6F1B62996F00CA3325 /* ACCyclingArgumentsViewController.m */; };
+		A2082E701B62996F00CA3325 /* ACCyclingArgumentsViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = A2082E6F1B62996F00CA3325 /* ACCyclingArgumentsViewController.mm */; };
 		A218F7031B5A3F33007CBADA /* ACLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A218F7021B5A3F33007CBADA /* ACLoginViewController.m */; };
 		A218F7051B5A3FB2007CBADA /* ACLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A218F7041B5A3FB2007CBADA /* ACLogin.storyboard */; };
 		A26143211B5DFA6C007EA45C /* ACArrowWithSubtitleSettingCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A26143201B5DFA6C007EA45C /* ACArrowWithSubtitleSettingCellModel.m */; };
@@ -159,7 +159,7 @@
 		A2082E6B1B62993400CA3325 /* ACCyclingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACCyclingViewController.h; sourceTree = "<group>"; };
 		A2082E6C1B62993400CA3325 /* ACCyclingViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ACCyclingViewController.mm; sourceTree = "<group>"; };
 		A2082E6E1B62996F00CA3325 /* ACCyclingArgumentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACCyclingArgumentsViewController.h; sourceTree = "<group>"; };
-		A2082E6F1B62996F00CA3325 /* ACCyclingArgumentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACCyclingArgumentsViewController.m; sourceTree = "<group>"; };
+		A2082E6F1B62996F00CA3325 /* ACCyclingArgumentsViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ACCyclingArgumentsViewController.mm; sourceTree = "<group>"; };
 		A218F7011B5A3F33007CBADA /* ACLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACLoginViewController.h; sourceTree = "<group>"; };
 		A218F7021B5A3F33007CBADA /* ACLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACLoginViewController.m; sourceTree = "<group>"; };
 		A218F7041B5A3FB2007CBADA /* ACLogin.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ACLogin.storyboard; sourceTree = "<group>"; };
@@ -861,7 +861,7 @@
 				A2082E6B1B62993400CA3325 /* ACCyclingViewController.h */,
 				A2082E6C1B62993400CA3325 /* ACCyclingViewController.mm */,
 				A2082E6E1B62996F00CA3325 /* ACCyclingArgumentsViewController.h */,
-				A2082E6F1B62996F00CA3325 /* ACCyclingArgumentsViewController.m */,
+				A2082E6F1B62996F00CA3325 /* ACCyclingArgumentsViewController.mm */,
 				A2EB8DD81B69F706008F5D48 /* ACNavigationViewController.h */,
 				A2EB8DD91B69F706008F5D48 /* ACNavigationViewController.m */,
 			);
@@ -1325,7 +1325,7 @@
 				A26143541B5E22D6007EA45C /* UIImageView+HighlightedWebCache.m in Sources */,
 				A204B0941B5B30F7004C0A6C /* NSString+Extension.m in Sources */,
 				A204B15F1B5B506B004C0A6C /* HCBaseKeyboardViewController.m in Sources */,
-				A2082E701B62996F00CA3325 /* ACCyclingArgumentsViewController.m in Sources */,
+				A2082E701B62996F00CA3325 /* ACCyclingArgumentsViewController.mm in Sources */,
 				A26143241B5E1F43007EA45C /* ACPhotoSettingCellModel.m in Sources */,
 				A26143471B5E22D6007EA45C /* MKAnnotationView+WebCache.m in Sources */,
 				A2F875121B5676630075F323 /* ACSettingCellModel.m in Sources */,

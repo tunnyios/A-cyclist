@@ -152,7 +152,6 @@
         
         if (i == self.vSpeedArray.count - 1) {
             ACLineChartLabelView *labelAltitudeName = [[ACLineChartLabelView alloc] initWithFrame:CGRectMake(0, 0, 60, 30)];
-//            labelAltitudeName.center = CGPointMake(altitudePoint.x, 15);
             [labelAltitudeName setTextAlignment:NSTextAlignmentCenter];
             [labelAltitudeName setBackgroundColor:[UIColor clearColor]];
             [labelAltitudeName setTextColor:[UIColor darkGrayColor]];
@@ -160,7 +159,6 @@
             [self addSubview:labelAltitudeName];
             
             ACLineChartLabelView *labelSpeedName = [[ACLineChartLabelView alloc] initWithFrame:CGRectMake(speedPoint.x - 60, 0, 60, 30)];
-//            labelSpeedName.center = CGPointMake(speedPoint.x - 45, 15);
             [labelSpeedName setTextAlignment:NSTextAlignmentCenter];
             [labelSpeedName setBackgroundColor:[UIColor clearColor]];
             [labelSpeedName setTextColor:[UIColor colorWithR:0 G:98 B:184 A:1]];
@@ -203,10 +201,11 @@
     [pathAltitude moveToPoint:basePoint];
     for (int i = 0; i < count; i++) {
         ACStepModel *step = self.route.steps[i];
-        trueVintervalSpeed = (step.altitude.doubleValue / totleAltitude) * (viewH - 2 * AClineHeight);
+        trueVIntervalAltitude = (step.altitude.doubleValue / totleAltitude) * (viewH - 2 * AClineHeight);
         accruedDistance += step.distanceInterval.doubleValue;
         trueHInterval = (accruedDistance / (self.route.distance.doubleValue * 1000)) * (viewW - 2 * AClineHeight);
         CGPoint tempPoint = CGPointMake(basePoint.x + trueHInterval, basePoint.y - trueVIntervalAltitude);
+        NSLog(@"<%f : %f>, trueVIntervalAltitude is %f, trueHInterval is %f, viewH is %f, totleAltitude is %f", basePoint.x + trueHInterval, basePoint.y - trueVIntervalAltitude, trueVIntervalAltitude, trueHInterval, viewH, totleAltitude);
         [pathAltitude addLineToPoint:tempPoint];
         [pathAltitude moveToPoint:tempPoint];
     }

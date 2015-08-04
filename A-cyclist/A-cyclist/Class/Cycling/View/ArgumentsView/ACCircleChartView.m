@@ -9,6 +9,7 @@
 #import "ACCircleChartView.h"
 #import "ACRouteModel.h"
 #import "UIColor+Tools.h"
+#import "ACGlobal.h"
 
 @implementation ACCircleChartView
 
@@ -20,6 +21,7 @@
     [self setClearsContextBeforeDrawing: YES];
     // Drawing code
     NSArray *array = @[self.route.ascendDistance, self.route.flatDistance, self.route.descendDistance];
+    DLog(@"array is %@", array);
     //获取图像上下文
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     //设置绘图信息
@@ -33,6 +35,8 @@
         startAngle = endAngel;
         endAngel = startAngle + scral * M_PI * 2;
         
+        DLog(@"num is %@, distance is %@", num, self.route.distance);
+        DLog(@"scral is %f, startAngle is %f, endAngle is %f", scral, startAngle, endAngel);
         UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:centerPoint radius:radius startAngle:startAngle endAngle:endAngel clockwise:YES];
         //添加一根线到圆点
         [path addLineToPoint:centerPoint];
@@ -40,11 +44,11 @@
         [path closePath];
         //设置绘图状态,即填充颜色
         UIColor *color = nil;
-        if (0 == idx) {
+        if (0 == idx) { //上坡
             color = [UIColor colorWithR:211 G:0 B:33 A:1];
-        } else if (1 == idx) {
+        } else if (1 == idx) {  //平地
             color = [UIColor colorWithR:207 G:146 B:66 A:1];
-        } else {
+        } else {    //下坡
             color = [UIColor colorWithR:39 G:153 B:44 A:1];
         }
         [color setFill];

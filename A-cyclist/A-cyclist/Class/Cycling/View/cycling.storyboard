@@ -1561,6 +1561,7 @@
                     <connections>
                         <outlet property="ascendAltitudeLabel" destination="hYU-ip-2uD" id="NNn-8o-yTu"/>
                         <outlet property="averageSpeedLabel" destination="K1n-6S-SRJ" id="c9v-jJ-mTf"/>
+                        <outlet property="bmkMapView" destination="geT-uS-phO" id="BD6-P8-yrk"/>
                         <outlet property="charAscendDistanceLabel" destination="K6a-Wz-FqS" id="Vnh-7m-zvK"/>
                         <outlet property="charFlatDistanceLabel" destination="26K-AN-7Y3" id="mrO-dK-Ua0"/>
                         <outlet property="chartAscendTimeLabel" destination="zJn-JA-JSY" id="cu3-lF-1LP"/>
