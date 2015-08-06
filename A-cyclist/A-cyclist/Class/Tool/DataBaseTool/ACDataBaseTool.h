@@ -40,9 +40,20 @@
 /** 根据用户id获取当前用户的路线列表 */
 + (void)getRouteListWithUserObjectId:(NSString *)objectId resultBlock:(void (^) (NSArray *routes, NSError *error))block;
 
+/** 根据用户id获取当前用户的路线中最远距离的一条路线 */
++ (void)getMaxDistanceRouteWithUserObjectId:(NSString *)objectId resultBlock:(void (^) (ACRouteModel *route, NSError *error))block;
+
+/** 根据用户id获取当前用户的路线中最快极速的一条路线 */
++ (void)getMaxSpeedRouteWithUserObjectId:(NSString *)objectId resultBlock:(void (^) (ACRouteModel *route, NSError *error))block;
+
+/** 根据用户id获取当前用户的路线中最快平均速度的一条路线 */
++ (void)getMaxAverageSpeedRouteWithUserObjectId:(NSString *)objectId resultBlock:(void (^) (ACRouteModel *route, NSError *error))block;
+
+/** 根据用户id获取当前用户的路线中最长时间的一条路线 */
++ (void)getMaxTimeRouteWithUserObjectId:(NSString *)objectId resultBlock:(void (^) (ACRouteModel *route, NSError *error))block;
+
 
 #pragma mark - BQL查询类
-
 /** 根据sql语句来查询数据库, 返回对象数组 */
 + (void)queryWithSQL:(NSString *)bql pValues:(NSArray *)pVlaues block:(void (^)(NSArray *result, NSError *error))block;
 

@@ -12,6 +12,8 @@
 #import <BmobSDK/BmobProFile.h>
 #import "ACRouteModel.h"
 #import "ACStepModel.h"
+#import "NSArray+Log.h"
+#import "MJExtension.h"
 
 
 @implementation ACDataBaseTool
@@ -48,7 +50,7 @@
 + (void)loginWithAccount:(NSString *)account passWord:(NSString *)pwd block:(void (^)(ACUserModel *user, NSError *))block
 {
     [BmobUser loginInbackgroundWithAccount:account andPassword:pwd block:^(BmobUser *user, NSError *error) {
-        NSLog(@"bmobuser #%@#", user);
+        DLog(@"bmobuser #%@#", user);
         if (block) {
             ACUserModel *ACUser = [ACUserModel userWithBmobUser:user];
             
@@ -137,6 +139,8 @@
         [dict setObject:step.altitude forKey:@"altitude"];
         [dict setObject:step.latitude forKey:@"latitude"];
         [dict setObject:step.longitude forKey:@"longitude"];
+        [dict setObject:step.currentSpeed forKey:@"currentSpeed"];
+        [dict setObject:step.distanceInterval forKey:@"distanceInterval"];
         
         [steps addObject:dict];
     }];
@@ -144,6 +148,7 @@
     [post setObject:steps forKey:@"steps"];
     [post setObject:route.distance forKey:@"distance"];
     [post setObject:route.time forKey:@"time"];
+    [post setObject:route.timeNumber forKey:@"timeNumber"];
     [post setObject:route.averageSpeed forKey:@"averageSpeed"];
     [post setObject:route.maxSpeed forKey:@"maxSpeed"];
     [post setObject:route.userObjectId forKey:@"userObjectId"];
@@ -174,11 +179,59 @@
 }
 
 /**
+ *  将bmobObject对象数组转换成Route对象数组
+ */
++ (NSArray *)routeModelArrayWithBmobObjectArray:(NSArray *)bmobArray
+{
+    NSMutableArray *routeArrayM = [NSMutableArray array];
+    [bmobArray enumerateObjectsUsingBlock:^(BmobObject *bmobObj, NSUInteger idx, BOOL *stop) {
+        ACRouteModel *routeModel = [self routeModelWithBmobObject:bmobObj];
+        [routeArrayM addObject:routeModel];
+    }];
+    
+//    DLog(@"routeArrayM is %@", routeArrayM);
+    return routeArrayM;
+}
+
+/**
+ *  将bmobObject对象转换成Route对象
+ */
++ (ACRouteModel *)routeModelWithBmobObject:(BmobObject *)bmobObj
+{
+    ACRouteModel *routeModel = [[ACRouteModel alloc] init];
+    routeModel.routeName = [bmobObj objectForKey:@"routeName"];
+    routeModel.steps = [bmobObj objectForKey:@"steps"];
+    routeModel.distance = [bmobObj objectForKey:@"distance"];
+    routeModel.time = [bmobObj objectForKey:@"time"];
+    routeModel.timeNumber = [bmobObj objectForKey:@"timeNumber"];
+    routeModel.averageSpeed = [bmobObj objectForKey:@"averageSpeed"];
+    routeModel.maxSpeed = [bmobObj objectForKey:@"maxSpeed"];
+    routeModel.maxAltitude = [bmobObj objectForKey:@"maxAltitude"];
+    routeModel.minAltitude = [bmobObj objectForKey:@"minAltitude"];
+    routeModel.ascendAltitude = [bmobObj objectForKey:@"ascendAltitude"];
+    routeModel.ascendTime = [bmobObj objectForKey:@"ascendTime"];
+    routeModel.ascendDistance = [bmobObj objectForKey:@"ascendDistance"];
+    routeModel.flatTime = [bmobObj objectForKey:@"flatTime"];
+    routeModel.flatDistance = [bmobObj objectForKey:@"flatDistance"];
+    routeModel.descendTime = [bmobObj objectForKey:@"descendTime"];
+    routeModel.descendDistance = [bmobObj objectForKey:@"descendDistance"];
+    routeModel.userObjectId = [bmobObj objectForKey:@"userObjectId"];
+    routeModel.isShared = [bmobObj objectForKey:@"isShared"];
+    routeModel.hotLevel = [bmobObj objectForKey:@"hotLevel"];
+    routeModel.imageList = [bmobObj objectForKey:@"imageList"];
+    routeModel.cyclingStartTime = [bmobObj objectForKey:@"cyclingStartTime"];
+    routeModel.cyclingEndTime = [bmobObj objectForKey:@"cyclingEndTime"];
+    
+//    DLog(@"routeModel is %@", routeModel);
+    return routeModel;
+}
+
+/**
  *  根据用户id获取数据库中的路线列表
  *  (约束关联对象查询)
  *  @param objectId
  *
- *  @return 路线对象数组
+ *  @return BmobObject对象数组
  */
 + (void)getRouteListWithUserObjectId:(NSString *)objectId resultBlock:(void (^)(NSArray *, NSError *))block
 {
@@ -191,17 +244,128 @@
     //匹配查询
     [bquery whereKey:@"user" matchesQuery:inQuery];
     [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
-        if (block) {
-            block(array, error);
+//        DLog(@"array is %@, error is %@", array, error);
+        //将BmobObject对象数组转换成Route对象数组
+        NSArray *routeArray = nil;
+        if (error == nil) {
+            routeArray = [self routeModelArrayWithBmobObjectArray:array];
         }
-        
-//        if (error) {
-//            NSLog(@"%@",error);
-//        } else if (array){
-//            for (BmobObject *post in array) {
-//                NSLog(@"%@",[post objectForKey:@"title"]);
-//            }
-//        }
+        if (block) {
+            DLog(@"routeArray is %@, error is %@", routeArray, error);
+            block(routeArray, error);
+        }
+    }];
+}
+
+/**
+ *  根据用户id获取当前用户的路线中最远距离的一条路线
+ */
++ (void)getMaxDistanceRouteWithUserObjectId:(NSString *)objectId resultBlock:(void (^)(ACRouteModel *, NSError *))block
+{
+    BmobQuery *bquery = [BmobQuery queryWithClassName:@"personRoute"];
+    
+    [bquery orderByDescending:@"distance"];
+    //构造约束条件
+    BmobQuery *inQuery = [BmobQuery queryWithClassName:@"_User"];
+    [inQuery whereKey:@"objectId" equalTo:objectId];
+    
+    //匹配查询
+    [bquery whereKey:@"user" matchesQuery:inQuery];
+    [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+        //        DLog(@"array is %@, error is %@", array, error);
+        //将BmobObject对象数组转换成Route对象数组
+        ACRouteModel *routeModel = [[ACRouteModel alloc] init];
+        if (error == nil) {
+            routeModel = [self routeModelWithBmobObject:(BmobObject *)array.firstObject];
+        }
+        if (block) {
+            DLog(@"maxDistanceRouteModel is %@, error is %@", routeModel, error);
+            block(routeModel, error);
+        }
+    }];
+}
+
+/**
+ *  根据用户id获取当前用户的路线中最快极速的一条路线
+ */
++ (void)getMaxSpeedRouteWithUserObjectId:(NSString *)objectId resultBlock:(void (^)(ACRouteModel *, NSError *))block
+{
+    BmobQuery *bquery = [BmobQuery queryWithClassName:@"personRoute"];
+    
+    [bquery orderByDescending:@"maxSpeed"];
+    //构造约束条件
+    BmobQuery *inQuery = [BmobQuery queryWithClassName:@"_User"];
+    [inQuery whereKey:@"objectId" equalTo:objectId];
+    
+    //匹配查询
+    [bquery whereKey:@"user" matchesQuery:inQuery];
+    [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+        //        DLog(@"array is %@, error is %@", array, error);
+        //将BmobObject对象数组转换成Route对象数组
+        ACRouteModel *routeModel = [[ACRouteModel alloc] init];
+        if (error == nil) {
+            routeModel = [self routeModelWithBmobObject:(BmobObject *)array.firstObject];
+        }
+        if (block) {
+            DLog(@"maxSpeedRouteModel is %@, error is %@", routeModel, error);
+            block(routeModel, error);
+        }
+    }];
+}
+
+/**
+ *  根据用户id获取当前用户的路线中最快平均速度的一条路线
+ */
++ (void)getMaxAverageSpeedRouteWithUserObjectId:(NSString *)objectId resultBlock:(void (^)(ACRouteModel *, NSError *))block
+{
+    BmobQuery *bquery = [BmobQuery queryWithClassName:@"personRoute"];
+    
+    [bquery orderByDescending:@"averageSpeed"];
+    //构造约束条件
+    BmobQuery *inQuery = [BmobQuery queryWithClassName:@"_User"];
+    [inQuery whereKey:@"objectId" equalTo:objectId];
+    
+    //匹配查询
+    [bquery whereKey:@"user" matchesQuery:inQuery];
+    [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+        //        DLog(@"array is %@, error is %@", array, error);
+        //将BmobObject对象数组转换成Route对象数组
+        ACRouteModel *routeModel = [[ACRouteModel alloc] init];
+        if (error == nil) {
+            routeModel = [self routeModelWithBmobObject:(BmobObject *)array.firstObject];
+        }
+        if (block) {
+            DLog(@"maxAverageSpeedRouteModel is %@, error is %@", routeModel, error);
+            block(routeModel, error);
+        }
+    }];
+}
+
+/**
+ *  根据用户id获取当前用户的路线中最长时间的一条路线
+ */
++ (void)getMaxTimeRouteWithUserObjectId:(NSString *)objectId resultBlock:(void (^)(ACRouteModel *, NSError *))block
+{
+    BmobQuery *bquery = [BmobQuery queryWithClassName:@"personRoute"];
+    
+    [bquery orderByDescending:@"timeNumber"];
+    //构造约束条件
+    BmobQuery *inQuery = [BmobQuery queryWithClassName:@"_User"];
+    [inQuery whereKey:@"objectId" equalTo:objectId];
+    
+    //匹配查询
+    [bquery whereKey:@"user" matchesQuery:inQuery];
+    [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+        //        DLog(@"array is %@, error is %@", array, error);
+        //将BmobObject对象数组转换成Route对象数组
+        ACRouteModel *routeModel = [[ACRouteModel alloc] init];
+        if (error == nil) {
+            routeModel = [self routeModelWithBmobObject:(BmobObject *)array.firstObject];
+        }
+        if (block) {
+            DLog(@"maxTimeRouteModel is %@, error is %@", routeModel, error);
+            block(routeModel, error);
+        }
     }];
 }
 
@@ -233,6 +397,7 @@
         }];
     }
 }
+
 
 #pragma mark - 文件相关
 

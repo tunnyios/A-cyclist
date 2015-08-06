@@ -28,7 +28,9 @@
     UIStoryboard *rankingSB = [UIStoryboard storyboardWithName:@"ranking" bundle:nil];
     UIStoryboard *settingSB = [UIStoryboard storyboardWithName:@"setting" bundle:nil];
 
-    UIViewController *profileVc = [profileSB instantiateInitialViewController];
+    UINavigationController *profileNav = [profileSB instantiateInitialViewController];
+    UIViewController *profileVc = profileNav.topViewController;
+//    UIViewController *profileVc = [profileSB instantiateInitialViewController];
     [self creatChildViewController:profileVc title:@"我的" icon:@"tab_profile_iphone_1" selectedIcon:@"tab_profile_white_iphone_1"];
     profileVc.view.backgroundColor = [UIColor colorWithRandom];
     
@@ -49,7 +51,7 @@
     [self creatChildViewController:settingVc title:@"更多" icon:@"tab_more_iphone_5" selectedIcon:@"tab_more_white_iphone_5"];
 //    settingVc.view.backgroundColor = [UIColor colorWithRandom];
     
-    self.viewControllers = @[profileVc,
+    self.viewControllers = @[profileNav,
                              rankingNav,
                              cyclingVc,
                              routeNav,

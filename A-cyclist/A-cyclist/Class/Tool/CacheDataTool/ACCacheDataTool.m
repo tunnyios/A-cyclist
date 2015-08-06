@@ -8,6 +8,7 @@
 
 #import "ACCacheDataTool.h"
 #import "ACUserModel.h"
+#import "ACRouteModel.h"
 #import "ACGlobal.h"
 #import "FMDB.h"
 
@@ -25,7 +26,7 @@ static FMDatabase *_db;
     
     //创建表
     [_db executeUpdate:@"CREATE TABLE IF NOT EXISTS t_user (id integer PRIMARY KEY, user blob NOT NULL, objectId text NOT NULL UNIQUE);"];
-    [_db executeUpdate:@"CREATE TABLE IF NOT EXISTS t_personRoute (id integer PRIMARY KEY, route blob NOT NULL, userObjectId text NOT NULL);"];
+    [_db executeUpdate:@"CREATE TABLE IF NOT EXISTS t_personRoute (id integer PRIMARY KEY, route blob NOT NULL, userObjectId text NOT NULL, distance text NOT NULL, maxSpeed text NOT NULL, averageSpeed text NOT NULL, timeNumber text NOT NULL);"];
 }
 
 
@@ -87,7 +88,7 @@ static FMDatabase *_db;
     //转换成NSData
     NSData *routeData = [NSKeyedArchiver archivedDataWithRootObject:route];
     
-    [_db executeUpdateWithFormat:@"INSERT INTO t_personRoute(route, userObjectId) VALUES (%@, %@);", routeData, objectId];
+    [_db executeUpdateWithFormat:@"INSERT INTO t_personRoute(route, userObjectId, distance, maxSpeed, averageSpeed, timeNumber) VALUES (%@, %@, %@, %@, %@, %@);", routeData, objectId, route.distance, route.maxSpeed, route.averageSpeed, route.timeNumber];
     
     DLog(@"保存UserInfo到本地数据库成功");
 }
@@ -114,5 +115,75 @@ static FMDatabase *_db;
     return routeList;
 }
 
+/**
+ *  根据用户id获取用户最远的一次骑行路线
+ */
++ (ACRouteModel *)getMaxDistanceRouteWithId:(NSString *)objectId
+{
+    NSMutableArray *routeList = [NSMutableArray array];
+    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM t_personRoute WHERE userObjectId = %@ ORDER BY distance DESC", objectId];
+//    select * from t_student order by age desc
+    // 执行SQL
+    FMResultSet *set = [_db executeQuery:sql];
+    while (set.next) {
+        NSData *routeData = [set objectForColumnName:@"route"];
+        ACRouteModel *route = [NSKeyedUnarchiver unarchiveObjectWithData:routeData];
+        [routeList addObject:route];
+    }
+    return routeList.firstObject;
+}
+/**
+ *  根据用户id获取用户最快极速的一次骑行路线
+ */
++ (ACRouteModel *)getMaxSpeedRouteWithId:(NSString *)objectId
+{
+    NSMutableArray *routeList = [NSMutableArray array];
+    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM t_personRoute WHERE userObjectId = %@ ORDER BY maxSpeed DESC", objectId];
+    //    select * from t_student order by age desc
+    // 执行SQL
+    FMResultSet *set = [_db executeQuery:sql];
+    while (set.next) {
+        NSData *routeData = [set objectForColumnName:@"route"];
+        ACRouteModel *route = [NSKeyedUnarchiver unarchiveObjectWithData:routeData];
+        [routeList addObject:route];
+    }
+    return routeList.firstObject;
+}
+
+/**
+ *  根据用户id获取用户最快平均速度的一次骑行路线
+ */
++ (ACRouteModel *)getMaxAverageSpeedRouteWithId:(NSString *)objectId
+{
+    NSMutableArray *routeList = [NSMutableArray array];
+    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM t_personRoute WHERE userObjectId = %@ ORDER BY averageSpeed DESC", objectId];
+    //    select * from t_student order by age desc
+    // 执行SQL
+    FMResultSet *set = [_db executeQuery:sql];
+    while (set.next) {
+        NSData *routeData = [set objectForColumnName:@"route"];
+        ACRouteModel *route = [NSKeyedUnarchiver unarchiveObjectWithData:routeData];
+        [routeList addObject:route];
+    }
+    return routeList.firstObject;
+}
+
+/**
+ *  根据用户id获取用户最长时间的一次骑行路线
+ */
++ (ACRouteModel *)getmaxTimeRouteWithId:(NSString *)objectId
+{
+    NSMutableArray *routeList = [NSMutableArray array];
+    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM t_personRoute WHERE userObjectId = %@ ORDER BY timeNumber DESC", objectId];
+    //    select * from t_student order by age desc
+    // 执行SQL
+    FMResultSet *set = [_db executeQuery:sql];
+    while (set.next) {
+        NSData *routeData = [set objectForColumnName:@"route"];
+        ACRouteModel *route = [NSKeyedUnarchiver unarchiveObjectWithData:routeData];
+        [routeList addObject:route];
+    }
+    return routeList.firstObject;
+}
 
 @end

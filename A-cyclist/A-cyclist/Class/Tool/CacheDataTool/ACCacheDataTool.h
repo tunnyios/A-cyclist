@@ -28,4 +28,16 @@
 /** 从本地缓存中获取用户的所有路线 */
 + (NSArray *)getUserRouteWithid:(NSString *)objectId;
 
+/** 从本地缓存中获取最远距离的一次骑行路线 */
++ (ACRouteModel *)getMaxDistanceRouteWithId:(NSString *)objectId;
+
+/** 从本地缓存中获取最快极速的一次骑行路线 */
++ (ACRouteModel *)getMaxSpeedRouteWithId:(NSString *)objectId;
+
+/** 从本地缓存中获取最快平均速度的一次骑行路线 */
++ (ACRouteModel *)getMaxAverageSpeedRouteWithId:(NSString *)objectId;
+
+/** 从本地缓存中获取最长时间的一次骑行路线 */
++ (ACRouteModel *)getmaxTimeRouteWithId:(NSString *)objectId;
+
 @end

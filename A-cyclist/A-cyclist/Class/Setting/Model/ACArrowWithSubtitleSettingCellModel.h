@@ -11,7 +11,9 @@
 @interface ACArrowWithSubtitleSettingCellModel : ACSettingCellModel
 /** subTitle */
 @property (nonatomic, copy) NSString *subTitle;
+/** 跳转至下一控制器的属性 */
+@property (nonatomic, strong) Class destClass;
 
 /** 类方法，添加subTitle */
-+ (instancetype)arrowWithSubtitleCellWithTitle:(NSString *)title subTitle:(NSString *)subTitle icon:(NSString *)icon;
++ (instancetype)arrowWithSubtitleCellWithTitle:(NSString *)title subTitle:(NSString *)subTitle icon:(NSString *)icon destClass:(Class)destClass;
 @end

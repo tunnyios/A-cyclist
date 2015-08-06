@@ -77,7 +77,8 @@
         [self changeAvatarWith:indexPath];
     };
     
-    ACArrowWithSubtitleSettingCellModel *cell1 = [ACArrowWithSubtitleSettingCellModel arrowWithSubtitleCellWithTitle:@"昵称" subTitle:user.username icon:nil];
+    
+    ACArrowWithSubtitleSettingCellModel *cell1 = [ACArrowWithSubtitleSettingCellModel arrowWithSubtitleCellWithTitle:@"昵称" subTitle:user.username icon:nil destClass:nil];
     cell1.option = ^(NSIndexPath *indexPath){
         //修改昵称
         [self changeNicknameWith:indexPath];

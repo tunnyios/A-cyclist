@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class ACSettingCellModel;
+//@class ACSettingCellModel;
 @interface ACSettingGroupModel : NSObject
 /** header */
 @property (nonatomic, copy) NSString *headerText;

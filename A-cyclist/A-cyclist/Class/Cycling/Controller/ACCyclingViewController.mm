@@ -375,7 +375,7 @@ typedef enum : NSUInteger {
     NSString *altitude = [NSString stringWithFormat:@"%ld", (long)location.altitude];
     NSString *speed = [NSString stringWithFormat:@"%.2f", fabs(location.speed * 3.6)];
     ACStepModel *step = [ACStepModel stepModelWithLatitude:latitude longitude:longitude altitude:altitude currentSpeed:speed distanceInterval:self.distanceInterval];
-                         
+    DLog(@"step is %@", step);
     
     //3. 记录
     [self.locationArrayM addObject:step];
@@ -455,12 +455,18 @@ typedef enum : NSUInteger {
         
         DLog(@"这次距离：%f米\n, 这次耗时：%f秒\n, 瞬时速度:%fkm/h\n, 总路程：%f米\n, 总时间:%f秒\n, 平均速度:%f\n, 极速:%f\n", distance, timeInterval, location.speed * 3.6, self.totleDistance, self.totleTime, averageSpeed * 3.6, self.maxSpeed * 3.6);
     } else {
+        //极速
         self.maxSpeed = fabs(location.speed);
+        // 瞬时速度
+        self.currentSpeed.text = [NSString stringWithFormat:@"%.2f", fabs(location.speed * 3.6)];
+        //距离间隔
+        self.distanceInterval = @"0";
         self.maxAltitude = location.altitude;
         self.minAltitude = 0;
     }
     //最高速度label
     self.currentMaxSpeed.text = [NSString stringWithFormat:@"%.2f", self.maxSpeed * 3.6];
+    
 }
 
 /**
@@ -481,10 +487,9 @@ typedef enum : NSUInteger {
         tempPoints[idx] = locationPoint;
         
         //设置起点
-        if (self.startPoint) {
-            [_bmkMapView removeAnnotation:self.startPoint];
+        if (!self.startPoint) {
+            self.startPoint = [self creatPointWithLocaiton:location title:@"起点"];
         }
-        self.startPoint = [self creatPointWithLocaiton:location title:@"起点"];
     }];
     
     //移除原有的绘图
@@ -741,6 +746,7 @@ typedef enum : NSUInteger {
     self.route.steps = self.locationArrayM;
     self.route.distance = self.currentMileage.text;
     self.route.time = self.currentTimeConsuming.text;
+    self.route.timeNumber = [NSString stringWithFormat:@"%f", self.totleTime];
     self.route.averageSpeed = self.currentAverageSpeed.text;
     self.route.maxSpeed = self.currentMaxSpeed.text;
     self.route.isShared = 0;

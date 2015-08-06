@@ -10,11 +10,12 @@
 
 @implementation ACArrowWithSubtitleSettingCellModel
 
-+ (instancetype)arrowWithSubtitleCellWithTitle:(NSString *)title subTitle:(NSString *)subTitle icon:(NSString *)icon
++ (instancetype)arrowWithSubtitleCellWithTitle:(NSString *)title subTitle:(NSString *)subTitle icon:(NSString *)icon destClass:(Class)destClass
 {
     ACArrowWithSubtitleSettingCellModel *cellModel = [self settingCellWithTitle:title icon:icon];
     
     cellModel.subTitle = subTitle;
+    cellModel.destClass = destClass;
     
     return cellModel;
 }

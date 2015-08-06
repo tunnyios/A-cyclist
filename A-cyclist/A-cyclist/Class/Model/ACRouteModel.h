@@ -15,8 +15,10 @@
 @property (nonatomic, strong) NSMutableArray *steps;
 /** 里程(km) */
 @property (nonatomic, copy) NSString *distance;
-/** 耗时 */
+/** 耗时(h:min) */
 @property (nonatomic, copy) NSString *time;
+/** 耗时(单位秒) */
+@property (nonatomic, copy) NSString *timeNumber;
 /** 平均速度(km/h) */
 @property (nonatomic, copy) NSString *averageSpeed;
 /** 极速(km/h) */
@@ -42,7 +44,7 @@
 @property (nonatomic, copy) NSString *descendDistance;
 
 /** 卡路里计算(kcal) */
-@property (nonatomic, copy) NSString *kcal;
+//@property (nonatomic, copy) NSString *kcal;
 
 /** 用户的id */
 @property (nonatomic, copy) NSString *userObjectId;
@@ -55,9 +57,9 @@
 @property (nonatomic, strong) NSArray *imageList;
 
 /** BmobObject对象的最后更新时间 */
-@property(nonatomic,strong)NSDate *updatedAt;
+//@property(nonatomic,strong)NSDate *updatedAt;
 /** BmobObject对象的生成时间 */
-@property(nonatomic,strong)NSDate *createdAt;
+//@property(nonatomic,strong)NSDate *createdAt;
 /** 骑行开始时间 */
 @property (nonatomic, strong) NSDate *cyclingStartTime;
 /** 骑行结束时间 */
