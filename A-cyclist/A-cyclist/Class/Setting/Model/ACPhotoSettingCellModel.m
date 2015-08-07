@@ -14,7 +14,7 @@
 
 + (instancetype)photoSettingCellWithTitle:(NSString *)title photoURL:(NSString *)photoURL orPhotoImage:(UIImage *)photoImage
 {
-    __block ACPhotoSettingCellModel *cellModel = [[self alloc] init];
+    ACPhotoSettingCellModel *cellModel = [[self alloc] init];
     
     cellModel.title = title;
     cellModel.photoImage = photoImage;

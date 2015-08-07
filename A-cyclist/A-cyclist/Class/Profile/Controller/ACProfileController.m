@@ -19,6 +19,7 @@
 #import "ACGlobal.h"
 #import "NSDate+Extension.h"
 #import "ACRouteModel.h"
+#import "ACProfileHeaderView.h"
 
 
 @interface ACProfileController ()
@@ -209,6 +210,7 @@
     
     ACSettingGroupModel *group = [[ACSettingGroupModel alloc] init];
     group.cellList = @[cell0, cell1, cell2, cell3];
+    group.headerText = @"个人最佳纪录";
     
     [self.dataList addObject:group];
 }
@@ -241,6 +243,32 @@
     cell.profileModel = cellModel;
     
     return cell;
+}
+
+
+#pragma mark - tableView代理方法
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if (0 == section) {
+        ACProfileHeaderView *profileView = [ACProfileHeaderView profileHeaderView];
+        profileView.user = self.userModel;
+        return profileView;
+    } else {
+        UILabel *label = [[UILabel alloc] init];
+        label.text = [self.dataList[section] headerText];
+        label.textColor = [UIColor grayColor];
+        label.font = [UIFont systemFontOfSize:13];
+        return label;
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (0 == section) {
+        return 264;
+    } else {
+        return 20;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

@@ -96,4 +96,22 @@
     return [self match:@"^[a-zA-Z0-9_]{3,16}$"];
 }
 
+
+#pragma mark - 字符串样式转换
+/**
+ *  将秒数转换成h:m格式
+ */
++ (NSString *)timeStrWithSeconds:(NSInteger)seconds
+{
+    NSInteger hour = seconds / (60 * 60);
+    NSInteger minTemp = seconds % (60 * 60);
+    NSInteger minute = minTemp / 60;
+    //    NSInteger second = minTemp % 60;
+    
+    NSString *time = [NSString stringWithFormat:@"%02ld:%02ld", (long)hour, (long)minute];
+    //    NSString *time = [NSString stringWithFormat:@"%02ld:%02ld:%02ld", (long)hour, (long)minute, (long)second];
+    
+    return time;
+}
+
 @end

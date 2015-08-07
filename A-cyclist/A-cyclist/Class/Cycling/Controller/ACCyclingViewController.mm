@@ -17,6 +17,7 @@
 #import "ACCyclingArgumentsViewController.h"
 #import "ACNavigationViewController.h"
 #import "NSDate+Extension.h"
+#import "NSString+Extension.h"
 
 
 typedef enum : NSUInteger {
@@ -45,7 +46,14 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) NSTimer *timer;
 /** 路线对象 */
 @property (nonatomic, strong) ACRouteModel *route;
+/** 用户 */
+@property (nonatomic, strong) ACUserModel *user;
 
+/* 用户相关参数记录 */
+/** 累计时间(单位秒) */
+@property (nonatomic, assign) NSTimeInterval accruedTime;
+/** 累计距离(km) */
+@property (nonatomic, assign) CLLocationDistance accruedDistance;
 
 /* 轨迹记录 */
 /** 记录上一次的位置 */
@@ -118,6 +126,15 @@ typedef enum : NSUInteger {
     }
     
     return _route;
+}
+
+- (ACUserModel *)user
+{
+    if (_user == nil) {
+        _user = [ACCacheDataTool getUserInfo];
+    }
+    
+    return _user;
 }
 
 - (NSMutableArray *)locationArrayM
@@ -269,7 +286,7 @@ typedef enum : NSUInteger {
         UIAlertAction *cancleAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
         UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             //1. 保存到数据库，以及缓存中
-            [self saveData];
+            [self saveRouteData];
             //2. 结束，隐藏暂停和结束按钮，显示开始按钮
             [self hideBtn];
             //3. 执行结束功能，分析此次骑行状态，跳转控制器
@@ -607,24 +624,12 @@ typedef enum : NSUInteger {
 - (void)updateTimer:(NSTimer *)timer
 {
     self.totleTime += 1;
-    NSString *time = [self dateWithSeconds:self.totleTime];
+    NSString *time = [NSString timeStrWithSeconds:self.totleTime];
     
     self.currentTimeConsuming.text = time;
     DLog(@"%ld, %@", (long)self.totleTime, time);
 }
 
-- (NSString *)dateWithSeconds:(NSInteger)seconds
-{
-    NSInteger hour = seconds / (60 * 60);
-    NSInteger minTemp = seconds % (60 * 60);
-    NSInteger minute = minTemp / 60;
-//    NSInteger second = minTemp % 60;
-    
-    NSString *time = [NSString stringWithFormat:@"%02ld:%02ld", (long)hour, (long)minute];
-//    NSString *time = [NSString stringWithFormat:@"%02ld:%02ld:%02ld", (long)hour, (long)minute, (long)second];
-    
-    return time;
-}
 
 #pragma mark - BMKLocationServiceDelegate
 
@@ -736,11 +741,8 @@ typedef enum : NSUInteger {
 
 
 #pragma mark - 数据的存储操作
-- (void)saveData
+- (void)saveRouteData
 {
-    //1. 获取当前用户
-    ACUserModel *userModel = [ACCacheDataTool getUserInfo];
-
     NSString *timeName = [NSDate dateToString:[NSDate date] WithFormatter:@"yyyy-MM-dd HH:mm"];
     self.route.routeName = timeName;
     self.route.steps = self.locationArrayM;
@@ -752,17 +754,17 @@ typedef enum : NSUInteger {
     self.route.isShared = 0;
     self.route.hotLevel = nil;
     self.route.imageList = nil;
-    self.route.userObjectId = userModel.objectId;
+    self.route.userObjectId = self.user.objectId;
     
     //上下坡相关
     //    self.route.maxAltitude = [NSString stringWithFormat:@"%.0f", self.];
     //    self.route.minAltitude = nil;
     self.route.ascendAltitude = [NSString stringWithFormat:@"%.0f", self.ascendingAltitude];
-    self.route.ascendTime = [self dateWithSeconds:self.ascendingTime];
+    self.route.ascendTime = [NSString timeStrWithSeconds:self.ascendingTime];
     self.route.ascendDistance = [NSString stringWithFormat:@"%.2f", self.ascendingDistance * 0.001];
-    self.route.flatTime = [self dateWithSeconds:self.flatTime];
+    self.route.flatTime = [NSString timeStrWithSeconds:self.flatTime];
     self.route.flatDistance = [NSString stringWithFormat:@"%.2f", self.flatDistance * 0.001];
-    self.route.descendTime = [self dateWithSeconds:self.descendingTime];
+    self.route.descendTime = [NSString timeStrWithSeconds:self.descendingTime];
     self.route.descendDistance = [NSString stringWithFormat:@"%.2f", self.descendingDistance * 0.001];
     
     //开始和结束时间
@@ -770,14 +772,34 @@ typedef enum : NSUInteger {
     
     DLog(@"route.steps is %@\n, route is %@", self.route.steps, self.route);
     //存储到缓存
-    [ACCacheDataTool addRouteWith:self.route withUserObjectId:userModel.objectId];
+    [ACCacheDataTool addRouteWith:self.route withUserObjectId:self.user.objectId];
     
     //存储到数据库
-    [ACDataBaseTool addRouteWith:self.route userObjectId:userModel.objectId resultBlock:^(BOOL isSuccessful, NSError *error) {
+    [ACDataBaseTool addRouteWith:self.route userObjectId:self.user.objectId resultBlock:^(BOOL isSuccessful, NSError *error) {
         if (isSuccessful) {
             DLog(@"存储路线到数据库成功");
         } else {
             DLog(@"存储路线到数据库失败 error is %@", error);
+        }
+    }];
+}
+
+- (void)saveUserData
+{
+    self.accruedTime = self.user.accruedTime.doubleValue + self.totleTime;
+    self.accruedDistance = self.user.accruedDistance.doubleValue + self.totleDistance;
+    
+    self.user.accruedTime = [NSString stringWithFormat:@"%f", self.accruedTime];
+    self.user.accruedDistance = [NSString stringWithFormat:@"%.2f", self.accruedDistance];
+    
+    //存储到本地缓存
+    [ACCacheDataTool updateUserInfo:self.user withObjectId:self.user.objectId];
+    //存储到数据库
+    [ACDataBaseTool updateUserInfoWith:self.user withResultBlock:^(BOOL isSuccessful, NSError *error) {
+        if (isSuccessful) {
+            DLog(@"更新用户信息到数据库成功");
+        } else {
+            DLog(@"更新用户信息到数据库失败，error is %@", error);
         }
     }];
 }

@@ -32,7 +32,7 @@
     UIViewController *profileVc = profileNav.topViewController;
 //    UIViewController *profileVc = [profileSB instantiateInitialViewController];
     [self creatChildViewController:profileVc title:@"我的" icon:@"tab_profile_iphone_1" selectedIcon:@"tab_profile_white_iphone_1"];
-    profileVc.view.backgroundColor = [UIColor colorWithRandom];
+//    profileVc.view.backgroundColor = [UIColor colorWithRandom];
     
     UINavigationController *routeNav = [routeSB instantiateInitialViewController];
     UIViewController *routeVc = routeNav.topViewController;

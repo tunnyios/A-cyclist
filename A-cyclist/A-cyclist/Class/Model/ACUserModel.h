@@ -44,6 +44,12 @@
 @property (nonatomic, copy) NSString *profile_image_url;
 @property (nonatomic, copy) NSString *avatar_large;
 
+/** 累计时间(秒)*/
+@property (nonatomic, copy) NSString *accruedTime;
+
+/** 累计距离(km) */
+@property (nonatomic, copy) NSString *accruedDistance;
+
 
 /**	BmobObject对象的id */
 @property(nonatomic,copy)NSString *objectId;

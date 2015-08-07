@@ -121,6 +121,8 @@
 		A28BFF1C1B53F9E900A712F1 /* route.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A28BFF1B1B53F9E900A712F1 /* route.storyboard */; };
 		A28BFF1E1B53F9FD00A712F1 /* setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A28BFF1D1B53F9FD00A712F1 /* setting.storyboard */; };
 		A2A43CD51B724C2C0099011F /* ACRoutePhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A43CD41B724C2C0099011F /* ACRoutePhotoModel.m */; };
+		A2A43CD81B7324990099011F /* ACProfileHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A43CD71B7324990099011F /* ACProfileHeaderView.m */; };
+		A2A43CDA1B7324A90099011F /* ACProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2A43CD91B7324A90099011F /* ACProfileHeaderView.xib */; };
 		A2AD90BD1B5FAAB100847F72 /* BaiduMapAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AD90BC1B5FAAB100847F72 /* BaiduMapAPI.framework */; };
 		A2AD90BF1B5FAAE200847F72 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AD90BE1B5FAAE200847F72 /* OpenGLES.framework */; };
 		A2CE5A4B1B6879860071AC59 /* ACRouteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2CE5A4A1B6879860071AC59 /* ACRouteModel.m */; };
@@ -358,6 +360,9 @@
 		A28BFF1D1B53F9FD00A712F1 /* setting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = setting.storyboard; sourceTree = "<group>"; };
 		A2A43CD31B724C2C0099011F /* ACRoutePhotoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACRoutePhotoModel.h; sourceTree = "<group>"; };
 		A2A43CD41B724C2C0099011F /* ACRoutePhotoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACRoutePhotoModel.m; sourceTree = "<group>"; };
+		A2A43CD61B7324990099011F /* ACProfileHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACProfileHeaderView.h; sourceTree = "<group>"; };
+		A2A43CD71B7324990099011F /* ACProfileHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACProfileHeaderView.m; sourceTree = "<group>"; };
+		A2A43CD91B7324A90099011F /* ACProfileHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ACProfileHeaderView.xib; sourceTree = "<group>"; };
 		A2AD90BC1B5FAAB100847F72 /* BaiduMapAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI.framework; sourceTree = "<group>"; };
 		A2AD90BE1B5FAAE200847F72 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		A2CE5A491B6879860071AC59 /* ACRouteModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACRouteModel.h; sourceTree = "<group>"; };
@@ -1024,6 +1029,9 @@
 			isa = PBXGroup;
 			children = (
 				A28BFF171B53F9AD00A712F1 /* profile.storyboard */,
+				A2A43CD91B7324A90099011F /* ACProfileHeaderView.xib */,
+				A2A43CD61B7324990099011F /* ACProfileHeaderView.h */,
+				A2A43CD71B7324990099011F /* ACProfileHeaderView.m */,
 				A21DE5E31B71AD3A00BC0D31 /* ACProfileCellView.xib */,
 				A21DE5E51B71AD7400BC0D31 /* ACProfileCellView.h */,
 				A21DE5E61B71AD7400BC0D31 /* ACProfileCellView.m */,
@@ -1309,6 +1317,7 @@
 				A266D9AF1B5C9FE600D4B326 /* WeiboSDK.bundle in Resources */,
 				A261435F1B5E4AF7007EA45C /* ACChangeNameController.xib in Resources */,
 				A2082E6A1B62259800CA3325 /* mapapi.bundle in Resources */,
+				A2A43CDA1B7324A90099011F /* ACProfileHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1351,6 +1360,7 @@
 				A26143541B5E22D6007EA45C /* UIImageView+HighlightedWebCache.m in Sources */,
 				A204B0941B5B30F7004C0A6C /* NSString+Extension.m in Sources */,
 				A204B15F1B5B506B004C0A6C /* HCBaseKeyboardViewController.m in Sources */,
+				A2A43CD81B7324990099011F /* ACProfileHeaderView.m in Sources */,
 				A2082E701B62996F00CA3325 /* ACCyclingArgumentsViewController.mm in Sources */,
 				A26143241B5E1F43007EA45C /* ACPhotoSettingCellModel.m in Sources */,
 				A26143471B5E22D6007EA45C /* MKAnnotationView+WebCache.m in Sources */,

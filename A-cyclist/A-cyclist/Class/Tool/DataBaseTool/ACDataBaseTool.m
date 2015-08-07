@@ -85,6 +85,8 @@
     [bUser setObject:user.gender forKey:@"gender"];
     [bUser setObject:user.profile_image_url forKey:@"profile_image_url"];
     [bUser setObject:user.avatar_large forKey:@"avatar_large"];
+    [bUser setObject:user.accruedTime forKey:@"accruedTime"];
+    [bUser setObject:user.accruedDistance forKey:@"accruedDistance"];
     
     [bUser updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
         if (block) {
@@ -113,6 +115,7 @@
 + (ACUserModel *)getCurrentUser
 {
     BmobUser *user = [BmobUser getCurrentUser];
+    DLog(@"bmobUser is %@", user);
     ACUserModel *ACUser = [ACUserModel userWithBmobUser:user];
     
     return ACUser;

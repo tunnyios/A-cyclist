@@ -26,6 +26,8 @@
     ACUser.profile_image_url = [user objectForKey:@"profile_image_url"];
     ACUser.avatar_large = [user objectForKey:@"avatar_large"];
     ACUser.gender = [user objectForKey:@"gender"];
+    ACUser.accruedTime = [user objectForKey:@"accruedTime"];
+    ACUser.accruedDistance = [user objectForKey:@"accruedDistance"];
     
     return ACUser;
 }
@@ -43,6 +45,8 @@
     [aCoder encodeObject:self.avatar_large forKey:@"avatar_large"];
     [aCoder encodeObject:self.gender forKey:@"gender"];
     [aCoder encodeObject:self.objectId forKey:@"objectId"];
+    [aCoder encodeObject:self.accruedTime forKey:@"accruedTime"];
+    [aCoder encodeObject:self.accruedDistance forKey:@"accruedDistance"];
 }
 
 /**
@@ -60,6 +64,8 @@
         self.avatar_large = [aDecoder decodeObjectForKey:@"avatar_large"];
         self.gender = [aDecoder decodeObjectForKey:@"gender"];
         self.objectId = [aDecoder decodeObjectForKey:@"objectId"];
+        self.accruedTime = [aDecoder decodeObjectForKey:@"accruedTime"];
+        self.accruedDistance = [aDecoder decodeObjectForKey:@"accruedDistance"];
     }
     
     return self;
@@ -67,6 +73,6 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<%p : %@>{\n className = %@;\n username = %@;\n password = %@;\n mobilePhoneNumber = %@;\n email = %@;\n location = %@;\n gender = %@;\n profile_image_url = %@;\n avatar_large = %@;\n objectId = %@;\n createdAt = %@;\n updatedAt = %@;\n emailVerified = %d;\n}", self, self.class, self.className, self.username, self.password, self.mobilePhoneNumber, self.email, self.location, self.gender, self.profile_image_url, self.avatar_large, self.objectId, self.createdAt, self.updatedAt, self.emailVerified];
+    return [NSString stringWithFormat:@"<%p : %@>{\n className = %@;\n username = %@;\n password = %@;\n mobilePhoneNumber = %@;\n email = %@;\n location = %@;\n gender = %@;\n profile_image_url = %@;\n avatar_large = %@;\n objectId = %@;\n createdAt = %@;\n updatedAt = %@;\n emailVerified = %d;\n accruedTime = %@;\n accruedDistance = %@\n}", self, self.class, self.className, self.username, self.password, self.mobilePhoneNumber, self.email, self.location, self.gender, self.profile_image_url, self.avatar_large, self.objectId, self.createdAt, self.updatedAt, self.emailVerified, self.accruedTime, self.accruedDistance];
 }
 @end

@@ -165,7 +165,7 @@
                  */
                 //2. 更新的数据到数据库中
                 NSDictionary *dict = @{@"username" : responseObject[@"screen_name"],
-                                       @"profile_image_url" : responseObject[@"profile_image_url"],
+                                       @"profile_image_url" : responseObject[@"avatar_large"],
                                        @"avatar_large" : responseObject[@"avatar_large"],
                                        @"location" : responseObject[@"location"],
                                        @"gender" : responseObject[@"gender"]

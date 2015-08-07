@@ -22,5 +22,7 @@
 - (BOOL)isAvailEmail;
 - (BOOL)isAvailUserName;
 
+/** 将秒数转换成h:m */
++ (NSString *)timeStrWithSeconds:(NSInteger)seconds;
 
 @end
