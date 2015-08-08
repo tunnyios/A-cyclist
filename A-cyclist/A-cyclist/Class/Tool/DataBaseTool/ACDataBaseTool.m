@@ -203,7 +203,21 @@
 {
     ACRouteModel *routeModel = [[ACRouteModel alloc] init];
     routeModel.routeName = [bmobObj objectForKey:@"routeName"];
-    routeModel.steps = [bmobObj objectForKey:@"steps"];
+
+    NSArray *stepArray = [bmobObj objectForKey:@"steps"];
+    __block NSMutableArray *stepsArrayM = [NSMutableArray array];
+    [stepArray enumerateObjectsUsingBlock:^(NSDictionary *stepDict, NSUInteger idx, BOOL *stop) {
+        ACStepModel *step = [[ACStepModel alloc] init];
+        step.latitude = stepDict[@"latitude"];
+        step.longitude = stepDict[@"longitude"];
+        step.altitude = stepDict[@"altitude"];
+        step.currentSpeed = stepDict[@"currentSpeed"];
+        step.distanceInterval = stepDict[@"distanceInterval"];
+        
+        [stepsArrayM addObject:step];
+    }];
+    routeModel.steps = stepsArrayM;
+
     routeModel.distance = [bmobObj objectForKey:@"distance"];
     routeModel.time = [bmobObj objectForKey:@"time"];
     routeModel.timeNumber = [bmobObj objectForKey:@"timeNumber"];

@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
+        <!--Acyclist-->
         <scene sceneID="WKh-tx-3Dk">
             <objects>
                 <tableViewController id="vqW-Cb-xKS" customClass="ACProfileController" sceneMemberID="viewController">
@@ -25,7 +25,7 @@
                             <outlet property="delegate" destination="vqW-Cb-xKS" id="cns-Mf-6Kf"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="mSe-kk-C4c"/>
+                    <navigationItem key="navigationItem" title="Acyclist" id="mSe-kk-C4c"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="69N-2X-yUD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -34,10 +34,14 @@
         <!--Navigation Controller-->
         <scene sceneID="Z2e-ph-zGn">
             <objects>
-                <navigationController navigationBarHidden="YES" id="a6l-bh-oKC" sceneMemberID="viewController">
+                <navigationController id="a6l-bh-oKC" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fNu-tX-788">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="vqW-Cb-xKS" kind="relationship" relationship="rootViewController" id="HdR-sJ-1UT"/>

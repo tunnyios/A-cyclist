@@ -13,16 +13,6 @@
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7hl-5H-0XN" id="aZb-9i-8UV">
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="单次最长时间" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xTV-ba-EXa">
-                        <rect key="frame" x="8" y="8" width="90" height="15"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="15" id="9X7-dI-Heh"/>
-                            <constraint firstAttribute="width" constant="90" id="N2T-ng-3Cf"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100.25 KM" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FS7-vY-CEN">
                         <rect key="frame" x="164" y="8" width="130" height="27.5"/>
                         <constraints>
@@ -47,6 +37,16 @@
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.35615924869999999" green="0.35615924869999999" blue="0.35615924869999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="单次最长时间" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xTV-ba-EXa">
+                        <rect key="frame" x="8" y="8" width="90" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="15" id="9X7-dI-Heh"/>
+                            <constraint firstAttribute="width" constant="90" id="N2T-ng-3Cf"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>

@@ -20,6 +20,9 @@
 #import "NSDate+Extension.h"
 #import "ACRouteModel.h"
 #import "ACProfileHeaderView.h"
+#import "ACCyclingArgumentsViewController.h"
+#import "ACNavigationViewController.h"
+#import "ACRouteHistoryController.h"
 
 
 @interface ACProfileController ()
@@ -35,6 +38,7 @@
 @property (nonatomic, strong) ACRouteModel *maxAverageRoute;
 /** 最长时间路线 */
 @property (nonatomic, strong) ACRouteModel *maxTimeRoute;
+
 
 @end
 
@@ -174,7 +178,17 @@
 {
     //加载数据
     NSString *subTitle = [NSString stringWithFormat:@"%lu", (unsigned long)self.routeArray.count];
-    ACArrowWithSubtitleSettingCellModel *cell0 = [ACArrowWithSubtitleSettingCellModel arrowWithSubtitleCellWithTitle:@"骑行记录" subTitle:subTitle icon:nil destClass:[UIViewController class]];
+    ACArrowWithSubtitleSettingCellModel *cell0 = [ACArrowWithSubtitleSettingCellModel arrowWithSubtitleCellWithTitle:@"骑行记录" subTitle:subTitle icon:nil destClass:nil];
+    
+    cell0.option = ^(NSIndexPath *indexPath){
+        //跳转至对应的控制器
+        if (self.routeArray) {
+            ACRouteHistoryController *routeHistoryVC = [[ACRouteHistoryController alloc] init];
+            routeHistoryVC.routeArrayModel = self.routeArray;
+            //        tableVC.tableView.backgroundColor = [UIColor redColor];
+            [self.navigationController pushViewController:routeHistoryVC animated:YES];
+        }
+    };
     ACSettingGroupModel *group = [[ACSettingGroupModel alloc] init];
     group.cellList = @[cell0];
     
@@ -188,25 +202,66 @@
     if (self.maxDistanceRoute) {
         subTitle0 = [NSString stringWithFormat:@"%@ km", self.maxDistanceRoute.distance];
     }
-    ACProfileCellModel *cell0 = [ACProfileCellModel profileCellWithTitle:@"最远骑行距离" subTitle:subTitle0 route:self.maxDistanceRoute destClass:[UIViewController class]];
+    ACProfileCellModel *cell0 = [ACProfileCellModel profileCellWithTitle:@"最远骑行距离" subTitle:subTitle0 route:self.maxDistanceRoute];
+    cell0.option = ^(NSIndexPath *indexPath){
+        //跳转至对应的控制器
+        if (self.maxDistanceRoute) {
+            UIStoryboard *ArgumentsSB = [UIStoryboard storyboardWithName:@"cycling" bundle:nil];
+            ACNavigationViewController *cell0Nav = [ArgumentsSB instantiateViewControllerWithIdentifier:@"ACNavigationController"];
+            ACCyclingArgumentsViewController *cell0VC = (ACCyclingArgumentsViewController *)cell0Nav.topViewController;
+            cell0VC.route = self.maxDistanceRoute;
+            [self.navigationController pushViewController:cell0VC animated:YES];
+        }
+    };
     
     NSString *subTitle1 = @"";
-    if (self.maxDistanceRoute) {
+    if (self.maxSpeedRoute) {
         subTitle1 = [NSString stringWithFormat:@"%@ km/h", self.maxSpeedRoute.maxSpeed];
     }
-    ACProfileCellModel *cell1 = [ACProfileCellModel profileCellWithTitle:@"极速" subTitle:subTitle1 route:self.maxSpeedRoute destClass:[UIViewController class]];
+    ACProfileCellModel *cell1 = [ACProfileCellModel profileCellWithTitle:@"极速" subTitle:subTitle1 route:self.maxSpeedRoute];
+    cell1.option = ^(NSIndexPath *indexPath){
+        //跳转至对应的控制器
+        if (self.maxSpeedRoute) {
+            UIStoryboard *ArgumentsSB = [UIStoryboard storyboardWithName:@"cycling" bundle:nil];
+            ACNavigationViewController *cell1Nav = [ArgumentsSB instantiateViewControllerWithIdentifier:@"ACNavigationController"];
+            ACCyclingArgumentsViewController *cell1VC = (ACCyclingArgumentsViewController *)cell1Nav.topViewController;
+            cell1VC.route = self.maxSpeedRoute;
+            [self.navigationController pushViewController:cell1VC animated:YES];
+        }
+    };
     
     NSString *subTitle2 = @"";
-    if (self.maxDistanceRoute) {
+    if (self.maxAverageRoute) {
         subTitle2 = [NSString stringWithFormat:@"%@ km/h", self.maxAverageRoute.averageSpeed];
     }
-    ACProfileCellModel *cell2 = [ACProfileCellModel profileCellWithTitle:@"平均速度" subTitle:subTitle2 route:self.maxAverageRoute destClass:[UIViewController class]];
+    ACProfileCellModel *cell2 = [ACProfileCellModel profileCellWithTitle:@"平均速度" subTitle:subTitle2 route:self.maxAverageRoute];
+    cell2.option = ^(NSIndexPath *indexPath){
+        //跳转至对应的控制器
+        if (self.maxAverageRoute) {
+            UIStoryboard *ArgumentsSB = [UIStoryboard storyboardWithName:@"cycling" bundle:nil];
+            ACNavigationViewController *cell2Nav = [ArgumentsSB instantiateViewControllerWithIdentifier:@"ACNavigationController"];
+            ACCyclingArgumentsViewController *cell2VC = (ACCyclingArgumentsViewController *)cell2Nav.topViewController;
+            cell2VC.route = self.maxAverageRoute;
+            [self.navigationController pushViewController:cell2VC animated:YES];
+        }
+    };
     
     NSString *subTitle3 = @"";
-    if (self.maxDistanceRoute) {
+    if (self.maxTimeRoute) {
         subTitle3 = self.maxTimeRoute.time;
     }
-    ACProfileCellModel *cell3 = [ACProfileCellModel profileCellWithTitle:@"单次最长时间" subTitle:subTitle3 route:self.maxTimeRoute destClass:[UIViewController class]];
+    ACProfileCellModel *cell3 = [ACProfileCellModel profileCellWithTitle:@"单次最长时间" subTitle:subTitle3 route:self.maxTimeRoute];
+    cell3.option = ^(NSIndexPath *indexPath){
+        //跳转至对应的控制器
+        if (self.maxTimeRoute) {
+            UIStoryboard *ArgumentsSB = [UIStoryboard storyboardWithName:@"cycling" bundle:nil];
+            ACNavigationViewController *cell3Nav = [ArgumentsSB instantiateViewControllerWithIdentifier:@"ACNavigationController"];
+            ACCyclingArgumentsViewController *cell3VC = (ACCyclingArgumentsViewController *)cell3Nav.topViewController;
+            cell3VC.route = self.maxTimeRoute;
+            [self.navigationController pushViewController:cell3VC animated:YES];
+        }
+    };
+    
     
     ACSettingGroupModel *group = [[ACSettingGroupModel alloc] init];
     group.cellList = @[cell0, cell1, cell2, cell3];
@@ -284,16 +339,6 @@
     if (cellModel.option) {
         cellModel.option(indexPath);
     }
-    
-    //3.跳转至下一控制器
-    if (cellModel.destClass) {
-        //弹出下一个控制器
-        UIViewController *vc = [[cellModel.destClass alloc] init];
-        
-        vc.view.backgroundColor = [UIColor redColor];
-        [self.navigationController pushViewController:vc animated:YES];
-    }
 }
-
 
 @end

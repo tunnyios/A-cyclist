@@ -227,7 +227,7 @@
     
     //轨迹点
     NSUInteger count = self.route.steps.count;
-    BMKMapPoint *tempPoints = new BMKMapPoint[count];
+    __block BMKMapPoint *tempPoints = new BMKMapPoint[count];
     
     [self.route.steps enumerateObjectsUsingBlock:^(ACStepModel *step, NSUInteger idx, BOOL *stop) {
         

@@ -703,7 +703,7 @@
         <!--Navigation View Controller-->
         <scene sceneID="WTm-H2-29B">
             <objects>
-                <navigationController id="QIZ-wa-ptC" customClass="ACNavigationViewController" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ACNavigationController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="QIZ-wa-ptC" customClass="ACNavigationViewController" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Def-bS-Vt1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -724,7 +724,7 @@
         <!--轨迹详情-->
         <scene sceneID="zY3-Er-8m0">
             <objects>
-                <viewController storyboardIdentifier="cyclingArguments" useStoryboardIdentifierAsRestorationIdentifier="YES" id="FLH-gb-d6b" customClass="ACCyclingArgumentsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="cyclingArguments" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="FLH-gb-d6b" customClass="ACCyclingArgumentsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Yak-KA-2NL"/>
                         <viewControllerLayoutGuide type="bottom" id="8jN-F3-cxM"/>
@@ -1094,7 +1094,6 @@
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="geT-uS-phO" customClass="BMKMapView">
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="342"/>
-                                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     </view>
                                                 </subviews>
                                                 <constraints>

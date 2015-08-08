@@ -18,6 +18,9 @@
 		A2082E701B62996F00CA3325 /* ACCyclingArgumentsViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = A2082E6F1B62996F00CA3325 /* ACCyclingArgumentsViewController.mm */; };
 		A218F7031B5A3F33007CBADA /* ACLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A218F7021B5A3F33007CBADA /* ACLoginViewController.m */; };
 		A218F7051B5A3FB2007CBADA /* ACLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A218F7041B5A3FB2007CBADA /* ACLogin.storyboard */; };
+		A21D7B511B75F1780014466C /* ACRouteHistoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = A21D7B501B75F1780014466C /* ACRouteHistoryController.m */; };
+		A21D7B551B75F9DF0014466C /* ACRouteHistoryCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = A21D7B531B75F9DF0014466C /* ACRouteHistoryCellView.m */; };
+		A21D7B561B75F9DF0014466C /* ACRouteHistoryCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A21D7B541B75F9DF0014466C /* ACRouteHistoryCellView.xib */; };
 		A21DE5E21B719F6E00BC0D31 /* ACProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = A21DE5E11B719F6E00BC0D31 /* ACProfileController.m */; };
 		A21DE5E41B71AD3A00BC0D31 /* ACProfileCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A21DE5E31B71AD3A00BC0D31 /* ACProfileCellView.xib */; };
 		A21DE5E71B71AD7400BC0D31 /* ACProfileCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = A21DE5E61B71AD7400BC0D31 /* ACProfileCellView.m */; };
@@ -170,6 +173,11 @@
 		A218F7011B5A3F33007CBADA /* ACLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACLoginViewController.h; sourceTree = "<group>"; };
 		A218F7021B5A3F33007CBADA /* ACLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACLoginViewController.m; sourceTree = "<group>"; };
 		A218F7041B5A3FB2007CBADA /* ACLogin.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ACLogin.storyboard; sourceTree = "<group>"; };
+		A21D7B4F1B75F1780014466C /* ACRouteHistoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACRouteHistoryController.h; sourceTree = "<group>"; };
+		A21D7B501B75F1780014466C /* ACRouteHistoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACRouteHistoryController.m; sourceTree = "<group>"; };
+		A21D7B521B75F9DF0014466C /* ACRouteHistoryCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACRouteHistoryCellView.h; sourceTree = "<group>"; };
+		A21D7B531B75F9DF0014466C /* ACRouteHistoryCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACRouteHistoryCellView.m; sourceTree = "<group>"; };
+		A21D7B541B75F9DF0014466C /* ACRouteHistoryCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ACRouteHistoryCellView.xib; sourceTree = "<group>"; };
 		A21DE5E01B719F6E00BC0D31 /* ACProfileController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACProfileController.h; sourceTree = "<group>"; };
 		A21DE5E11B719F6E00BC0D31 /* ACProfileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACProfileController.m; sourceTree = "<group>"; };
 		A21DE5E31B71AD3A00BC0D31 /* ACProfileCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ACProfileCellView.xib; sourceTree = "<group>"; };
@@ -1012,6 +1020,8 @@
 			children = (
 				A21DE5E01B719F6E00BC0D31 /* ACProfileController.h */,
 				A21DE5E11B719F6E00BC0D31 /* ACProfileController.m */,
+				A21D7B4F1B75F1780014466C /* ACRouteHistoryController.h */,
+				A21D7B501B75F1780014466C /* ACRouteHistoryController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1035,6 +1045,9 @@
 				A21DE5E31B71AD3A00BC0D31 /* ACProfileCellView.xib */,
 				A21DE5E51B71AD7400BC0D31 /* ACProfileCellView.h */,
 				A21DE5E61B71AD7400BC0D31 /* ACProfileCellView.m */,
+				A21D7B521B75F9DF0014466C /* ACRouteHistoryCellView.h */,
+				A21D7B531B75F9DF0014466C /* ACRouteHistoryCellView.m */,
+				A21D7B541B75F9DF0014466C /* ACRouteHistoryCellView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1318,6 +1331,7 @@
 				A261435F1B5E4AF7007EA45C /* ACChangeNameController.xib in Resources */,
 				A2082E6A1B62259800CA3325 /* mapapi.bundle in Resources */,
 				A2A43CDA1B7324A90099011F /* ACProfileHeaderView.xib in Resources */,
+				A21D7B561B75F9DF0014466C /* ACRouteHistoryCellView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1348,6 +1362,7 @@
 				A266D9991B5C881700D4B326 /* MJConst.m in Sources */,
 				A2A43CD51B724C2C0099011F /* ACRoutePhotoModel.m in Sources */,
 				A261B0421B57810A006C8917 /* ACSettingViewController.m in Sources */,
+				A21D7B511B75F1780014466C /* ACRouteHistoryController.m in Sources */,
 				A266D9C31B5CF8F900D4B326 /* ACSettingProfileInfoViewController.m in Sources */,
 				A2F040EB1B563A51004FBF3D /* ACBaseTableViewController.m in Sources */,
 				A261434A1B5E22D6007EA45C /* SDWebImageCompat.m in Sources */,
@@ -1401,6 +1416,7 @@
 				A2D483AC1B5515B700BC8406 /* ACTabBarController.m in Sources */,
 				A266D9E71B5CFA0B00D4B326 /* HCHttpTool.m in Sources */,
 				A266D9DB1B5CF9CD00D4B326 /* AFNetworkReachabilityManager.m in Sources */,
+				A21D7B551B75F9DF0014466C /* ACRouteHistoryCellView.m in Sources */,
 				A266D9FC1B5D11D200D4B326 /* FMDatabaseQueue.m in Sources */,
 				A28BFF141B53BECC00A712F1 /* ACGlobal.m in Sources */,
 				A2845EB61B5AB825006E0CE0 /* MBProgressHUD.m in Sources */,

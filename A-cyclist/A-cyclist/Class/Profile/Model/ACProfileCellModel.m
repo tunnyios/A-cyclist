@@ -13,7 +13,7 @@
 
 @implementation ACProfileCellModel
 
-+ (instancetype)profileCellWithTitle:(NSString *)title subTitle:(NSString *)subTitle route:(ACRouteModel *)route destClass:(__unsafe_unretained Class)destClass
++ (instancetype)profileCellWithTitle:(NSString *)title subTitle:(NSString *)subTitle route:(ACRouteModel *)route
 {
     ACProfileCellModel *model = [[ACProfileCellModel alloc] init];
     
@@ -22,9 +22,9 @@
     if (route == nil) {
         model.timeStr = nil;
     } else {
-        model.timeStr = [NSDate dateToString:route.cyclingStartTime WithFormatter:@"yyyy-mm-dd"];
+        model.timeStr = [NSDate dateToString:route.cyclingStartTime WithFormatter:@"yyyy-MM-dd"];
     }
-    model.destClass = destClass;
+    model.route = route;
     
     return model;
 }

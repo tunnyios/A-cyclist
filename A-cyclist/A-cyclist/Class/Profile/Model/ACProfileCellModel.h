@@ -20,11 +20,11 @@ typedef void(^ACSettingCellModelOption)(NSIndexPath *);
 @property (nonatomic, copy) NSString *timeStr;
 /** subTitle */
 @property (nonatomic, copy) NSString *subTitle;
-/** 跳转至下一控制器的属性 */
-@property (nonatomic, strong) Class destClass;
 /** block */
 @property (nonatomic, strong) ACSettingCellModelOption option;
+/** 路线模型 */
+@property (nonatomic, strong) ACRouteModel *route;
 
-+ (instancetype)profileCellWithTitle:(NSString *)title subTitle:(NSString *)subTitle route:(ACRouteModel *)route destClass:(Class)destClass;
++ (instancetype)profileCellWithTitle:(NSString *)title subTitle:(NSString *)subTitle route:(ACRouteModel *)route;
 
 @end
