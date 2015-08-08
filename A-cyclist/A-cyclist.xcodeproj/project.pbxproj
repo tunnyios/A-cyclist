@@ -21,6 +21,7 @@
 		A21D7B511B75F1780014466C /* ACRouteHistoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = A21D7B501B75F1780014466C /* ACRouteHistoryController.m */; };
 		A21D7B551B75F9DF0014466C /* ACRouteHistoryCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = A21D7B531B75F9DF0014466C /* ACRouteHistoryCellView.m */; };
 		A21D7B561B75F9DF0014466C /* ACRouteHistoryCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A21D7B541B75F9DF0014466C /* ACRouteHistoryCellView.xib */; };
+		A21D7B5C1B7633C70014466C /* ACRankingController.m in Sources */ = {isa = PBXBuildFile; fileRef = A21D7B5B1B7633C70014466C /* ACRankingController.m */; };
 		A21DE5E21B719F6E00BC0D31 /* ACProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = A21DE5E11B719F6E00BC0D31 /* ACProfileController.m */; };
 		A21DE5E41B71AD3A00BC0D31 /* ACProfileCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A21DE5E31B71AD3A00BC0D31 /* ACProfileCellView.xib */; };
 		A21DE5E71B71AD7400BC0D31 /* ACProfileCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = A21DE5E61B71AD7400BC0D31 /* ACProfileCellView.m */; };
@@ -178,6 +179,8 @@
 		A21D7B521B75F9DF0014466C /* ACRouteHistoryCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACRouteHistoryCellView.h; sourceTree = "<group>"; };
 		A21D7B531B75F9DF0014466C /* ACRouteHistoryCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACRouteHistoryCellView.m; sourceTree = "<group>"; };
 		A21D7B541B75F9DF0014466C /* ACRouteHistoryCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ACRouteHistoryCellView.xib; sourceTree = "<group>"; };
+		A21D7B5A1B7633C70014466C /* ACRankingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACRankingController.h; sourceTree = "<group>"; };
+		A21D7B5B1B7633C70014466C /* ACRankingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACRankingController.m; sourceTree = "<group>"; };
 		A21DE5E01B719F6E00BC0D31 /* ACProfileController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACProfileController.h; sourceTree = "<group>"; };
 		A21DE5E11B719F6E00BC0D31 /* ACProfileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACProfileController.m; sourceTree = "<group>"; };
 		A21DE5E31B71AD3A00BC0D31 /* ACProfileCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ACProfileCellView.xib; sourceTree = "<group>"; };
@@ -1065,6 +1068,8 @@
 		A28BFEFC1B53B35B00A712F1 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				A21D7B5A1B7633C70014466C /* ACRankingController.h */,
+				A21D7B5B1B7633C70014466C /* ACRankingController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1415,6 +1420,7 @@
 				A281C58F1B6DD61E00DF31C0 /* ACScrollView.m in Sources */,
 				A2D483AC1B5515B700BC8406 /* ACTabBarController.m in Sources */,
 				A266D9E71B5CFA0B00D4B326 /* HCHttpTool.m in Sources */,
+				A21D7B5C1B7633C70014466C /* ACRankingController.m in Sources */,
 				A266D9DB1B5CF9CD00D4B326 /* AFNetworkReachabilityManager.m in Sources */,
 				A21D7B551B75F9DF0014466C /* ACRouteHistoryCellView.m in Sources */,
 				A266D9FC1B5D11D200D4B326 /* FMDatabaseQueue.m in Sources */,

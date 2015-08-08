@@ -47,7 +47,7 @@
 - (ACUserModel *)userModel
 {
     if (_userModel == nil) {
-        _userModel = [ACDataBaseTool getCurrentUser];
+        _userModel = [ACCacheDataTool getUserInfo];
     }
     
     return _userModel;
@@ -75,6 +75,11 @@
                     profileModel.subTitle = [NSString stringWithFormat:@"%lu", (unsigned long)self.routeArray.count];
                     
                     [self.tableView reloadData];
+                    
+                    //保存服务器的数据到本地
+                    [self.routeArray enumerateObjectsUsingBlock:^(ACRouteModel *route, NSUInteger idx, BOOL *stop) {
+                        [ACCacheDataTool addRouteWith:route withUserObjectId:self.userModel.objectId];
+                    }];
                 }
             }];
         }

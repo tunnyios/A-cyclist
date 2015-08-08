@@ -90,7 +90,7 @@ static FMDatabase *_db;
     
     [_db executeUpdateWithFormat:@"INSERT INTO t_personRoute(route, userObjectId, distance, maxSpeed, averageSpeed, timeNumber) VALUES (%@, %@, %@, %@, %@, %@);", routeData, objectId, route.distance, route.maxSpeed, route.averageSpeed, route.timeNumber];
     
-    DLog(@"保存UserInfo到本地数据库成功");
+    DLog(@"保存UserRoute到本地数据库成功");
 }
 
 /**
@@ -103,8 +103,8 @@ static FMDatabase *_db;
 + (NSArray *)getUserRouteWithid:(NSString *)objectId
 {
     NSMutableArray *routeList = [NSMutableArray array];
-    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM t_personRoute WHERE userObjectId = %@", objectId];
-    
+    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM t_personRoute WHERE userObjectId = '%@'", objectId];
+    DLog(@"sql is %@", sql);
     // 执行SQL
     FMResultSet *set = [_db executeQuery:sql];
     while (set.next) {
@@ -121,7 +121,7 @@ static FMDatabase *_db;
 + (ACRouteModel *)getMaxDistanceRouteWithId:(NSString *)objectId
 {
     NSMutableArray *routeList = [NSMutableArray array];
-    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM t_personRoute WHERE userObjectId = %@ ORDER BY distance DESC", objectId];
+    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM t_personRoute WHERE userObjectId = '%@' ORDER BY distance DESC", objectId];
 //    select * from t_student order by age desc
     // 执行SQL
     FMResultSet *set = [_db executeQuery:sql];
@@ -138,7 +138,7 @@ static FMDatabase *_db;
 + (ACRouteModel *)getMaxSpeedRouteWithId:(NSString *)objectId
 {
     NSMutableArray *routeList = [NSMutableArray array];
-    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM t_personRoute WHERE userObjectId = %@ ORDER BY maxSpeed DESC", objectId];
+    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM t_personRoute WHERE userObjectId = '%@' ORDER BY maxSpeed DESC", objectId];
     //    select * from t_student order by age desc
     // 执行SQL
     FMResultSet *set = [_db executeQuery:sql];
@@ -156,7 +156,7 @@ static FMDatabase *_db;
 + (ACRouteModel *)getMaxAverageSpeedRouteWithId:(NSString *)objectId
 {
     NSMutableArray *routeList = [NSMutableArray array];
-    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM t_personRoute WHERE userObjectId = %@ ORDER BY averageSpeed DESC", objectId];
+    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM t_personRoute WHERE userObjectId = '%@' ORDER BY averageSpeed DESC", objectId];
     //    select * from t_student order by age desc
     // 执行SQL
     FMResultSet *set = [_db executeQuery:sql];
@@ -174,7 +174,7 @@ static FMDatabase *_db;
 + (ACRouteModel *)getmaxTimeRouteWithId:(NSString *)objectId
 {
     NSMutableArray *routeList = [NSMutableArray array];
-    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM t_personRoute WHERE userObjectId = %@ ORDER BY timeNumber DESC", objectId];
+    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM t_personRoute WHERE userObjectId = '%@' ORDER BY timeNumber DESC", objectId];
     //    select * from t_student order by age desc
     // 执行SQL
     FMResultSet *set = [_db executeQuery:sql];
