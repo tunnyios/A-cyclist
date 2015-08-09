@@ -124,6 +124,10 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="dfT-TH-hWu">
                                 <rect key="frame" x="0.0" y="184" width="600" height="416"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="iaV-FA-9Di" id="4zu-rE-IEh"/>
+                                    <outlet property="delegate" destination="iaV-FA-9Di" id="I0X-hx-0UD"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -141,6 +145,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="排行榜" id="Itw-x0-UU9"/>
+                    <connections>
+                        <outlet property="distanceLabel" destination="Rru-hS-JMm" id="kJ6-uu-Nio"/>
+                        <outlet property="iconView" destination="trg-gg-DbJ" id="6LO-Er-43K"/>
+                        <outlet property="rankingNumLabel" destination="YlM-YG-471" id="G4t-cK-0fi"/>
+                        <outlet property="tableView" destination="dfT-TH-hWu" id="4yh-ov-jgv"/>
+                        <outlet property="userNameLabel" destination="rqf-Iy-xNU" id="U5I-WA-vDE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0c0-Pt-eMH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

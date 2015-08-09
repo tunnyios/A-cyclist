@@ -387,6 +387,61 @@
 }
 
 
+#pragma mark - 排行相关
+/**
+ *  获取用户当前的排名
+ */
++ (void)getRankingNumWithUserId:(NSString *)objectId resultBlock:(void (^)(NSString *, NSError *))block
+{
+     //name是上传到云端的参数名称，值是bmob，云端代码可以通过调用request.body.name获取这个值
+     NSDictionary  *dic = [NSDictionary  dictionaryWithObject:objectId forKey:@"objectId"];
+     //test对应你刚刚创建的云端代码名称
+     [BmobCloud callFunctionInBackground:@"getUserRanking" withParameters:dic block:^(id object, NSError *error) {
+         if (block) {
+             DLog(@"object is %@, error is %@", object, error);
+             block((NSString *)object, error);
+         }
+     }] ;
+}
+
++ (NSArray *)userModelArrayWithBmobUserArray:(NSArray *)array
+{
+    NSMutableArray *userArrayM = [NSMutableArray array];
+    [array enumerateObjectsUsingBlock:^(BmobUser *obj, NSUInteger idx, BOOL *stop) {
+        ACUserModel *user = [ACUserModel userWithBmobUser:obj];
+        
+        [userArrayM addObject:user];
+    }];
+    
+    return userArrayM;
+}
+
+/**
+ *  对所有用户按累计里程进行降序排序
+ */
++ (void)getUserListWithResutl:(void (^)(NSArray *, NSError *))block
+{
+    BmobQuery *bquery = [BmobQuery queryWithClassName:@"_User"];
+    //排序
+    [bquery orderByDescending:@"accruedDistance"];
+    
+    //匹配查询
+    [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+        //        DLog(@"array is %@, error is %@", array, error);
+        //将BmobUser对象数组转换成ACUser对象数组
+        NSArray *userArray = nil;
+        if (error == nil) {
+            userArray = [self userModelArrayWithBmobUserArray:array];
+        }
+        if (block) {
+            DLog(@"userArray is %@, error is %@", userArray, error);
+            block(userArray, error);
+        }
+    }];
+
+}
+
+
 #pragma mark - 查询相关
 
 /**

@@ -53,6 +53,14 @@
 + (void)getMaxTimeRouteWithUserObjectId:(NSString *)objectId resultBlock:(void (^) (ACRouteModel *route, NSError *error))block;
 
 
+#pragma mark - 排行相关
+/** 根据userId获取当前用户的排名 */
++ (void)getRankingNumWithUserId:(NSString *)objectId resultBlock:(void (^) (NSString *numStr, NSError *error))block;
+
+/** 对所有用户按累计里程进行降序排序 */
++ (void)getUserListWithResutl:(void (^) (NSArray *userList, NSError *error))block;
+
+
 #pragma mark - BQL查询类
 /** 根据sql语句来查询数据库, 返回对象数组 */
 + (void)queryWithSQL:(NSString *)bql pValues:(NSArray *)pVlaues block:(void (^)(NSArray *result, NSError *error))block;

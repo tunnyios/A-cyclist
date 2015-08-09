@@ -22,6 +22,13 @@
 		A21D7B551B75F9DF0014466C /* ACRouteHistoryCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = A21D7B531B75F9DF0014466C /* ACRouteHistoryCellView.m */; };
 		A21D7B561B75F9DF0014466C /* ACRouteHistoryCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A21D7B541B75F9DF0014466C /* ACRouteHistoryCellView.xib */; };
 		A21D7B5C1B7633C70014466C /* ACRankingController.m in Sources */ = {isa = PBXBuildFile; fileRef = A21D7B5B1B7633C70014466C /* ACRankingController.m */; };
+		A21D7B601B76FC010014466C /* ACRankingFormerCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = A21D7B5E1B76FC010014466C /* ACRankingFormerCellView.m */; };
+		A21D7B611B76FC010014466C /* ACRankingFormerCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A21D7B5F1B76FC010014466C /* ACRankingFormerCellView.xib */; };
+		A21D7B651B76FC760014466C /* ACRankingBehindCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = A21D7B631B76FC760014466C /* ACRankingBehindCellView.m */; };
+		A21D7B661B76FC760014466C /* ACRankingBehindCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A21D7B641B76FC760014466C /* ACRankingBehindCellView.xib */; };
+		A21D7B691B775AA30014466C /* ACRankingCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A21D7B681B775AA30014466C /* ACRankingCellModel.m */; };
+		A21D7B6C1B775ECE0014466C /* ACRankingFormerCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A21D7B6B1B775ECE0014466C /* ACRankingFormerCellModel.m */; };
+		A21D7B6F1B775EE50014466C /* ACRankingBehindCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A21D7B6E1B775EE50014466C /* ACRankingBehindCellModel.m */; };
 		A21DE5E21B719F6E00BC0D31 /* ACProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = A21DE5E11B719F6E00BC0D31 /* ACProfileController.m */; };
 		A21DE5E41B71AD3A00BC0D31 /* ACProfileCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A21DE5E31B71AD3A00BC0D31 /* ACProfileCellView.xib */; };
 		A21DE5E71B71AD7400BC0D31 /* ACProfileCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = A21DE5E61B71AD7400BC0D31 /* ACProfileCellView.m */; };
@@ -181,6 +188,18 @@
 		A21D7B541B75F9DF0014466C /* ACRouteHistoryCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ACRouteHistoryCellView.xib; sourceTree = "<group>"; };
 		A21D7B5A1B7633C70014466C /* ACRankingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACRankingController.h; sourceTree = "<group>"; };
 		A21D7B5B1B7633C70014466C /* ACRankingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACRankingController.m; sourceTree = "<group>"; };
+		A21D7B5D1B76FC010014466C /* ACRankingFormerCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACRankingFormerCellView.h; sourceTree = "<group>"; };
+		A21D7B5E1B76FC010014466C /* ACRankingFormerCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACRankingFormerCellView.m; sourceTree = "<group>"; };
+		A21D7B5F1B76FC010014466C /* ACRankingFormerCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ACRankingFormerCellView.xib; sourceTree = "<group>"; };
+		A21D7B621B76FC760014466C /* ACRankingBehindCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACRankingBehindCellView.h; sourceTree = "<group>"; };
+		A21D7B631B76FC760014466C /* ACRankingBehindCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACRankingBehindCellView.m; sourceTree = "<group>"; };
+		A21D7B641B76FC760014466C /* ACRankingBehindCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ACRankingBehindCellView.xib; sourceTree = "<group>"; };
+		A21D7B671B775AA30014466C /* ACRankingCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACRankingCellModel.h; sourceTree = "<group>"; };
+		A21D7B681B775AA30014466C /* ACRankingCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACRankingCellModel.m; sourceTree = "<group>"; };
+		A21D7B6A1B775ECE0014466C /* ACRankingFormerCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACRankingFormerCellModel.h; sourceTree = "<group>"; };
+		A21D7B6B1B775ECE0014466C /* ACRankingFormerCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACRankingFormerCellModel.m; sourceTree = "<group>"; };
+		A21D7B6D1B775EE50014466C /* ACRankingBehindCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACRankingBehindCellModel.h; sourceTree = "<group>"; };
+		A21D7B6E1B775EE50014466C /* ACRankingBehindCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACRankingBehindCellModel.m; sourceTree = "<group>"; };
 		A21DE5E01B719F6E00BC0D31 /* ACProfileController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACProfileController.h; sourceTree = "<group>"; };
 		A21DE5E11B719F6E00BC0D31 /* ACProfileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACProfileController.m; sourceTree = "<group>"; };
 		A21DE5E31B71AD3A00BC0D31 /* ACProfileCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ACProfileCellView.xib; sourceTree = "<group>"; };
@@ -1077,6 +1096,12 @@
 		A28BFEFD1B53B35B00A712F1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A21D7B671B775AA30014466C /* ACRankingCellModel.h */,
+				A21D7B681B775AA30014466C /* ACRankingCellModel.m */,
+				A21D7B6A1B775ECE0014466C /* ACRankingFormerCellModel.h */,
+				A21D7B6B1B775ECE0014466C /* ACRankingFormerCellModel.m */,
+				A21D7B6D1B775EE50014466C /* ACRankingBehindCellModel.h */,
+				A21D7B6E1B775EE50014466C /* ACRankingBehindCellModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1085,6 +1110,12 @@
 			isa = PBXGroup;
 			children = (
 				A28BFF191B53F9D700A712F1 /* ranking.storyboard */,
+				A21D7B5D1B76FC010014466C /* ACRankingFormerCellView.h */,
+				A21D7B5E1B76FC010014466C /* ACRankingFormerCellView.m */,
+				A21D7B5F1B76FC010014466C /* ACRankingFormerCellView.xib */,
+				A21D7B621B76FC760014466C /* ACRankingBehindCellView.h */,
+				A21D7B631B76FC760014466C /* ACRankingBehindCellView.m */,
+				A21D7B641B76FC760014466C /* ACRankingBehindCellView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1330,10 +1361,12 @@
 				A28BFF1E1B53F9FD00A712F1 /* setting.storyboard in Resources */,
 				A21DE5E41B71AD3A00BC0D31 /* ACProfileCellView.xib in Resources */,
 				A2845EB51B5AB825006E0CE0 /* MBProgressHUD.bundle in Resources */,
+				A21D7B611B76FC010014466C /* ACRankingFormerCellView.xib in Resources */,
 				A28BFEC71B53A2CC00A712F1 /* Images.xcassets in Resources */,
 				A28BFF1A1B53F9D700A712F1 /* ranking.storyboard in Resources */,
 				A266D9AF1B5C9FE600D4B326 /* WeiboSDK.bundle in Resources */,
 				A261435F1B5E4AF7007EA45C /* ACChangeNameController.xib in Resources */,
+				A21D7B661B76FC760014466C /* ACRankingBehindCellView.xib in Resources */,
 				A2082E6A1B62259800CA3325 /* mapapi.bundle in Resources */,
 				A2A43CDA1B7324A90099011F /* ACProfileHeaderView.xib in Resources */,
 				A21D7B561B75F9DF0014466C /* ACRouteHistoryCellView.xib in Resources */,
@@ -1359,6 +1392,7 @@
 				A261B0031B577058006C8917 /* ACSettingViewCell.m in Sources */,
 				A266D9DE1B5CF9CD00D4B326 /* AFURLRequestSerialization.m in Sources */,
 				A261B0451B579D82006C8917 /* ACArrowSettingCellModel.m in Sources */,
+				A21D7B6C1B775ECE0014466C /* ACRankingFormerCellModel.m in Sources */,
 				A21DE5EA1B71D36400BC0D31 /* ACProfileCellModel.m in Sources */,
 				A266D99C1B5C881700D4B326 /* MJType.m in Sources */,
 				A261434D1B5E22D6007EA45C /* SDWebImageDownloaderOperation.m in Sources */,
@@ -1368,6 +1402,7 @@
 				A2A43CD51B724C2C0099011F /* ACRoutePhotoModel.m in Sources */,
 				A261B0421B57810A006C8917 /* ACSettingViewController.m in Sources */,
 				A21D7B511B75F1780014466C /* ACRouteHistoryController.m in Sources */,
+				A21D7B691B775AA30014466C /* ACRankingCellModel.m in Sources */,
 				A266D9C31B5CF8F900D4B326 /* ACSettingProfileInfoViewController.m in Sources */,
 				A2F040EB1B563A51004FBF3D /* ACBaseTableViewController.m in Sources */,
 				A261434A1B5E22D6007EA45C /* SDWebImageCompat.m in Sources */,
@@ -1402,6 +1437,7 @@
 				A2CE5A4B1B6879860071AC59 /* ACRouteModel.m in Sources */,
 				A266D9DC1B5CF9CD00D4B326 /* AFSecurityPolicy.m in Sources */,
 				A266D9E01B5CF9CD00D4B326 /* AFURLSessionManager.m in Sources */,
+				A21D7B6F1B775EE50014466C /* ACRankingBehindCellModel.m in Sources */,
 				A26143551B5E22D6007EA45C /* UIImageView+WebCache.m in Sources */,
 				A26143211B5DFA6C007EA45C /* ACArrowWithSubtitleSettingCellModel.m in Sources */,
 				A266D9E81B5CFA0B00D4B326 /* HCFileParamsModel.m in Sources */,
@@ -1411,7 +1447,9 @@
 				A261B0001B5762D1006C8917 /* ACSettingGroupModel.m in Sources */,
 				A2082E6D1B62993400CA3325 /* ACCyclingViewController.mm in Sources */,
 				A2FB6FF61B6F65C60028731B /* ACLineChartLabelView.m in Sources */,
+				A21D7B651B76FC760014466C /* ACRankingBehindCellView.m in Sources */,
 				A261435E1B5E4AF7007EA45C /* ACChangeNameController.m in Sources */,
+				A21D7B601B76FC010014466C /* ACRankingFormerCellView.m in Sources */,
 				A2EB8DDA1B69F706008F5D48 /* ACNavigationViewController.m in Sources */,
 				A281C5961B6DD62500DF31C0 /* ACCyclingDetailCell.m in Sources */,
 				A26143511B5E22D6007EA45C /* UIImage+GIF.m in Sources */,

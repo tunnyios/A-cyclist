@@ -44,7 +44,7 @@
     UINavigationController *rankingNav = [rankingSB instantiateInitialViewController];
     UIViewController *rankingVc = rankingNav.topViewController;
     [self creatChildViewController:rankingVc title:@"排行榜" icon:@"tab_ranking_iphone_2" selectedIcon:@"tab_ranking_white_iphone_2"];
-    rankingVc.view.backgroundColor = [UIColor colorWithRandom];
+//    rankingVc.view.backgroundColor = [UIColor colorWithRandom];
 
     UINavigationController *settingNav = [settingSB instantiateInitialViewController];
     UIViewController *settingVc = settingNav.topViewController;
