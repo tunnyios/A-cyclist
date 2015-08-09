@@ -14,15 +14,15 @@
 /** 轨迹 */
 @property (nonatomic, strong) NSMutableArray *steps;
 /** 里程(km) */
-@property (nonatomic, copy) NSString *distance;
+@property (nonatomic, copy) NSNumber *distance;
 /** 耗时(h:min) */
 @property (nonatomic, copy) NSString *time;
 /** 耗时(单位秒) */
-@property (nonatomic, copy) NSString *timeNumber;
+@property (nonatomic, copy) NSNumber *timeNumber;
 /** 平均速度(km/h) */
-@property (nonatomic, copy) NSString *averageSpeed;
+@property (nonatomic, copy) NSNumber *averageSpeed;
 /** 极速(km/h) */
-@property (nonatomic, copy) NSString *maxSpeed;
+@property (nonatomic, copy) NSNumber *maxSpeed;
 /** 最高海拔(m) */
 @property (nonatomic, copy) NSString *maxAltitude;
 /** 最低海拔(m) */

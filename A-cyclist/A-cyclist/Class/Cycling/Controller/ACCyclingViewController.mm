@@ -78,7 +78,7 @@ typedef enum : NSUInteger {
 @property (weak, nonatomic) IBOutlet UILabel *currentSpeed;
 /** 当前里程 */
 @property (weak, nonatomic) IBOutlet UILabel *currentMileage;
-/** 记录当前总路程 */
+/** 记录当前总路程(单位米) */
 @property (nonatomic, assign) CLLocationDistance totleDistance;
 /** 当前耗时 */
 @property (weak, nonatomic) IBOutlet UILabel *currentTimeConsuming;
@@ -746,11 +746,11 @@ typedef enum : NSUInteger {
     NSString *timeName = [NSDate dateToString:[NSDate date] WithFormatter:@"yyyy-MM-dd HH:mm"];
     self.route.routeName = timeName;
     self.route.steps = self.locationArrayM;
-    self.route.distance = self.currentMileage.text;
+    self.route.distance = [NSNumber numberWithDouble:self.currentMileage.text.doubleValue];
     self.route.time = self.currentTimeConsuming.text;
-    self.route.timeNumber = [NSString stringWithFormat:@"%f", self.totleTime];
-    self.route.averageSpeed = self.currentAverageSpeed.text;
-    self.route.maxSpeed = self.currentMaxSpeed.text;
+    self.route.timeNumber = [NSNumber numberWithDouble:[NSString stringWithFormat:@"%.2f", self.totleTime].doubleValue];
+    self.route.averageSpeed = [NSNumber numberWithDouble:self.currentAverageSpeed.text.doubleValue];
+    self.route.maxSpeed = [NSNumber numberWithDouble:self.currentMaxSpeed.text.doubleValue];
     self.route.isShared = 0;
     self.route.hotLevel = nil;
     self.route.imageList = nil;
@@ -789,8 +789,8 @@ typedef enum : NSUInteger {
     self.accruedTime = self.user.accruedTime.doubleValue + self.totleTime;
     self.accruedDistance = self.user.accruedDistance.doubleValue + self.totleDistance;
     
-    self.user.accruedTime = [NSString stringWithFormat:@"%f", self.accruedTime];
-    self.user.accruedDistance = [NSString stringWithFormat:@"%.2f", self.accruedDistance];
+    self.user.accruedTime = [NSNumber numberWithDouble:[NSString stringWithFormat:@"%.2f", self.accruedTime].doubleValue];
+    self.user.accruedDistance = [NSNumber numberWithDouble:[NSString stringWithFormat:@"%.2f", self.accruedDistance].doubleValue];
     
     //存储到本地缓存
     [ACCacheDataTool updateUserInfo:self.user withObjectId:self.user.objectId];

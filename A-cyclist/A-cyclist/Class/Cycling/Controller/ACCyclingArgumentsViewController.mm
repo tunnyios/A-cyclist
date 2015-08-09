@@ -200,10 +200,10 @@
 - (void)setTrailData
 {
     self.routeNameLabel.text = self.route.routeName;
-    self.distanceLabel.text = self.route.distance;
+    self.distanceLabel.text = [NSString stringWithFormat:@"%@", self.route.distance];
     self.timeLabel.text = self.route.time;
     self.ascendAltitudeLabel.text = self.route.ascendAltitude;
-    self.averageSpeedLabel.text = self.route.averageSpeed;
+    self.averageSpeedLabel.text = [NSString stringWithFormat:@"%@", self.route.averageSpeed];
     
     //这是地图轨迹
     
@@ -348,7 +348,7 @@
 - (void)setGraphicData
 {
     self.chartMaxAltitudeLabel.text = self.route.maxAltitude;
-    self.chartMaxSpeedLabel.text = self.route.maxSpeed;
+    self.chartMaxSpeedLabel.text = [NSString stringWithFormat:@"%@", self.route.maxSpeed];
  
     self.chartAscendTimeLabel.text = self.route.ascendTime;
     self.charAscendDistanceLabel.text = [NSString stringWithFormat:@"%@ km",self.route.ascendDistance];
@@ -379,7 +379,7 @@
 - (void)addGroup0
 {
     //数据部分
-    ACCyclingDetailModel *cell0 = [ACCyclingDetailModel settingCellWithTitle:@"运动里程" subTitle:self.route.distance];
+    ACCyclingDetailModel *cell0 = [ACCyclingDetailModel settingCellWithTitle:@"运动里程" subTitle:[NSString stringWithFormat:@"%@", self.route.distance]];
     
     ACSettingGroupModel *group = [[ACSettingGroupModel alloc] init];
     group.cellList = @[cell0];
@@ -390,8 +390,8 @@
 
 - (void)addGroup1
 {
-    ACCyclingDetailModel *cell0 = [ACCyclingDetailModel settingCellWithTitle:@"平均速度" subTitle:self.route.averageSpeed];
-    ACCyclingDetailModel *cell1 = [ACCyclingDetailModel settingCellWithTitle:@"极速" subTitle:self.route.maxSpeed];
+    ACCyclingDetailModel *cell0 = [ACCyclingDetailModel settingCellWithTitle:@"平均速度" subTitle:[NSString stringWithFormat:@"%@", self.route.averageSpeed]];
+    ACCyclingDetailModel *cell1 = [ACCyclingDetailModel settingCellWithTitle:@"极速" subTitle:[NSString stringWithFormat:@"%@", self.route.maxSpeed]];
     
     ACSettingGroupModel *group = [[ACSettingGroupModel alloc] init];
     group.cellList = @[cell0, cell1];

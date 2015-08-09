@@ -32,9 +32,9 @@
     
     ACRouteModel *route = profileModel.route;
     self.routeStartTimeLabel.text = [NSDate dateToString:route.cyclingStartTime WithFormatter:@"yyyy-MM-dd"];
-    self.routeDistanceLabel.text = route.distance;
+    self.routeDistanceLabel.text = [NSString stringWithFormat:@"%@", route.distance];
     self.routeTimeLabel.text = route.time;
-    self.routeAverSpeedLabel.text = route.averageSpeed;
+    self.routeAverSpeedLabel.text = [NSString stringWithFormat:@"%@", route.averageSpeed];
     self.routeKcalLabel.text = @"350";
     self.routeAscendAltitudeLabel.text = route.ascendAltitude;
 }

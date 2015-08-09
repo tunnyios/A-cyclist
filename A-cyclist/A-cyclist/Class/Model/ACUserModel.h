@@ -45,10 +45,10 @@
 @property (nonatomic, copy) NSString *avatar_large;
 
 /** 累计时间(秒)*/
-@property (nonatomic, copy) NSString *accruedTime;
+@property (nonatomic, copy) NSNumber *accruedTime;
 
 /** 累计距离(km) */
-@property (nonatomic, copy) NSString *accruedDistance;
+@property (nonatomic, copy) NSNumber *accruedDistance;
 
 
 /**	BmobObject对象的id */

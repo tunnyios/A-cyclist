@@ -35,7 +35,7 @@
 //    __block NSMutableArray *arrayM = [NSMutableArray array];
     
     [self.routeArrayModel enumerateObjectsUsingBlock:^(ACRouteModel *route, NSUInteger idx, BOOL *stop) {
-        NSString *subTitle = [NSString stringWithFormat:@"%@ km", route.distance];
+        NSString *subTitle = [NSString stringWithFormat:@"%@", route.distance];
         ACProfileCellModel *profileCellM = [ACProfileCellModel profileCellWithTitle:route.routeName subTitle:subTitle route:route];
         
         profileCellM.option = ^(NSIndexPath *indexPath){

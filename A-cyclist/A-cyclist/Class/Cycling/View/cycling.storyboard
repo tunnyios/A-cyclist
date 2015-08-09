@@ -897,18 +897,18 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pEs-mv-VF4" userLabel="argumentView">
                                                                 <rect key="frame" x="0.0" y="30" width="320" height="76"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oum-U4-v65">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="113" height="76"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oum-U4-v65">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="110" height="76"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="76" id="YZI-7I-ZvK"/>
-                                                                            <constraint firstAttribute="width" constant="113" id="rDd-1d-0JT"/>
+                                                                            <constraint firstAttribute="width" constant="110" id="rDd-1d-0JT"/>
                                                                         </constraints>
                                                                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="23"/>
                                                                         <color key="textColor" red="0.0" green="0.39000577260321623" blue="0.82206833964646464" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aQl-Uh-Nhg" userLabel="leftView">
-                                                                        <rect key="frame" x="147" y="20" width="78" height="36"/>
+                                                                        <rect key="frame" x="144" y="20" width="78" height="36"/>
                                                                         <subviews>
                                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="timeicon-history" translatesAutoresizingMaskIntoConstraints="NO" id="meX-o0-Fml">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="12" height="12"/>
@@ -1066,7 +1066,7 @@
                                                                     <constraint firstAttribute="bottom" secondItem="Vn6-vI-pbA" secondAttribute="bottom" id="2m0-ed-ayB"/>
                                                                     <constraint firstAttribute="trailing" secondItem="tmx-oo-NJu" secondAttribute="trailing" constant="20" id="K8P-iv-h2p"/>
                                                                     <constraint firstAttribute="centerY" secondItem="tmx-oo-NJu" secondAttribute="centerY" id="Kyj-PU-tSk"/>
-                                                                    <constraint firstItem="b0b-jp-FyW" firstAttribute="leading" secondItem="oum-U4-v65" secondAttribute="trailing" id="NvF-nY-rH4"/>
+                                                                    <constraint firstItem="b0b-jp-FyW" firstAttribute="leading" secondItem="oum-U4-v65" secondAttribute="trailing" constant="3" id="NvF-nY-rH4"/>
                                                                     <constraint firstItem="oum-U4-v65" firstAttribute="leading" secondItem="pEs-mv-VF4" secondAttribute="leading" id="PfV-S8-Yhp"/>
                                                                     <constraint firstItem="b0b-jp-FyW" firstAttribute="top" secondItem="pEs-mv-VF4" secondAttribute="top" constant="20" id="XGU-HC-0mU"/>
                                                                     <constraint firstItem="Vn6-vI-pbA" firstAttribute="leading" secondItem="pEs-mv-VF4" secondAttribute="leading" constant="10" id="ZCe-p8-74v"/>
@@ -1204,7 +1204,7 @@
                                                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上坡" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xvs-57-fEf">
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="下坡" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xvs-57-fEf">
                                                                                 <rect key="frame" x="0.0" y="102" width="29" height="21"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="width" constant="29" id="bBv-Oy-zke"/>
@@ -1233,7 +1233,7 @@
                                                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上坡" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zC8-rn-njQ">
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="平地" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zC8-rn-njQ">
                                                                                 <rect key="frame" x="0.0" y="51" width="29" height="21"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="21" id="46V-hg-Qpu"/>

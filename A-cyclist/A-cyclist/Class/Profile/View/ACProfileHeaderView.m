@@ -32,8 +32,16 @@
     _user = user;
     DLog(@"setUser user is %@", user);
     //加载数据
-    self.totalTimeLabel.text = [NSString timeStrWithSeconds:user.accruedTime.integerValue];
-    self.totalDistanceLabel.text = user.accruedDistance;
+    if (user.accruedTime) {
+        self.totalTimeLabel.text = [NSString timeStrWithSeconds:user.accruedTime.integerValue];
+    } else {
+        self.totalTimeLabel.text = @"00:00";
+    }
+    if (user.accruedDistance) {
+        self.totalDistanceLabel.text = [NSString stringWithFormat:@"%@", user.accruedDistance];
+    } else {
+        self.totalDistanceLabel.text = @"0.00";
+    }
     self.userNameLabel.text = user.username;
     
     //根据URL下载图片
