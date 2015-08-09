@@ -40,6 +40,9 @@
 /** 根据用户id获取当前用户的路线列表 */
 + (void)getRouteListWithUserObjectId:(NSString *)objectId resultBlock:(void (^) (NSArray *routes, NSError *error))block;
 
+/** 根据用户id获取当前用户的路线列表 */
++ (void)getSharedRouteListWithUserObjectId:(NSString *)objectId resultBlock:(void (^) (NSArray *routes, NSError *error))block;
+
 /** 根据用户id获取当前用户的路线中最远距离的一条路线 */
 + (void)getMaxDistanceRouteWithUserObjectId:(NSString *)objectId resultBlock:(void (^) (ACRouteModel *route, NSError *error))block;
 

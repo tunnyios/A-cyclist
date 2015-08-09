@@ -17,6 +17,9 @@
 #import "ACRankingBehindCellView.h"
 #import "ACRankingFormerCellModel.h"
 #import "ACRankingBehindCellModel.h"
+#import "ACNavigationViewController.h"
+#import "ACCyclingArgumentsViewController.h"
+#import "ACUserDetailController.h"
 
 
 @interface ACRankingController ()
@@ -112,12 +115,28 @@
                     NSString *distance = [NSString stringWithFormat:@"%.0f", user.accruedDistance.doubleValue];
                     NSString *suffxIcon = [NSString stringWithFormat:@"Ranklist_No%lu", idx + 1];
                     ACRankingFormerCellModel *formerModel = [ACRankingFormerCellModel settingCellWithTitle:user.username icon:user.profile_image_url location:user.location distance:distance suffixIcon:suffxIcon];
+                    
+                    formerModel.option = ^(){
+//                        ACUserDetailController *userDetailController = [[ACUserDetailController alloc] init];
+                        UIStoryboard *rankSB = [UIStoryboard storyboardWithName:@"ranking" bundle:nil];
+                        ACUserDetailController *userDetailController = [rankSB instantiateViewControllerWithIdentifier:@"userDetailController"];
+                        userDetailController.userModel = user;
+//                        ACNavigationViewController *nav = [[ACNavigationViewController alloc] initWithRootViewController:userDetailController];
+                        [self.navigationController pushViewController:userDetailController animated:YES];
+                    };
                     [self.dataList addObject:formerModel];
                     
                 } else {
                     NSString *distance = [NSString stringWithFormat:@"%.0f", user.accruedDistance.doubleValue];
                     NSString *suffxNum = [NSString stringWithFormat:@"%lu", idx + 1];
                     ACRankingBehindCellModel *behindModel = [ACRankingBehindCellModel settingCellWithTitle:user.username icon:user.profile_image_url location:user.location distance:distance suffixNum:suffxNum];
+                    
+                    behindModel.option = ^(){
+                        ACUserDetailController *userDetailController = [[ACUserDetailController alloc] init];
+                        userDetailController.userModel = user;
+                        ACNavigationViewController *nav = [[ACNavigationViewController alloc] initWithRootViewController:userDetailController];
+                        [self.navigationController pushViewController:nav animated:YES];
+                    };
                     [self.dataList addObject:behindModel];
                 }
             }];

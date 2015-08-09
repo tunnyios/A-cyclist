@@ -275,6 +275,34 @@
 }
 
 /**
+ *  根据用户id查询数据库中，用户已经共享了的路线列表
+ */
++ (void)getSharedRouteListWithUserObjectId:(NSString *)objectId resultBlock:(void (^)(NSArray *, NSError *))block
+{
+    BmobQuery *bquery = [BmobQuery queryWithClassName:@"personRoute"];
+    
+    //构造约束条件
+    NSDictionary *condiction1 = @{@"objectId":@{@"__type":@"Pointer",@"className":@"_User",@"objectId":objectId}};
+    NSDictionary *condiction2 = @{@"isShared":@1};
+    NSArray *condictionArray = @[condiction1,condiction2];
+    [bquery addTheConstraintByOrOperationWithArray:condictionArray];
+    
+    //匹配查询
+    [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+        //        DLog(@"array is %@, error is %@", array, error);
+        //将BmobObject对象数组转换成Route对象数组
+        NSArray *routeArray = nil;
+        if (error == nil) {
+            routeArray = [self routeModelArrayWithBmobObjectArray:array];
+        }
+        if (block) {
+            DLog(@"routeArray is %@, error is %@", routeArray, error);
+            block(routeArray, error);
+        }
+    }];
+}
+
+/**
  *  根据用户id获取当前用户的路线中最远距离的一条路线
  */
 + (void)getMaxDistanceRouteWithUserObjectId:(NSString *)objectId resultBlock:(void (^)(ACRouteModel *, NSError *))block

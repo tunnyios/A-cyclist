@@ -751,7 +751,7 @@ typedef enum : NSUInteger {
     self.route.timeNumber = [NSNumber numberWithDouble:[NSString stringWithFormat:@"%.2f", self.totleTime].doubleValue];
     self.route.averageSpeed = [NSNumber numberWithDouble:self.currentAverageSpeed.text.doubleValue];
     self.route.maxSpeed = [NSNumber numberWithDouble:self.currentMaxSpeed.text.doubleValue];
-    self.route.isShared = 0;
+    self.route.isShared = [NSNumber numberWithInt:0];
     self.route.hotLevel = nil;
     self.route.imageList = nil;
     self.route.userObjectId = self.user.objectId;

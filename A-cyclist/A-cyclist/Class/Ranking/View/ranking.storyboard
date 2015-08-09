@@ -157,6 +157,32 @@
             </objects>
             <point key="canvasLocation" x="-246" y="106"/>
         </scene>
+        <!--User Detail Controller-->
+        <scene sceneID="3vP-3C-CWI">
+            <objects>
+                <tableViewController storyboardIdentifier="userDetailController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="eaV-Zh-jrb" customClass="ACUserDetailController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="xEk-AE-qEk">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="B2T-Lb-Axn">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="B2T-Lb-Axn" id="Ba6-o5-cci">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="eaV-Zh-jrb" id="K6U-KP-c5a"/>
+                            <outlet property="delegate" destination="eaV-Zh-jrb" id="mPS-Iu-p9O"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AXR-Sl-gUG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="401" y="106"/>
+        </scene>
     </scenes>
     <resources>
         <image name="login_textfield_mid2" width="1" height="300"/>
