@@ -752,8 +752,6 @@ typedef enum : NSUInteger {
     self.route.averageSpeed = [NSNumber numberWithDouble:self.currentAverageSpeed.text.doubleValue];
     self.route.maxSpeed = [NSNumber numberWithDouble:self.currentMaxSpeed.text.doubleValue];
     self.route.isShared = [NSNumber numberWithInt:0];
-    self.route.hotLevel = nil;
-    self.route.imageList = nil;
     self.route.userObjectId = self.user.objectId;
     
     //上下坡相关

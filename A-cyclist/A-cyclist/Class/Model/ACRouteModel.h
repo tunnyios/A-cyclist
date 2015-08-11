@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+@class BmobObject;
 @interface ACRouteModel : NSObject <NSCoding>
 /** 路线名称 */
 @property (nonatomic, copy) NSString *routeName;
@@ -51,10 +52,6 @@
 
 /** 是否共享 */
 @property (nonatomic, assign) NSNumber *isShared;
-/** 路线热度 */
-@property (nonatomic, copy) NSString *hotLevel;
-/** 图片url列表 */
-@property (nonatomic, strong) NSArray *imageList;
 
 /** BmobObject对象的最后更新时间 */
 //@property(nonatomic,strong)NSDate *updatedAt;
@@ -65,4 +62,10 @@
 /** 骑行结束时间 */
 @property (nonatomic, strong) NSDate *cyclingEndTime;
 
+
+/** 将bmobObject对象转换成Route对象 */
++ (ACRouteModel *)routeModelWithBmobObject:(BmobObject *)bmobObj;
+
+/** 将bmobObject对象数组转换成Route对象数组 */
++ (NSArray *)routeModelArrayWithBmobObjectArray:(NSArray *)bmobArray;
 @end

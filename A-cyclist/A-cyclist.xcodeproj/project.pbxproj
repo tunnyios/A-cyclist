@@ -16,6 +16,11 @@
 		A2082E6A1B62259800CA3325 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A2082E691B62259800CA3325 /* mapapi.bundle */; };
 		A2082E6D1B62993400CA3325 /* ACCyclingViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = A2082E6C1B62993400CA3325 /* ACCyclingViewController.mm */; };
 		A2082E701B62996F00CA3325 /* ACCyclingArgumentsViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = A2082E6F1B62996F00CA3325 /* ACCyclingArgumentsViewController.mm */; };
+		A2158C6F1B78EE1E00BE27E1 /* ACHotRoutesDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2158C6E1B78EE1E00BE27E1 /* ACHotRoutesDetailController.m */; };
+		A2158C771B79010C00BE27E1 /* ACHotRoutesCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2158C761B79010C00BE27E1 /* ACHotRoutesCellView.m */; };
+		A2158C7A1B79013600BE27E1 /* ACHotRoutesDetailTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2158C791B79013600BE27E1 /* ACHotRoutesDetailTopView.m */; };
+		A2158C851B7997F600BE27E1 /* HCStarView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2158C831B7997F600BE27E1 /* HCStarView.m */; };
+		A2158C861B7997F600BE27E1 /* HCStarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2158C841B7997F600BE27E1 /* HCStarView.xib */; };
 		A218F7031B5A3F33007CBADA /* ACLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A218F7021B5A3F33007CBADA /* ACLoginViewController.m */; };
 		A218F7051B5A3FB2007CBADA /* ACLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A218F7041B5A3FB2007CBADA /* ACLogin.storyboard */; };
 		A21D7B511B75F1780014466C /* ACRouteHistoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = A21D7B501B75F1780014466C /* ACRouteHistoryController.m */; };
@@ -97,6 +102,12 @@
 		A266D9FB1B5D11D200D4B326 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = A266D9F31B5D11D200D4B326 /* FMDatabasePool.m */; };
 		A266D9FC1B5D11D200D4B326 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = A266D9F51B5D11D200D4B326 /* FMDatabaseQueue.m */; };
 		A266D9FD1B5D11D200D4B326 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = A266D9F81B5D11D200D4B326 /* FMResultSet.m */; };
+		A26E8ED71B78471F003FFC37 /* hotRoutes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A26E8ED61B78471F003FFC37 /* hotRoutes.storyboard */; };
+		A26E8EDA1B78474D003FFC37 /* ACHotRoutesController.m in Sources */ = {isa = PBXBuildFile; fileRef = A26E8ED91B78474D003FFC37 /* ACHotRoutesController.m */; };
+		A26E8EDF1B7848A1003FFC37 /* ACHotRoutesCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A26E8EDD1B7848A1003FFC37 /* ACHotRoutesCellView.xib */; };
+		A26E8EE21B7848C8003FFC37 /* ACHotRoutesCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A26E8EE11B7848C8003FFC37 /* ACHotRoutesCellModel.m */; };
+		A26E8EE51B784AB8003FFC37 /* ACSharedRouteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A26E8EE41B784AB8003FFC37 /* ACSharedRouteModel.m */; };
+		A26E8EE81B788990003FFC37 /* ACSharedRoutePhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A26E8EE71B788990003FFC37 /* ACSharedRoutePhotoModel.m */; };
 		A281C58B1B6DA4A900DF31C0 /* ACCyclingDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A281C58A1B6DA4A900DF31C0 /* ACCyclingDetailModel.m */; };
 		A281C58F1B6DD61E00DF31C0 /* ACScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = A281C58E1B6DD61E00DF31C0 /* ACScrollView.m */; };
 		A281C5951B6DD62500DF31C0 /* ACCyclingArgumentScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = A281C5921B6DD62500DF31C0 /* ACCyclingArgumentScrollView.m */; };
@@ -129,9 +140,7 @@
 		A28BFF161B53F98200A712F1 /* cycling.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A28BFF151B53F98200A712F1 /* cycling.storyboard */; };
 		A28BFF181B53F9AD00A712F1 /* profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A28BFF171B53F9AD00A712F1 /* profile.storyboard */; };
 		A28BFF1A1B53F9D700A712F1 /* ranking.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A28BFF191B53F9D700A712F1 /* ranking.storyboard */; };
-		A28BFF1C1B53F9E900A712F1 /* route.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A28BFF1B1B53F9E900A712F1 /* route.storyboard */; };
 		A28BFF1E1B53F9FD00A712F1 /* setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A28BFF1D1B53F9FD00A712F1 /* setting.storyboard */; };
-		A2A43CD51B724C2C0099011F /* ACRoutePhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A43CD41B724C2C0099011F /* ACRoutePhotoModel.m */; };
 		A2A43CD81B7324990099011F /* ACProfileHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A43CD71B7324990099011F /* ACProfileHeaderView.m */; };
 		A2A43CDA1B7324A90099011F /* ACProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2A43CD91B7324A90099011F /* ACProfileHeaderView.xib */; };
 		A2AD90BD1B5FAAB100847F72 /* BaiduMapAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AD90BC1B5FAAB100847F72 /* BaiduMapAPI.framework */; };
@@ -179,6 +188,14 @@
 		A2082E6C1B62993400CA3325 /* ACCyclingViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ACCyclingViewController.mm; sourceTree = "<group>"; };
 		A2082E6E1B62996F00CA3325 /* ACCyclingArgumentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACCyclingArgumentsViewController.h; sourceTree = "<group>"; };
 		A2082E6F1B62996F00CA3325 /* ACCyclingArgumentsViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ACCyclingArgumentsViewController.mm; sourceTree = "<group>"; };
+		A2158C6D1B78EE1E00BE27E1 /* ACHotRoutesDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACHotRoutesDetailController.h; sourceTree = "<group>"; };
+		A2158C6E1B78EE1E00BE27E1 /* ACHotRoutesDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACHotRoutesDetailController.m; sourceTree = "<group>"; };
+		A2158C761B79010C00BE27E1 /* ACHotRoutesCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACHotRoutesCellView.m; sourceTree = "<group>"; };
+		A2158C781B79013600BE27E1 /* ACHotRoutesDetailTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACHotRoutesDetailTopView.h; sourceTree = "<group>"; };
+		A2158C791B79013600BE27E1 /* ACHotRoutesDetailTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACHotRoutesDetailTopView.m; sourceTree = "<group>"; };
+		A2158C821B7997F600BE27E1 /* HCStarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCStarView.h; sourceTree = "<group>"; };
+		A2158C831B7997F600BE27E1 /* HCStarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCStarView.m; sourceTree = "<group>"; };
+		A2158C841B7997F600BE27E1 /* HCStarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HCStarView.xib; sourceTree = "<group>"; };
 		A218F7011B5A3F33007CBADA /* ACLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACLoginViewController.h; sourceTree = "<group>"; };
 		A218F7021B5A3F33007CBADA /* ACLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACLoginViewController.m; sourceTree = "<group>"; };
 		A218F7041B5A3FB2007CBADA /* ACLogin.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ACLogin.storyboard; sourceTree = "<group>"; };
@@ -340,6 +357,17 @@
 		A266D9F61B5D11D200D4B326 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
 		A266D9F71B5D11D200D4B326 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		A266D9F81B5D11D200D4B326 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		A26E8ED61B78471F003FFC37 /* hotRoutes.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = hotRoutes.storyboard; sourceTree = "<group>"; };
+		A26E8ED81B78474D003FFC37 /* ACHotRoutesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACHotRoutesController.h; sourceTree = "<group>"; };
+		A26E8ED91B78474D003FFC37 /* ACHotRoutesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACHotRoutesController.m; sourceTree = "<group>"; };
+		A26E8EDB1B7848A1003FFC37 /* ACHotRoutesCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACHotRoutesCellView.h; sourceTree = "<group>"; };
+		A26E8EDD1B7848A1003FFC37 /* ACHotRoutesCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ACHotRoutesCellView.xib; sourceTree = "<group>"; };
+		A26E8EE01B7848C8003FFC37 /* ACHotRoutesCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACHotRoutesCellModel.h; sourceTree = "<group>"; };
+		A26E8EE11B7848C8003FFC37 /* ACHotRoutesCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACHotRoutesCellModel.m; sourceTree = "<group>"; };
+		A26E8EE31B784AB8003FFC37 /* ACSharedRouteModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACSharedRouteModel.h; sourceTree = "<group>"; };
+		A26E8EE41B784AB8003FFC37 /* ACSharedRouteModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACSharedRouteModel.m; sourceTree = "<group>"; };
+		A26E8EE61B788990003FFC37 /* ACSharedRoutePhotoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACSharedRoutePhotoModel.h; sourceTree = "<group>"; };
+		A26E8EE71B788990003FFC37 /* ACSharedRoutePhotoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACSharedRoutePhotoModel.m; sourceTree = "<group>"; };
 		A281C5891B6DA4A900DF31C0 /* ACCyclingDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACCyclingDetailModel.h; sourceTree = "<group>"; };
 		A281C58A1B6DA4A900DF31C0 /* ACCyclingDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACCyclingDetailModel.m; sourceTree = "<group>"; };
 		A281C58D1B6DD61E00DF31C0 /* ACScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACScrollView.h; sourceTree = "<group>"; };
@@ -387,10 +415,7 @@
 		A28BFF151B53F98200A712F1 /* cycling.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = cycling.storyboard; sourceTree = "<group>"; };
 		A28BFF171B53F9AD00A712F1 /* profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = profile.storyboard; sourceTree = "<group>"; };
 		A28BFF191B53F9D700A712F1 /* ranking.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ranking.storyboard; sourceTree = "<group>"; };
-		A28BFF1B1B53F9E900A712F1 /* route.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = route.storyboard; sourceTree = "<group>"; };
 		A28BFF1D1B53F9FD00A712F1 /* setting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = setting.storyboard; sourceTree = "<group>"; };
-		A2A43CD31B724C2C0099011F /* ACRoutePhotoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACRoutePhotoModel.h; sourceTree = "<group>"; };
-		A2A43CD41B724C2C0099011F /* ACRoutePhotoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACRoutePhotoModel.m; sourceTree = "<group>"; };
 		A2A43CD61B7324990099011F /* ACProfileHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACProfileHeaderView.h; sourceTree = "<group>"; };
 		A2A43CD71B7324990099011F /* ACProfileHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACProfileHeaderView.m; sourceTree = "<group>"; };
 		A2A43CD91B7324A90099011F /* ACProfileHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ACProfileHeaderView.xib; sourceTree = "<group>"; };
@@ -500,12 +525,24 @@
 				A204B1691B5BE144004C0A6C /* ACUserModel.m */,
 				A2CE5A491B6879860071AC59 /* ACRouteModel.h */,
 				A2CE5A4A1B6879860071AC59 /* ACRouteModel.m */,
-				A2A43CD31B724C2C0099011F /* ACRoutePhotoModel.h */,
-				A2A43CD41B724C2C0099011F /* ACRoutePhotoModel.m */,
+				A26E8EE31B784AB8003FFC37 /* ACSharedRouteModel.h */,
+				A26E8EE41B784AB8003FFC37 /* ACSharedRouteModel.m */,
+				A26E8EE61B788990003FFC37 /* ACSharedRoutePhotoModel.h */,
+				A26E8EE71B788990003FFC37 /* ACSharedRoutePhotoModel.m */,
 				A2CE5A4C1B687F130071AC59 /* ACStepModel.h */,
 				A2CE5A4D1B687F130071AC59 /* ACStepModel.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		A2158C811B7997F600BE27E1 /* HCStarView */ = {
+			isa = PBXGroup;
+			children = (
+				A2158C821B7997F600BE27E1 /* HCStarView.h */,
+				A2158C831B7997F600BE27E1 /* HCStarView.m */,
+				A2158C841B7997F600BE27E1 /* HCStarView.xib */,
+			);
+			path = HCStarView;
 			sourceTree = "<group>";
 		};
 		A218F7001B5A3F09007CBADA /* View */ = {
@@ -741,6 +778,49 @@
 			path = fmdb;
 			sourceTree = "<group>";
 		};
+		A26E8ECD1B7846F5003FFC37 /* HotRoute */ = {
+			isa = PBXGroup;
+			children = (
+				A26E8ECE1B7846F5003FFC37 /* Controller */,
+				A26E8ED11B7846F5003FFC37 /* Model */,
+				A26E8ED21B7846F5003FFC37 /* View */,
+			);
+			path = HotRoute;
+			sourceTree = "<group>";
+		};
+		A26E8ECE1B7846F5003FFC37 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A26E8ED81B78474D003FFC37 /* ACHotRoutesController.h */,
+				A26E8ED91B78474D003FFC37 /* ACHotRoutesController.m */,
+				A2158C6D1B78EE1E00BE27E1 /* ACHotRoutesDetailController.h */,
+				A2158C6E1B78EE1E00BE27E1 /* ACHotRoutesDetailController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		A26E8ED11B7846F5003FFC37 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A26E8EE01B7848C8003FFC37 /* ACHotRoutesCellModel.h */,
+				A26E8EE11B7848C8003FFC37 /* ACHotRoutesCellModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A26E8ED21B7846F5003FFC37 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A2158C781B79013600BE27E1 /* ACHotRoutesDetailTopView.h */,
+				A2158C791B79013600BE27E1 /* ACHotRoutesDetailTopView.m */,
+				A26E8ED61B78471F003FFC37 /* hotRoutes.storyboard */,
+				A26E8EDB1B7848A1003FFC37 /* ACHotRoutesCellView.h */,
+				A2158C761B79010C00BE27E1 /* ACHotRoutesCellView.m */,
+				A26E8EDD1B7848A1003FFC37 /* ACHotRoutesCellView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		A281C58C1B6DD61E00DF31C0 /* CyclingView */ = {
 			isa = PBXGroup;
 			children = (
@@ -864,7 +944,7 @@
 				A28BFEF31B53B35B00A712F1 /* NewFeature */,
 				A28BFEF71B53B35B00A712F1 /* Profile */,
 				A28BFEFB1B53B35B00A712F1 /* Ranking */,
-				A28BFEFF1B53B35B00A712F1 /* Route */,
+				A26E8ECD1B7846F5003FFC37 /* HotRoute */,
 				A28BFF031B53B35B00A712F1 /* Setting */,
 				A28BFF071B53B35B00A712F1 /* Tool */,
 			);
@@ -1125,38 +1205,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		A28BFEFF1B53B35B00A712F1 /* Route */ = {
-			isa = PBXGroup;
-			children = (
-				A28BFF001B53B35B00A712F1 /* Controller */,
-				A28BFF011B53B35B00A712F1 /* Model */,
-				A28BFF021B53B35B00A712F1 /* View */,
-			);
-			path = Route;
-			sourceTree = "<group>";
-		};
-		A28BFF001B53B35B00A712F1 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		A28BFF011B53B35B00A712F1 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		A28BFF021B53B35B00A712F1 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				A28BFF1B1B53F9E900A712F1 /* route.storyboard */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		A28BFF031B53B35B00A712F1 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
@@ -1232,6 +1280,7 @@
 		A2D1ECF31B550E3A00344246 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A2158C811B7997F600BE27E1 /* HCStarView */,
 				A204B1581B5B506B004C0A6C /* HCKeyboard */,
 				A2D483B71B5525B200BC8406 /* HCTabBar5ContentView.h */,
 				A2D483B81B5525B200BC8406 /* HCTabBar5ContentView.m */,
@@ -1355,22 +1404,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2D207131B67435B00214B09 /* silence.mp3 in Resources */,
+				A26E8ED71B78471F003FFC37 /* hotRoutes.storyboard in Resources */,
 				A2D2071B1B67ACD000214B09 /* cyclingArguments.storyboard in Resources */,
 				A28BFECA1B53A2CC00A712F1 /* LaunchScreen.xib in Resources */,
 				A28BFF161B53F98200A712F1 /* cycling.storyboard in Resources */,
-				A28BFF1C1B53F9E900A712F1 /* route.storyboard in Resources */,
 				A261B04D1B57AC56006C8917 /* ACLogoutSettingViewCell.xib in Resources */,
 				A204B1611B5B506B004C0A6C /* HCKeyboardTool.xib in Resources */,
 				A218F7051B5A3FB2007CBADA /* ACLogin.storyboard in Resources */,
 				A28BFF181B53F9AD00A712F1 /* profile.storyboard in Resources */,
 				A28BFF1E1B53F9FD00A712F1 /* setting.storyboard in Resources */,
 				A21DE5E41B71AD3A00BC0D31 /* ACProfileCellView.xib in Resources */,
+				A2158C861B7997F600BE27E1 /* HCStarView.xib in Resources */,
 				A2845EB51B5AB825006E0CE0 /* MBProgressHUD.bundle in Resources */,
 				A21D7B611B76FC010014466C /* ACRankingFormerCellView.xib in Resources */,
 				A28BFEC71B53A2CC00A712F1 /* Images.xcassets in Resources */,
 				A28BFF1A1B53F9D700A712F1 /* ranking.storyboard in Resources */,
 				A266D9AF1B5C9FE600D4B326 /* WeiboSDK.bundle in Resources */,
 				A261435F1B5E4AF7007EA45C /* ACChangeNameController.xib in Resources */,
+				A26E8EDF1B7848A1003FFC37 /* ACHotRoutesCellView.xib in Resources */,
 				A21D7B661B76FC760014466C /* ACRankingBehindCellView.xib in Resources */,
 				A2082E6A1B62259800CA3325 /* mapapi.bundle in Resources */,
 				A2A43CDA1B7324A90099011F /* ACProfileHeaderView.xib in Resources */,
@@ -1402,24 +1453,27 @@
 				A266D99C1B5C881700D4B326 /* MJType.m in Sources */,
 				A261434D1B5E22D6007EA45C /* SDWebImageDownloaderOperation.m in Sources */,
 				A26143561B5E22D6007EA45C /* UIView+WebCacheOperation.m in Sources */,
+				A2158C7A1B79013600BE27E1 /* ACHotRoutesDetailTopView.m in Sources */,
 				A26143501B5E22D6007EA45C /* UIButton+WebCache.m in Sources */,
 				A266D9991B5C881700D4B326 /* MJConst.m in Sources */,
-				A2A43CD51B724C2C0099011F /* ACRoutePhotoModel.m in Sources */,
 				A261B0421B57810A006C8917 /* ACSettingViewController.m in Sources */,
 				A21D7B511B75F1780014466C /* ACRouteHistoryController.m in Sources */,
 				A21D7B691B775AA30014466C /* ACRankingCellModel.m in Sources */,
 				A266D9C31B5CF8F900D4B326 /* ACSettingProfileInfoViewController.m in Sources */,
 				A2F040EB1B563A51004FBF3D /* ACBaseTableViewController.m in Sources */,
 				A261434A1B5E22D6007EA45C /* SDWebImageCompat.m in Sources */,
+				A26E8EE21B7848C8003FFC37 /* ACHotRoutesCellModel.m in Sources */,
 				A261434C1B5E22D6007EA45C /* SDWebImageDownloader.m in Sources */,
 				A26143481B5E22D6007EA45C /* NSData+ImageContentType.m in Sources */,
 				A266D9A01B5C881700D4B326 /* NSString+MJExtension.m in Sources */,
 				A266D9FB1B5D11D200D4B326 /* FMDatabasePool.m in Sources */,
 				A266D99A1B5C881700D4B326 /* MJFoundation.m in Sources */,
+				A2158C6F1B78EE1E00BE27E1 /* ACHotRoutesDetailController.m in Sources */,
 				A261B04B1B57AA87006C8917 /* ACLogoutSettingViewCell.m in Sources */,
 				A26143541B5E22D6007EA45C /* UIImageView+HighlightedWebCache.m in Sources */,
 				A204B0941B5B30F7004C0A6C /* NSString+Extension.m in Sources */,
 				A204B15F1B5B506B004C0A6C /* HCBaseKeyboardViewController.m in Sources */,
+				A26E8EDA1B78474D003FFC37 /* ACHotRoutesController.m in Sources */,
 				A2A43CD81B7324990099011F /* ACProfileHeaderView.m in Sources */,
 				A2082E701B62996F00CA3325 /* ACCyclingArgumentsViewController.mm in Sources */,
 				A26143241B5E1F43007EA45C /* ACPhotoSettingCellModel.m in Sources */,
@@ -1438,6 +1492,7 @@
 				A2845EB41B5AB825006E0CE0 /* MBProgressHUD+MJ.m in Sources */,
 				A204B1601B5B506B004C0A6C /* HCKeyboardTool.m in Sources */,
 				A266D9FA1B5D11D200D4B326 /* FMDatabaseAdditions.m in Sources */,
+				A2158C771B79010C00BE27E1 /* ACHotRoutesCellView.m in Sources */,
 				A218F7031B5A3F33007CBADA /* ACLoginViewController.m in Sources */,
 				A2CE5A4B1B6879860071AC59 /* ACRouteModel.m in Sources */,
 				A266D9DC1B5CF9CD00D4B326 /* AFSecurityPolicy.m in Sources */,
@@ -1445,6 +1500,7 @@
 				A21D7B6F1B775EE50014466C /* ACRankingBehindCellModel.m in Sources */,
 				A26143551B5E22D6007EA45C /* UIImageView+WebCache.m in Sources */,
 				A26143211B5DFA6C007EA45C /* ACArrowWithSubtitleSettingCellModel.m in Sources */,
+				A2158C851B7997F600BE27E1 /* HCStarView.m in Sources */,
 				A266D9E81B5CFA0B00D4B326 /* HCFileParamsModel.m in Sources */,
 				A266D9F91B5D11D200D4B326 /* FMDatabase.m in Sources */,
 				A266D9FD1B5D11D200D4B326 /* FMResultSet.m in Sources */,
@@ -1478,6 +1534,7 @@
 				A281C58B1B6DA4A900DF31C0 /* ACCyclingDetailModel.m in Sources */,
 				A28BFF0A1B53B35B00A712F1 /* main.m in Sources */,
 				A21DE5E71B71AD7400BC0D31 /* ACProfileCellView.m in Sources */,
+				A26E8EE81B788990003FFC37 /* ACSharedRoutePhotoModel.m in Sources */,
 				A2D3C4771B7781D900060BA6 /* ACUserDetailController.m in Sources */,
 				A266D99B1B5C881700D4B326 /* MJProperty.m in Sources */,
 				A266D9861B5C7D5900D4B326 /* NSDate+Extension.m in Sources */,
@@ -1486,6 +1543,7 @@
 				A2D483B61B5516E300BC8406 /* UIColor+Tools.m in Sources */,
 				A21DE5E21B719F6E00BC0D31 /* ACProfileController.m in Sources */,
 				A266D99E1B5C881700D4B326 /* NSObject+MJKeyValue.m in Sources */,
+				A26E8EE51B784AB8003FFC37 /* ACSharedRouteModel.m in Sources */,
 				A266D9DA1B5CF9CD00D4B326 /* AFHTTPSessionManager.m in Sources */,
 				A266D9DF1B5CF9CD00D4B326 /* AFURLResponseSerialization.m in Sources */,
 				A261B0481B57A3BF006C8917 /* ACBlankSettingCellModel.m in Sources */,

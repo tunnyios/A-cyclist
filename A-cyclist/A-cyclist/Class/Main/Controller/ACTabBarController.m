@@ -23,7 +23,7 @@
     // Do any additional setup after loading the view.
     
     UIStoryboard *profileSB = [UIStoryboard storyboardWithName:@"profile" bundle:nil];
-    UIStoryboard *routeSB = [UIStoryboard storyboardWithName:@"route" bundle:nil];
+    UIStoryboard *routeSB = [UIStoryboard storyboardWithName:@"hotRoutes" bundle:nil];
     UIStoryboard *cyclingSB = [UIStoryboard storyboardWithName:@"cycling" bundle:nil];
     UIStoryboard *rankingSB = [UIStoryboard storyboardWithName:@"ranking" bundle:nil];
     UIStoryboard *settingSB = [UIStoryboard storyboardWithName:@"setting" bundle:nil];
@@ -37,7 +37,7 @@
     UINavigationController *routeNav = [routeSB instantiateInitialViewController];
     UIViewController *routeVc = routeNav.topViewController;
     [self creatChildViewController:routeVc title:@"路线" icon:@"tab_route_iphone_4" selectedIcon:@"tab_route_white_iphone_4"];
-    routeVc.view.backgroundColor = [UIColor colorWithRandom];
+//    routeVc.view.backgroundColor = [UIColor colorWithRandom];
 
     UIViewController *cyclingVc = [cyclingSB instantiateInitialViewController];
     

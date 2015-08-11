@@ -76,7 +76,7 @@
         }
         
         //裁剪图片
-        [UIImage clipImageWithView:self.smallProtraitView border:5 borderColor:[UIColor blueColor] radius:(self.smallProtraitView.bounds.size.width * 0.5)];
+        [UIImage clipImageWithView:self.smallProtraitView border:2 borderColor:[UIColor colorWithRed:158 green:185 blue:224 alpha:1] radius:(self.smallProtraitView.bounds.size.width * 0.5)];
         self.accessoryView = self.smallProtraitView;
     } else {
         self.accessoryView.hidden = YES;

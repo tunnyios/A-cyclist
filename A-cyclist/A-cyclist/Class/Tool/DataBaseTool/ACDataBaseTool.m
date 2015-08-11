@@ -10,6 +10,7 @@
 #import "ACUserModel.h"
 #import "ACGlobal.h"
 #import <BmobSDK/BmobProFile.h>
+#import "ACSharedRouteModel.h"
 #import "ACRouteModel.h"
 #import "ACStepModel.h"
 #import "NSArray+Log.h"
@@ -130,8 +131,6 @@
     
     //设置共享路线参数
     [post setObject:route.isShared forKey:@"isShared"];
-    [post setObject:route.hotLevel forKey:@"hotLevel"];
-    [post setObject:route.imageList forKey:@"imageList"];
     //设置路线基本参数
     [post setObject:route.routeName forKey:@"routeName"];
     
@@ -184,64 +183,62 @@
 /**
  *  将bmobObject对象数组转换成Route对象数组
  */
-+ (NSArray *)routeModelArrayWithBmobObjectArray:(NSArray *)bmobArray
-{
-    NSMutableArray *routeArrayM = [NSMutableArray array];
-    [bmobArray enumerateObjectsUsingBlock:^(BmobObject *bmobObj, NSUInteger idx, BOOL *stop) {
-        ACRouteModel *routeModel = [self routeModelWithBmobObject:bmobObj];
-        [routeArrayM addObject:routeModel];
-    }];
-    
-//    DLog(@"routeArrayM is %@", routeArrayM);
-    return routeArrayM;
-}
+//+ (NSArray *)routeModelArrayWithBmobObjectArray:(NSArray *)bmobArray
+//{
+//    NSMutableArray *routeArrayM = [NSMutableArray array];
+//    [bmobArray enumerateObjectsUsingBlock:^(BmobObject *bmobObj, NSUInteger idx, BOOL *stop) {
+//        ACRouteModel *routeModel = [self routeModelWithBmobObject:bmobObj];
+//        [routeArrayM addObject:routeModel];
+//    }];
+//    
+////    DLog(@"routeArrayM is %@", routeArrayM);
+//    return routeArrayM;
+//}
 
 /**
  *  将bmobObject对象转换成Route对象
  */
-+ (ACRouteModel *)routeModelWithBmobObject:(BmobObject *)bmobObj
-{
-    ACRouteModel *routeModel = [[ACRouteModel alloc] init];
-    routeModel.routeName = [bmobObj objectForKey:@"routeName"];
-
-    NSArray *stepArray = [bmobObj objectForKey:@"steps"];
-    __block NSMutableArray *stepsArrayM = [NSMutableArray array];
-    [stepArray enumerateObjectsUsingBlock:^(NSDictionary *stepDict, NSUInteger idx, BOOL *stop) {
-        ACStepModel *step = [[ACStepModel alloc] init];
-        step.latitude = stepDict[@"latitude"];
-        step.longitude = stepDict[@"longitude"];
-        step.altitude = stepDict[@"altitude"];
-        step.currentSpeed = stepDict[@"currentSpeed"];
-        step.distanceInterval = stepDict[@"distanceInterval"];
-        
-        [stepsArrayM addObject:step];
-    }];
-    routeModel.steps = stepsArrayM;
-
-    routeModel.distance = [bmobObj objectForKey:@"distance"];
-    routeModel.time = [bmobObj objectForKey:@"time"];
-    routeModel.timeNumber = [bmobObj objectForKey:@"timeNumber"];
-    routeModel.averageSpeed = [bmobObj objectForKey:@"averageSpeed"];
-    routeModel.maxSpeed = [bmobObj objectForKey:@"maxSpeed"];
-    routeModel.maxAltitude = [bmobObj objectForKey:@"maxAltitude"];
-    routeModel.minAltitude = [bmobObj objectForKey:@"minAltitude"];
-    routeModel.ascendAltitude = [bmobObj objectForKey:@"ascendAltitude"];
-    routeModel.ascendTime = [bmobObj objectForKey:@"ascendTime"];
-    routeModel.ascendDistance = [bmobObj objectForKey:@"ascendDistance"];
-    routeModel.flatTime = [bmobObj objectForKey:@"flatTime"];
-    routeModel.flatDistance = [bmobObj objectForKey:@"flatDistance"];
-    routeModel.descendTime = [bmobObj objectForKey:@"descendTime"];
-    routeModel.descendDistance = [bmobObj objectForKey:@"descendDistance"];
-    routeModel.userObjectId = [bmobObj objectForKey:@"userObjectId"];
-    routeModel.isShared = [bmobObj objectForKey:@"isShared"];
-    routeModel.hotLevel = [bmobObj objectForKey:@"hotLevel"];
-    routeModel.imageList = [bmobObj objectForKey:@"imageList"];
-    routeModel.cyclingStartTime = [bmobObj objectForKey:@"cyclingStartTime"];
-    routeModel.cyclingEndTime = [bmobObj objectForKey:@"cyclingEndTime"];
-    
-//    DLog(@"routeModel is %@", routeModel);
-    return routeModel;
-}
+//+ (ACRouteModel *)routeModelWithBmobObject:(BmobObject *)bmobObj
+//{
+//    ACRouteModel *routeModel = [[ACRouteModel alloc] init];
+//    routeModel.routeName = [bmobObj objectForKey:@"routeName"];
+//
+//    NSArray *stepArray = [bmobObj objectForKey:@"steps"];
+//    __block NSMutableArray *stepsArrayM = [NSMutableArray array];
+//    [stepArray enumerateObjectsUsingBlock:^(NSDictionary *stepDict, NSUInteger idx, BOOL *stop) {
+//        ACStepModel *step = [[ACStepModel alloc] init];
+//        step.latitude = stepDict[@"latitude"];
+//        step.longitude = stepDict[@"longitude"];
+//        step.altitude = stepDict[@"altitude"];
+//        step.currentSpeed = stepDict[@"currentSpeed"];
+//        step.distanceInterval = stepDict[@"distanceInterval"];
+//        
+//        [stepsArrayM addObject:step];
+//    }];
+//    routeModel.steps = stepsArrayM;
+//
+//    routeModel.distance = [bmobObj objectForKey:@"distance"];
+//    routeModel.time = [bmobObj objectForKey:@"time"];
+//    routeModel.timeNumber = [bmobObj objectForKey:@"timeNumber"];
+//    routeModel.averageSpeed = [bmobObj objectForKey:@"averageSpeed"];
+//    routeModel.maxSpeed = [bmobObj objectForKey:@"maxSpeed"];
+//    routeModel.maxAltitude = [bmobObj objectForKey:@"maxAltitude"];
+//    routeModel.minAltitude = [bmobObj objectForKey:@"minAltitude"];
+//    routeModel.ascendAltitude = [bmobObj objectForKey:@"ascendAltitude"];
+//    routeModel.ascendTime = [bmobObj objectForKey:@"ascendTime"];
+//    routeModel.ascendDistance = [bmobObj objectForKey:@"ascendDistance"];
+//    routeModel.flatTime = [bmobObj objectForKey:@"flatTime"];
+//    routeModel.flatDistance = [bmobObj objectForKey:@"flatDistance"];
+//    routeModel.descendTime = [bmobObj objectForKey:@"descendTime"];
+//    routeModel.descendDistance = [bmobObj objectForKey:@"descendDistance"];
+//    routeModel.userObjectId = [bmobObj objectForKey:@"userObjectId"];
+//    routeModel.isShared = [bmobObj objectForKey:@"isShared"];
+//    routeModel.cyclingStartTime = [bmobObj objectForKey:@"cyclingStartTime"];
+//    routeModel.cyclingEndTime = [bmobObj objectForKey:@"cyclingEndTime"];
+//    
+////    DLog(@"routeModel is %@", routeModel);
+//    return routeModel;
+//}
 
 /**
  *  根据用户id获取数据库中的路线列表
@@ -265,7 +262,7 @@
         //将BmobObject对象数组转换成Route对象数组
         NSArray *routeArray = nil;
         if (error == nil) {
-            routeArray = [self routeModelArrayWithBmobObjectArray:array];
+            routeArray = [ACRouteModel routeModelArrayWithBmobObjectArray:array];
         }
         if (block) {
             DLog(@"routeArray is %@, error is %@", routeArray, error);
@@ -293,7 +290,7 @@
         //将BmobObject对象数组转换成Route对象数组
         NSArray *routeArray = nil;
         if (error == nil) {
-            routeArray = [self routeModelArrayWithBmobObjectArray:array];
+            routeArray = [ACRouteModel routeModelArrayWithBmobObjectArray:array];
         }
         if (block) {
             DLog(@"routeArray is %@, error is %@", routeArray, error);
@@ -321,7 +318,7 @@
         //将BmobObject对象数组转换成Route对象数组
         ACRouteModel *routeModel = [[ACRouteModel alloc] init];
         if (error == nil) {
-            routeModel = [self routeModelWithBmobObject:(BmobObject *)array.firstObject];
+            routeModel = [ACRouteModel routeModelWithBmobObject:(BmobObject *)array.firstObject];
         }
         if (block) {
             DLog(@"maxDistanceRouteModel is %@, error is %@", routeModel, error);
@@ -349,7 +346,7 @@
         //将BmobObject对象数组转换成Route对象数组
         ACRouteModel *routeModel = [[ACRouteModel alloc] init];
         if (error == nil) {
-            routeModel = [self routeModelWithBmobObject:(BmobObject *)array.firstObject];
+            routeModel = [ACRouteModel routeModelWithBmobObject:(BmobObject *)array.firstObject];
         }
         if (block) {
             DLog(@"maxSpeedRouteModel is %@, error is %@", routeModel, error);
@@ -377,7 +374,7 @@
         //将BmobObject对象数组转换成Route对象数组
         ACRouteModel *routeModel = [[ACRouteModel alloc] init];
         if (error == nil) {
-            routeModel = [self routeModelWithBmobObject:(BmobObject *)array.firstObject];
+            routeModel = [ACRouteModel routeModelWithBmobObject:(BmobObject *)array.firstObject];
         }
         if (block) {
             DLog(@"maxAverageSpeedRouteModel is %@, error is %@", routeModel, error);
@@ -405,13 +402,40 @@
         //将BmobObject对象数组转换成Route对象数组
         ACRouteModel *routeModel = [[ACRouteModel alloc] init];
         if (error == nil) {
-            routeModel = [self routeModelWithBmobObject:(BmobObject *)array.firstObject];
+            routeModel = [ACRouteModel routeModelWithBmobObject:(BmobObject *)array.firstObject];
         }
         if (block) {
             DLog(@"maxTimeRouteModel is %@, error is %@", routeModel, error);
             block(routeModel, error);
         }
     }];
+}
+
+/**
+ *  根据classification类别来获取sharedRoute列表
+ *
+ */
++ (void)getSharedRouteListClass:(NSString *)classification resultBlock:(void (^)(NSArray *, NSError *))block
+{
+    BmobQuery *bquery = [BmobQuery queryWithClassName:@"sharedRoute"];
+    
+    //构造约束条件
+    [bquery whereKey:@"classification" equalTo:classification];
+    
+    //匹配查询
+    [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+        //        DLog(@"array is %@, error is %@", array, error);
+        //将BmobObject对象数组转换成sharedRoute对象数组
+        NSArray *routeArray = nil;
+        if (error == nil) {
+            routeArray = [ACSharedRouteModel sharedRouteModelArrayWithBmobObjectArray:array];
+        }
+        if (block) {
+//            DLog(@"sharedRouteArray is %@, error is %@", routeArray, error);
+            block(routeArray, error);
+        }
+    }];
+
 }
 
 

@@ -12,6 +12,7 @@
 #import "NSString+Extension.h"
 #import "UIImageView+WebCache.h"
 #import "UIImage+Extension.h"
+#import "UIColor+Tools.h"
 
 @interface ACProfileHeaderView ()
 /** 累计时间 */
@@ -54,7 +55,7 @@
         }
     }];
     //裁剪图片
-    [UIImage clipImageWithView:self.iconView border:5 borderColor:[UIColor blueColor] radius:self.iconView.bounds.size.width * 0.5];
+    [UIImage clipImageWithView:self.iconView border:2 borderColor:[UIColor colorWithR:158 G:185 B:224 A:1] radius:self.iconView.bounds.size.width * 0.5];
 }
 
 + (instancetype)profileHeaderView
