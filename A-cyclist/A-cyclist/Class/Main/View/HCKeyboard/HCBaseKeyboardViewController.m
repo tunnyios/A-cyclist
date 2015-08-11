@@ -24,6 +24,7 @@
     //2. 将toolbarView加载到各个textField上
     NSMutableArray *arrayM = [NSMutableArray array];
     HCKeyboardTool *toolbarView = [HCKeyboardTool keyboardTool];
+//    toolbarView.bounds = CGRectMake(0, 0, self.view.bounds.size.width, 44);
     //设置代理
     toolbarView.delgate = self;
     //1. 从self.view的子控件中比较出所有的textField

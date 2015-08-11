@@ -21,6 +21,7 @@
 		A2158C7A1B79013600BE27E1 /* ACHotRoutesDetailTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2158C791B79013600BE27E1 /* ACHotRoutesDetailTopView.m */; };
 		A2158C851B7997F600BE27E1 /* HCStarView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2158C831B7997F600BE27E1 /* HCStarView.m */; };
 		A2158C861B7997F600BE27E1 /* HCStarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2158C841B7997F600BE27E1 /* HCStarView.xib */; };
+		A2158C8D1B79C68600BE27E1 /* ACUploadSharedRouteController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2158C8C1B79C68600BE27E1 /* ACUploadSharedRouteController.m */; };
 		A218F7031B5A3F33007CBADA /* ACLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A218F7021B5A3F33007CBADA /* ACLoginViewController.m */; };
 		A218F7051B5A3FB2007CBADA /* ACLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A218F7041B5A3FB2007CBADA /* ACLogin.storyboard */; };
 		A21D7B511B75F1780014466C /* ACRouteHistoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = A21D7B501B75F1780014466C /* ACRouteHistoryController.m */; };
@@ -149,7 +150,6 @@
 		A2CE5A4E1B687F130071AC59 /* ACStepModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2CE5A4D1B687F130071AC59 /* ACStepModel.m */; };
 		A2CE5A511B6909940071AC59 /* NSArray+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = A2CE5A501B6909940071AC59 /* NSArray+Log.m */; };
 		A2D207131B67435B00214B09 /* silence.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A2D207111B67435B00214B09 /* silence.mp3 */; };
-		A2D2071B1B67ACD000214B09 /* cyclingArguments.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2D2071A1B67ACD000214B09 /* cyclingArguments.storyboard */; };
 		A2D3C4771B7781D900060BA6 /* ACUserDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D3C4761B7781D900060BA6 /* ACUserDetailController.m */; };
 		A2D483AC1B5515B700BC8406 /* ACTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D483AB1B5515B700BC8406 /* ACTabBarController.m */; };
 		A2D483B61B5516E300BC8406 /* UIColor+Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = A2D483B51B5516E300BC8406 /* UIColor+Tools.m */; };
@@ -196,6 +196,8 @@
 		A2158C821B7997F600BE27E1 /* HCStarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCStarView.h; sourceTree = "<group>"; };
 		A2158C831B7997F600BE27E1 /* HCStarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCStarView.m; sourceTree = "<group>"; };
 		A2158C841B7997F600BE27E1 /* HCStarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HCStarView.xib; sourceTree = "<group>"; };
+		A2158C8B1B79C68600BE27E1 /* ACUploadSharedRouteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACUploadSharedRouteController.h; sourceTree = "<group>"; };
+		A2158C8C1B79C68600BE27E1 /* ACUploadSharedRouteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACUploadSharedRouteController.m; sourceTree = "<group>"; };
 		A218F7011B5A3F33007CBADA /* ACLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACLoginViewController.h; sourceTree = "<group>"; };
 		A218F7021B5A3F33007CBADA /* ACLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACLoginViewController.m; sourceTree = "<group>"; };
 		A218F7041B5A3FB2007CBADA /* ACLogin.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ACLogin.storyboard; sourceTree = "<group>"; };
@@ -428,7 +430,6 @@
 		A2CE5A4F1B6909940071AC59 /* NSArray+Log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Log.h"; sourceTree = "<group>"; };
 		A2CE5A501B6909940071AC59 /* NSArray+Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Log.m"; sourceTree = "<group>"; };
 		A2D207111B67435B00214B09 /* silence.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = silence.mp3; sourceTree = "<group>"; };
-		A2D2071A1B67ACD000214B09 /* cyclingArguments.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = cyclingArguments.storyboard; sourceTree = "<group>"; };
 		A2D3C4751B7781D900060BA6 /* ACUserDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACUserDetailController.h; sourceTree = "<group>"; };
 		A2D3C4761B7781D900060BA6 /* ACUserDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACUserDetailController.m; sourceTree = "<group>"; };
 		A2D483AA1B5515B700BC8406 /* ACTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACTabBarController.h; sourceTree = "<group>"; };
@@ -543,6 +544,13 @@
 				A2158C841B7997F600BE27E1 /* HCStarView.xib */,
 			);
 			path = HCStarView;
+			sourceTree = "<group>";
+		};
+		A2158C8A1B79C4EB00BE27E1 /* UploadSharedRouteView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UploadSharedRouteView;
 			sourceTree = "<group>";
 		};
 		A218F7001B5A3F09007CBADA /* View */ = {
@@ -996,6 +1004,8 @@
 				A2082E6C1B62993400CA3325 /* ACCyclingViewController.mm */,
 				A2082E6E1B62996F00CA3325 /* ACCyclingArgumentsViewController.h */,
 				A2082E6F1B62996F00CA3325 /* ACCyclingArgumentsViewController.mm */,
+				A2158C8B1B79C68600BE27E1 /* ACUploadSharedRouteController.h */,
+				A2158C8C1B79C68600BE27E1 /* ACUploadSharedRouteController.m */,
 				A2EB8DD81B69F706008F5D48 /* ACNavigationViewController.h */,
 				A2EB8DD91B69F706008F5D48 /* ACNavigationViewController.m */,
 			);
@@ -1014,10 +1024,10 @@
 		A28BFEE71B53B35B00A712F1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A2158C8A1B79C4EB00BE27E1 /* UploadSharedRouteView */,
 				A281C5901B6DD62500DF31C0 /* ArgumentsView */,
 				A281C58C1B6DD61E00DF31C0 /* CyclingView */,
 				A28BFF151B53F98200A712F1 /* cycling.storyboard */,
-				A2D2071A1B67ACD000214B09 /* cyclingArguments.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1405,7 +1415,6 @@
 			files = (
 				A2D207131B67435B00214B09 /* silence.mp3 in Resources */,
 				A26E8ED71B78471F003FFC37 /* hotRoutes.storyboard in Resources */,
-				A2D2071B1B67ACD000214B09 /* cyclingArguments.storyboard in Resources */,
 				A28BFECA1B53A2CC00A712F1 /* LaunchScreen.xib in Resources */,
 				A28BFF161B53F98200A712F1 /* cycling.storyboard in Resources */,
 				A261B04D1B57AC56006C8917 /* ACLogoutSettingViewCell.xib in Resources */,
@@ -1476,6 +1485,7 @@
 				A26E8EDA1B78474D003FFC37 /* ACHotRoutesController.m in Sources */,
 				A2A43CD81B7324990099011F /* ACProfileHeaderView.m in Sources */,
 				A2082E701B62996F00CA3325 /* ACCyclingArgumentsViewController.mm in Sources */,
+				A2158C8D1B79C68600BE27E1 /* ACUploadSharedRouteController.m in Sources */,
 				A26143241B5E1F43007EA45C /* ACPhotoSettingCellModel.m in Sources */,
 				A26143471B5E22D6007EA45C /* MKAnnotationView+WebCache.m in Sources */,
 				A2F875121B5676630075F323 /* ACSettingCellModel.m in Sources */,
