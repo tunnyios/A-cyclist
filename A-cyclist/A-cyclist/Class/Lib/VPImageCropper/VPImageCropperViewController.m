@@ -8,8 +8,10 @@
 
 #import "VPImageCropperViewController.h"
 
+
 #define SCALE_FRAME_Y 100.0f
 #define BOUNDCE_DURATION 0.3f
+#define HCScreenBounds  [UIScreen mainScreen].bounds
 
 @interface VPImageCropperViewController ()
 
@@ -60,7 +62,8 @@
 }
 
 - (void)initView {
-    self.showImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
+    self.view.backgroundColor = [UIColor blackColor];
+    self.showImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, HCScreenBounds.size.width, HCScreenBounds.size.height)];
     [self.showImgView setMultipleTouchEnabled:YES];
     [self.showImgView setUserInteractionEnabled:YES];
     [self.showImgView setImage:self.originalImage];
@@ -73,7 +76,7 @@
     CGFloat oriX = self.cropFrame.origin.x + (self.cropFrame.size.width - oriWidth) / 2;
     CGFloat oriY = self.cropFrame.origin.y + (self.cropFrame.size.height - oriHeight) / 2;
     self.oldFrame = CGRectMake(oriX, oriY, oriWidth, oriHeight);
-    self.latestFrame = self.oldFrame;
+    self.latestFrame = CGRectMake(oriX, oriY, oriWidth * 3.0f, oriHeight * 3.0f * 0.75);
     self.showImgView.frame = self.oldFrame;
     
     self.largeFrame = CGRectMake(0, 0, self.limitRatio * self.oldFrame.size.width, self.limitRatio * self.oldFrame.size.height);
