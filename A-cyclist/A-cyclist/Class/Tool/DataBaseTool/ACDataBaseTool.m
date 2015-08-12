@@ -169,6 +169,7 @@
     
     [post setObject:route.cyclingEndTime forKey:@"cyclingEndTime"];
     [post setObject:route.cyclingStartTime forKey:@"cyclingStartTime"];
+    [post setObject:route.routeOne forKey:@"routeOne"];
 
     //设置路线关联的作者记录
     BmobUser *author = [BmobUser objectWithoutDatatWithClassName:@"_User" objectId:objectId];

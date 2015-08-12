@@ -22,6 +22,9 @@
 #import "UIImage+Extension.h"
 #import <BaiduMapAPI/BMapKit.h>
 #import "ACUploadSharedRouteController.h"
+#import "ACShowAlertTool.h"
+#import "ACUserModel.h"
+#import "ACCacheDataTool.h"
 
 @interface ACCyclingArgumentsViewController () <UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, BMKMapViewDelegate>
 /** 约束 */
@@ -33,6 +36,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *trailBtn;
 @property (weak, nonatomic) IBOutlet UIButton *graphicBtn;
 @property (weak, nonatomic) IBOutlet UIButton *dataBtn;
+@property (weak, nonatomic) IBOutlet UIButton *sharedBtn;
+
 /** scrollView */
 @property (weak, nonatomic) IBOutlet ACCyclingArgumentScrollView *cyclingArgumentScrollView;
 @property (weak, nonatomic) IBOutlet BMKMapView *bmkMapView;
@@ -82,6 +87,8 @@
 /** 下坡距离 */
 @property (weak, nonatomic) IBOutlet UILabel *chartDescendDistanceLabel;
 
+/** 当前用户 */
+@property (nonatomic, strong) ACUserModel *currentUser;
 @end
 
 @implementation ACCyclingArgumentsViewController
@@ -98,6 +105,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    //判断当前用户与该路线的来源用户是否一致，若不一致，则隐藏上传路线按钮
+//    DLog(@"self.currentUser.objectId is %@, self.route.objectId is %@", self.currentUser.objectId, self.route.userObjectId);
+    //此处不能用懒加载
+    self.currentUser = [ACCacheDataTool getUserInfo];
+    if (0 != self.currentUser.objectId.length && 0 != self.route.userObjectId.length) {
+        if (![self.currentUser.objectId isEqualToString:self.route.userObjectId]) {
+            //隐藏上传路线按钮
+            self.sharedBtn.hidden = YES;
+        } else {
+            self.sharedBtn.hidden = NO;
+        }
+    } else {
+        self.sharedBtn.hidden = NO;
+    }
+    
     //1. 最先展示轨迹
     [self trailBtnClick];
     //2. 加载轨迹详细数据
@@ -201,12 +223,19 @@
  */
 - (IBAction)uploadRoute:(id)sender
 {
-    //1. 截屏:截取路线地图图片
-//    UIImage *newImage = [UIImage imageWithCaptureView:self.bmkMapView];
-    UIImage *newImage = [self.bmkMapView takeSnapshot];
-    DLog(@"newImage is %@", newImage);
-    NSArray *array = @[newImage, self.route];
-    [self performSegueWithIdentifier:@"route2share" sender:array];
+    //0. 判断路线是否已经分享过了(分享过了则无需再分享)
+    if ([self.route.isShared isEqual:@1]) {
+        [ACShowAlertTool showError:@"该路线已经上传，请勿重复上传"];
+        DLog(@"该路线已经上传，请勿重复上传");
+        
+    } else {
+        //1. 截屏:截取路线地图图片
+        //    UIImage *newImage = [UIImage imageWithCaptureView:self.bmkMapView];
+        UIImage *newImage = [self.bmkMapView takeSnapshot];
+        DLog(@"newImage is %@", newImage);
+        NSArray *array = @[newImage, self.route];
+        [self performSegueWithIdentifier:@"route2share" sender:array];
+    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -226,7 +255,6 @@
     self.timeLabel.text = self.route.time;
     self.ascendAltitudeLabel.text = self.route.ascendAltitude;
     self.averageSpeedLabel.text = [NSString stringWithFormat:@"%@", self.route.averageSpeed];
-    
     //这是地图轨迹
     
 }

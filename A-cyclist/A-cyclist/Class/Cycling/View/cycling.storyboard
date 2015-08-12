@@ -863,7 +863,7 @@
                                                                             <action selector="uploadRoute:" destination="FLH-gb-d6b" eventType="touchUpInside" id="82o-aT-vLv"/>
                                                                         </connections>
                                                                     </button>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n2B-ch-arB">
+                                                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n2B-ch-arB">
                                                                         <rect key="frame" x="212" y="0.0" width="107.5" height="44"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                         <state key="normal" title="编辑" image="xingzhe_data_icon_edit-82">
@@ -1582,6 +1582,7 @@
                         <outlet property="middleViewLeading" destination="P3U-qf-G3D" id="aSD-si-RUc"/>
                         <outlet property="rightViewLeading" destination="SjR-RL-Enb" id="RaP-tg-HBg"/>
                         <outlet property="routeNameLabel" destination="pJU-j9-vLV" id="rAU-Ef-XTc"/>
+                        <outlet property="sharedBtn" destination="gMb-Yy-xIF" id="j8j-qy-dSM"/>
                         <outlet property="timeLabel" destination="1HQ-9P-weo" id="Mng-Jj-P2L"/>
                         <outlet property="trailBtn" destination="Y57-gt-TAS" id="Nge-GY-d19"/>
                         <segue destination="LXR-HH-gh3" kind="show" identifier="route2share" id="ukE-Mm-M5f"/>

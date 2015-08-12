@@ -111,11 +111,13 @@
                 self.maxDistanceRoute = route;
                 DLog(@"数据库：最长距离路线：%@", self.maxDistanceRoute);
                 //设置模型数据
-                ACProfileCellModel *profileModel = [self.dataList[1] cellList][0];
-                profileModel.subTitle = [NSString stringWithFormat:@"%@ km", self.maxDistanceRoute.distance];
-                profileModel.timeStr = [NSDate dateToString:self.maxDistanceRoute.cyclingStartTime WithFormatter:@"yyyy-MM-dd"];
-                
-                [self.tableView reloadData];
+                if (self.maxDistanceRoute.routeOne) {
+                    ACProfileCellModel *profileModel = [self.dataList[1] cellList][0];
+                    profileModel.subTitle = [NSString stringWithFormat:@"%@ km", self.maxDistanceRoute.distance];
+                    profileModel.timeStr = [NSDate dateToString:self.maxDistanceRoute.cyclingStartTime WithFormatter:@"yyyy-MM-dd"];
+                    
+                    [self.tableView reloadData];
+                }
             }
         }];
     }
@@ -130,11 +132,13 @@
                 self.maxSpeedRoute = route;
                 DLog(@"数据库：最快极速路线：%@", self.maxSpeedRoute);
                 //设置模型数据
-                ACProfileCellModel *profileModel = [self.dataList[1] cellList][1];
-                profileModel.subTitle = [NSString stringWithFormat:@"%@ km/h", self.maxSpeedRoute.maxSpeed];
-                profileModel.timeStr = [NSDate dateToString:self.maxSpeedRoute.cyclingStartTime WithFormatter:@"yyyy-MM-dd"];
-                
-                [self.tableView reloadData];
+                if (self.maxSpeedRoute.routeOne) {
+                    ACProfileCellModel *profileModel = [self.dataList[1] cellList][1];
+                    profileModel.subTitle = [NSString stringWithFormat:@"%@ km/h", self.maxSpeedRoute.maxSpeed];
+                    profileModel.timeStr = [NSDate dateToString:self.maxSpeedRoute.cyclingStartTime WithFormatter:@"yyyy-MM-dd"];
+                    
+                    [self.tableView reloadData];
+                }
             }
         }];
     }
@@ -148,11 +152,13 @@
                 self.maxAverageRoute = route;
                 DLog(@"数据库：最快平均速度路线：%@", self.maxAverageRoute);
                 //设置模型数据
-                ACProfileCellModel *profileModel = [self.dataList[1] cellList][2];
-                profileModel.subTitle = [NSString stringWithFormat:@"%@ km/h", self.maxAverageRoute.averageSpeed];
-                profileModel.timeStr = [NSDate dateToString:self.maxAverageRoute.cyclingStartTime WithFormatter:@"yyyy-MM-dd"];
-                
-                [self.tableView reloadData];
+                if (self.maxAverageRoute.routeOne) {
+                    ACProfileCellModel *profileModel = [self.dataList[1] cellList][2];
+                    profileModel.subTitle = [NSString stringWithFormat:@"%@ km/h", self.maxAverageRoute.averageSpeed];
+                    profileModel.timeStr = [NSDate dateToString:self.maxAverageRoute.cyclingStartTime WithFormatter:@"yyyy-MM-dd"];
+                    
+                    [self.tableView reloadData];
+                }
             }
         }];
     }
@@ -166,11 +172,13 @@
                 self.maxTimeRoute = route;
                 DLog(@"数据库：最长时间路线：%@", self.maxTimeRoute);
                 //设置模型数据
-                ACProfileCellModel *profileModel = [self.dataList[1] cellList][3];
-                profileModel.subTitle = self.maxTimeRoute.time;
-                profileModel.timeStr = [NSDate dateToString:self.maxTimeRoute.cyclingStartTime WithFormatter:@"yyyy-MM-dd"];
-                
-                [self.tableView reloadData];
+                if (self.maxTimeRoute.routeOne) {
+                    ACProfileCellModel *profileModel = [self.dataList[1] cellList][3];
+                    profileModel.subTitle = self.maxTimeRoute.time;
+                    profileModel.timeStr = [NSDate dateToString:self.maxTimeRoute.cyclingStartTime WithFormatter:@"yyyy-MM-dd"];
+                    
+                    [self.tableView reloadData];
+                }
             }
         }];
     }
@@ -204,7 +212,7 @@
 {
     //数据部分
     NSString *subTitle0 = @"";
-    if (self.maxDistanceRoute) {
+    if (0 != self.maxDistanceRoute.steps.count) {
         subTitle0 = [NSString stringWithFormat:@"%@ km", self.maxDistanceRoute.distance];
     }
     ACProfileCellModel *cell0 = [ACProfileCellModel profileCellWithTitle:@"最远骑行距离" subTitle:subTitle0 route:self.maxDistanceRoute];
@@ -220,7 +228,7 @@
     };
     
     NSString *subTitle1 = @"";
-    if (self.maxSpeedRoute) {
+    if (0 != self.maxSpeedRoute.steps.count) {
         subTitle1 = [NSString stringWithFormat:@"%@ km/h", self.maxSpeedRoute.maxSpeed];
     }
     ACProfileCellModel *cell1 = [ACProfileCellModel profileCellWithTitle:@"极速" subTitle:subTitle1 route:self.maxSpeedRoute];
@@ -236,7 +244,7 @@
     };
     
     NSString *subTitle2 = @"";
-    if (self.maxAverageRoute) {
+    if (0 != self.maxAverageRoute.steps.count) {
         subTitle2 = [NSString stringWithFormat:@"%@ km/h", self.maxAverageRoute.averageSpeed];
     }
     ACProfileCellModel *cell2 = [ACProfileCellModel profileCellWithTitle:@"平均速度" subTitle:subTitle2 route:self.maxAverageRoute];
@@ -252,7 +260,7 @@
     };
     
     NSString *subTitle3 = @"";
-    if (self.maxTimeRoute) {
+    if (0 != self.maxTimeRoute.steps.count) {
         subTitle3 = self.maxTimeRoute.time;
     }
     ACProfileCellModel *cell3 = [ACProfileCellModel profileCellWithTitle:@"单次最长时间" subTitle:subTitle3 route:self.maxTimeRoute];

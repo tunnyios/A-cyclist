@@ -53,11 +53,8 @@
 /** 是否共享 */
 @property (nonatomic, assign) NSNumber *isShared;
 
-/** BmobObject对象的最后更新时间 */
-//@property(nonatomic,strong)NSDate *updatedAt;
-/** BmobObject对象的生成时间 */
-//@property(nonatomic,strong)NSDate *createdAt;
-
+/** 唯一键(用来从本地缓存中取出对应的路线) */
+@property (nonatomic, copy) NSString *routeOne;
 /** 数据库中存储的routeid */
 @property (nonatomic, copy) NSString *objectId;
 /** 骑行开始时间 */

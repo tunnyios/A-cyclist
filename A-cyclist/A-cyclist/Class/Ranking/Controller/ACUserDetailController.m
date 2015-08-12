@@ -24,6 +24,7 @@
 #import "ACCyclingArgumentsViewController.h"
 #import "ACNavigationViewController.h"
 #import "ACRouteHistoryController.h"
+#import "ACShowAlertTool.h"
 
 
 @interface ACUserDetailController ()
@@ -47,6 +48,7 @@
     
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     
+    [ACShowAlertTool showMessage:@"加载中..." onView:nil];
     //从数据库中获取该用户的数据
     //0. 获取数据库中的用户已共享的路线列表
     [ACDataBaseTool getSharedRouteListWithUserObjectId:self.userModel.objectId resultBlock:^(NSArray *routes, NSError *error) {
@@ -98,6 +100,7 @@
                             DLog(@"数据库：最长时间路线：%@", self.maxTimeRoute);
                         }
                         
+                        [ACShowAlertTool hideMessage];
                         //5. 加载数据
                         [self addGroup0];
                         [self addGroup1];

@@ -627,7 +627,7 @@ typedef enum : NSUInteger {
     NSString *time = [NSString timeStrWithSeconds:self.totleTime];
     
     self.currentTimeConsuming.text = time;
-    DLog(@"%ld, %@", (long)self.totleTime, time);
+//    DLog(@"%ld, %@", (long)self.totleTime, time);
 }
 
 
@@ -635,6 +635,7 @@ typedef enum : NSUInteger {
 
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
 {
+//    DLog(@"@#$#$@$#$@$#$$%%#$%%$#$更新到新位置\n \n \n");
     //1. 获取位置，返地理编码，设置位置label内容
     [self setUserZoneWith:userLocation];
     
@@ -680,7 +681,7 @@ typedef enum : NSUInteger {
 
 - (void)didUpdateUserHeading:(BMKUserLocation *)userLocation
 {
-    DLog(@"%f", userLocation.heading.magneticHeading);
+//    DLog(@"%f", userLocation.heading.magneticHeading);
     //将角度转弧度
     CGFloat angle = (userLocation.heading.magneticHeading * M_PI) / 180;
     self.compass.layer.transform = CATransform3DMakeRotation(-angle, 0, 0, 1);
@@ -743,7 +744,9 @@ typedef enum : NSUInteger {
 #pragma mark - 数据的存储操作
 - (void)saveRouteData
 {
-    NSString *timeName = [NSDate dateToString:[NSDate date] WithFormatter:@"yyyy-MM-dd HH:mm"];
+    NSString *timeName = [NSDate dateToString:self.route.cyclingStartTime WithFormatter:@"yyyy-MM-dd HH:mm"];
+    //设置唯一键
+    self.route.routeOne = [NSString stringWithFormat:@"%@%@", self.user.objectId, timeName];
     self.route.routeName = timeName;
     self.route.steps = self.locationArrayM;
     self.route.distance = [NSNumber numberWithDouble:self.currentMileage.text.doubleValue];

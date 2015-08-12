@@ -25,6 +25,12 @@
 /** 添加一条路线到sqlite3 */
 + (void)addRouteWith:(ACRouteModel *)route withUserObjectId:(NSString *)objectId;
 
+/** 根据routeOne字段，获取一条路线 */
++ (ACRouteModel *)getRouteWith:(NSString *)routeOne;
+
+/** 更新一条路线到sqlite3 */
++ (void)updateRouteWith:(ACRouteModel *)route routeOne:(NSString *)routeOne;
+
 /** 从本地缓存中获取用户的所有路线 */
 + (NSArray *)getUserRouteWithid:(NSString *)objectId;
 

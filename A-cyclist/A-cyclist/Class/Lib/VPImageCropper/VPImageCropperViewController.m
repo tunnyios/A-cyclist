@@ -76,7 +76,8 @@
     CGFloat oriX = self.cropFrame.origin.x + (self.cropFrame.size.width - oriWidth) / 2;
     CGFloat oriY = self.cropFrame.origin.y + (self.cropFrame.size.height - oriHeight) / 2;
     self.oldFrame = CGRectMake(oriX, oriY, oriWidth, oriHeight);
-    self.latestFrame = CGRectMake(oriX, oriY, oriWidth * 3.0f, oriHeight * 3.0f * 0.75);
+    CGFloat latestHeight = self.originalImage.size.height * (oriWidth * 0.5 * 3.0f / self.originalImage.size.width);
+    self.latestFrame = CGRectMake(oriX, oriY, oriWidth * 3.0f, latestHeight);
     self.showImgView.frame = self.oldFrame;
     
     self.largeFrame = CGRectMake(0, 0, self.limitRatio * self.oldFrame.size.width, self.limitRatio * self.oldFrame.size.height);

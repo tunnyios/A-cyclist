@@ -495,21 +495,24 @@ typedef enum : NSUInteger {
         if (isSuccessful) {
             DLog(@"上传共享路线到服务器成功");
             [ACShowAlertTool showSuccess:@"上传成功"];
+            
+            //更新该路线的isShared为1，到personRoute数据库
+            NSArray *keys = @[@"isShared"];
+            NSDictionary *dict = @{@"isShared" : @1};
+            [ACDataBaseTool updateRouteWithUserObjectId:self.user.objectId routeStartDate:self.route.cyclingStartTime dict:dict andKeys:keys withResultBlock:^(BOOL isSuccessful, NSError *error) {
+                if (isSuccessful) {
+                    DLog(@"更新路线的isShared成功");
+                } else {
+                    DLog(@"更新路线的isShared失败, error is %@", error);
+                }
+            }];
+            //更新该路线到本地缓存
+            self.route.isShared = @1;
+            [ACCacheDataTool updateRouteWith:self.route routeOne:self.route.routeOne];
+            
         } else {
             [ACShowAlertTool showError:@"上传失败,请检查网络"];
             DLog(@"上传共享路线到服务器失败, error is %@", error);
-        }
-    }];
-    
-    //更新该路线的isShared为1，到personRoute数据库
-    NSArray *keys = @[@"isShared"];
-    NSDictionary *dict = @{@"isShared" : @1};
-    
-    [ACDataBaseTool updateRouteWithUserObjectId:self.user.objectId routeStartDate:self.route.cyclingStartTime dict:dict andKeys:keys withResultBlock:^(BOOL isSuccessful, NSError *error) {
-        if (isSuccessful) {
-            DLog(@"更新路线的isShared成功");
-        } else {
-            DLog(@"更新路线的isShared失败, error is %@", error);
         }
     }];
     

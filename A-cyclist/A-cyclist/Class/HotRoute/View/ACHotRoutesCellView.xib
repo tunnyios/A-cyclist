@@ -150,7 +150,7 @@
                 <outlet property="nameENLabel" destination="b9C-B4-vdE" id="Sfo-Hx-Ql3"/>
                 <outlet property="starView" destination="ooP-MO-RRD" id="i3Y-aA-WP8"/>
             </connections>
-            <point key="canvasLocation" x="328" y="267"/>
+            <point key="canvasLocation" x="57" y="214"/>
         </tableViewCell>
     </objects>
     <resources>

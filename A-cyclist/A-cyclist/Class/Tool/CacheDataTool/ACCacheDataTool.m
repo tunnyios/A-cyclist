@@ -26,7 +26,7 @@ static FMDatabase *_db;
     
     //创建表
     [_db executeUpdate:@"CREATE TABLE IF NOT EXISTS t_user (id integer PRIMARY KEY, user blob NOT NULL, objectId text NOT NULL UNIQUE);"];
-    [_db executeUpdate:@"CREATE TABLE IF NOT EXISTS t_personRoute (id integer PRIMARY KEY, route blob NOT NULL, userObjectId text NOT NULL, distance real NOT NULL, maxSpeed real NOT NULL, averageSpeed real NOT NULL, timeNumber real NOT NULL);"];
+    [_db executeUpdate:@"CREATE TABLE IF NOT EXISTS t_personRoute (id integer PRIMARY KEY, route blob NOT NULL, userObjectId text NOT NULL, distance real NOT NULL, maxSpeed real NOT NULL, averageSpeed real NOT NULL, timeNumber real NOT NULL, routeOne text NOT NULL);"];
 }
 
 
@@ -88,9 +88,43 @@ static FMDatabase *_db;
     //转换成NSData
     NSData *routeData = [NSKeyedArchiver archivedDataWithRootObject:route];
     
-    [_db executeUpdateWithFormat:@"INSERT INTO t_personRoute(route, userObjectId, distance, maxSpeed, averageSpeed, timeNumber) VALUES (%@, %@, %@, %@, %@, %@);", routeData, objectId, route.distance, route.maxSpeed, route.averageSpeed, route.timeNumber];
+    [_db executeUpdateWithFormat:@"INSERT INTO t_personRoute(route, userObjectId, distance, maxSpeed, averageSpeed, timeNumber, routeOne) VALUES (%@, %@, %@, %@, %@, %@, %@);", routeData, objectId, route.distance, route.maxSpeed, route.averageSpeed, route.timeNumber, route.routeOne];
     
     DLog(@"保存UserRoute到本地数据库成功");
+}
+
+/**
+ *  根据routeOne字段获取一条缓存路线
+ */
++ (ACRouteModel *)getRouteWith:(NSString *)routeOne
+{
+    NSMutableArray *routeList = [NSMutableArray array];
+    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM t_personRoute WHERE routeOne = '%@';", routeOne];
+    DLog(@"sql is %@", sql);
+    // 执行SQL
+    FMResultSet *set = [_db executeQuery:sql];
+    while (set.next) {
+        NSData *routeData = [set objectForColumnName:@"route"];
+        ACRouteModel *route = [NSKeyedUnarchiver unarchiveObjectWithData:routeData];
+        [routeList addObject:route];
+    }
+    return routeList.firstObject;
+}
+
+/**
+ *  更新一条路线到sqlite3
+ *
+ *  @param route    <#route description#>
+ *  @param routeOne <#routeOne description#>
+ */
++ (void)updateRouteWith:(ACRouteModel *)route routeOne:(NSString *)routeOne
+{
+    NSData *routeData = [NSKeyedArchiver archivedDataWithRootObject:route];
+    [_db executeUpdate:@"update t_personRoute set route = ? where routeOne = ?", routeData, routeOne];
+    
+    DLog(@"更新Route到本地缓存成功");
+    
+    
 }
 
 /**

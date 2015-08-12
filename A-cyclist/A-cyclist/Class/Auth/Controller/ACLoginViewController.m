@@ -60,7 +60,7 @@
     
     //登录
     [ACDataBaseTool loginWithAccount:email passWord:pwd block:^(ACUserModel *user, NSError *error) {
-        if (user) {
+        if (!error) {
             [ACShowAlertTool showSuccess:ACLoginSuccess];
             DLog(@"user #%@#", user);
             
