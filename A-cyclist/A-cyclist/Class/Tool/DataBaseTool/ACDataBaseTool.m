@@ -11,9 +11,11 @@
 #import "ACGlobal.h"
 #import <BmobSDK/BmobProFile.h>
 #import "ACSharedRouteModel.h"
+#import "ACSharedRoutePhotoModel.h"
 #import "ACRouteModel.h"
 #import "ACStepModel.h"
 #import "NSArray+Log.h"
+#import "NSDate+Extension.h"
 #import "MJExtension.h"
 
 
@@ -168,7 +170,7 @@
     [post setObject:route.cyclingEndTime forKey:@"cyclingEndTime"];
     [post setObject:route.cyclingStartTime forKey:@"cyclingStartTime"];
 
-    //设置帖子关联的作者记录
+    //设置路线关联的作者记录
     BmobUser *author = [BmobUser objectWithoutDatatWithClassName:@"_User" objectId:objectId];
     [post setObject:author forKey:@"user"];
     
@@ -181,64 +183,83 @@
 }
 
 /**
- *  将bmobObject对象数组转换成Route对象数组
+ *  根据路线的objectId来更新数据
+ *
+ *  @param route
+ *  @param objectId     路线的objectId
+ *  @param block
  */
-//+ (NSArray *)routeModelArrayWithBmobObjectArray:(NSArray *)bmobArray
-//{
-//    NSMutableArray *routeArrayM = [NSMutableArray array];
-//    [bmobArray enumerateObjectsUsingBlock:^(BmobObject *bmobObj, NSUInteger idx, BOOL *stop) {
-//        ACRouteModel *routeModel = [self routeModelWithBmobObject:bmobObj];
-//        [routeArrayM addObject:routeModel];
-//    }];
-//    
-////    DLog(@"routeArrayM is %@", routeArrayM);
-//    return routeArrayM;
-//}
++ (void)updateRouteWithUserObjectId:(NSString *)userObjectId routeStartDate:(NSDate *)startDate dict:(NSDictionary *)dict andKeys:(NSArray *)keys withResultBlock:(void (^)(BOOL, NSError *))block
+{
+//    BmobObject *routeObject = [BmobObject objectWithoutDatatWithClassName:@"personRoute"  objectId:routeObjectId];
+    
+    BmobQuery *bquery = [BmobQuery queryWithClassName:@"personRoute"];
+    
+    //构造约束条件
+    NSString *date = [NSDate dateToString:startDate WithFormatter:@"yyyy-MM-dd HH:mm:ss"];
+    NSDictionary *condiction1 = @{@"user":@{@"__type":@"Pointer",@"className":@"_User",@"objectId":userObjectId}};
+    NSDictionary *condiction2 = @{@"cyclingStartTime":@{@"__type": @"Date", @"iso": date}};
+    NSArray *condictionArray = @[condiction1,condiction2];
+    [bquery addTheConstraintByAndOperationWithArray:condictionArray];
+    
+    //匹配查询
+    [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+        DLog(@"array is %@, error is %@", array, error);
+        //将BmobObject对象数组转换成Route对象数组
+        if (!error) {
+            BmobObject *routeObject = array.firstObject;
+            for (NSString *key in keys) {
+                [routeObject setObject:dict[key] forKey:key];
+            }
+            [routeObject updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+                if (block) {
+                    block(isSuccessful, error);
+                }
+            }];
+        } else {
+            if (block) {
+                block(NO, error);
+            }
+        }
+    }];
+    
+    
+}
 
 /**
- *  将bmobObject对象转换成Route对象
+ *  根据userObjectId 和 routeStartDate 获取一条personRoute
+ *
+ *  @param userObjectId
+ *  @param startData    2014-07-15 00:00:00
+ *  @param block
  */
-//+ (ACRouteModel *)routeModelWithBmobObject:(BmobObject *)bmobObj
-//{
-//    ACRouteModel *routeModel = [[ACRouteModel alloc] init];
-//    routeModel.routeName = [bmobObj objectForKey:@"routeName"];
-//
-//    NSArray *stepArray = [bmobObj objectForKey:@"steps"];
-//    __block NSMutableArray *stepsArrayM = [NSMutableArray array];
-//    [stepArray enumerateObjectsUsingBlock:^(NSDictionary *stepDict, NSUInteger idx, BOOL *stop) {
-//        ACStepModel *step = [[ACStepModel alloc] init];
-//        step.latitude = stepDict[@"latitude"];
-//        step.longitude = stepDict[@"longitude"];
-//        step.altitude = stepDict[@"altitude"];
-//        step.currentSpeed = stepDict[@"currentSpeed"];
-//        step.distanceInterval = stepDict[@"distanceInterval"];
-//        
-//        [stepsArrayM addObject:step];
-//    }];
-//    routeModel.steps = stepsArrayM;
-//
-//    routeModel.distance = [bmobObj objectForKey:@"distance"];
-//    routeModel.time = [bmobObj objectForKey:@"time"];
-//    routeModel.timeNumber = [bmobObj objectForKey:@"timeNumber"];
-//    routeModel.averageSpeed = [bmobObj objectForKey:@"averageSpeed"];
-//    routeModel.maxSpeed = [bmobObj objectForKey:@"maxSpeed"];
-//    routeModel.maxAltitude = [bmobObj objectForKey:@"maxAltitude"];
-//    routeModel.minAltitude = [bmobObj objectForKey:@"minAltitude"];
-//    routeModel.ascendAltitude = [bmobObj objectForKey:@"ascendAltitude"];
-//    routeModel.ascendTime = [bmobObj objectForKey:@"ascendTime"];
-//    routeModel.ascendDistance = [bmobObj objectForKey:@"ascendDistance"];
-//    routeModel.flatTime = [bmobObj objectForKey:@"flatTime"];
-//    routeModel.flatDistance = [bmobObj objectForKey:@"flatDistance"];
-//    routeModel.descendTime = [bmobObj objectForKey:@"descendTime"];
-//    routeModel.descendDistance = [bmobObj objectForKey:@"descendDistance"];
-//    routeModel.userObjectId = [bmobObj objectForKey:@"userObjectId"];
-//    routeModel.isShared = [bmobObj objectForKey:@"isShared"];
-//    routeModel.cyclingStartTime = [bmobObj objectForKey:@"cyclingStartTime"];
-//    routeModel.cyclingEndTime = [bmobObj objectForKey:@"cyclingEndTime"];
-//    
-////    DLog(@"routeModel is %@", routeModel);
-//    return routeModel;
-//}
++ (void)getRouteWithUserObjectId:(NSString *)userObjectId routeStartDate:(NSDate *)startDate resultBlock:(void (^)(ACRouteModel *, NSError *))block
+{
+    BmobQuery *bquery = [BmobQuery queryWithClassName:@"personRoute"];
+    
+    //构造约束条件
+    NSString *date = [NSDate dateToString:startDate WithFormatter:@"yyyy-MM-dd HH:mm:ss"];
+    NSDictionary *condiction1 = @{@"user":@{@"__type":@"Pointer",@"className":@"_User",@"objectId":userObjectId}};
+    NSDictionary *condiction2 = @{@"cyclingStartTime":@{@"__type": @"Date", @"iso": date}};
+    NSArray *condictionArray = @[condiction1,condiction2];
+    [bquery addTheConstraintByAndOperationWithArray:condictionArray];
+    
+    //匹配查询
+    [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+                DLog(@"array is %@, error is %@", array, error);
+        //将BmobObject对象数组转换成Route对象数组
+        NSArray *routeArray = nil;
+        if (error == nil) {
+            routeArray = [ACRouteModel routeModelArrayWithBmobObjectArray:array];
+        }
+        if (block) {
+            DLog(@"routeArray is %@, error is %@", routeArray, error);
+            block(routeArray.firstObject, error);
+        }
+    }];
+}
+
+
 
 /**
  *  根据用户id获取数据库中的路线列表
@@ -279,10 +300,10 @@
     BmobQuery *bquery = [BmobQuery queryWithClassName:@"personRoute"];
     
     //构造约束条件
-    NSDictionary *condiction1 = @{@"objectId":@{@"__type":@"Pointer",@"className":@"_User",@"objectId":objectId}};
+    NSDictionary *condiction1 = @{@"user":@{@"__type":@"Pointer",@"className":@"_User",@"objectId":objectId}};
     NSDictionary *condiction2 = @{@"isShared":@1};
     NSArray *condictionArray = @[condiction1,condiction2];
-    [bquery addTheConstraintByOrOperationWithArray:condictionArray];
+    [bquery addTheConstraintByAndOperationWithArray:condictionArray];
     
     //匹配查询
     [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
@@ -411,6 +432,7 @@
     }];
 }
 
+
 /**
  *  根据classification类别来获取sharedRoute列表
  *
@@ -424,7 +446,7 @@
     
     //匹配查询
     [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
-        //        DLog(@"array is %@, error is %@", array, error);
+        DLog(@"array is %@, error is %@", array, error);
         //将BmobObject对象数组转换成sharedRoute对象数组
         NSArray *routeArray = nil;
         if (error == nil) {
@@ -435,7 +457,51 @@
             block(routeArray, error);
         }
     }];
+}
 
+/**
+ *  添加一条共享路线到sharedRoute数据库
+ *
+ *  @param sharedRoute 共享路线模型
+ *  @param objectId    该路线的来源用户id
+ *  @param block
+ */
++ (void)addSharedRouteWith:(ACSharedRouteModel *)sharedRoute userObjectId:(NSString *)objectId resultBlock:(void (^)(BOOL, NSError *))block
+{
+    BmobObject *post = [BmobObject objectWithClassName:@"sharedRoute"];
+    
+    //设置共享路线基本参数
+    [post setObject:sharedRoute.nameCN forKey:@"nameCN"];
+    [post setObject:sharedRoute.nameEN forKey:@"nameEN"];
+    [post setObject:sharedRoute.distance forKey:@"distance"];
+    [post setObject:sharedRoute.maxAlitude forKey:@"maxAlitude"];
+    [post setObject:sharedRoute.difficultyLevel forKey:@"difficultyLevel"];
+    [post setObject:sharedRoute.sceneryLevel forKey:@"sceneryLevel"];
+    [post setObject:sharedRoute.userName forKey:@"userName"];
+    [post setObject:sharedRoute.userObjectId forKey:@"userObjectId"];
+    [post setObject:sharedRoute.routeDesc forKey:@"routeDesc"];
+    [post setObject:sharedRoute.classification forKey:@"classification"];
+
+    //将数组对象转数组字典
+    NSMutableArray *imageArray = [NSMutableArray array];
+    [sharedRoute.imageList enumerateObjectsUsingBlock:^(ACSharedRoutePhotoModel *photoModel, NSUInteger idx, BOOL *stop) {
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        [dict setObject:photoModel.photoURL forKey:@"photoURL"];
+        
+        [imageArray addObject:dict];
+    }];
+    [post setObject:imageArray forKey:@"imageList"];
+    
+    //设置路线关联的作者记录
+    BmobUser *author = [BmobUser objectWithoutDatatWithClassName:@"_User" objectId:objectId];
+    [post setObject:author forKey:@"user"];
+    
+    //异步保存
+    [post saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+        if (block) {
+            block(isSuccessful, error);
+        }
+    }];
 }
 
 
@@ -526,7 +592,7 @@
 #pragma mark - 文件相关
 
 /**
- *  使用NSData的方式上传文件到Bmob数据库
+ *  使用NSData的方式上传单个文件到Bmob数据库
  *
  *  PS:利用文件名的方式下载：下载的文件存放路径为：Library/Caches/DownloadFile/
  *
@@ -552,6 +618,46 @@
 }
 
 /**
+ *  通过NSData上传多个文件到服务器
+ *
+ *  @param dataArray     字典数组，包括filename, data
+ *      NSDictionary *dic1 = [[NSDictionary alloc] initWithObjectsAndKeys:@"image.jpg",@"filename",data1,@"data",nil];
+ *  @param block        返回url数组、filename数组
+ *  @param progressBlock    进度：index表示正在上传的文件其路径在数组中的索引，progress表示该文件的上传进度
+ */
++ (void)uploadFilesWithDatas:(NSArray *)dataArray block:(void (^)(NSError *, NSArray *, NSArray *))block progress:(void (^)(NSUInteger, CGFloat))progressBlock
+{    
+    //上传文件，dataArray 数组中存放NSDictionary，NSDictionary里面的格式为@{@"filename":@"你的文件名",@"data":文件的data}
+    [BmobProFile uploadFilesWithDatas:dataArray resultBlock:^(NSArray *filenameArray, NSArray *urlArray, NSArray *bmobFileArray,NSError *error) {
+        DLog(@"database: filenameArray:%@\n urlArray:%@\n bmobfileArray:%@\n error:%@\n", filenameArray, urlArray, bmobFileArray, error);
+        if (error) {
+            if (block) {
+                block(error, filenameArray, urlArray);
+            }
+        } else {
+            //路径数组和url数组（url数组里面的元素为NSString）
+            NSMutableArray *fileNameList = [NSMutableArray array];
+            NSMutableArray *urlList = [NSMutableArray array];
+            for (BmobFile* bmobFile in bmobFileArray ) {
+                [fileNameList addObject:bmobFile.name];
+                [urlList addObject:bmobFile.url];
+            }
+            
+            if (block) {
+                block(error, fileNameList, urlList);
+            }
+        }
+    } progress:^(NSUInteger index, CGFloat progress) {
+        //index表示正在上传的文件其路径在数组当中的索引，progress表示该文件的上传进度
+        NSLog(@"index %lu progress %f",(unsigned long)index,progress);
+        if (progressBlock) {
+            progressBlock(index, progress);
+        }
+    }];
+}
+
+
+/**
  *  获取开启SecretKey安全验证后的url签名
  *
  *  @param filename  上传后返回的文件名
@@ -568,7 +674,7 @@
 }
 
 /**
- *  在服务器上对上传的图片进行缩略图处理,并上传到服务器
+ *  在服务器上对上传的图片进行缩略图处理
  *
  *  @param filename
  *  @param ruleNumber   缩略图规格ID

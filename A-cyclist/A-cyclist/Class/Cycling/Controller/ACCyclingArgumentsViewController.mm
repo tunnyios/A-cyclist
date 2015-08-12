@@ -19,7 +19,9 @@
 #import "ACRouteModel.h"
 #import "ACGlobal.h"
 #import "NSDate+Extension.h"
+#import "UIImage+Extension.h"
 #import <BaiduMapAPI/BMapKit.h>
+#import "ACUploadSharedRouteController.h"
 
 @interface ACCyclingArgumentsViewController () <UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, BMKMapViewDelegate>
 /** 约束 */
@@ -95,7 +97,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     //1. 最先展示轨迹
     [self trailBtnClick];
     //2. 加载轨迹详细数据
@@ -192,6 +194,26 @@
     
     //3. 刷新tableView
     [self.detialTableView reloadData];
+}
+
+/**
+ *  点击上传路线按钮
+ */
+- (IBAction)uploadRoute:(id)sender
+{
+    //1. 截屏:截取路线地图图片
+//    UIImage *newImage = [UIImage imageWithCaptureView:self.bmkMapView];
+    UIImage *newImage = [self.bmkMapView takeSnapshot];
+    DLog(@"newImage is %@", newImage);
+    NSArray *array = @[newImage, self.route];
+    [self performSegueWithIdentifier:@"route2share" sender:array];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    ACUploadSharedRouteController *sharedRoute = segue.destinationViewController;
+    sharedRoute.routeMapImage = sender[0];
+    sharedRoute.route = sender[1];
 }
 
 

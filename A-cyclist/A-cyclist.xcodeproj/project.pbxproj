@@ -19,9 +19,12 @@
 		A2158C6F1B78EE1E00BE27E1 /* ACHotRoutesDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2158C6E1B78EE1E00BE27E1 /* ACHotRoutesDetailController.m */; };
 		A2158C771B79010C00BE27E1 /* ACHotRoutesCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2158C761B79010C00BE27E1 /* ACHotRoutesCellView.m */; };
 		A2158C7A1B79013600BE27E1 /* ACHotRoutesDetailTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2158C791B79013600BE27E1 /* ACHotRoutesDetailTopView.m */; };
-		A2158C851B7997F600BE27E1 /* HCStarView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2158C831B7997F600BE27E1 /* HCStarView.m */; };
-		A2158C861B7997F600BE27E1 /* HCStarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2158C841B7997F600BE27E1 /* HCStarView.xib */; };
 		A2158C8D1B79C68600BE27E1 /* ACUploadSharedRouteController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2158C8C1B79C68600BE27E1 /* ACUploadSharedRouteController.m */; };
+		A2158C8F1B7A14C100BE27E1 /* cities.plist in Resources */ = {isa = PBXBuildFile; fileRef = A2158C8E1B7A14C100BE27E1 /* cities.plist */; };
+		A2158C941B7A1BD600BE27E1 /* HCStarView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2158C921B7A1BD600BE27E1 /* HCStarView.m */; };
+		A2158C951B7A1BD600BE27E1 /* HCStarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2158C931B7A1BD600BE27E1 /* HCStarView.xib */; };
+		A2158C991B7A1C1600BE27E1 /* HCStarViewBigSize.m in Sources */ = {isa = PBXBuildFile; fileRef = A2158C981B7A1C1600BE27E1 /* HCStarViewBigSize.m */; };
+		A2158C9B1B7A1C2400BE27E1 /* HCStarViewBigSize.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2158C9A1B7A1C2400BE27E1 /* HCStarViewBigSize.xib */; };
 		A218F7031B5A3F33007CBADA /* ACLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A218F7021B5A3F33007CBADA /* ACLoginViewController.m */; };
 		A218F7051B5A3FB2007CBADA /* ACLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A218F7041B5A3FB2007CBADA /* ACLogin.storyboard */; };
 		A21D7B511B75F1780014466C /* ACRouteHistoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = A21D7B501B75F1780014466C /* ACRouteHistoryController.m */; };
@@ -193,11 +196,15 @@
 		A2158C761B79010C00BE27E1 /* ACHotRoutesCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACHotRoutesCellView.m; sourceTree = "<group>"; };
 		A2158C781B79013600BE27E1 /* ACHotRoutesDetailTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACHotRoutesDetailTopView.h; sourceTree = "<group>"; };
 		A2158C791B79013600BE27E1 /* ACHotRoutesDetailTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACHotRoutesDetailTopView.m; sourceTree = "<group>"; };
-		A2158C821B7997F600BE27E1 /* HCStarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCStarView.h; sourceTree = "<group>"; };
-		A2158C831B7997F600BE27E1 /* HCStarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCStarView.m; sourceTree = "<group>"; };
-		A2158C841B7997F600BE27E1 /* HCStarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HCStarView.xib; sourceTree = "<group>"; };
 		A2158C8B1B79C68600BE27E1 /* ACUploadSharedRouteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACUploadSharedRouteController.h; sourceTree = "<group>"; };
 		A2158C8C1B79C68600BE27E1 /* ACUploadSharedRouteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACUploadSharedRouteController.m; sourceTree = "<group>"; };
+		A2158C8E1B7A14C100BE27E1 /* cities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = cities.plist; sourceTree = "<group>"; };
+		A2158C911B7A1BD600BE27E1 /* HCStarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCStarView.h; sourceTree = "<group>"; };
+		A2158C921B7A1BD600BE27E1 /* HCStarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCStarView.m; sourceTree = "<group>"; };
+		A2158C931B7A1BD600BE27E1 /* HCStarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HCStarView.xib; sourceTree = "<group>"; };
+		A2158C971B7A1C1600BE27E1 /* HCStarViewBigSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCStarViewBigSize.h; sourceTree = "<group>"; };
+		A2158C981B7A1C1600BE27E1 /* HCStarViewBigSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCStarViewBigSize.m; sourceTree = "<group>"; };
+		A2158C9A1B7A1C2400BE27E1 /* HCStarViewBigSize.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HCStarViewBigSize.xib; sourceTree = "<group>"; };
 		A218F7011B5A3F33007CBADA /* ACLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACLoginViewController.h; sourceTree = "<group>"; };
 		A218F7021B5A3F33007CBADA /* ACLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACLoginViewController.m; sourceTree = "<group>"; };
 		A218F7041B5A3FB2007CBADA /* ACLogin.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ACLogin.storyboard; sourceTree = "<group>"; };
@@ -536,21 +543,31 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		A2158C811B7997F600BE27E1 /* HCStarView */ = {
-			isa = PBXGroup;
-			children = (
-				A2158C821B7997F600BE27E1 /* HCStarView.h */,
-				A2158C831B7997F600BE27E1 /* HCStarView.m */,
-				A2158C841B7997F600BE27E1 /* HCStarView.xib */,
-			);
-			path = HCStarView;
-			sourceTree = "<group>";
-		};
 		A2158C8A1B79C4EB00BE27E1 /* UploadSharedRouteView */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			path = UploadSharedRouteView;
+			sourceTree = "<group>";
+		};
+		A2158C901B7A1BD600BE27E1 /* HCStarViewSmailSize */ = {
+			isa = PBXGroup;
+			children = (
+				A2158C911B7A1BD600BE27E1 /* HCStarView.h */,
+				A2158C921B7A1BD600BE27E1 /* HCStarView.m */,
+				A2158C931B7A1BD600BE27E1 /* HCStarView.xib */,
+			);
+			path = HCStarViewSmailSize;
+			sourceTree = "<group>";
+		};
+		A2158C961B7A1BEF00BE27E1 /* HCStarViewBigSize */ = {
+			isa = PBXGroup;
+			children = (
+				A2158C971B7A1C1600BE27E1 /* HCStarViewBigSize.h */,
+				A2158C981B7A1C1600BE27E1 /* HCStarViewBigSize.m */,
+				A2158C9A1B7A1C2400BE27E1 /* HCStarViewBigSize.xib */,
+			);
+			path = HCStarViewBigSize;
 			sourceTree = "<group>";
 		};
 		A218F7001B5A3F09007CBADA /* View */ = {
@@ -920,6 +937,7 @@
 			children = (
 				A2D207101B67435B00214B09 /* Mp3 */,
 				A28BFEBA1B53A2CC00A712F1 /* Info.plist */,
+				A2158C8E1B7A14C100BE27E1 /* cities.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1290,7 +1308,8 @@
 		A2D1ECF31B550E3A00344246 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				A2158C811B7997F600BE27E1 /* HCStarView */,
+				A2158C961B7A1BEF00BE27E1 /* HCStarViewBigSize */,
+				A2158C901B7A1BD600BE27E1 /* HCStarViewSmailSize */,
 				A204B1581B5B506B004C0A6C /* HCKeyboard */,
 				A2D483B71B5525B200BC8406 /* HCTabBar5ContentView.h */,
 				A2D483B81B5525B200BC8406 /* HCTabBar5ContentView.m */,
@@ -1423,14 +1442,16 @@
 				A28BFF181B53F9AD00A712F1 /* profile.storyboard in Resources */,
 				A28BFF1E1B53F9FD00A712F1 /* setting.storyboard in Resources */,
 				A21DE5E41B71AD3A00BC0D31 /* ACProfileCellView.xib in Resources */,
-				A2158C861B7997F600BE27E1 /* HCStarView.xib in Resources */,
 				A2845EB51B5AB825006E0CE0 /* MBProgressHUD.bundle in Resources */,
+				A2158C951B7A1BD600BE27E1 /* HCStarView.xib in Resources */,
 				A21D7B611B76FC010014466C /* ACRankingFormerCellView.xib in Resources */,
 				A28BFEC71B53A2CC00A712F1 /* Images.xcassets in Resources */,
 				A28BFF1A1B53F9D700A712F1 /* ranking.storyboard in Resources */,
 				A266D9AF1B5C9FE600D4B326 /* WeiboSDK.bundle in Resources */,
 				A261435F1B5E4AF7007EA45C /* ACChangeNameController.xib in Resources */,
 				A26E8EDF1B7848A1003FFC37 /* ACHotRoutesCellView.xib in Resources */,
+				A2158C8F1B7A14C100BE27E1 /* cities.plist in Resources */,
+				A2158C9B1B7A1C2400BE27E1 /* HCStarViewBigSize.xib in Resources */,
 				A21D7B661B76FC760014466C /* ACRankingBehindCellView.xib in Resources */,
 				A2082E6A1B62259800CA3325 /* mapapi.bundle in Resources */,
 				A2A43CDA1B7324A90099011F /* ACProfileHeaderView.xib in Resources */,
@@ -1471,12 +1492,14 @@
 				A266D9C31B5CF8F900D4B326 /* ACSettingProfileInfoViewController.m in Sources */,
 				A2F040EB1B563A51004FBF3D /* ACBaseTableViewController.m in Sources */,
 				A261434A1B5E22D6007EA45C /* SDWebImageCompat.m in Sources */,
+				A2158C991B7A1C1600BE27E1 /* HCStarViewBigSize.m in Sources */,
 				A26E8EE21B7848C8003FFC37 /* ACHotRoutesCellModel.m in Sources */,
 				A261434C1B5E22D6007EA45C /* SDWebImageDownloader.m in Sources */,
 				A26143481B5E22D6007EA45C /* NSData+ImageContentType.m in Sources */,
 				A266D9A01B5C881700D4B326 /* NSString+MJExtension.m in Sources */,
 				A266D9FB1B5D11D200D4B326 /* FMDatabasePool.m in Sources */,
 				A266D99A1B5C881700D4B326 /* MJFoundation.m in Sources */,
+				A2158C941B7A1BD600BE27E1 /* HCStarView.m in Sources */,
 				A2158C6F1B78EE1E00BE27E1 /* ACHotRoutesDetailController.m in Sources */,
 				A261B04B1B57AA87006C8917 /* ACLogoutSettingViewCell.m in Sources */,
 				A26143541B5E22D6007EA45C /* UIImageView+HighlightedWebCache.m in Sources */,
@@ -1510,7 +1533,6 @@
 				A21D7B6F1B775EE50014466C /* ACRankingBehindCellModel.m in Sources */,
 				A26143551B5E22D6007EA45C /* UIImageView+WebCache.m in Sources */,
 				A26143211B5DFA6C007EA45C /* ACArrowWithSubtitleSettingCellModel.m in Sources */,
-				A2158C851B7997F600BE27E1 /* HCStarView.m in Sources */,
 				A266D9E81B5CFA0B00D4B326 /* HCFileParamsModel.m in Sources */,
 				A266D9F91B5D11D200D4B326 /* FMDatabase.m in Sources */,
 				A266D9FD1B5D11D200D4B326 /* FMResultSet.m in Sources */,

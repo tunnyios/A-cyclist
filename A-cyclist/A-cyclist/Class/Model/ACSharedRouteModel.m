@@ -37,6 +37,7 @@
     routeModel.difficultyLevel = [bmobObj objectForKey:@"difficultyLevel"];
     routeModel.sceneryLevel = [bmobObj objectForKey:@"sceneryLevel"];
     routeModel.userName = [bmobObj objectForKey:@"userName"];
+    routeModel.userObjectId = [bmobObj objectForKey:@"userObjectId"];
     routeModel.routeDesc = [bmobObj objectForKey:@"routeDesc"];
     routeModel.classification = [bmobObj objectForKey:@"classification"];
     
@@ -61,6 +62,6 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<%p : %@>\n {\n nameCN = %@,\n nameEN = %@,\n distance = %@,\n maxAltitude is %@,\n difficultyLevel = %@,\n sceneryLevel = %@,\n userName = %@,\n routeDesc = %@,\n imageList = %@,\n classification = %@\n}", self, self.class, self.nameCN, self.nameEN, self.distance, self.maxAlitude, self.difficultyLevel, self.sceneryLevel, self.userName, self.routeDesc, self.imageList, self.classification];
+    return [NSString stringWithFormat:@"<%p : %@>\n {\n nameCN = %@,\n nameEN = %@,\n distance = %@,\n maxAltitude is %@,\n difficultyLevel = %@,\n sceneryLevel = %@,\n userName = %@,userObjectId = %@,\n \n routeDesc = %@,\n imageList = %@,\n classification = %@\n}", self, self.class, self.nameCN, self.nameEN, self.distance, self.maxAlitude, self.difficultyLevel, self.sceneryLevel, self.userName, self.userObjectId, self.routeDesc, self.imageList, self.classification];
 }
 @end

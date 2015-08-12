@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="cCH-7G-Fus" customClass="HCStarViewBigSize">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="81"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uJg-xy-Aid" userLabel="star1">
+                    <rect key="frame" x="0.0" y="27.5" width="25" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="25" id="0vD-qj-6Bu"/>
+                        <constraint firstAttribute="height" constant="25" id="C9s-SG-j1W"/>
+                    </constraints>
+                    <state key="normal" image="shoe_score_none">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="shoe_score_filled"/>
+                    <connections>
+                        <action selector="star1Click:" destination="cCH-7G-Fus" eventType="touchUpInside" id="B4G-kM-mMB"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ow-ZL-21M" userLabel="star2">
+                    <rect key="frame" x="30" y="27.5" width="25" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="25" id="TWv-Bj-jCW"/>
+                        <constraint firstAttribute="height" constant="25" id="V3x-ZY-uA9"/>
+                    </constraints>
+                    <state key="normal" image="shoe_score_none">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="shoe_score_filled"/>
+                    <connections>
+                        <action selector="star2Click:" destination="cCH-7G-Fus" eventType="touchUpInside" id="5a6-Pf-rdV"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eef-IZ-cpv" userLabel="star3">
+                    <rect key="frame" x="60" y="27.5" width="25" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="25" id="REm-vg-2Og"/>
+                        <constraint firstAttribute="height" constant="25" id="x5S-Xj-q8W"/>
+                    </constraints>
+                    <state key="normal" image="shoe_score_none">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="shoe_score_filled"/>
+                    <connections>
+                        <action selector="star3Click:" destination="cCH-7G-Fus" eventType="touchUpInside" id="2li-g5-8NP"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uFD-df-nE0" userLabel="star4">
+                    <rect key="frame" x="90" y="27.5" width="25" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="25" id="Kwv-x6-QIE"/>
+                        <constraint firstAttribute="height" constant="25" id="mLH-Cp-3Fc"/>
+                    </constraints>
+                    <state key="normal" image="shoe_score_none">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="shoe_score_filled"/>
+                    <connections>
+                        <action selector="star4Click:" destination="cCH-7G-Fus" eventType="touchUpInside" id="KTM-EI-3W6"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jjY-Bv-8x1" userLabel="star5">
+                    <rect key="frame" x="120" y="28.5" width="25" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="25" id="26u-aa-iU0"/>
+                        <constraint firstAttribute="height" constant="25" id="HJQ-yu-Z9c"/>
+                    </constraints>
+                    <state key="normal" image="shoe_score_none">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="shoe_score_filled"/>
+                    <connections>
+                        <action selector="star5Click:" destination="cCH-7G-Fus" eventType="touchUpInside" id="6Vh-Py-w9M"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="centerY" secondItem="5Ow-ZL-21M" secondAttribute="centerY" id="5Va-2H-l6K"/>
+                <constraint firstAttribute="centerY" secondItem="eef-IZ-cpv" secondAttribute="centerY" id="8Vg-8Q-LO9"/>
+                <constraint firstItem="uJg-xy-Aid" firstAttribute="leading" secondItem="cCH-7G-Fus" secondAttribute="leading" id="A9E-Ve-UJy"/>
+                <constraint firstItem="jjY-Bv-8x1" firstAttribute="leading" secondItem="eef-IZ-cpv" secondAttribute="trailing" id="Ey6-SC-wJH"/>
+                <constraint firstAttribute="centerY" secondItem="uFD-df-nE0" secondAttribute="centerY" id="FON-Rp-UGa"/>
+                <constraint firstItem="uFD-df-nE0" firstAttribute="leading" secondItem="eef-IZ-cpv" secondAttribute="trailing" id="J3w-wG-jMg"/>
+                <constraint firstAttribute="centerY" secondItem="uJg-xy-Aid" secondAttribute="centerY" id="NLB-DS-gmr"/>
+                <constraint firstAttribute="centerY" secondItem="jjY-Bv-8x1" secondAttribute="centerY" id="Qpc-Dw-MFd"/>
+                <constraint firstItem="jjY-Bv-8x1" firstAttribute="leading" secondItem="uFD-df-nE0" secondAttribute="trailing" constant="5" id="WY7-JI-VLW"/>
+                <constraint firstItem="uFD-df-nE0" firstAttribute="leading" secondItem="eef-IZ-cpv" secondAttribute="trailing" constant="5" id="XFa-te-wXA"/>
+                <constraint firstItem="5Ow-ZL-21M" firstAttribute="leading" secondItem="uJg-xy-Aid" secondAttribute="trailing" constant="5" id="b74-ep-EuE"/>
+                <constraint firstItem="eef-IZ-cpv" firstAttribute="leading" secondItem="5Ow-ZL-21M" secondAttribute="trailing" constant="5" id="zON-7c-lbH"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="J3w-wG-jMg"/>
+                    <exclude reference="Ey6-SC-wJH"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="star1" destination="uJg-xy-Aid" id="IoN-Eh-fSc"/>
+                <outlet property="star2" destination="5Ow-ZL-21M" id="59D-zN-cwS"/>
+                <outlet property="star3" destination="eef-IZ-cpv" id="SVg-pq-UlP"/>
+                <outlet property="star4" destination="uFD-df-nE0" id="tRa-t9-ugR"/>
+                <outlet property="star5" destination="jjY-Bv-8x1" id="UDn-Ls-bxE"/>
+            </connections>
+            <point key="canvasLocation" x="262" y="331.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="shoe_score_filled" width="78" height="76"/>
+        <image name="shoe_score_none" width="76" height="76"/>
+    </resources>
+</document>

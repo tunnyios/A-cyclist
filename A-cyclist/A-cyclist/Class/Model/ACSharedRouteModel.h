@@ -26,6 +26,8 @@
 //@property (nonatomic, assign) NSNumber *roadLevel;
 /** 来源：用户昵称 */
 @property (nonatomic, copy) NSString *userName;
+/** 来源：用户id */
+@property (nonatomic, copy) NSString *userObjectId;
 /** 图片url列表(3张风景最后一张为路线图) */
 @property (nonatomic, strong) NSArray *imageList;
 /** 路线描述 */

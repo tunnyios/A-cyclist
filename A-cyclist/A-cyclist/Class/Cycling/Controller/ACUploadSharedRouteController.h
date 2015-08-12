@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class ACRouteModel;
 @interface ACUploadSharedRouteController : UIViewController
 
+/** 路线地图Image */
+@property (nonatomic, strong) UIImage *routeMapImage;
+/** 路线对象 */
+@property (nonatomic, strong) ACRouteModel *route;
 @end
