@@ -25,6 +25,9 @@
 		A2158C951B7A1BD600BE27E1 /* HCStarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2158C931B7A1BD600BE27E1 /* HCStarView.xib */; };
 		A2158C991B7A1C1600BE27E1 /* HCStarViewBigSize.m in Sources */ = {isa = PBXBuildFile; fileRef = A2158C981B7A1C1600BE27E1 /* HCStarViewBigSize.m */; };
 		A2158C9B1B7A1C2400BE27E1 /* HCStarViewBigSize.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2158C9A1B7A1C2400BE27E1 /* HCStarViewBigSize.xib */; };
+		A2158C9E1B7C32AF00BE27E1 /* ACSettingOffLineMapsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2158C9D1B7C32AF00BE27E1 /* ACSettingOffLineMapsViewController.m */; };
+		A2158CEC1B7CE72900BE27E1 /* MRCircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2158CE81B7CE72900BE27E1 /* MRCircularProgressView.m */; };
+		A2158CED1B7CE72900BE27E1 /* MRProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2158CEB1B7CE72900BE27E1 /* MRProgressView.m */; };
 		A218F7031B5A3F33007CBADA /* ACLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A218F7021B5A3F33007CBADA /* ACLoginViewController.m */; };
 		A218F7051B5A3FB2007CBADA /* ACLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A218F7041B5A3FB2007CBADA /* ACLogin.storyboard */; };
 		A21D7B511B75F1780014466C /* ACRouteHistoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = A21D7B501B75F1780014466C /* ACRouteHistoryController.m */; };
@@ -205,6 +208,13 @@
 		A2158C971B7A1C1600BE27E1 /* HCStarViewBigSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCStarViewBigSize.h; sourceTree = "<group>"; };
 		A2158C981B7A1C1600BE27E1 /* HCStarViewBigSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCStarViewBigSize.m; sourceTree = "<group>"; };
 		A2158C9A1B7A1C2400BE27E1 /* HCStarViewBigSize.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HCStarViewBigSize.xib; sourceTree = "<group>"; };
+		A2158C9C1B7C32AF00BE27E1 /* ACSettingOffLineMapsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACSettingOffLineMapsViewController.h; sourceTree = "<group>"; };
+		A2158C9D1B7C32AF00BE27E1 /* ACSettingOffLineMapsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACSettingOffLineMapsViewController.m; sourceTree = "<group>"; };
+		A2158CE71B7CE72900BE27E1 /* MRCircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRCircularProgressView.h; sourceTree = "<group>"; };
+		A2158CE81B7CE72900BE27E1 /* MRCircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRCircularProgressView.m; sourceTree = "<group>"; };
+		A2158CE91B7CE72900BE27E1 /* MRProgressHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRProgressHelper.h; sourceTree = "<group>"; };
+		A2158CEA1B7CE72900BE27E1 /* MRProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRProgressView.h; sourceTree = "<group>"; };
+		A2158CEB1B7CE72900BE27E1 /* MRProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRProgressView.m; sourceTree = "<group>"; };
 		A218F7011B5A3F33007CBADA /* ACLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACLoginViewController.h; sourceTree = "<group>"; };
 		A218F7021B5A3F33007CBADA /* ACLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACLoginViewController.m; sourceTree = "<group>"; };
 		A218F7041B5A3FB2007CBADA /* ACLogin.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ACLogin.storyboard; sourceTree = "<group>"; };
@@ -570,6 +580,18 @@
 			path = HCStarViewBigSize;
 			sourceTree = "<group>";
 		};
+		A2158CE61B7CE6F400BE27E1 /* HCProgressView */ = {
+			isa = PBXGroup;
+			children = (
+				A2158CE71B7CE72900BE27E1 /* MRCircularProgressView.h */,
+				A2158CE81B7CE72900BE27E1 /* MRCircularProgressView.m */,
+				A2158CE91B7CE72900BE27E1 /* MRProgressHelper.h */,
+				A2158CEA1B7CE72900BE27E1 /* MRProgressView.h */,
+				A2158CEB1B7CE72900BE27E1 /* MRProgressView.m */,
+			);
+			path = HCProgressView;
+			sourceTree = "<group>";
+		};
 		A218F7001B5A3F09007CBADA /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -642,6 +664,8 @@
 		A261B03B1B5780E7006C8917 /* OffMaps */ = {
 			isa = PBXGroup;
 			children = (
+				A2158C9C1B7C32AF00BE27E1 /* ACSettingOffLineMapsViewController.h */,
+				A2158C9D1B7C32AF00BE27E1 /* ACSettingOffLineMapsViewController.m */,
 			);
 			path = OffMaps;
 			sourceTree = "<group>";
@@ -1308,6 +1332,7 @@
 		A2D1ECF31B550E3A00344246 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A2158CE61B7CE6F400BE27E1 /* HCProgressView */,
 				A2158C961B7A1BEF00BE27E1 /* HCStarViewBigSize */,
 				A2158C901B7A1BD600BE27E1 /* HCStarViewSmailSize */,
 				A204B1581B5B506B004C0A6C /* HCKeyboard */,
@@ -1517,6 +1542,7 @@
 				A281C59C1B6DD70A00DF31C0 /* ACCircleChartView.m in Sources */,
 				A261434E1B5E22D6007EA45C /* SDWebImageManager.m in Sources */,
 				A281C5991B6DD65B00DF31C0 /* ACLineChartView.m in Sources */,
+				A2158CED1B7CE72900BE27E1 /* MRProgressView.m in Sources */,
 				A266D9B41B5CA14F00D4B326 /* ACShowAlertTool.m in Sources */,
 				A266D9EC1B5D0A0400D4B326 /* ACCacheDataTool.m in Sources */,
 				A266D99F1B5C881700D4B326 /* NSObject+MJProperty.m in Sources */,
@@ -1554,11 +1580,13 @@
 				A21D7B5C1B7633C70014466C /* ACRankingController.m in Sources */,
 				A266D9DB1B5CF9CD00D4B326 /* AFNetworkReachabilityManager.m in Sources */,
 				A21D7B551B75F9DF0014466C /* ACRouteHistoryCellView.m in Sources */,
+				A2158CEC1B7CE72900BE27E1 /* MRCircularProgressView.m in Sources */,
 				A266D9FC1B5D11D200D4B326 /* FMDatabaseQueue.m in Sources */,
 				A28BFF141B53BECC00A712F1 /* ACGlobal.m in Sources */,
 				A2845EB61B5AB825006E0CE0 /* MBProgressHUD.m in Sources */,
 				A266D9D91B5CF9CD00D4B326 /* AFHTTPRequestOperationManager.m in Sources */,
 				A266D99D1B5C881700D4B326 /* NSObject+MJCoding.m in Sources */,
+				A2158C9E1B7C32AF00BE27E1 /* ACSettingOffLineMapsViewController.m in Sources */,
 				A26143521B5E22D6007EA45C /* UIImage+MultiFormat.m in Sources */,
 				A2CE5A4E1B687F130071AC59 /* ACStepModel.m in Sources */,
 				A26143591B5E2660007EA45C /* UIImage+Extension.m in Sources */,

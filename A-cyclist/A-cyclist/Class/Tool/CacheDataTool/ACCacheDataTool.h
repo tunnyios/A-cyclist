@@ -46,4 +46,13 @@
 /** 从本地缓存中获取最长时间的一次骑行路线 */
 + (ACRouteModel *)getmaxTimeRouteWithId:(NSString *)objectId;
 
+
+#pragma mark - 偏好设置存储
+
+/** 存储数据到偏好设置 */
++ (void)setObjectToPlist:(id)value forKey:(NSString *)defaultName;
+
+/** 从偏好设置中读取存储的数据 */
++ (id)objectForKeyFromPlist:(NSString *)defaultName;
+
 @end

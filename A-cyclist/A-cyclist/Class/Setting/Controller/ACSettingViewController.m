@@ -14,6 +14,7 @@
 #import "ACSettingProfileInfoViewController.h"
 #import "ACSettingViewCell.h"
 #import "ACLogoutSettingViewCell.h"
+#import "ACSettingOffLineMapsViewController.h"
 
 @interface ACSettingViewController ()
 
@@ -38,7 +39,7 @@
 {
     //数据部分
     ACArrowSettingCellModel *cell0 = [ACArrowSettingCellModel arrowSettingCellModelWithTitle:@"编辑个人资料" icon:@"IDInfo" destClass:[ACSettingProfileInfoViewController class]];
-    ACArrowSettingCellModel *cell1 = [ACArrowSettingCellModel arrowSettingCellModelWithTitle:@"离线地图" icon:@"sound_Effect" destClass:[UIViewController class]];
+    ACArrowSettingCellModel *cell1 = [ACArrowSettingCellModel arrowSettingCellModelWithTitle:@"离线地图" icon:@"sound_Effect" destClass:[ACSettingOffLineMapsViewController class]];
     ACArrowSettingCellModel *cell2 = [ACArrowSettingCellModel arrowSettingCellModelWithTitle:@"推送与提醒" icon:@"MorePush" destClass:[UIViewController class]];
     
     ACSettingGroupModel *group = [[ACSettingGroupModel alloc] init];

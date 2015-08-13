@@ -31,7 +31,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 
 @interface MBProgressHUD ()
 
-- (void)setupLabels;
+- (void)setupLabelsWithRect:(CGRect)frame;
 - (void)registerForKVO;
 - (void)unregisterFromKVO;
 - (NSArray *)observableKeypaths;
@@ -153,6 +153,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 	return [NSArray arrayWithArray:huds];
 }
 
+
 #pragma mark - Lifecycle
 
 - (id)initWithFrame:(CGRect)frame {
@@ -162,6 +163,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 		self.animationType = MBProgressHUDAnimationFade;
 		self.mode = MBProgressHUDModeIndeterminate;
 		self.labelText = nil;
+        self.labelframe = CGRectZero;
 		self.detailsLabelText = nil;
 		self.opacity = 0.8f;
         self.color = nil;
@@ -188,7 +190,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 		taskInProgress = NO;
 		rotationTransform = CGAffineTransformIdentity;
 		
-		[self setupLabels];
+		[self setupLabelsWithRect:self.labelframe];
 		[self updateIndicators];
 		[self registerForKVO];
 		[self registerForNotifications];
@@ -431,8 +433,8 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 
 #pragma mark - UI
 
-- (void)setupLabels {
-	label = [[UILabel alloc] initWithFrame:self.bounds];
+- (void)setupLabelsWithRect:(CGRect)frame {
+	label = [[UILabel alloc] initWithFrame:frame];
 	label.adjustsFontSizeToFitWidth = NO;
 	label.textAlignment = MBLabelAlignmentCenter;
 	label.opaque = NO;

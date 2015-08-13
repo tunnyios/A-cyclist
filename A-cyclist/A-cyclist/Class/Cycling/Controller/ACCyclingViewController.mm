@@ -152,7 +152,7 @@ typedef enum : NSUInteger {
     //1. 定位
     _bmkLocationService = [[BMKLocationService alloc] init];
     
-    //设置更新位置频率(单位：米;必须要在开始定位之前设置)
+    //设置位置频率(单位：米;必须要在开始定位之前设置)
     [BMKLocationService setLocationDistanceFilter:10000.f];
     [BMKLocationService setLocationDesiredAccuracy:kCLLocationAccuracyBestForNavigation];
     [_bmkLocationService startUserLocationService];

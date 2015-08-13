@@ -220,4 +220,26 @@ static FMDatabase *_db;
     return routeList.firstObject;
 }
 
+
+#pragma mark - 偏好设置存储
+/**
+ *  存储数据到偏好设置
+ */
++ (void)setObjectToPlist:(id)value forKey:(NSString *)defaultName
+{
+    [[NSUserDefaults standardUserDefaults] setObject:value forKey:defaultName];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+
+}
+
+/**
+ *  从偏好设置中读取存储的数据
+ */
++ (id)objectForKeyFromPlist:(NSString *)defaultName
+{
+    id obj = [[NSUserDefaults standardUserDefaults] objectForKey:defaultName];
+    
+    return obj;
+}
+
 @end
