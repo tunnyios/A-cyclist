@@ -15,8 +15,11 @@
 #import "ACSettingViewCell.h"
 #import "ACLogoutSettingViewCell.h"
 #import "ACSettingOffLineMapsViewController.h"
+#import "SDImageCache.h"
+#import "NSFileManager+Extension.h"
+#import "ACShowAlertTool.h"
 
-@interface ACSettingViewController ()
+@interface ACSettingViewController () <UIAlertViewDelegate>
 
 @end
 
@@ -40,23 +43,52 @@
     //数据部分
     ACArrowSettingCellModel *cell0 = [ACArrowSettingCellModel arrowSettingCellModelWithTitle:@"编辑个人资料" icon:@"IDInfo" destClass:[ACSettingProfileInfoViewController class]];
     ACArrowSettingCellModel *cell1 = [ACArrowSettingCellModel arrowSettingCellModelWithTitle:@"离线地图" icon:@"sound_Effect" destClass:[ACSettingOffLineMapsViewController class]];
-    ACArrowSettingCellModel *cell2 = [ACArrowSettingCellModel arrowSettingCellModelWithTitle:@"推送与提醒" icon:@"MorePush" destClass:[UIViewController class]];
+//    ACArrowSettingCellModel *cell2 = [ACArrowSettingCellModel arrowSettingCellModelWithTitle:@"推送与提醒" icon:@"MorePush" destClass:[UIViewController class]];
     
     ACSettingGroupModel *group = [[ACSettingGroupModel alloc] init];
-    group.cellList = @[cell0, cell1, cell2];
+    group.cellList = @[cell0, cell1];
     
     [self.dataList addObject:group];
 }
 
 - (void)addGroup1
 {
+    //1. 计算缓存数据的大小
+    NSString *cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
+    CGFloat size = [NSFileManager folderSizeAtPath:cachePath];
+    __block NSString *sutTitle = [NSString stringWithFormat:@"%.2f M", size];
     //数据部分
-    ACBlankSettingCellModel *cell0 = [ACBlankSettingCellModel blankSettingCellWithTitle:@"清除缓存" subTitle:@"2.6M" icon:@"MoreNetease"];
+    ACBlankSettingCellModel *cell0 = [ACBlankSettingCellModel blankSettingCellWithTitle:@"清除缓存" subTitle:sutTitle icon:@"MoreNetease"];
+    
+    cell0.option = ^(NSIndexPath *indexPath){
+        //弹出alert
+        NSString *message = [NSString stringWithFormat:@"缓存大小为%@, 确定要清理缓存吗？", sutTitle];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        [alertView show];
+    };
     
     ACSettingGroupModel *group1 = [[ACSettingGroupModel alloc] init];
     group1.cellList = @[cell0];
     
     [self.dataList addObject:group1];
+}
+
+
+#pragma mark - 清理缓存 alertView代理
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (1 == buttonIndex) { //清理缓存
+        [ACShowAlertTool showMessage:@"清理缓存" onView:nil];
+        NSString *cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
+        [NSFileManager clearCache:cachePath];
+        
+        //修改dataList数据
+        ACSettingGroupModel *group = self.dataList[1];
+        ACBlankSettingCellModel *blank = group.cellList[0];
+        blank.subTitle = @"0 M";
+        [self.tableView reloadData];
+        [ACShowAlertTool hideMessage];
+    }
 }
 
 - (void)addGroup2

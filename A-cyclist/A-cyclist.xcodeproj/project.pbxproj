@@ -185,6 +185,7 @@
 		A2FEDF5C1B7DFD5800BCD092 /* libSocialQQ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A2FEDF5B1B7DFD5800BCD092 /* libSocialQQ.a */; };
 		A2FEDF5F1B7E285000BCD092 /* ACSharedTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FEDF5E1B7E285000BCD092 /* ACSharedTitleView.m */; };
 		A2FEDF611B7E286000BCD092 /* ACSharedTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2FEDF601B7E286000BCD092 /* ACSharedTitleView.xib */; };
+		A2FEDF641B7E4C9D00BCD092 /* NSFileManager+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FEDF631B7E4C9D00BCD092 /* NSFileManager+Extension.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -521,6 +522,8 @@
 		A2FEDF5D1B7E285000BCD092 /* ACSharedTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACSharedTitleView.h; sourceTree = "<group>"; };
 		A2FEDF5E1B7E285000BCD092 /* ACSharedTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACSharedTitleView.m; sourceTree = "<group>"; };
 		A2FEDF601B7E286000BCD092 /* ACSharedTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ACSharedTitleView.xib; sourceTree = "<group>"; };
+		A2FEDF621B7E4C9D00BCD092 /* NSFileManager+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+Extension.h"; sourceTree = "<group>"; };
+		A2FEDF631B7E4C9D00BCD092 /* NSFileManager+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+Extension.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1448,6 +1451,8 @@
 				A204B0931B5B30F7004C0A6C /* NSString+Extension.m */,
 				A2D483B41B5516E300BC8406 /* UIColor+Tools.h */,
 				A2D483B51B5516E300BC8406 /* UIColor+Tools.m */,
+				A2FEDF621B7E4C9D00BCD092 /* NSFileManager+Extension.h */,
+				A2FEDF631B7E4C9D00BCD092 /* NSFileManager+Extension.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -1648,6 +1653,7 @@
 				A261B0451B579D82006C8917 /* ACArrowSettingCellModel.m in Sources */,
 				A21D7B6C1B775ECE0014466C /* ACRankingFormerCellModel.m in Sources */,
 				A21DE5EA1B71D36400BC0D31 /* ACProfileCellModel.m in Sources */,
+				A2FEDF641B7E4C9D00BCD092 /* NSFileManager+Extension.m in Sources */,
 				A266D99C1B5C881700D4B326 /* MJType.m in Sources */,
 				A261434D1B5E22D6007EA45C /* SDWebImageDownloaderOperation.m in Sources */,
 				A26143561B5E22D6007EA45C /* UIView+WebCacheOperation.m in Sources */,
