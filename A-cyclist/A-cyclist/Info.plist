@@ -36,10 +36,18 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>tencentopenapi</string>
+			<string></string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>tencent1104739169</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>QQ41D8FD61</string>
 			</array>
 		</dict>
 	</array>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="fTQ-RO-MlD" customClass="ACSharedTitleView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xingzhe_sport_bike" translatesAutoresizingMaskIntoConstraints="NO" id="GzS-PS-fz5">
+                    <rect key="frame" x="0.0" y="6" width="32" height="32"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="32" id="eAJ-HF-o6y"/>
+                        <constraint firstAttribute="height" constant="32" id="yuC-Eg-hvj"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="骑行" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VQT-nw-a05">
+                    <rect key="frame" x="282" y="11" width="28" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="ViG-Ui-goH"/>
+                        <constraint firstAttribute="width" constant="28" id="vj8-pn-T0V"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2015-07-30" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ciH-b4-HND">
+                    <rect key="frame" x="204" y="11" width="78" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="6z5-yw-ANc"/>
+                        <constraint firstAttribute="width" constant="78" id="FY7-0j-bNp"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.0" green="0.39000577260000002" blue="0.82206833960000003" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="centerY" secondItem="VQT-nw-a05" secondAttribute="centerY" id="BJj-uj-Ous"/>
+                <constraint firstAttribute="trailing" secondItem="VQT-nw-a05" secondAttribute="trailing" constant="10" id="PbD-gN-cMn"/>
+                <constraint firstItem="GzS-PS-fz5" firstAttribute="leading" secondItem="fTQ-RO-MlD" secondAttribute="leading" id="Wzp-8Y-Ysb"/>
+                <constraint firstItem="VQT-nw-a05" firstAttribute="leading" secondItem="ciH-b4-HND" secondAttribute="trailing" id="dak-Pb-ySl"/>
+                <constraint firstAttribute="centerY" secondItem="ciH-b4-HND" secondAttribute="centerY" id="fxv-05-MQu"/>
+                <constraint firstAttribute="centerY" secondItem="GzS-PS-fz5" secondAttribute="centerY" id="hig-n8-fHQ"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="timeLabel" destination="ciH-b4-HND" id="EGu-0D-iTO"/>
+            </connections>
+            <point key="canvasLocation" x="537" y="390"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="xingzhe_sport_bike" width="32" height="32"/>
+    </resources>
+</document>

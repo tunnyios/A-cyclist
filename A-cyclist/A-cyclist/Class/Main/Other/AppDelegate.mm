@@ -19,6 +19,9 @@
 #import <BaiduMapAPI/BMapKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import "ACLoginViewController.h"
+#import "UMSocial.h"
+#import "UMSocialSinaSSOHandler.h"
+#import "UMSocialQQHandler.h"
 
 @interface AppDelegate () <WeiboSDKDelegate>
 /** 百度地图管理者 */
@@ -31,6 +34,11 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    //设置友盟社会化组件appkey
+    [UMSocialData setAppKey:@"55cdacb0e0f55ab21a0010ff"];
+    //开启新浪微博SSO授权开关
+    [UMSocialSinaSSOHandler openNewSinaSSOWithRedirectURL:@"https://api.weibo.com/oauth2/default.html"];
+    [UMSocialQQHandler setQQWithAppId:@"1104739169" appKey:@"nJ9vASx3n7zUP0vQ" url:@"http://github.com/tunnyios"];
     
     [Bmob registerWithAppKey:ACBmobAppKey];
     [WeiboSDK enableDebugMode:YES];
@@ -77,9 +85,6 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    
     //向操作系统申请后台运行资格，能维持多久， 是不确定的
     __block UIBackgroundTaskIdentifier task = [application beginBackgroundTaskWithExpirationHandler:^{
         //当申请的后台运行时间已过期，则会执行这个block
@@ -122,13 +127,25 @@
 
 #pragma mark - 重写两个handle方法
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
-    return [TencentOAuth HandleOpenURL:url] ||
-    [WeiboSDK handleOpenURL:url delegate:self];
+//    return [TencentOAuth HandleOpenURL:url] ||
+//    [WeiboSDK handleOpenURL:url delegate:self];
+    BOOL result = [UMSocialSnsService handleOpenURL:url];
+    if (result == FALSE) {
+        result = [TencentOAuth HandleOpenURL:url] ||
+        [WeiboSDK handleOpenURL:url delegate:self];
+    }
+    return result;
 }
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
-    return [TencentOAuth HandleOpenURL:url] ||
-    [WeiboSDK handleOpenURL:url delegate:self];
+//    return [TencentOAuth HandleOpenURL:url] ||
+//    [WeiboSDK handleOpenURL:url delegate:self];
+    BOOL result = [UMSocialSnsService handleOpenURL:url];
+    if (result == FALSE) {
+        result = [TencentOAuth HandleOpenURL:url] ||
+        [WeiboSDK handleOpenURL:url delegate:self];
+    }
+    return result;
 }
 
 # pragma mark - 新浪回调

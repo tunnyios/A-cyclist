@@ -20,13 +20,16 @@
 #import "ACGlobal.h"
 #import "NSDate+Extension.h"
 #import "UIImage+Extension.h"
+#import "UIColor+Tools.h"
 #import <BaiduMapAPI/BMapKit.h>
 #import "ACUploadSharedRouteController.h"
 #import "ACShowAlertTool.h"
 #import "ACUserModel.h"
 #import "ACCacheDataTool.h"
+#import "ACSharedTitleView.h"
+#import "UMSocial.h"
 
-@interface ACCyclingArgumentsViewController () <UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, BMKMapViewDelegate>
+@interface ACCyclingArgumentsViewController () <UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, BMKMapViewDelegate, UMSocialUIDelegate>
 /** 约束 */
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentViewWidth;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *middleViewLeading;
@@ -37,6 +40,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *graphicBtn;
 @property (weak, nonatomic) IBOutlet UIButton *dataBtn;
 @property (weak, nonatomic) IBOutlet UIButton *sharedBtn;
+@property (weak, nonatomic) IBOutlet UIView *argumentView;
+@property (weak, nonatomic) IBOutlet UIView *speedView;
+@property (weak, nonatomic) IBOutlet UIView *climbingView;
+@property (weak, nonatomic) IBOutlet UIView *dateView;
 
 /** scrollView */
 @property (weak, nonatomic) IBOutlet ACCyclingArgumentScrollView *cyclingArgumentScrollView;
@@ -243,6 +250,85 @@
     ACUploadSharedRouteController *sharedRoute = segue.destinationViewController;
     sharedRoute.routeMapImage = sender[0];
     sharedRoute.route = sender[1];
+}
+
+/**
+ *  点击了分享按钮
+ */
+- (IBAction)sharedBtnClick:(id)sender
+{
+    //设置只分享图片
+    [UMSocialData defaultData].extConfig.qqData.qqMessageType = UMSocialQQMessageTypeImage;
+    
+    //1.截图
+    ACSharedTitleView *titleView = [ACSharedTitleView sharedTitleView];
+    titleView.dateStr = [NSDate dateToString:self.route.cyclingStartTime WithFormatter:@"yyyy-MM-dd"];
+    UIImage *titleImage = [UIImage imageWithCaptureView:titleView];
+    UIImage *mapImage = [self.bmkMapView takeSnapshot];
+    UIImage *argumentsImage = [UIImage imageWithCaptureView:self.argumentView];
+    UIImage *speedImage = [UIImage imageWithCaptureView:self.speedView];
+    UIImage *climbingImage = [UIImage imageWithCaptureView:self.climbingView];
+    //2.拼图
+    UIImage *newImage = [self imageWithImageArray:@[titleImage, mapImage, argumentsImage, speedImage, climbingImage]];
+    
+    [UMSocialSnsService presentSnsIconSheetView:self
+                                         appKey:@"55cdacb0e0f55ab21a0010ff"
+                                      shareText:nil
+                                     shareImage:newImage
+                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToQQ,nil]
+                                       delegate:self];
+}
+
+/**
+ *  拼接需要分享的图片
+ */
+- (UIImage *)imageWithImageArray:(NSArray *)imageArray
+{
+    __block CGFloat newImgW = [UIScreen mainScreen].bounds.size.width;
+    __block CGFloat newImgH = 0;
+    
+    [imageArray enumerateObjectsUsingBlock:^(UIImage *img, NSUInteger idx, BOOL *stop) {
+        //        newImgW = newImgW > img.size.width ? newImgW : img.size.width;
+        if (1 == idx) {
+            newImgH += img.size.height * 0.5 + 5;
+        } else {
+            newImgH += img.size.height + 5;
+        }
+    }];
+    
+    CGSize newImgSize= CGSizeMake(newImgW,newImgH);
+    //    UIGraphicsBeginImageContext(newImgSize);
+    UIGraphicsBeginImageContextWithOptions(newImgSize, NO, 0.0);
+    
+    //draw
+    UIImage *bgImg = [UIImage imageNamed:@"login_textfield_mid"];
+    [bgImg drawInRect:CGRectMake(0, 0, newImgW, newImgH)];
+    
+    CGFloat tempY = 0;
+    for (int i = 0; i < imageArray.count; i++) {
+        if (2 == i) {
+            UIImage *preImg = imageArray[i - 1];
+            tempY += (preImg.size.height * 0.5 + 5);
+        } else if (0 == i) {
+        } else {
+            UIImage *preImg = imageArray[i - 1];
+            tempY += (preImg.size.height + 5);
+        }
+        
+        if (1 == i) {
+            UIImage *img = imageArray[i];
+            [img drawInRect:CGRectMake(0, tempY, img.size.width * 0.5, img.size.height * 0.5)];
+        } else {
+            UIImage *img = imageArray[i];
+            [img drawInRect:CGRectMake(0, tempY, img.size.width, img.size.height)];
+        }
+    }
+    
+    UIImage *resultingImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return resultingImage;
 }
 
 

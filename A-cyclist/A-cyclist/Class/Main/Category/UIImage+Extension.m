@@ -113,4 +113,61 @@
     return newImage;
 
 }
+
+/**
+ *  拼接图片(垂直方向)
+ */
+//+ (instancetype)imageWithImageTop:(UIImage *)imageTop middle:(UIImage *)imageMiddle bottom:(UIImage *)imageBotton
+//{
+//    CGFloat newImgW = [UIScreen mainScreen].bounds.size.width;
+//    CGFloat newImgH = imageTop.size.height + imageMiddle.size.height + imageBotton.size.height;
+//    
+//    CGSize newImgSize= CGSizeMake(newImgW,newImgH);
+//    UIGraphicsBeginImageContext(newImgSize);
+//    
+//    [imageTop drawInRect:CGRectMake(0, 0, imageTop.size.width, imageTop.size.height)];
+//    [imageMiddle drawInRect:CGRectMake(imageTop.size.height, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)]
+//    
+//}
+
++ (instancetype)imageWithImageArray:(NSArray *)imageArray
+{
+    __block CGFloat newImgW = [UIScreen mainScreen].bounds.size.width;
+    __block CGFloat newImgH = 0;
+    
+    [imageArray enumerateObjectsUsingBlock:^(UIImage *img, NSUInteger idx, BOOL *stop) {
+//        newImgW = newImgW > img.size.width ? newImgW : img.size.width;
+        newImgH += img.size.height + 5;
+    }];
+    
+    CGSize newImgSize= CGSizeMake(newImgW,newImgH);
+//    UIGraphicsBeginImageContext(newImgSize);
+    UIGraphicsBeginImageContextWithOptions(newImgSize, NO, 0.0);
+    
+    //draw
+//    UIImage *bgImg = [UIImage imageNamed:@"refresh_bg"];
+//    [bgImg drawInRect:CGRectMake(0, 0, newImgW, newImgH)];
+    
+    CGFloat tempY = 0;
+    for (int i = 0; i < imageArray.count; i++) {
+        if (i > 0) {
+            UIImage *preImg = imageArray[i - 1];
+            tempY += (preImg.size.height + 5);
+        }
+        
+        if (0 == i) {
+            UIImage *img = imageArray[i];
+            [img drawInRect:CGRectMake(0, tempY, img.size.width * 0.5, img.size.height * 0.5)];
+        } else {
+            UIImage *img = imageArray[i];
+            [img drawInRect:CGRectMake(0, tempY, img.size.width, img.size.height)];
+        }
+    }
+    
+    UIImage *resultingImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return resultingImage;
+}
 @end

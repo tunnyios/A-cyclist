@@ -19,4 +19,7 @@
 
 /** 拉伸图片 */
 + (instancetype)imageWithStretchWithName:(NSString *)name;
+
+/** 拼接图片(垂直方向) */
++ (instancetype)imageWithImageArray:(NSArray *)imageArray;
 @end
