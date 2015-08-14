@@ -18,6 +18,7 @@
 #import "ACUserModel.h"
 #import <BaiduMapAPI/BMapKit.h>
 #import <AVFoundation/AVFoundation.h>
+#import "ACLoginViewController.h"
 
 @interface AppDelegate () <WeiboSDKDelegate>
 /** 百度地图管理者 */
@@ -121,11 +122,13 @@
 
 #pragma mark - 重写两个handle方法
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
-    return [WeiboSDK handleOpenURL:url delegate:self];
+    return [TencentOAuth HandleOpenURL:url] ||
+    [WeiboSDK handleOpenURL:url delegate:self];
 }
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
-    return [WeiboSDK handleOpenURL:url delegate:self];
+    return [TencentOAuth HandleOpenURL:url] ||
+    [WeiboSDK handleOpenURL:url delegate:self];
 }
 
 # pragma mark - 新浪回调
@@ -140,8 +143,6 @@
     if (!accessToken || !uid || !expiresDate) {
         return;
     }
-    
-
     
     NSDictionary *dic = @{@"access_token":accessToken,@"uid":uid,@"expirationDate":expiresDate};
     //通过授权信息注册登录
@@ -180,14 +181,24 @@
                 DLog(@"user is %@", user);
                 [ACCacheDataTool saveUserInfo:user withObjectId:user.objectId];
                 
+                //跳转
+                //创建tabbarController
+                ACTabBarController *tabBarController = [[ACTabBarController alloc] init];
+                self.window.rootViewController = tabBarController;
+                
             } failure:^(NSError *error) {
                 DLog(@"获取用户信息失败 error:%@", error);
             }];
-
-            //跳转
-            //创建tabbarController
-            ACTabBarController *tabBarController = [[ACTabBarController alloc] init];
-            self.window.rootViewController = tabBarController;
+            
+//            //3. 本地缓存
+//            ACUserModel *user = [ACDataBaseTool getCurrentUser];
+//            DLog(@"user is %@", user);
+//            [ACCacheDataTool saveUserInfo:user withObjectId:user.objectId];
+            
+//            //跳转
+//            //创建tabbarController
+//            ACTabBarController *tabBarController = [[ACTabBarController alloc] init];
+//            self.window.rootViewController = tabBarController;
         }
     }];
 }

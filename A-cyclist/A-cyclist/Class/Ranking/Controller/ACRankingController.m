@@ -89,16 +89,23 @@
     
     //2. 设置其他数据
     self.userNameLabel.text = self.user.username;
-    self.distanceLabel.text = [NSString stringWithFormat:@"%@ km", self.user.accruedDistance];
+    if (self.user.accruedDistance) {
+        self.distanceLabel.text = [NSString stringWithFormat:@"%@ km", self.user.accruedDistance];
+        
+        //3. 获取当前用户的排名
+        [ACDataBaseTool getRankingNumWithUserId:self.user.objectId resultBlock:^(NSString *numStr, NSError *error) {
+            if (!error) {
+                self.rankingNumLabel.text = [NSString stringWithFormat:@"%@ 名", numStr];
+            } else {
+                DLog(@"从数据库获取当前用户排名失败，error is %@", error);
+            }
+        }];
+    } else {    //数据库中accruedDistance 为NULL
+        self.distanceLabel.text = @"0 km";
+        self.rankingNumLabel.text = @"未上榜";
+    }
     
-    //3. 获取当前用户的排名
-    [ACDataBaseTool getRankingNumWithUserId:self.user.objectId resultBlock:^(NSString *numStr, NSError *error) {
-        if (!error) {
-            self.rankingNumLabel.text = [NSString stringWithFormat:@"%@ 名", numStr];
-        } else {
-            DLog(@"从数据库获取当前用户排名失败，error is %@", error);
-        }
-    }];
+    
 }
 
 /**

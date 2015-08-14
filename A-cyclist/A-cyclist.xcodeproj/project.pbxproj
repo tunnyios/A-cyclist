@@ -148,6 +148,8 @@
 		A28BFF181B53F9AD00A712F1 /* profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A28BFF171B53F9AD00A712F1 /* profile.storyboard */; };
 		A28BFF1A1B53F9D700A712F1 /* ranking.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A28BFF191B53F9D700A712F1 /* ranking.storyboard */; };
 		A28BFF1E1B53F9FD00A712F1 /* setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A28BFF1D1B53F9FD00A712F1 /* setting.storyboard */; };
+		A28E461B1B7DC599002B97D6 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A28E461A1B7DC599002B97D6 /* libiconv.dylib */; };
+		A28E461D1B7DC5AC002B97D6 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A28E461C1B7DC5AC002B97D6 /* libstdc++.dylib */; };
 		A2A43CD81B7324990099011F /* ACProfileHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A43CD71B7324990099011F /* ACProfileHeaderView.m */; };
 		A2A43CDA1B7324A90099011F /* ACProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2A43CD91B7324A90099011F /* ACProfileHeaderView.xib */; };
 		A2AD90BD1B5FAAB100847F72 /* BaiduMapAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AD90BC1B5FAAB100847F72 /* BaiduMapAPI.framework */; };
@@ -165,6 +167,7 @@
 		A2F7FE401B5FD6BF0000D6EA /* VPImageCropperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2F7FE3F1B5FD6BF0000D6EA /* VPImageCropperViewController.m */; };
 		A2F875121B5676630075F323 /* ACSettingCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2F875111B5676630075F323 /* ACSettingCellModel.m */; };
 		A2FB6FF61B6F65C60028731B /* ACLineChartLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FB6FF51B6F65C60028731B /* ACLineChartLabelView.m */; };
+		A2FEDF221B7DD31F00BCD092 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2FEDF211B7DD31F00BCD092 /* TencentOpenAPI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -435,6 +438,8 @@
 		A28BFF171B53F9AD00A712F1 /* profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = profile.storyboard; sourceTree = "<group>"; };
 		A28BFF191B53F9D700A712F1 /* ranking.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ranking.storyboard; sourceTree = "<group>"; };
 		A28BFF1D1B53F9FD00A712F1 /* setting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = setting.storyboard; sourceTree = "<group>"; };
+		A28E461A1B7DC599002B97D6 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
+		A28E461C1B7DC5AC002B97D6 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		A2A43CD61B7324990099011F /* ACProfileHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACProfileHeaderView.h; sourceTree = "<group>"; };
 		A2A43CD71B7324990099011F /* ACProfileHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACProfileHeaderView.m; sourceTree = "<group>"; };
 		A2A43CD91B7324A90099011F /* ACProfileHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ACProfileHeaderView.xib; sourceTree = "<group>"; };
@@ -465,6 +470,7 @@
 		A2F875111B5676630075F323 /* ACSettingCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACSettingCellModel.m; sourceTree = "<group>"; };
 		A2FB6FF41B6F65C60028731B /* ACLineChartLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACLineChartLabelView.h; sourceTree = "<group>"; };
 		A2FB6FF51B6F65C60028731B /* ACLineChartLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACLineChartLabelView.m; sourceTree = "<group>"; };
+		A2FEDF211B7DD31F00BCD092 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -472,6 +478,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2FEDF221B7DD31F00BCD092 /* TencentOpenAPI.framework in Frameworks */,
+				A28E461D1B7DC5AC002B97D6 /* libstdc++.dylib in Frameworks */,
+				A28E461B1B7DC599002B97D6 /* libiconv.dylib in Frameworks */,
 				A2AD90BF1B5FAAE200847F72 /* OpenGLES.framework in Frameworks */,
 				A266D9C01B5CAFB000D4B326 /* libz.dylib in Frameworks */,
 				A266D9BE1B5CAF6A00D4B326 /* Foundation.framework in Frameworks */,
@@ -911,6 +920,8 @@
 		A28BFEAD1B53A2CC00A712F1 = {
 			isa = PBXGroup;
 			children = (
+				A28E461C1B7DC5AC002B97D6 /* libstdc++.dylib */,
+				A28E461A1B7DC599002B97D6 /* libiconv.dylib */,
 				A2AD90BE1B5FAAE200847F72 /* OpenGLES.framework */,
 				A266D9BF1B5CAFB000D4B326 /* libz.dylib */,
 				A266D9BD1B5CAF6A00D4B326 /* Foundation.framework */,
@@ -1077,6 +1088,7 @@
 		A28BFEE81B53B35B00A712F1 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				A28E46151B7DC551002B97D6 /* libQQSDK */,
 				A2AD90BC1B5FAAB100847F72 /* BaiduMapAPI.framework */,
 				A2082E691B62259800CA3325 /* mapapi.bundle */,
 				A2F7FE3D1B5FD6BF0000D6EA /* VPImageCropper */,
@@ -1327,6 +1339,14 @@
 				A204B1631B5B8210004C0A6C /* DataBaseTool */,
 			);
 			path = Tool;
+			sourceTree = "<group>";
+		};
+		A28E46151B7DC551002B97D6 /* libQQSDK */ = {
+			isa = PBXGroup;
+			children = (
+				A2FEDF211B7DD31F00BCD092 /* TencentOpenAPI.framework */,
+			);
+			path = libQQSDK;
 			sourceTree = "<group>";
 		};
 		A2D1ECF31B550E3A00344246 /* View */ = {
@@ -1682,6 +1702,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 			};
 			name = Debug;
 		};
@@ -1717,7 +1738,9 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1729,6 +1752,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/A-cyclist/Class/Lib",
+					"$(PROJECT_DIR)/A-cyclist/Class/Lib/libQQSDK",
 				);
 				INFOPLIST_FILE = "A-cyclist/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1748,6 +1772,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/A-cyclist/Class/Lib",
+					"$(PROJECT_DIR)/A-cyclist/Class/Lib/libQQSDK",
 				);
 				INFOPLIST_FILE = "A-cyclist/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
