@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface ACLogoutSettingViewCell : UITableViewCell
 
 + (instancetype)settingViewCellWithTableView:(UITableView *)tableView;

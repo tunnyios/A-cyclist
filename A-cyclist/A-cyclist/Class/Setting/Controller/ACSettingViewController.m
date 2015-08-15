@@ -18,6 +18,8 @@
 #import "SDImageCache.h"
 #import "NSFileManager+Extension.h"
 #import "ACShowAlertTool.h"
+#import "ACCacheDataTool.h"
+#import "ACLoginViewController.h"
 
 @interface ACSettingViewController () <UIAlertViewDelegate>
 
@@ -109,17 +111,41 @@
 {
     //数据部分
     ACBlankSettingCellModel *cell0 = [ACBlankSettingCellModel settingCellWithTitle:nil icon:nil];
+    cell0.option = ^(NSIndexPath *indexPath){
+        //退出登录
+        [self logout];
+    };
     
     ACSettingGroupModel *group = [[ACSettingGroupModel alloc] init];
     group.cellList = @[cell0];
     [self.dataList addObject:group];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+/**
+ *  退出登录
+ */
+- (void)logout
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *logoutAction = [UIAlertAction actionWithTitle:@"退出" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+        [ACShowAlertTool showSuccess:@"退出成功"];
+        //删除用户数据
+        [ACCacheDataTool deleteUserData];
+        
+        //跳转到登录界面
+        UIStoryboard *loginSB = [UIStoryboard storyboardWithName:@"ACLogin" bundle:nil];
+        //设置根控制器
+        UIWindow *window = [UIApplication sharedApplication].keyWindow;
+        window.rootViewController = loginSB.instantiateInitialViewController;
+        
+    }];
+    UIAlertAction *cancleAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    
+    [alertController addAction:logoutAction];
+    [alertController addAction:cancleAction];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -139,14 +165,6 @@
     
     return cell;
 }
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

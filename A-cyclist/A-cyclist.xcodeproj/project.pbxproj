@@ -153,7 +153,8 @@
 		A2A43CD81B7324990099011F /* ACProfileHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A43CD71B7324990099011F /* ACProfileHeaderView.m */; };
 		A2A43CDA1B7324A90099011F /* ACProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2A43CD91B7324A90099011F /* ACProfileHeaderView.xib */; };
 		A2AA76631B7F0BD8004F648B /* ActionSheetMultipleStringPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = A2AA76611B7F0BD8004F648B /* ActionSheetMultipleStringPicker.m */; };
-		A2AA76641B7F0BD8004F648B /* CoreActionSheetPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AA76621B7F0BD8004F648B /* CoreActionSheetPicker.framework */; };
+		A2AA76651B7F22B4004F648B /* CoreActionSheetPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AA76621B7F0BD8004F648B /* CoreActionSheetPicker.framework */; };
+		A2AA76661B7F22B4004F648B /* CoreActionSheetPicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A2AA76621B7F0BD8004F648B /* CoreActionSheetPicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A2AD90BD1B5FAAB100847F72 /* BaiduMapAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AD90BC1B5FAAB100847F72 /* BaiduMapAPI.framework */; };
 		A2AD90BF1B5FAAE200847F72 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AD90BE1B5FAAE200847F72 /* OpenGLES.framework */; };
 		A2CE5A4B1B6879860071AC59 /* ACRouteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2CE5A4A1B6879860071AC59 /* ACRouteModel.m */; };
@@ -207,6 +208,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				A2AA76661B7F22B4004F648B /* CoreActionSheetPicker.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -564,7 +566,7 @@
 				A2FEDF501B7DF20200BCD092 /* libSocialSina.a in Frameworks */,
 				A2845EAD1B5AB19D006E0CE0 /* MediaPlayer.framework in Frameworks */,
 				A2845EAB1B5AB198006E0CE0 /* AVFoundation.framework in Frameworks */,
-				A2AA76641B7F0BD8004F648B /* CoreActionSheetPicker.framework in Frameworks */,
+				A2AA76651B7F22B4004F648B /* CoreActionSheetPicker.framework in Frameworks */,
 				A2845EA91B5AB186006E0CE0 /* libicucore.dylib in Frameworks */,
 				A266D9AE1B5C9FE600D4B326 /* libWeiboSDK.a in Frameworks */,
 				A2845EA71B5AB17C006E0CE0 /* libsqlite3.dylib in Frameworks */,

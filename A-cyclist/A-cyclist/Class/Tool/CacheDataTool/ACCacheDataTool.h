@@ -21,6 +21,9 @@
 /** 读取本地缓存的用户数据 */
 + (ACUserModel *)getUserInfo;
 
+/* 删除用户信息 */
++ (BOOL)deleteUserData;
+
 #pragma mark - 路线相关
 /** 添加一条路线到sqlite3 */
 + (void)addRouteWith:(ACRouteModel *)route withUserObjectId:(NSString *)objectId;

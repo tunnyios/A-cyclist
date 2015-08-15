@@ -30,6 +30,8 @@
 @implementation ACLoginViewController
 
 - (void)viewDidLoad {
+    self.navigationController.navigationBar.hidden = YES;
+    
     self.contentView = _containerView;
     [super viewDidLoad];
     // Do any additional setup after loading the view.

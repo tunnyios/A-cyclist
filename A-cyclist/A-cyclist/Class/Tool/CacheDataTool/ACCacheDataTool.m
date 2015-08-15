@@ -75,6 +75,20 @@ static FMDatabase *_db;
     return [statuses lastObject];
 }
 
+/**
+ *  删除用户信息
+ */
++ (BOOL)deleteUserData
+{
+    NSString *sqlstr = @"DELETE FROM t_user";
+    if (![_db executeUpdate:sqlstr])
+    {
+        DLog(@"Erase table error!");
+        return NO;
+    }
+    return YES;
+}
+
 #pragma mark - 路线相关
 
 /**
