@@ -49,7 +49,7 @@
                                                                 </constraints>
                                                             </imageView>
                                                             <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sym-Ix-RYF" userLabel="启动暂停Button">
-                                                                <rect key="frame" x="55" y="35" width="49" height="49"/>
+                                                                <rect key="frame" x="55.5" y="35" width="49" height="49"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="49" id="8QU-rO-l5w"/>
                                                                     <constraint firstAttribute="width" constant="49" id="Xac-hE-mG6"/>
@@ -98,18 +98,8 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="umT-Ot-qej" userLabel="顶部右侧View">
                                                                 <rect key="frame" x="180" y="50" width="120" height="50"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="269度" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pZ0-DL-te0">
-                                                                        <rect key="frame" x="78" y="0.0" width="42" height="21"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="width" constant="42" id="2Eo-wa-8bS"/>
-                                                                            <constraint firstAttribute="height" constant="21" id="7IZ-gj-Pw7"/>
-                                                                        </constraints>
-                                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                                                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="weatherline" translatesAutoresizingMaskIntoConstraints="NO" id="Ssy-dl-g5i">
-                                                                        <rect key="frame" x="77" y="3" width="1" height="15"/>
+                                                                        <rect key="frame" x="83" y="3" width="1" height="15"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="15" id="dmd-Uu-6mi"/>
                                                                             <constraint firstAttribute="width" constant="1" id="jEL-DK-ojv"/>
@@ -125,13 +115,23 @@
                                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="weather_b:zx_white" translatesAutoresizingMaskIntoConstraints="NO" id="zkI-R4-0DG">
-                                                                        <rect key="frame" x="44" y="0.0" width="22" height="20"/>
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="weather-few" translatesAutoresizingMaskIntoConstraints="NO" id="zkI-R4-0DG">
+                                                                        <rect key="frame" x="50" y="0.0" width="22" height="20"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="22" id="3bn-Io-fsu"/>
                                                                             <constraint firstAttribute="height" constant="20" id="XOF-fT-afE"/>
                                                                         </constraints>
                                                                     </imageView>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="26度" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pZ0-DL-te0">
+                                                                        <rect key="frame" x="84" y="0.0" width="36" height="21"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="36" id="2Eo-wa-8bS"/>
+                                                                            <constraint firstAttribute="height" constant="21" id="7IZ-gj-Pw7"/>
+                                                                        </constraints>
+                                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 <constraints>
@@ -693,6 +693,8 @@
                         <outlet property="pauseBtn" destination="Sym-Ix-RYF" id="KgE-89-LD8"/>
                         <outlet property="startBtn" destination="4wb-f5-7da" id="SFZ-Wb-KeN"/>
                         <outlet property="userZone" destination="i4k-7r-62o" id="JhC-JQ-mm7"/>
+                        <outlet property="weatherImageView" destination="zkI-R4-0DG" id="Dka-cJ-an8"/>
+                        <outlet property="weatherTempLabel" destination="pZ0-DL-te0" id="hF8-nH-q3P"/>
                         <segue destination="QIZ-wa-ptC" kind="show" identifier="cyclingArgument" id="Sz5-ps-gAf"/>
                     </connections>
                 </viewController>
@@ -2086,7 +2088,7 @@
         <image name="speed-history" width="12" height="13"/>
         <image name="tabbar_compose_icon_add" width="25" height="25"/>
         <image name="timeicon-history" width="12" height="12"/>
-        <image name="weather_b:zx_white" width="130" height="123"/>
+        <image name="weather-few" width="32" height="32"/>
         <image name="weatherline" width="2" height="20"/>
         <image name="xingzhe_back" width="20" height="20"/>
         <image name="xingzhe_cloudupload_small" width="24" height="24"/>

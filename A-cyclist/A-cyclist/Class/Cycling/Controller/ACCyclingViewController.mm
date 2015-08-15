@@ -18,6 +18,8 @@
 #import "ACNavigationViewController.h"
 #import "NSDate+Extension.h"
 #import "NSString+Extension.h"
+#import "HCHttpTool.h"
+#import "ACWeatherModel.h"
 
 
 typedef enum : NSUInteger {
@@ -115,6 +117,13 @@ typedef enum : NSUInteger {
 /** 平地距离 */
 @property (nonatomic, assign) CLLocationDistance flatDistance;
 
+//天气相关
+/** 当前的位置 */
+@property (nonatomic, strong) BMKUserLocation *currentLocation;
+@property (weak, nonatomic) IBOutlet UILabel *weatherTempLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *weatherImageView;
+
+
 @end
 
 @implementation ACCyclingViewController
@@ -160,6 +169,9 @@ typedef enum : NSUInteger {
     self.bmkMapView.showsUserLocation = YES;
     self.bmkMapView.userTrackingMode = BMKUserTrackingModeFollow;
     
+    //2. 定时更新天气(3小时)
+    NSTimer *timer = [NSTimer timerWithTimeInterval:(3600 * 3) target:self selector:@selector(getWeather) userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -635,7 +647,13 @@ typedef enum : NSUInteger {
 
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
 {
-//    DLog(@"@#$#$@$#$@$#$$%%#$%%$#$更新到新位置\n \n \n");
+    self.currentLocation = userLocation;
+    //0. 根据位置坐标获取天气(程序运行阶段只执行一次，其他用定时器获取天气)
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [self getWeather];
+    });
+    
     //1. 获取位置，返地理编码，设置位置label内容
     [self setUserZoneWith:userLocation];
     
@@ -810,6 +828,35 @@ typedef enum : NSUInteger {
         } else {
             DLog(@"更新用户信息到数据库失败，error is %@", error);
         }
+    }];
+}
+
+
+#pragma mark - 天气
+- (void)getWeather
+{
+    //获取天气和温度
+    NSString *url = [NSString stringWithFormat:@"http://api.openweathermap.org/data/2.5/weather?lat=%f&lon=%f", self.currentLocation.location.coordinate.latitude, self.currentLocation.location.coordinate.longitude];
+    DLog(@"天气url is %@, currentLocation is %@", url, self.currentLocation);
+    [HCHttpTool GET:url parameters:nil success:^(id responseObject) {
+        DLog(@"天气responseObject is %@", responseObject);
+        //天气icon
+        NSString *weatherIcon = [responseObject[@"weather"] firstObject][@"icon"];
+        UIImage *weatherImg = [ACWeatherModel imageNameWithIcon:weatherIcon];
+        
+        //温度(得到的是绝对温度K)
+        NSDictionary *main = responseObject[@"main"];
+        NSNumber *weatherTemp = main[@"temp"];
+        //温度转换(绝对温度－－>摄氏温度)
+        NSString *tempStr = [NSString stringWithFormat:@"%.0f度", (weatherTemp.doubleValue - 273.15)];
+        
+        //设置天气和温度到View
+        self.weatherTempLabel.text = tempStr;
+        self.weatherImageView.image = weatherImg;
+        DLog(@"icon is %@, temp is %@, tempStr is %@", weatherIcon, weatherTemp, tempStr);
+        
+    } failure:^(NSError *error) {
+        DLog(@"天气 error is %@", error);
     }];
 }
 
