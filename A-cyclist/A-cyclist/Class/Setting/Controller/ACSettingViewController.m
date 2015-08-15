@@ -44,8 +44,8 @@
 - (void)addGroup0
 {
     //数据部分
-    ACArrowSettingCellModel *cell0 = [ACArrowSettingCellModel arrowSettingCellModelWithTitle:@"编辑个人资料" icon:@"IDInfo" destClass:[ACSettingProfileInfoViewController class]];
-    ACArrowSettingCellModel *cell1 = [ACArrowSettingCellModel arrowSettingCellModelWithTitle:@"离线地图" icon:@"sound_Effect" destClass:[ACSettingOffLineMapsViewController class]];
+    ACArrowSettingCellModel *cell0 = [ACArrowSettingCellModel arrowSettingCellModelWithTitle:@"编辑个人资料" icon:@"setting_icon_profile" destClass:[ACSettingProfileInfoViewController class]];
+    ACArrowSettingCellModel *cell1 = [ACArrowSettingCellModel arrowSettingCellModelWithTitle:@"离线地图" icon:@"setting_icon_map" destClass:[ACSettingOffLineMapsViewController class]];
 //    ACArrowSettingCellModel *cell2 = [ACArrowSettingCellModel arrowSettingCellModelWithTitle:@"推送与提醒" icon:@"MorePush" destClass:[UIViewController class]];
     
     ACSettingGroupModel *group = [[ACSettingGroupModel alloc] init];
@@ -62,7 +62,7 @@
     __block NSString *sutTitle = [NSString stringWithFormat:@"%.2f M", size];
     
     //数据部分
-    ACBlankSettingCellModel *cell0 = [ACBlankSettingCellModel blankSettingCellWithTitle:@"清除缓存" subTitle:sutTitle icon:@"MoreNetease"];
+    ACBlankSettingCellModel *cell0 = [ACBlankSettingCellModel blankSettingCellWithTitle:@"清除缓存" subTitle:sutTitle icon:@"setting_icon_clean"];
     
     cell0.option = ^(NSIndexPath *indexPath){
         //弹出alert
@@ -98,7 +98,7 @@
 {
     //数据部分
 //    ACArrowSettingCellModel *cell0 = [ACArrowSettingCellModel arrowSettingCellModelWithTitle:@"检查新版本" icon:@"MoreUpdate" destClass:[UIViewController class]];
-    ACArrowSettingCellModel *cell1 = [ACArrowSettingCellModel arrowSettingCellModelWithTitle:@"反馈" icon:@"MoreHelp" destClass:nil];
+    ACArrowSettingCellModel *cell1 = [ACArrowSettingCellModel arrowSettingCellModelWithTitle:@"反馈" icon:@"setting_icon_feedback" destClass:nil];
     cell1.option = ^(NSIndexPath *indexPath){
         UIStoryboard *settingSB = [UIStoryboard storyboardWithName:@"setting" bundle:nil];
         ACSettingFeedbackViewController *feedBackVC = [settingSB instantiateViewControllerWithIdentifier:@"settingFeedback"];
@@ -107,8 +107,8 @@
     };
     
 //    ACArrowSettingCellModel *cell1 = [ACArrowSettingCellModel arrowSettingCellModelWithTitle:@"分享" icon:@"MoreShare" destClass:[UIViewController class]];
-    ACArrowSettingCellModel *cell2 = [ACArrowSettingCellModel arrowSettingCellModelWithTitle:@"打赏与好评" icon:@"MoreNetease" destClass:[UIViewController class]];
-    ACArrowSettingCellModel *cell3 = [ACArrowSettingCellModel arrowSettingCellModelWithTitle:@"关于Acyclist" icon:@"MoreAbout" destClass:[UIViewController class]];
+    ACArrowSettingCellModel *cell2 = [ACArrowSettingCellModel arrowSettingCellModelWithTitle:@"打赏与好评" icon:@"setting_icon_rate" destClass:[UIViewController class]];
+    ACArrowSettingCellModel *cell3 = [ACArrowSettingCellModel arrowSettingCellModelWithTitle:@"关于Acyclist" icon:@"setting_icon_about" destClass:[UIViewController class]];
     
     ACSettingGroupModel *group = [[ACSettingGroupModel alloc] init];
     group.cellList = @[cell1, cell2, cell3];
