@@ -20,6 +20,7 @@
 #import "ACShowAlertTool.h"
 #import "ACCacheDataTool.h"
 #import "ACLoginViewController.h"
+#import "ACSettingFeedbackViewController.h"
 
 @interface ACSettingViewController () <UIAlertViewDelegate>
 
@@ -96,14 +97,21 @@
 - (void)addGroup2
 {
     //数据部分
-    ACArrowSettingCellModel *cell0 = [ACArrowSettingCellModel arrowSettingCellModelWithTitle:@"检查新版本" icon:@"MoreUpdate" destClass:[UIViewController class]];
-    ACArrowSettingCellModel *cell4 = [ACArrowSettingCellModel arrowSettingCellModelWithTitle:@"帮助" icon:@"MoreHelp" destClass:[UIViewController class]];
-    ACArrowSettingCellModel *cell1 = [ACArrowSettingCellModel arrowSettingCellModelWithTitle:@"分享" icon:@"MoreShare" destClass:[UIViewController class]];
+//    ACArrowSettingCellModel *cell0 = [ACArrowSettingCellModel arrowSettingCellModelWithTitle:@"检查新版本" icon:@"MoreUpdate" destClass:[UIViewController class]];
+    ACArrowSettingCellModel *cell1 = [ACArrowSettingCellModel arrowSettingCellModelWithTitle:@"反馈" icon:@"MoreHelp" destClass:nil];
+    cell1.option = ^(NSIndexPath *indexPath){
+        UIStoryboard *settingSB = [UIStoryboard storyboardWithName:@"setting" bundle:nil];
+        ACSettingFeedbackViewController *feedBackVC = [settingSB instantiateViewControllerWithIdentifier:@"settingFeedback"];
+        
+        [self.navigationController pushViewController:feedBackVC animated:YES];
+    };
+    
+//    ACArrowSettingCellModel *cell1 = [ACArrowSettingCellModel arrowSettingCellModelWithTitle:@"分享" icon:@"MoreShare" destClass:[UIViewController class]];
     ACArrowSettingCellModel *cell2 = [ACArrowSettingCellModel arrowSettingCellModelWithTitle:@"打赏与好评" icon:@"MoreNetease" destClass:[UIViewController class]];
     ACArrowSettingCellModel *cell3 = [ACArrowSettingCellModel arrowSettingCellModelWithTitle:@"关于Acyclist" icon:@"MoreAbout" destClass:[UIViewController class]];
     
     ACSettingGroupModel *group = [[ACSettingGroupModel alloc] init];
-    group.cellList = @[cell0, cell4, cell1, cell2, cell3];
+    group.cellList = @[cell1, cell2, cell3];
     [self.dataList addObject:group];
 }
 

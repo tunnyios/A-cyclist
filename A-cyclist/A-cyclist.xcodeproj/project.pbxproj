@@ -155,6 +155,7 @@
 		A2AA76631B7F0BD8004F648B /* ActionSheetMultipleStringPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = A2AA76611B7F0BD8004F648B /* ActionSheetMultipleStringPicker.m */; };
 		A2AA76651B7F22B4004F648B /* CoreActionSheetPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AA76621B7F0BD8004F648B /* CoreActionSheetPicker.framework */; };
 		A2AA76661B7F22B4004F648B /* CoreActionSheetPicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A2AA76621B7F0BD8004F648B /* CoreActionSheetPicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A2AA766D1B7F2D02004F648B /* ACSettingFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2AA766C1B7F2D02004F648B /* ACSettingFeedbackViewController.m */; };
 		A2AD90BD1B5FAAB100847F72 /* BaiduMapAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AD90BC1B5FAAB100847F72 /* BaiduMapAPI.framework */; };
 		A2AD90BF1B5FAAE200847F72 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AD90BE1B5FAAE200847F72 /* OpenGLES.framework */; };
 		A2CE5A4B1B6879860071AC59 /* ACRouteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2CE5A4A1B6879860071AC59 /* ACRouteModel.m */; };
@@ -481,6 +482,8 @@
 		A2AA76601B7F0BD8004F648B /* ActionSheetMultipleStringPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetMultipleStringPicker.h; sourceTree = "<group>"; };
 		A2AA76611B7F0BD8004F648B /* ActionSheetMultipleStringPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionSheetMultipleStringPicker.m; sourceTree = "<group>"; };
 		A2AA76621B7F0BD8004F648B /* CoreActionSheetPicker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CoreActionSheetPicker.framework; sourceTree = "<group>"; };
+		A2AA766B1B7F2D02004F648B /* ACSettingFeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACSettingFeedbackViewController.h; sourceTree = "<group>"; };
+		A2AA766C1B7F2D02004F648B /* ACSettingFeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACSettingFeedbackViewController.m; sourceTree = "<group>"; };
 		A2AD90BC1B5FAAB100847F72 /* BaiduMapAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI.framework; sourceTree = "<group>"; };
 		A2AD90BE1B5FAAE200847F72 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		A2CE5A491B6879860071AC59 /* ACRouteModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACRouteModel.h; sourceTree = "<group>"; };
@@ -1369,6 +1372,7 @@
 		A28BFF041B53B35B00A712F1 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				A2AA76671B7F2CCD004F648B /* Feedback */,
 				A261B0391B5780E7006C8917 /* About */,
 				A261B03A1B5780E7006C8917 /* Clean */,
 				A261B03B1B5780E7006C8917 /* OffMaps */,
@@ -1447,6 +1451,15 @@
 				A2AA76621B7F0BD8004F648B /* CoreActionSheetPicker.framework */,
 			);
 			path = CoreActionSheetPicker;
+			sourceTree = "<group>";
+		};
+		A2AA76671B7F2CCD004F648B /* Feedback */ = {
+			isa = PBXGroup;
+			children = (
+				A2AA766B1B7F2D02004F648B /* ACSettingFeedbackViewController.h */,
+				A2AA766C1B7F2D02004F648B /* ACSettingFeedbackViewController.m */,
+			);
+			path = Feedback;
 			sourceTree = "<group>";
 		};
 		A2D1ECF31B550E3A00344246 /* View */ = {
@@ -1713,6 +1726,7 @@
 				A204B0941B5B30F7004C0A6C /* NSString+Extension.m in Sources */,
 				A204B15F1B5B506B004C0A6C /* HCBaseKeyboardViewController.m in Sources */,
 				A26E8EDA1B78474D003FFC37 /* ACHotRoutesController.m in Sources */,
+				A2AA766D1B7F2D02004F648B /* ACSettingFeedbackViewController.m in Sources */,
 				A2A43CD81B7324990099011F /* ACProfileHeaderView.m in Sources */,
 				A2082E701B62996F00CA3325 /* ACCyclingArgumentsViewController.mm in Sources */,
 				A2158C8D1B79C68600BE27E1 /* ACUploadSharedRouteController.m in Sources */,
