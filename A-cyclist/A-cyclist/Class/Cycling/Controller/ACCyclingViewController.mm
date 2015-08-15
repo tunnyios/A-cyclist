@@ -757,6 +757,14 @@ typedef enum : NSUInteger {
     self.route.isShared = [NSNumber numberWithInt:0];
     self.route.userObjectId = self.user.objectId;
     
+    //计算卡路里
+    double weight = 60;
+    if (self.user.weight) {
+        weight = self.user.weight.doubleValue;
+    }
+    double kcal = self.route.averageSpeed.doubleValue * weight * 9.7 * (self.route.timeNumber.doubleValue / 3600);
+    self.route.kcal = [NSNumber numberWithDouble:[NSString stringWithFormat:@"%.0f", kcal].doubleValue];
+    
     //上下坡相关
     //    self.route.maxAltitude = [NSString stringWithFormat:@"%.0f", self.];
     //    self.route.minAltitude = nil;

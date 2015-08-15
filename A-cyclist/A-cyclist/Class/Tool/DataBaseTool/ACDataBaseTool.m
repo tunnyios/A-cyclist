@@ -171,6 +171,7 @@
     [post setObject:route.cyclingEndTime forKey:@"cyclingEndTime"];
     [post setObject:route.cyclingStartTime forKey:@"cyclingStartTime"];
     [post setObject:route.routeOne forKey:@"routeOne"];
+    [post setObject:route.kcal forKey:@"kcal"];
 
     //设置路线关联的作者记录
     BmobUser *author = [BmobUser objectWithoutDatatWithClassName:@"_User" objectId:objectId];
@@ -280,6 +281,8 @@
     
     //匹配查询
     [bquery whereKey:@"user" matchesQuery:inQuery];
+    [bquery orderByDescending:@"cyclingEndTime"];
+    
     [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
 //        DLog(@"array is %@, error is %@", array, error);
         //将BmobObject对象数组转换成Route对象数组

@@ -71,6 +71,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="CellArrow" width="8" height="12"/>
+        <image name="CellArrow" width="12" height="12"/>
     </resources>
 </document>

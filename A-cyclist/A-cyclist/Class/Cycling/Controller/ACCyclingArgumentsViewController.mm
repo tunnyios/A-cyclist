@@ -62,6 +62,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 /** 平均速度 */
 @property (weak, nonatomic) IBOutlet UILabel *averageSpeedLabel;
+/** 消耗热量 */
+@property (weak, nonatomic) IBOutlet UILabel *kcalLabel;
 /** 累计上升 */
 @property (weak, nonatomic) IBOutlet UILabel *ascendAltitudeLabel;
 /** 轨迹 */
@@ -339,10 +341,9 @@
     self.routeNameLabel.text = self.route.routeName;
     self.distanceLabel.text = [NSString stringWithFormat:@"%@", self.route.distance];
     self.timeLabel.text = self.route.time;
+    self.kcalLabel.text = [NSString stringWithFormat:@"%@", self.route.kcal];
     self.ascendAltitudeLabel.text = self.route.ascendAltitude;
     self.averageSpeedLabel.text = [NSString stringWithFormat:@"%@", self.route.averageSpeed];
-    //这是地图轨迹
-    
 }
 
 /**

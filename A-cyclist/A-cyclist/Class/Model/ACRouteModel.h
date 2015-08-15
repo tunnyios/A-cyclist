@@ -45,7 +45,7 @@
 @property (nonatomic, copy) NSString *descendDistance;
 
 /** 卡路里计算(kcal) */
-//@property (nonatomic, copy) NSString *kcal;
+@property (nonatomic, copy) NSNumber *kcal;
 
 /** 用户的id */
 @property (nonatomic, copy) NSString *userObjectId;

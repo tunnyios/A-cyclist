@@ -1586,6 +1586,7 @@
                         <outlet property="detialTableView" destination="ONx-ie-rgD" id="UNq-GV-Dss"/>
                         <outlet property="distanceLabel" destination="oum-U4-v65" id="s0q-0H-31T"/>
                         <outlet property="graphicBtn" destination="9JY-h8-dXS" id="3xu-Uf-QvF"/>
+                        <outlet property="kcalLabel" destination="Exu-PB-InO" id="phs-Lp-GZX"/>
                         <outlet property="lineChartView" destination="hSB-tC-uxn" id="yrO-Fc-HII"/>
                         <outlet property="middleViewLeading" destination="P3U-qf-G3D" id="aSD-si-RUc"/>
                         <outlet property="rightViewLeading" destination="SjR-RL-Enb" id="RaP-tg-HBg"/>

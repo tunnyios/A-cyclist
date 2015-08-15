@@ -35,7 +35,7 @@
     self.routeDistanceLabel.text = [NSString stringWithFormat:@"%@", route.distance];
     self.routeTimeLabel.text = route.time;
     self.routeAverSpeedLabel.text = [NSString stringWithFormat:@"%@", route.averageSpeed];
-    self.routeKcalLabel.text = @"350";
+    self.routeKcalLabel.text = [NSString stringWithFormat:@"%@", route.kcal];
     self.routeAscendAltitudeLabel.text = route.ascendAltitude;
 }
 
