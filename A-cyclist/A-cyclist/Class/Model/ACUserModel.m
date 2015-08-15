@@ -23,6 +23,7 @@
     ACUser.updatedAt = user.updatedAt;
     ACUser.emailVerified = [user objectForKey:@"emailVerified"];
     ACUser.location = [user objectForKey:@"location"];
+    ACUser.weight = [user objectForKey:@"weight"];
     ACUser.profile_image_url = [user objectForKey:@"profile_image_url"];
     ACUser.avatar_large = [user objectForKey:@"avatar_large"];
     ACUser.gender = [user objectForKey:@"gender"];
@@ -41,6 +42,7 @@
     [aCoder encodeObject:self.password forKey:@"password"];
     [aCoder encodeObject:self.email forKey:@"email"];
     [aCoder encodeObject:self.location forKey:@"location"];
+    [aCoder encodeObject:self.weight forKey:@"weight"];
     [aCoder encodeObject:self.profile_image_url forKey:@"profile_image_url"];
     [aCoder encodeObject:self.avatar_large forKey:@"avatar_large"];
     [aCoder encodeObject:self.gender forKey:@"gender"];
@@ -60,6 +62,7 @@
         self.password = [aDecoder decodeObjectForKey:@"password"];
         self.email = [aDecoder decodeObjectForKey:@"email"];
         self.location = [aDecoder decodeObjectForKey:@"location"];
+        self.weight = [aDecoder decodeObjectForKey:@"weight"];
         self.profile_image_url = [aDecoder decodeObjectForKey:@"profile_image_url"];
         self.avatar_large = [aDecoder decodeObjectForKey:@"avatar_large"];
         self.gender = [aDecoder decodeObjectForKey:@"gender"];
@@ -73,6 +76,6 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<%p : %@>{\n className = %@;\n username = %@;\n password = %@;\n mobilePhoneNumber = %@;\n email = %@;\n location = %@;\n gender = %@;\n profile_image_url = %@;\n avatar_large = %@;\n objectId = %@;\n createdAt = %@;\n updatedAt = %@;\n emailVerified = %d;\n accruedTime = %@;\n accruedDistance = %@\n}", self, self.class, self.className, self.username, self.password, self.mobilePhoneNumber, self.email, self.location, self.gender, self.profile_image_url, self.avatar_large, self.objectId, self.createdAt, self.updatedAt, self.emailVerified, self.accruedTime, self.accruedDistance];
+    return [NSString stringWithFormat:@"<%p : %@>{\n className = %@;\n username = %@;\n password = %@;\n mobilePhoneNumber = %@;\n email = %@;\n location = %@;\n weight = %@;\n gender = %@;\n profile_image_url = %@;\n avatar_large = %@;\n objectId = %@;\n createdAt = %@;\n updatedAt = %@;\n emailVerified = %d;\n accruedTime = %@;\n accruedDistance = %@\n}", self, self.class, self.className, self.username, self.password, self.mobilePhoneNumber, self.email, self.location, self.weight, self.gender, self.profile_image_url, self.avatar_large, self.objectId, self.createdAt, self.updatedAt, self.emailVerified, self.accruedTime, self.accruedDistance];
 }
 @end

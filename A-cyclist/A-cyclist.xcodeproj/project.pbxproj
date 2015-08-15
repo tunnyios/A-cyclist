@@ -152,6 +152,8 @@
 		A28E461D1B7DC5AC002B97D6 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A28E461C1B7DC5AC002B97D6 /* libstdc++.dylib */; };
 		A2A43CD81B7324990099011F /* ACProfileHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A43CD71B7324990099011F /* ACProfileHeaderView.m */; };
 		A2A43CDA1B7324A90099011F /* ACProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2A43CD91B7324A90099011F /* ACProfileHeaderView.xib */; };
+		A2AA76631B7F0BD8004F648B /* ActionSheetMultipleStringPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = A2AA76611B7F0BD8004F648B /* ActionSheetMultipleStringPicker.m */; };
+		A2AA76641B7F0BD8004F648B /* CoreActionSheetPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AA76621B7F0BD8004F648B /* CoreActionSheetPicker.framework */; };
 		A2AD90BD1B5FAAB100847F72 /* BaiduMapAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AD90BC1B5FAAB100847F72 /* BaiduMapAPI.framework */; };
 		A2AD90BF1B5FAAE200847F72 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AD90BE1B5FAAE200847F72 /* OpenGLES.framework */; };
 		A2CE5A4B1B6879860071AC59 /* ACRouteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2CE5A4A1B6879860071AC59 /* ACRouteModel.m */; };
@@ -197,6 +199,19 @@
 			remoteInfo = "A-cyclist";
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A2AA764D1B7EF4D4004F648B /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		A204B0921B5B30F7004C0A6C /* NSString+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extension.h"; sourceTree = "<group>"; };
@@ -461,6 +476,9 @@
 		A2A43CD61B7324990099011F /* ACProfileHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACProfileHeaderView.h; sourceTree = "<group>"; };
 		A2A43CD71B7324990099011F /* ACProfileHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACProfileHeaderView.m; sourceTree = "<group>"; };
 		A2A43CD91B7324A90099011F /* ACProfileHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ACProfileHeaderView.xib; sourceTree = "<group>"; };
+		A2AA76601B7F0BD8004F648B /* ActionSheetMultipleStringPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetMultipleStringPicker.h; sourceTree = "<group>"; };
+		A2AA76611B7F0BD8004F648B /* ActionSheetMultipleStringPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionSheetMultipleStringPicker.m; sourceTree = "<group>"; };
+		A2AA76621B7F0BD8004F648B /* CoreActionSheetPicker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CoreActionSheetPicker.framework; sourceTree = "<group>"; };
 		A2AD90BC1B5FAAB100847F72 /* BaiduMapAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI.framework; sourceTree = "<group>"; };
 		A2AD90BE1B5FAAE200847F72 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		A2CE5A491B6879860071AC59 /* ACRouteModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACRouteModel.h; sourceTree = "<group>"; };
@@ -546,6 +564,7 @@
 				A2FEDF501B7DF20200BCD092 /* libSocialSina.a in Frameworks */,
 				A2845EAD1B5AB19D006E0CE0 /* MediaPlayer.framework in Frameworks */,
 				A2845EAB1B5AB198006E0CE0 /* AVFoundation.framework in Frameworks */,
+				A2AA76641B7F0BD8004F648B /* CoreActionSheetPicker.framework in Frameworks */,
 				A2845EA91B5AB186006E0CE0 /* libicucore.dylib in Frameworks */,
 				A266D9AE1B5C9FE600D4B326 /* libWeiboSDK.a in Frameworks */,
 				A2845EA71B5AB17C006E0CE0 /* libsqlite3.dylib in Frameworks */,
@@ -1152,6 +1171,7 @@
 		A28BFEE81B53B35B00A712F1 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				A2AA765F1B7F0BD8004F648B /* CoreActionSheetPicker */,
 				A2FEDF231B7DEA9100BCD092 /* UMSocial_Sdk_4.2.3 */,
 				A28E46151B7DC551002B97D6 /* libQQSDK */,
 				A2AD90BC1B5FAAB100847F72 /* BaiduMapAPI.framework */,
@@ -1417,6 +1437,16 @@
 			path = libQQSDK;
 			sourceTree = "<group>";
 		};
+		A2AA765F1B7F0BD8004F648B /* CoreActionSheetPicker */ = {
+			isa = PBXGroup;
+			children = (
+				A2AA76601B7F0BD8004F648B /* ActionSheetMultipleStringPicker.h */,
+				A2AA76611B7F0BD8004F648B /* ActionSheetMultipleStringPicker.m */,
+				A2AA76621B7F0BD8004F648B /* CoreActionSheetPicker.framework */,
+			);
+			path = CoreActionSheetPicker;
+			sourceTree = "<group>";
+		};
 		A2D1ECF31B550E3A00344246 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -1521,6 +1551,7 @@
 				A28BFEB21B53A2CC00A712F1 /* Sources */,
 				A28BFEB31B53A2CC00A712F1 /* Frameworks */,
 				A28BFEB41B53A2CC00A712F1 /* Resources */,
+				A2AA764D1B7EF4D4004F648B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1698,6 +1729,7 @@
 				A2CE5A511B6909940071AC59 /* NSArray+Log.m in Sources */,
 				A204B16A1B5BE144004C0A6C /* ACUserModel.m in Sources */,
 				A2845EB41B5AB825006E0CE0 /* MBProgressHUD+MJ.m in Sources */,
+				A2AA76631B7F0BD8004F648B /* ActionSheetMultipleStringPicker.m in Sources */,
 				A204B1601B5B506B004C0A6C /* HCKeyboardTool.m in Sources */,
 				A266D9FA1B5D11D200D4B326 /* FMDatabaseAdditions.m in Sources */,
 				A2158C771B79010C00BE27E1 /* ACHotRoutesCellView.m in Sources */,
@@ -1892,6 +1924,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/A-cyclist/Class/Lib",
 					"$(PROJECT_DIR)/A-cyclist/Class/Lib/libQQSDK",
+					"$(PROJECT_DIR)/A-cyclist/Class/Lib/CoreActionSheetPicker",
 				);
 				INFOPLIST_FILE = "A-cyclist/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1915,6 +1948,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/A-cyclist/Class/Lib",
 					"$(PROJECT_DIR)/A-cyclist/Class/Lib/libQQSDK",
+					"$(PROJECT_DIR)/A-cyclist/Class/Lib/CoreActionSheetPicker",
 				);
 				INFOPLIST_FILE = "A-cyclist/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

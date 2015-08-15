@@ -18,9 +18,10 @@
 #import "ACPhotoSettingCellModel.h"
 #import "ACChangeNameController.h"
 #import <BaiduMapAPI/BMapKit.h>
-//#import <AssetsLibrary/AssetsLibrary.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "VPImageCropperViewController.h"
+#import "ACShowAlertTool.h"
+#import "ActionSheetMultipleStringPicker.h"
 
 
 #define ORIGINAL_MAX_WIDTH 640.0f
@@ -50,7 +51,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(saveClicked)];
     //指定最小距离更新(米)
     [BMKLocationService setLocationDistanceFilter:1000.f];
@@ -71,19 +73,21 @@
 - (void)addGroup0With:(ACUserModel *)user
 {
     //数据部分
+    //头像
     ACPhotoSettingCellModel *cell0 = [ACPhotoSettingCellModel photoSettingCellWithTitle:@"头像" photoURL:user.profile_image_url orPhotoImage:nil];
     cell0.option = ^(NSIndexPath *indexPath){
         //设置头像
         [self changeAvatarWith:indexPath];
     };
     
-    
+    //昵称
     ACArrowWithSubtitleSettingCellModel *cell1 = [ACArrowWithSubtitleSettingCellModel arrowWithSubtitleCellWithTitle:@"昵称" subTitle:user.username icon:nil destClass:nil];
     cell1.option = ^(NSIndexPath *indexPath){
         //修改昵称
         [self changeNicknameWith:indexPath];
     };
     
+    //性别
     NSString *gender = @"";
     if ([user.gender isEqualToString:@"m"]) {
         gender = @"男";
@@ -96,20 +100,47 @@
         [self changeGenderWith:indexPath];
     };
     
+    //地区
     ACBlankSettingCellModel *cell3 = [ACBlankSettingCellModel blankSettingCellWithTitle:@"地区" subTitle:(user.location ? user.location : @"未填写") icon:nil];
     cell3.option = ^(NSIndexPath *indexPath){
         //定位
         [self changeLocationWith:indexPath];
     };
     
-    ACBlankSettingCellModel *cell4 = [ACBlankSettingCellModel blankSettingCellWithTitle:@"邮箱" subTitle:(user.email ? user.email : @"未填写") icon:nil];
+    //体重
+    NSString *weightStr = [NSString stringWithFormat:@"%@ kg", user.weight];
+    if (!user.weight) {
+        weightStr = @"未填写";
+    }
+    ACBlankSettingCellModel *cell4 = [ACBlankSettingCellModel blankSettingCellWithTitle:@"体重" subTitle:weightStr icon:nil];
+    cell4.option = ^(NSIndexPath *indexPath){
+        NSMutableArray *weight = [NSMutableArray array];
+        for (int i = 40; i < 151; i++) {
+            [weight addObject:[NSNumber numberWithInt:i]];
+        }
+        NSArray *colors = @[weight, @[@"kg"]];
+        NSArray *initialSelection = @[@10, @1];
+        [ActionSheetMultipleStringPicker showPickerWithTitle:@"体重" rows:colors initialSelection:initialSelection doneBlock:^(ActionSheetMultipleStringPicker *picker, NSArray *selectedIndexes, id selectedValues) {
+            DLog(@"%@, values is %@ class is %@", selectedIndexes, selectedValues[0], [selectedValues[0] class]);
+            //设置体重
+            [self changeWeight:(NSNumber *)selectedValues[0] indexPath:indexPath];
+            
+        } cancelBlock:^(ActionSheetMultipleStringPicker *picker) {
+            
+        } origin:self.tableView];
+    };
+    
+    //邮箱
+    ACBlankSettingCellModel *cell5 = [ACBlankSettingCellModel blankSettingCellWithTitle:@"邮箱" subTitle:(user.email ? user.email : @"未填写") icon:nil];
     
     ACSettingGroupModel *group = [[ACSettingGroupModel alloc] init];
-    group.cellList = @[cell0, cell1, cell2, cell3, cell4];
+    group.cellList = @[cell0, cell1, cell2, cell3, cell4, cell5];
     
     [self.dataList addObject:group];
 }
 
+
+#pragma mark - tableView代理
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ACSettingViewCell *cell = [ACSettingViewCell settingViewCellWithTableView:tableView];
@@ -144,8 +175,8 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - 各个cell的点击事件的实现
 
+#pragma mark - 各个cell的点击事件的实现
 /**
  *  设置头像
  */
@@ -236,6 +267,19 @@
 {
     //启动LocationService
     [self.bmkLocationService startUserLocationService];
+}
+
+/**
+ *  设置体重(单位kg)
+ */
+- (void)changeWeight:(NSNumber *)weight indexPath:(NSIndexPath *)indexPath
+{
+    self.user.weight = weight;
+    NSString *subTitle = [NSString stringWithFormat:@"%@ kg", weight];
+    //修改对应的模型数据
+    ACBlankSettingCellModel *model = [self.dataList[indexPath.section] cellList][indexPath.row];
+    model.subTitle = subTitle;
+    [self.tableView reloadData];
 }
 
 #pragma mark - UIImagePickerControllerDelegate
@@ -480,6 +524,7 @@
     //2. 保存到数据库
     [ACDataBaseTool updateUserInfoWith:self.user withResultBlock:^(BOOL isSuccessful, NSError *error) {
         DLog(@"保存用户信息成功到数据库");
+        [ACShowAlertTool showSuccess:@"保存成功"];
     }];
 }
 

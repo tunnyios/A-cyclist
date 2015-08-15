@@ -53,10 +53,11 @@
 
 - (void)addGroup1
 {
-    //1. 计算缓存数据的大小
+    //计算缓存数据的大小
     NSString *cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
     CGFloat size = [NSFileManager folderSizeAtPath:cachePath];
     __block NSString *sutTitle = [NSString stringWithFormat:@"%.2f M", size];
+    
     //数据部分
     ACBlankSettingCellModel *cell0 = [ACBlankSettingCellModel blankSettingCellWithTitle:@"清除缓存" subTitle:sutTitle icon:@"MoreNetease"];
     
@@ -67,10 +68,9 @@
         [alertView show];
     };
     
-    ACSettingGroupModel *group1 = [[ACSettingGroupModel alloc] init];
-    group1.cellList = @[cell0];
-    
-    [self.dataList addObject:group1];
+    ACSettingGroupModel *group = [[ACSettingGroupModel alloc] init];
+    group.cellList = @[cell0];
+    [self.dataList addObject:group];
 }
 
 
@@ -102,7 +102,6 @@
     
     ACSettingGroupModel *group = [[ACSettingGroupModel alloc] init];
     group.cellList = @[cell0, cell4, cell1, cell2, cell3];
-    
     [self.dataList addObject:group];
 }
 
@@ -113,7 +112,6 @@
     
     ACSettingGroupModel *group = [[ACSettingGroupModel alloc] init];
     group.cellList = @[cell0];
-    
     [self.dataList addObject:group];
 }
 

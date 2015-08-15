@@ -85,6 +85,7 @@
     [bUser setObject:user.email forKey:@"email"];
     [bUser setObject:user.mobilePhoneNumber forKey:@"mobilePhoneNumber"];
     [bUser setObject:user.location forKey:@"location"];
+    [bUser setObject:user.weight forKey:@"weight"];
     [bUser setObject:user.gender forKey:@"gender"];
     [bUser setObject:user.profile_image_url forKey:@"profile_image_url"];
     [bUser setObject:user.avatar_large forKey:@"avatar_large"];

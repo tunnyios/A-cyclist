@@ -29,6 +29,9 @@
 /** 位置 */
 @property (nonatomic, copy) NSString *location;
 
+/** 体重 */
+@property (nonatomic, copy) NSNumber *weight;
+
 /** 性别，m：男、f：女、n：未知 */
 @property (nonatomic, copy) NSString *gender;
 
