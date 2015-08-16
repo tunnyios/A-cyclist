@@ -124,11 +124,9 @@
                     ACRankingFormerCellModel *formerModel = [ACRankingFormerCellModel settingCellWithTitle:user.username icon:user.profile_image_url location:user.location distance:distance suffixIcon:suffxIcon];
                     
                     formerModel.option = ^(){
-//                        ACUserDetailController *userDetailController = [[ACUserDetailController alloc] init];
                         UIStoryboard *rankSB = [UIStoryboard storyboardWithName:@"ranking" bundle:nil];
                         ACUserDetailController *userDetailController = [rankSB instantiateViewControllerWithIdentifier:@"userDetailController"];
                         userDetailController.userModel = user;
-//                        ACNavigationViewController *nav = [[ACNavigationViewController alloc] initWithRootViewController:userDetailController];
                         [self.navigationController pushViewController:userDetailController animated:YES];
                     };
                     [self.dataList addObject:formerModel];
@@ -139,10 +137,10 @@
                     ACRankingBehindCellModel *behindModel = [ACRankingBehindCellModel settingCellWithTitle:user.username icon:user.profile_image_url location:user.location distance:distance suffixNum:suffxNum];
                     
                     behindModel.option = ^(){
-                        ACUserDetailController *userDetailController = [[ACUserDetailController alloc] init];
+                        UIStoryboard *rankSB = [UIStoryboard storyboardWithName:@"ranking" bundle:nil];
+                        ACUserDetailController *userDetailController = [rankSB instantiateViewControllerWithIdentifier:@"userDetailController"];
                         userDetailController.userModel = user;
-                        ACNavigationViewController *nav = [[ACNavigationViewController alloc] initWithRootViewController:userDetailController];
-                        [self.navigationController pushViewController:nav animated:YES];
+                        [self.navigationController pushViewController:userDetailController animated:YES];
                     };
                     [self.dataList addObject:behindModel];
                 }
