@@ -20,7 +20,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
     UIStoryboard *profileSB = [UIStoryboard storyboardWithName:@"profile" bundle:nil];
     UIStoryboard *routeSB = [UIStoryboard storyboardWithName:@"hotRoutes" bundle:nil];
@@ -61,6 +60,9 @@
     HCTabBar5ContentView *tabBars = [[HCTabBar5ContentView alloc] init];
     //KVC赋值
     [self setValue:tabBars forKey:@"tabBar"];
+    
+    //设置已启动程序先进入骑行界面
+    [self setSelectedIndex:2];
     
 }
 
