@@ -27,6 +27,9 @@
 #import "ACUserModel.h"
 #import "ACCacheDataTool.h"
 #import "ACSharedTitleView.h"
+#import "ACAnnotationView.h"
+#import "ACAnnotationStartModel.h"
+#import "ACAnnotationEndModel.h"
 #import "UMSocial.h"
 
 @interface ACCyclingArgumentsViewController () <UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, BMKMapViewDelegate, UMSocialUIDelegate>
@@ -114,6 +117,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    _bmkMapView.delegate = self; // 此处记得不用的时候需要置nil，否则影响内存的释放
+    
+    
     //判断当前用户与该路线的来源用户是否一致，若不一致，则隐藏上传路线按钮
 //    DLog(@"self.currentUser.objectId is %@, self.route.objectId is %@", self.currentUser.objectId, self.route.userObjectId);
     //此处不能用懒加载
@@ -136,7 +142,7 @@
     [self setGraphicData];
     self.circleChartView.route = self.route;
     
-    DLog(@"######route %@", self.route);
+    DLog(@"route %@", self.route);
     
 }
 
@@ -148,7 +154,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [_bmkMapView viewWillAppear];
-    _bmkMapView.delegate = self; // 此处记得不用的时候需要置nil，否则影响内存的释放
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -402,7 +408,12 @@
  */
 - (BMKPointAnnotation *)creatPointWithLocaiton:(CLLocation *)location title:(NSString *)title;
 {
-    BMKPointAnnotation *point = [[BMKPointAnnotation alloc] init];
+    BMKPointAnnotation *point;
+    if ([title isEqualToString:@"起点"]) {
+        point = [[ACAnnotationStartModel alloc] init];
+    } else if ([title isEqualToString:@"终点"]) {
+        point = [[ACAnnotationEndModel alloc] init];
+    }
     point.coordinate = location.coordinate;
     point.title = title;
     
@@ -467,15 +478,18 @@
 - (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id <BMKAnnotation>)annotation
 {
     NSString *AnnotationViewID = @"renameMark";
-    BMKPinAnnotationView *annotationView = (BMKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:AnnotationViewID];
+    
+    ACAnnotationView *annotationView = nil;
     if (annotationView == nil) {
-        annotationView = [[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationViewID];
-        // 设置颜色
-        annotationView.pinColor = BMKPinAnnotationColorPurple;
-        // 从天上掉下效果
-        annotationView.animatesDrop = YES;
-        // 设置可拖拽
-        annotationView.draggable = YES;
+        annotationView = [[ACAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationViewID];
+    }
+    
+    if ([annotation isKindOfClass:[ACAnnotationStartModel class]]) {
+        annotationView.BMKimage = [UIImage imageNamed:@"Mine_runHistrotyDetails_startPoint"];
+    } else if ( [annotation isKindOfClass:[ACAnnotationEndModel class]]) {
+        annotationView.BMKimage = [UIImage imageNamed:@"Mine_runHistrotyDetails_endPoint"];
+    } else {
+        annotationView.BMKimage = [UIImage imageNamed:@""];
     }
     return annotationView;
 }

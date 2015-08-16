@@ -20,6 +20,9 @@
 #import "NSString+Extension.h"
 #import "HCHttpTool.h"
 #import "ACWeatherModel.h"
+#import "ACAnnotationView.h"
+#import "ACAnnotationStartModel.h"
+#import "ACAnnotationEndModel.h"
 
 
 typedef enum : NSUInteger {
@@ -551,7 +554,12 @@ typedef enum : NSUInteger {
  */
 - (BMKPointAnnotation *)creatPointWithLocaiton:(CLLocation *)location title:(NSString *)title;
 {
-    BMKPointAnnotation *point = [[BMKPointAnnotation alloc] init];
+    BMKPointAnnotation *point;
+    if ([title isEqualToString:@"起点"]) {
+        point = [[ACAnnotationStartModel alloc] init];
+    } else if ([title isEqualToString:@"终点"]) {
+        point = [[ACAnnotationEndModel alloc] init];
+    }
     point.coordinate = location.coordinate;
     point.title = title;
     
@@ -733,15 +741,18 @@ typedef enum : NSUInteger {
 - (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id <BMKAnnotation>)annotation
 {
     NSString *AnnotationViewID = @"renameMark";
-    BMKPinAnnotationView *annotationView = (BMKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:AnnotationViewID];
+    
+    ACAnnotationView *annotationView = nil;
     if (annotationView == nil) {
-        annotationView = [[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationViewID];
-        // 设置颜色
-        annotationView.pinColor = BMKPinAnnotationColorPurple;
-        // 从天上掉下效果
-        annotationView.animatesDrop = YES;
-        // 设置可拖拽
-        annotationView.draggable = YES;
+        annotationView = [[ACAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationViewID];
+    }
+    
+    if ([annotation isKindOfClass:[ACAnnotationStartModel class]]) {
+        annotationView.BMKimage = [UIImage imageNamed:@"Mine_runHistrotyDetails_startPoint"];
+    } else if ( [annotation isKindOfClass:[ACAnnotationEndModel class]]) {
+        annotationView.BMKimage = [UIImage imageNamed:@"Mine_runHistrotyDetails_endPoint"];
+    } else {
+        annotationView.BMKimage = [UIImage imageNamed:@""];
     }
     return annotationView;
 }

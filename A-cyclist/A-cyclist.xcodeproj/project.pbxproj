@@ -139,6 +139,8 @@
 		A28BFF181B53F9AD00A712F1 /* profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A28BFF171B53F9AD00A712F1 /* profile.storyboard */; };
 		A28BFF1A1B53F9D700A712F1 /* ranking.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A28BFF191B53F9D700A712F1 /* ranking.storyboard */; };
 		A28BFF1E1B53F9FD00A712F1 /* setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A28BFF1D1B53F9FD00A712F1 /* setting.storyboard */; };
+		A28DE43C1B808E7E00093B17 /* ACAnnotationStartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A28DE43B1B808E7E00093B17 /* ACAnnotationStartModel.m */; };
+		A28DE43F1B808E9000093B17 /* ACAnnotationEndModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A28DE43E1B808E9000093B17 /* ACAnnotationEndModel.m */; };
 		A28E461B1B7DC599002B97D6 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A28E461A1B7DC599002B97D6 /* libiconv.dylib */; };
 		A28E461D1B7DC5AC002B97D6 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A28E461C1B7DC5AC002B97D6 /* libstdc++.dylib */; };
 		A2A43CD81B7324990099011F /* ACProfileHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A43CD71B7324990099011F /* ACProfileHeaderView.m */; };
@@ -184,6 +186,7 @@
 		A2C256EE1B805F9400295882 /* ACHotRoutesCitesCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C256ED1B805F9400295882 /* ACHotRoutesCitesCellModel.m */; };
 		A2C256F11B8060CA00295882 /* ACHotRoutesCitiesCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C256F01B8060CA00295882 /* ACHotRoutesCitiesCellView.m */; };
 		A2C256F31B80610700295882 /* ACHotRoutesCitiesCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2C256F21B80610700295882 /* ACHotRoutesCitiesCellView.xib */; };
+		A2C256F61B807F6F00295882 /* ACAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C256F51B807F6F00295882 /* ACAnnotationView.m */; };
 		A2CE5A4B1B6879860071AC59 /* ACRouteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2CE5A4A1B6879860071AC59 /* ACRouteModel.m */; };
 		A2CE5A4E1B687F130071AC59 /* ACStepModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2CE5A4D1B687F130071AC59 /* ACStepModel.m */; };
 		A2CE5A511B6909940071AC59 /* NSArray+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = A2CE5A501B6909940071AC59 /* NSArray+Log.m */; };
@@ -481,6 +484,10 @@
 		A28BFF171B53F9AD00A712F1 /* profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = profile.storyboard; sourceTree = "<group>"; };
 		A28BFF191B53F9D700A712F1 /* ranking.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ranking.storyboard; sourceTree = "<group>"; };
 		A28BFF1D1B53F9FD00A712F1 /* setting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = setting.storyboard; sourceTree = "<group>"; };
+		A28DE43A1B808E7E00093B17 /* ACAnnotationStartModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACAnnotationStartModel.h; sourceTree = "<group>"; };
+		A28DE43B1B808E7E00093B17 /* ACAnnotationStartModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACAnnotationStartModel.m; sourceTree = "<group>"; };
+		A28DE43D1B808E9000093B17 /* ACAnnotationEndModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACAnnotationEndModel.h; sourceTree = "<group>"; };
+		A28DE43E1B808E9000093B17 /* ACAnnotationEndModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACAnnotationEndModel.m; sourceTree = "<group>"; };
 		A28E461A1B7DC599002B97D6 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		A28E461C1B7DC5AC002B97D6 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		A2A43CD61B7324990099011F /* ACProfileHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACProfileHeaderView.h; sourceTree = "<group>"; };
@@ -563,6 +570,8 @@
 		A2C256EF1B8060CA00295882 /* ACHotRoutesCitiesCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACHotRoutesCitiesCellView.h; sourceTree = "<group>"; };
 		A2C256F01B8060CA00295882 /* ACHotRoutesCitiesCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACHotRoutesCitiesCellView.m; sourceTree = "<group>"; };
 		A2C256F21B80610700295882 /* ACHotRoutesCitiesCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ACHotRoutesCitiesCellView.xib; sourceTree = "<group>"; };
+		A2C256F41B807F6F00295882 /* ACAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACAnnotationView.h; sourceTree = "<group>"; };
+		A2C256F51B807F6F00295882 /* ACAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACAnnotationView.m; sourceTree = "<group>"; };
 		A2CE5A491B6879860071AC59 /* ACRouteModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACRouteModel.h; sourceTree = "<group>"; };
 		A2CE5A4A1B6879860071AC59 /* ACRouteModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACRouteModel.m; sourceTree = "<group>"; };
 		A2CE5A4C1B687F130071AC59 /* ACStepModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACStepModel.h; sourceTree = "<group>"; };
@@ -1215,6 +1224,10 @@
 				A281C58A1B6DA4A900DF31C0 /* ACCyclingDetailModel.m */,
 				A2AA766E1B7F5FC5004F648B /* ACWeatherModel.h */,
 				A2AA766F1B7F5FC5004F648B /* ACWeatherModel.m */,
+				A28DE43A1B808E7E00093B17 /* ACAnnotationStartModel.h */,
+				A28DE43B1B808E7E00093B17 /* ACAnnotationStartModel.m */,
+				A28DE43D1B808E9000093B17 /* ACAnnotationEndModel.h */,
+				A28DE43E1B808E9000093B17 /* ACAnnotationEndModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1229,6 +1242,8 @@
 				A2FEDF5D1B7E285000BCD092 /* ACSharedTitleView.h */,
 				A2FEDF5E1B7E285000BCD092 /* ACSharedTitleView.m */,
 				A2FEDF601B7E286000BCD092 /* ACSharedTitleView.xib */,
+				A2C256F41B807F6F00295882 /* ACAnnotationView.h */,
+				A2C256F51B807F6F00295882 /* ACAnnotationView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1972,6 +1987,7 @@
 				A2EB8DDA1B69F706008F5D48 /* ACNavigationViewController.m in Sources */,
 				A281C5961B6DD62500DF31C0 /* ACCyclingDetailCell.m in Sources */,
 				A26143511B5E22D6007EA45C /* UIImage+GIF.m in Sources */,
+				A28DE43F1B808E9000093B17 /* ACAnnotationEndModel.m in Sources */,
 				A26143531B5E22D6007EA45C /* UIImage+WebP.m in Sources */,
 				A2C256E21B804D2900295882 /* HCNewTypeButtonView.m in Sources */,
 				A2AA76AA1B7F6BDF004F648B /* MJRefreshNormalHeader.m in Sources */,
@@ -2002,9 +2018,11 @@
 				A21DE5E71B71AD7400BC0D31 /* ACProfileCellView.m in Sources */,
 				A26E8EE81B788990003FFC37 /* ACSharedRoutePhotoModel.m in Sources */,
 				A2D3C4771B7781D900060BA6 /* ACUserDetailController.m in Sources */,
+				A28DE43C1B808E7E00093B17 /* ACAnnotationStartModel.m in Sources */,
 				A266D99B1B5C881700D4B326 /* MJProperty.m in Sources */,
 				A266D9861B5C7D5900D4B326 /* NSDate+Extension.m in Sources */,
 				A2C256E81B805D2800295882 /* ACHotRoutesCitiesController.m in Sources */,
+				A2C256F61B807F6F00295882 /* ACAnnotationView.m in Sources */,
 				A2AA76A91B7F6BDF004F648B /* MJRefreshGifHeader.m in Sources */,
 				A2845E931B5A9FBE006E0CE0 /* ACRegisterViewController.m in Sources */,
 				A261434F1B5E22D6007EA45C /* SDWebImagePrefetcher.m in Sources */,
