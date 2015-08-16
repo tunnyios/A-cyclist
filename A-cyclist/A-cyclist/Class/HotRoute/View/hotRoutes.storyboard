@@ -51,7 +51,6 @@
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NF7-fG-UKd" userLabel="topView" customClass="ACHotRoutesDetailTopView">
                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="160"/>
-                                                <color key="backgroundColor" red="0.84522964020000002" green="0.63236280170000003" blue="0.30524495610000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="160" id="HCi-1Z-JXp"/>
                                                 </constraints>
@@ -244,7 +243,6 @@
                                                         <rect key="frame" x="6" y="6" width="588" height="148"/>
                                                     </imageView>
                                                 </subviews>
-                                                <color key="backgroundColor" red="0.1712351248" green="0.6455768623" blue="0.2266452997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="160" id="HoK-LV-tGN"/>
                                                     <constraint firstItem="GAs-7m-jKN" firstAttribute="top" secondItem="vcR-B8-pqb" secondAttribute="top" constant="6" id="UIH-UK-h9Y"/>

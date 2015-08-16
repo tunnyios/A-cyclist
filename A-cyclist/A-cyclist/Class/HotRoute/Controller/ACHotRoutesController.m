@@ -61,7 +61,7 @@
     ACHotRoutesCitiesController *contentController = [[ACHotRoutesCitiesController alloc] init];
     contentController.tableView.backgroundColor = [UIColor clearColor];
     contentController.delegate = self;
-    contentController.view.frame = CGRectMake(0, 0, 200, 90);
+    contentController.view.frame = CGRectMake(0, 0, 200, 44 * 3);
     
     self.dropMenu.contentController = contentController;
     //显示
@@ -100,15 +100,15 @@
                         [self.navigationController pushViewController:hotRoutesDetailController animated:YES];
                     };
                     [self.dataList addObject:hotRouteCellModel];
+                    
+                    //2. 回到主线程刷新数据
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.tableView reloadData];
+                    });
+                    
+                    //3. 将这批同一cityName的热门路线添加到本地
+                    [ACCacheDataTool addSharedRouteListWith:sharedRoutes];
                 }];
-                
-                //2. 回到主线程刷新数据
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.tableView reloadData];
-                });
-                
-                //3. 将这批同一cityName的热门路线添加到本地
-                [ACCacheDataTool addSharedRouteListWith:sharedRoutes];
             }
         }];
         
@@ -186,6 +186,7 @@
     [self.dropMenu disMiss];
     
     //从数据库中获取热门路线，并刷新界面
+    [self.dataList removeAllObjects];
     [self setHotRoutesDataWithCityName:cityName];
 }
 

@@ -22,6 +22,7 @@
 #import "UMSocial.h"
 #import "UMSocialSinaSSOHandler.h"
 #import "UMSocialQQHandler.h"
+#import "SDWebImageManager.h"
 
 @interface AppDelegate () <WeiboSDKDelegate>
 /** 百度地图管理者 */
@@ -125,6 +126,21 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+/**
+ *  当app接收到内存警告
+ */
+- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application
+{
+    SDWebImageManager *mgr = [SDWebImageManager sharedManager];
+    
+    // 1.取消正在下载的操作
+    [mgr cancelAll];
+    
+    // 2.清除内存缓存
+    [mgr.imageCache clearMemory];
+}
+
+
 #pragma mark - 重写两个handle方法
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
 //    return [TencentOAuth HandleOpenURL:url] ||
@@ -206,16 +222,6 @@
             } failure:^(NSError *error) {
                 DLog(@"获取用户信息失败 error:%@", error);
             }];
-            
-//            //3. 本地缓存
-//            ACUserModel *user = [ACDataBaseTool getCurrentUser];
-//            DLog(@"user is %@", user);
-//            [ACCacheDataTool saveUserInfo:user withObjectId:user.objectId];
-            
-//            //跳转
-//            //创建tabbarController
-//            ACTabBarController *tabBarController = [[ACTabBarController alloc] init];
-//            self.window.rootViewController = tabBarController;
         }
     }];
 }
