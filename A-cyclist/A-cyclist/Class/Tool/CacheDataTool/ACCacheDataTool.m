@@ -9,6 +9,7 @@
 #import "ACCacheDataTool.h"
 #import "ACUserModel.h"
 #import "ACRouteModel.h"
+#import "ACSharedRouteModel.h"
 #import "ACGlobal.h"
 #import "FMDB.h"
 
@@ -27,6 +28,7 @@ static FMDatabase *_db;
     //创建表
     [_db executeUpdate:@"CREATE TABLE IF NOT EXISTS t_user (id integer PRIMARY KEY, user blob NOT NULL, objectId text NOT NULL UNIQUE);"];
     [_db executeUpdate:@"CREATE TABLE IF NOT EXISTS t_personRoute (id integer PRIMARY KEY, route blob NOT NULL, userObjectId text NOT NULL, distance real NOT NULL, maxSpeed real NOT NULL, averageSpeed real NOT NULL, timeNumber real NOT NULL, routeOne text NOT NULL);"];
+    [_db executeUpdate:@"CREATE TABLE IF NOT EXISTS t_sharedRoute (id integer PRIMARY KEY, route blob NOT NULL, userObjectId text NOT NULL, classification real text NULL);"];
 }
 
 
@@ -232,6 +234,51 @@ static FMDatabase *_db;
         [routeList addObject:route];
     }
     return routeList.firstObject;
+}
+
+
+#pragma mark - 共享路线相关
+/**
+ *  添加一条共享路线到本地缓存sqlite3
+ */
++ (void)addSharedRouteWith:(ACSharedRouteModel *)sharedRoute withUserObjectId:(NSString *)objectId
+{
+    //转换成NSData
+    NSData *routeData = [NSKeyedArchiver archivedDataWithRootObject:sharedRoute];
+    
+    [_db executeUpdateWithFormat:@"INSERT INTO t_sharedRoute(route, userObjectId, classification) VALUES (%@, %@, %@);", routeData, objectId, sharedRoute.classification];
+    
+    DLog(@"保存sharedRoute到本地数据库成功");
+
+}
+
+/**
+ *   根据classification, 一次添加多条共享路线到本地缓存sqlite3
+ */
++ (void)addSharedRouteListWith:(NSArray *)sharedRoutes
+{
+    [sharedRoutes enumerateObjectsUsingBlock:^(ACSharedRouteModel *sharedRoute, NSUInteger idx, BOOL *stop) {
+        [self addSharedRouteWith:sharedRoute withUserObjectId:sharedRoute.userObjectId];
+    }];
+}
+
+/**
+ *  根据classification类别来获取sharedRoute列表
+ */
++ (NSArray *)getSharedRouteWithRouteClass:(NSString *)classification
+{
+    NSMutableArray *routeList = [NSMutableArray array];
+    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM t_sharedRoute WHERE classification = '%@';", classification];
+    DLog(@"sql is %@", sql);
+    // 执行SQL
+    FMResultSet *set = [_db executeQuery:sql];
+    while (set.next) {
+        NSData *routeData = [set objectForColumnName:@"route"];
+        ACRouteModel *route = [NSKeyedUnarchiver unarchiveObjectWithData:routeData];
+        [routeList addObject:route];
+    }
+    return routeList;
+
 }
 
 

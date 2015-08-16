@@ -75,8 +75,6 @@
     self.navigationItem.title = @"下载离线地图";
     
     //返回按钮
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button addTarget:self action:@selector(buttonAction) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *back = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back_icon"] style:UIBarButtonItemStylePlain target:self action:@selector(buttonAction)];
      self.navigationItem.leftBarButtonItem = back;
     

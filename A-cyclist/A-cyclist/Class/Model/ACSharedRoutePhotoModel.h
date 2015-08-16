@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ACSharedRoutePhotoModel : NSObject
+@interface ACSharedRoutePhotoModel : NSObject <NSCoding>
 /** 路线配图 */
 @property (nonatomic, copy) NSString *photoURL;
 

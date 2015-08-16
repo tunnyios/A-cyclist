@@ -178,6 +178,12 @@
 		A2C256DA1B803F6100295882 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C256CF1B803F6100295882 /* AFURLRequestSerialization.m */; };
 		A2C256DB1B803F6100295882 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C256D11B803F6100295882 /* AFURLResponseSerialization.m */; };
 		A2C256DC1B803F6100295882 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C256D31B803F6100295882 /* AFURLSessionManager.m */; };
+		A2C256DF1B804C0800295882 /* HCDropDownMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C256DE1B804C0800295882 /* HCDropDownMenuView.m */; };
+		A2C256E21B804D2900295882 /* HCNewTypeButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C256E11B804D2900295882 /* HCNewTypeButtonView.m */; };
+		A2C256E81B805D2800295882 /* ACHotRoutesCitiesController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C256E71B805D2800295882 /* ACHotRoutesCitiesController.m */; };
+		A2C256EE1B805F9400295882 /* ACHotRoutesCitesCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C256ED1B805F9400295882 /* ACHotRoutesCitesCellModel.m */; };
+		A2C256F11B8060CA00295882 /* ACHotRoutesCitiesCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C256F01B8060CA00295882 /* ACHotRoutesCitiesCellView.m */; };
+		A2C256F31B80610700295882 /* ACHotRoutesCitiesCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2C256F21B80610700295882 /* ACHotRoutesCitiesCellView.xib */; };
 		A2CE5A4B1B6879860071AC59 /* ACRouteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2CE5A4A1B6879860071AC59 /* ACRouteModel.m */; };
 		A2CE5A4E1B687F130071AC59 /* ACStepModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2CE5A4D1B687F130071AC59 /* ACStepModel.m */; };
 		A2CE5A511B6909940071AC59 /* NSArray+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = A2CE5A501B6909940071AC59 /* NSArray+Log.m */; };
@@ -546,6 +552,17 @@
 		A2C256D11B803F6100295882 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
 		A2C256D21B803F6100295882 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		A2C256D31B803F6100295882 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
+		A2C256DD1B804C0800295882 /* HCDropDownMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCDropDownMenuView.h; sourceTree = "<group>"; };
+		A2C256DE1B804C0800295882 /* HCDropDownMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCDropDownMenuView.m; sourceTree = "<group>"; };
+		A2C256E01B804D2900295882 /* HCNewTypeButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCNewTypeButtonView.h; sourceTree = "<group>"; };
+		A2C256E11B804D2900295882 /* HCNewTypeButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCNewTypeButtonView.m; sourceTree = "<group>"; };
+		A2C256E61B805D2800295882 /* ACHotRoutesCitiesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACHotRoutesCitiesController.h; sourceTree = "<group>"; };
+		A2C256E71B805D2800295882 /* ACHotRoutesCitiesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACHotRoutesCitiesController.m; sourceTree = "<group>"; };
+		A2C256EC1B805F9400295882 /* ACHotRoutesCitesCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACHotRoutesCitesCellModel.h; sourceTree = "<group>"; };
+		A2C256ED1B805F9400295882 /* ACHotRoutesCitesCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACHotRoutesCitesCellModel.m; sourceTree = "<group>"; };
+		A2C256EF1B8060CA00295882 /* ACHotRoutesCitiesCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACHotRoutesCitiesCellView.h; sourceTree = "<group>"; };
+		A2C256F01B8060CA00295882 /* ACHotRoutesCitiesCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACHotRoutesCitiesCellView.m; sourceTree = "<group>"; };
+		A2C256F21B80610700295882 /* ACHotRoutesCitiesCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ACHotRoutesCitiesCellView.xib; sourceTree = "<group>"; };
 		A2CE5A491B6879860071AC59 /* ACRouteModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACRouteModel.h; sourceTree = "<group>"; };
 		A2CE5A4A1B6879860071AC59 /* ACRouteModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACRouteModel.m; sourceTree = "<group>"; };
 		A2CE5A4C1B687F130071AC59 /* ACStepModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACStepModel.h; sourceTree = "<group>"; };
@@ -972,6 +989,8 @@
 				A26E8ED91B78474D003FFC37 /* ACHotRoutesController.m */,
 				A2158C6D1B78EE1E00BE27E1 /* ACHotRoutesDetailController.h */,
 				A2158C6E1B78EE1E00BE27E1 /* ACHotRoutesDetailController.m */,
+				A2C256E61B805D2800295882 /* ACHotRoutesCitiesController.h */,
+				A2C256E71B805D2800295882 /* ACHotRoutesCitiesController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -981,6 +1000,8 @@
 			children = (
 				A26E8EE01B7848C8003FFC37 /* ACHotRoutesCellModel.h */,
 				A26E8EE11B7848C8003FFC37 /* ACHotRoutesCellModel.m */,
+				A2C256EC1B805F9400295882 /* ACHotRoutesCitesCellModel.h */,
+				A2C256ED1B805F9400295882 /* ACHotRoutesCitesCellModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -994,6 +1015,9 @@
 				A26E8EDB1B7848A1003FFC37 /* ACHotRoutesCellView.h */,
 				A2158C761B79010C00BE27E1 /* ACHotRoutesCellView.m */,
 				A26E8EDD1B7848A1003FFC37 /* ACHotRoutesCellView.xib */,
+				A2C256EF1B8060CA00295882 /* ACHotRoutesCitiesCellView.h */,
+				A2C256F01B8060CA00295882 /* ACHotRoutesCitiesCellView.m */,
+				A2C256F21B80610700295882 /* ACHotRoutesCitiesCellView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1625,8 +1649,12 @@
 				A2158C961B7A1BEF00BE27E1 /* HCStarViewBigSize */,
 				A2158C901B7A1BD600BE27E1 /* HCStarViewSmailSize */,
 				A204B1581B5B506B004C0A6C /* HCKeyboard */,
+				A2C256DD1B804C0800295882 /* HCDropDownMenuView.h */,
+				A2C256DE1B804C0800295882 /* HCDropDownMenuView.m */,
 				A2D483B71B5525B200BC8406 /* HCTabBar5ContentView.h */,
 				A2D483B81B5525B200BC8406 /* HCTabBar5ContentView.m */,
+				A2C256E01B804D2900295882 /* HCNewTypeButtonView.h */,
+				A2C256E11B804D2900295882 /* HCNewTypeButtonView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1796,6 +1824,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2D207131B67435B00214B09 /* silence.mp3 in Resources */,
+				A2C256F31B80610700295882 /* ACHotRoutesCitiesCellView.xib in Resources */,
 				A26E8ED71B78471F003FFC37 /* hotRoutes.storyboard in Resources */,
 				A28BFECA1B53A2CC00A712F1 /* LaunchScreen.xib in Resources */,
 				A2FEDF431B7DEA9100BCD092 /* UMShareEditViewController.xib in Resources */,
@@ -1864,6 +1893,7 @@
 				A26143501B5E22D6007EA45C /* UIButton+WebCache.m in Sources */,
 				A266D9991B5C881700D4B326 /* MJConst.m in Sources */,
 				A261B0421B57810A006C8917 /* ACSettingViewController.m in Sources */,
+				A2C256EE1B805F9400295882 /* ACHotRoutesCitesCellModel.m in Sources */,
 				A2AA76A71B7F6BDF004F648B /* MJRefreshBackNormalFooter.m in Sources */,
 				A21D7B511B75F1780014466C /* ACRouteHistoryController.m in Sources */,
 				A2AA76A51B7F6BDF004F648B /* MJRefreshAutoStateFooter.m in Sources */,
@@ -1922,6 +1952,7 @@
 				A2AA769E1B7F6BDF004F648B /* MJRefreshAutoFooter.m in Sources */,
 				A2AA76AF1B7F6BDF004F648B /* UIScrollView+MJRefresh.m in Sources */,
 				A21D7B6F1B775EE50014466C /* ACRankingBehindCellModel.m in Sources */,
+				A2C256DF1B804C0800295882 /* HCDropDownMenuView.m in Sources */,
 				A26143551B5E22D6007EA45C /* UIImageView+WebCache.m in Sources */,
 				A26143211B5DFA6C007EA45C /* ACArrowWithSubtitleSettingCellModel.m in Sources */,
 				A2AA76A41B7F6BDF004F648B /* MJRefreshAutoNormalFooter.m in Sources */,
@@ -1942,6 +1973,7 @@
 				A281C5961B6DD62500DF31C0 /* ACCyclingDetailCell.m in Sources */,
 				A26143511B5E22D6007EA45C /* UIImage+GIF.m in Sources */,
 				A26143531B5E22D6007EA45C /* UIImage+WebP.m in Sources */,
+				A2C256E21B804D2900295882 /* HCNewTypeButtonView.m in Sources */,
 				A2AA76AA1B7F6BDF004F648B /* MJRefreshNormalHeader.m in Sources */,
 				A281C58F1B6DD61E00DF31C0 /* ACScrollView.m in Sources */,
 				A2C256D51B803F6100295882 /* AFHTTPRequestOperationManager.m in Sources */,
@@ -1972,6 +2004,7 @@
 				A2D3C4771B7781D900060BA6 /* ACUserDetailController.m in Sources */,
 				A266D99B1B5C881700D4B326 /* MJProperty.m in Sources */,
 				A266D9861B5C7D5900D4B326 /* NSDate+Extension.m in Sources */,
+				A2C256E81B805D2800295882 /* ACHotRoutesCitiesController.m in Sources */,
 				A2AA76A91B7F6BDF004F648B /* MJRefreshGifHeader.m in Sources */,
 				A2845E931B5A9FBE006E0CE0 /* ACRegisterViewController.m in Sources */,
 				A261434F1B5E22D6007EA45C /* SDWebImagePrefetcher.m in Sources */,
@@ -1983,6 +2016,7 @@
 				A261B0481B57A3BF006C8917 /* ACBlankSettingCellModel.m in Sources */,
 				A281C5951B6DD62500DF31C0 /* ACCyclingArgumentScrollView.m in Sources */,
 				A26143491B5E22D6007EA45C /* SDImageCache.m in Sources */,
+				A2C256F11B8060CA00295882 /* ACHotRoutesCitiesCellView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

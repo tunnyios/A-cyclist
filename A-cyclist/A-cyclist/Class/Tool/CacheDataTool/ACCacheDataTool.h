@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class ACUserModel, ACRouteModel;
+@class ACUserModel, ACRouteModel, ACSharedRouteModel;
 @interface ACCacheDataTool : NSObject
 
 #pragma mark - 用户相关
@@ -24,7 +24,9 @@
 /* 删除用户信息 */
 + (BOOL)deleteUserData;
 
-#pragma mark - 路线相关
+#pragma mark - 个人路线相关
+
+/* 用户路线 */
 /** 添加一条路线到sqlite3 */
 + (void)addRouteWith:(ACRouteModel *)route withUserObjectId:(NSString *)objectId;
 
@@ -49,6 +51,16 @@
 /** 从本地缓存中获取最长时间的一次骑行路线 */
 + (ACRouteModel *)getmaxTimeRouteWithId:(NSString *)objectId;
 
+#pragma mark - 共享路线相关
+/* 热门路线 */
+/** 添加一条共享路线到本地缓存sqlite3 */
++ (void)addSharedRouteWith:(ACSharedRouteModel *)sharedRoute withUserObjectId:(NSString *)objectId;
+
+/** 一次添加多条共享路线到本地缓存sqlite3 */
++ (void)addSharedRouteListWith:(NSArray *)sharedRoutes;
+
+/** 根据classification类别来获取sharedRoute列表 */
++ (NSArray *)getSharedRouteWithRouteClass:(NSString *)classification;
 
 #pragma mark - 偏好设置存储
 

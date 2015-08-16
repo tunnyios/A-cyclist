@@ -10,8 +10,16 @@
 #import "ACSharedRoutePhotoModel.h"
 #import <BmobSDK/Bmob.h>
 #import "ACGlobal.h"
+#import "MJExtension.h"
 
 @implementation ACSharedRouteModel
+
+MJCodingImplementation
+
++ (NSDictionary *)objectClassInArray
+{
+    return @{@"imageList" : [ACSharedRoutePhotoModel class]};
+}
 
 /**
  *  将bmobObject对象转换成Route对象

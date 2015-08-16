@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class BmobObject;
-@interface ACSharedRouteModel : NSObject
+@interface ACSharedRouteModel : NSObject <NSCoding>
 /** name(中文) */
 @property (nonatomic, copy) NSString *nameCN;
 /** name(英文) */

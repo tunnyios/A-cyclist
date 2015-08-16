@@ -762,7 +762,9 @@ typedef enum : NSUInteger {
         //设置骑行者当前的地区数据
         self.userZone.text = [NSString stringWithFormat:@"%@ %@", result.addressDetail.city, result.addressDetail.district];
         //设置当前城市名称用于PM获取
+        DLog(@"result.addressDetail.city is %@", result.addressDetail.city);
         NSRange preRange = [result.addressDetail.city rangeOfString:@"市"];
+        DLog(@"preRange is %@", NSStringFromRange(preRange));
         self.currentCity = [result.addressDetail.city substringToIndex:preRange.location];
         DLog(@"userZone is %@, self.currentCity is %@", self.userZone.text, self.currentCity);
         

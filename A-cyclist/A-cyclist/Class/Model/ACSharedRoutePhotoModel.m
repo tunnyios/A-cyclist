@@ -7,8 +7,12 @@
 //
 
 #import "ACSharedRoutePhotoModel.h"
+#import "MJExtension.h"
+
 
 @implementation ACSharedRoutePhotoModel
+
+MJCodingImplementation
 
 + (instancetype)routePhotoModelWithphoto:(NSString *)photoURL
 {
