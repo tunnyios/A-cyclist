@@ -122,6 +122,9 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) BMKUserLocation *currentLocation;
 @property (weak, nonatomic) IBOutlet UILabel *weatherTempLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *weatherImageView;
+/** 当前城市名 */
+@property (nonatomic, copy) NSString *currentCity;
+@property (weak, nonatomic) IBOutlet UILabel *PM25Label;
 
 
 @end
@@ -172,6 +175,10 @@ typedef enum : NSUInteger {
     //2. 定时更新天气(3小时)
     NSTimer *timer = [NSTimer timerWithTimeInterval:(3600 * 3) target:self selector:@selector(getWeather) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+    
+    //3. 定时更新PM(6小时)
+    NSTimer *PMtimer = [NSTimer timerWithTimeInterval:(3600 * 6) target:self selector:@selector(getPM25) userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:PMtimer forMode:NSRunLoopCommonModes];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -648,14 +655,14 @@ typedef enum : NSUInteger {
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
 {
     self.currentLocation = userLocation;
-    //0. 根据位置坐标获取天气(程序运行阶段只执行一次，其他用定时器获取天气)
+    
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
+        //0. 获取位置，返地理编码，设置位置label内容
+        [self setUserZoneWith:userLocation];
+        //1. 根据位置坐标获取天气(程序运行阶段只执行一次，其他用定时器获取天气)
         [self getWeather];
     });
-    
-    //1. 获取位置，返地理编码，设置位置label内容
-    [self setUserZoneWith:userLocation];
     
     //2. 轨迹记录
     [self.bmkMapView updateLocationData:userLocation];
@@ -754,7 +761,16 @@ typedef enum : NSUInteger {
     if (error == 0) {
         //设置骑行者当前的地区数据
         self.userZone.text = [NSString stringWithFormat:@"%@ %@", result.addressDetail.city, result.addressDetail.district];
-        DLog(@"userZone is %@", self.userZone.text);
+        //设置当前城市名称用于PM获取
+        NSRange preRange = [result.addressDetail.city rangeOfString:@"市"];
+        self.currentCity = [result.addressDetail.city substringToIndex:preRange.location];
+        DLog(@"userZone is %@, self.currentCity is %@", self.userZone.text, self.currentCity);
+        
+        //获取PM25的值；程序运行阶段只执行一次，剩下的由定时器负责
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            [self getPM25];
+        });
     }
 }
 
@@ -835,11 +851,14 @@ typedef enum : NSUInteger {
 #pragma mark - 天气
 - (void)getWeather
 {
+    //0. 获取位置，返地理编码，设置位置label内容(每3小时，跟随天气更新一次位置信息)
+    [self setUserZoneWith:self.currentLocation];
+    
     //获取天气和温度
     NSString *url = [NSString stringWithFormat:@"http://api.openweathermap.org/data/2.5/weather?lat=%f&lon=%f", self.currentLocation.location.coordinate.latitude, self.currentLocation.location.coordinate.longitude];
     DLog(@"天气url is %@, currentLocation is %@", url, self.currentLocation);
     [HCHttpTool GET:url parameters:nil success:^(id responseObject) {
-        DLog(@"天气responseObject is %@", responseObject);
+//        DLog(@"天气responseObject is %@", responseObject);
         //天气icon
         NSString *weatherIcon = [responseObject[@"weather"] firstObject][@"icon"];
         UIImage *weatherImg = [ACWeatherModel imageNameWithIcon:weatherIcon];
@@ -858,6 +877,28 @@ typedef enum : NSUInteger {
     } failure:^(NSError *error) {
         DLog(@"天气 error is %@", error);
     }];
+}
+
+/**
+ *  获取PM25
+ */
+- (void)getPM25
+{
+    //获取PM25
+    NSString *cityUTF8 = [self.currentCity stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *url = [NSString stringWithFormat:@"http://web.juhe.cn:8080/environment/air/pm?city=%@&key=9ceadd86cbfb2d84b5e4219ff38e54b4", cityUTF8];
+    DLog(@"PM25 url is %@", url);
+    
+    [HCHttpTool GET:url parameters:nil success:^(id responseObject) {
+//        DLog(@"PM25 responseObject is %@", responseObject);
+        NSArray *result = responseObject[@"result"];
+        NSString *PM25 = [result firstObject][@"PM2.5"];
+        self.PM25Label.text = PM25;
+        DLog(@"PM25 is %@", PM25);
+    } failure:^(NSError *error) {
+        DLog(@"PM25 error is %@", error);
+    }];
+
 }
 
 

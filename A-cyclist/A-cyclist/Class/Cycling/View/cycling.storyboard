@@ -620,7 +620,7 @@
                                                             <constraint firstAttribute="height" constant="72" id="Vw1-JS-V9O"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MeA-jP-URL">
+                                                    <navigationBar hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MeA-jP-URL">
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="64" id="0Cc-xD-E5V"/>
@@ -679,6 +679,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="PM25Label" destination="UTu-S9-Aeh" id="b1h-vc-GQt"/>
                         <outlet property="altitude" destination="Ytx-NA-dh0" id="eVf-Sd-C90"/>
                         <outlet property="bmkMapView" destination="Nl1-Xi-q9Z" id="3NM-95-Dhr"/>
                         <outlet property="compass" destination="bM7-bX-9cQ" id="3uD-MV-x1x"/>
