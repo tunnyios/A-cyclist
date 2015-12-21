@@ -671,7 +671,7 @@ typedef enum : NSUInteger {
         //1. 根据位置坐标获取天气(程序运行阶段只执行一次，其他用定时器获取天气)
         [self getWeather];
     });
-    
+
     //2. 轨迹记录
     [self.bmkMapView updateLocationData:userLocation];
     DLog(@"location:<%f, %f>", userLocation.location.coordinate.latitude, userLocation.location.coordinate.longitude);
@@ -774,16 +774,20 @@ typedef enum : NSUInteger {
         self.userZone.text = [NSString stringWithFormat:@"%@ %@", result.addressDetail.city, result.addressDetail.district];
         //设置当前城市名称用于PM获取
         DLog(@"result.addressDetail.city is %@", result.addressDetail.city);
-        NSRange preRange = [result.addressDetail.city rangeOfString:@"市"];
-        DLog(@"preRange is %@", NSStringFromRange(preRange));
-        self.currentCity = [result.addressDetail.city substringToIndex:preRange.location];
+        if (result.addressDetail.city && ![@"" isEqualToString:result.addressDetail.city]) {
+            NSRange preRange = [result.addressDetail.city rangeOfString:@"市"];
+            DLog(@"preRange is %@", NSStringFromRange(preRange));
+            self.currentCity = [result.addressDetail.city substringToIndex:preRange.location];
+        }
         DLog(@"userZone is %@, self.currentCity is %@", self.userZone.text, self.currentCity);
         
         //获取PM25的值；程序运行阶段只执行一次，剩下的由定时器负责
-        static dispatch_once_t onceToken;
-        dispatch_once(&onceToken, ^{
-            [self getPM25];
-        });
+        if (self.currentCity) {
+            static dispatch_once_t onceToken;
+            dispatch_once(&onceToken, ^{
+                [self getPM25];
+            });
+        }
     }
 }
 

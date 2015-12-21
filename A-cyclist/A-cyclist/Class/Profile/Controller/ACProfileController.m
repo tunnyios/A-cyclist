@@ -343,7 +343,8 @@
                     NSString *subTitleSpeed = @"";
                     NSString *timeStrSpeed = @"";
                     if (0 != self.maxSpeedRoute.steps.count) {
-                        subTitleSpeed = [NSString stringWithFormat:@"%@ km", self.maxSpeedRoute.distance];
+//                        subTitleSpeed = [NSString stringWithFormat:@"%@ km", self.maxSpeedRoute.distance];
+                        subTitleSpeed = [NSString stringWithFormat:@"%@ km/h", self.maxSpeedRoute.maxSpeed];
                         timeStrSpeed = [NSDate dateToString:self.maxSpeedRoute.cyclingStartTime WithFormatter:@"yyyy-MM-dd"];
                     }
                     ACProfileCellModel *maxSpeedModle = [self.dataList[1] cellList][1];
@@ -364,7 +365,8 @@
                         NSString *subTitleAverage = @"";
                         NSString *timeStrAverage = @"";
                         if (0 != self.maxAverageRoute.steps.count) {
-                            subTitleAverage = [NSString stringWithFormat:@"%@ km", self.maxAverageRoute.distance];
+//                            subTitleAverage = [NSString stringWithFormat:@"%@ km", self.maxAverageRoute.distance];
+                            subTitleAverage = [NSString stringWithFormat:@"%@ km/h", self.maxAverageRoute.averageSpeed];
                             timeStrAverage = [NSDate dateToString:self.maxAverageRoute.cyclingStartTime WithFormatter:@"yyyy-MM-dd"];
                         }
                         ACProfileCellModel *maxAverageModle = [self.dataList[1] cellList][2];
@@ -385,7 +387,8 @@
                             NSString *subTitleTime = @"";
                             NSString *timeStrTime = @"";
                             if (0 != self.maxTimeRoute.steps.count) {
-                                subTitleTime = [NSString stringWithFormat:@"%@ km", self.maxTimeRoute.distance];
+//                                subTitleTime = [NSString stringWithFormat:@"%@ km", self.maxTimeRoute.distance];
+                                subTitleTime = self.maxTimeRoute.time;
                                 timeStrTime = [NSDate dateToString:self.maxTimeRoute.cyclingStartTime WithFormatter:@"yyyy-MM-dd"];
                             }
                             ACProfileCellModel *maxTimeModle = [self.dataList[1] cellList][3];

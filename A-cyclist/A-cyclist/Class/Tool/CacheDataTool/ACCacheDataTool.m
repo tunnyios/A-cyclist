@@ -28,7 +28,7 @@ static FMDatabase *_db;
     //创建表
     [_db executeUpdate:@"CREATE TABLE IF NOT EXISTS t_user (id integer PRIMARY KEY, user blob NOT NULL, objectId text NOT NULL UNIQUE);"];
     [_db executeUpdate:@"CREATE TABLE IF NOT EXISTS t_personRoute (id integer PRIMARY KEY, route blob NOT NULL, userObjectId text NOT NULL, distance real NOT NULL, maxSpeed real NOT NULL, averageSpeed real NOT NULL, timeNumber real NOT NULL, routeOne text NOT NULL);"];
-    [_db executeUpdate:@"CREATE TABLE IF NOT EXISTS t_sharedRoute (id integer PRIMARY KEY, route blob NOT NULL, userObjectId text NOT NULL, classification real text NULL);"];
+    [_db executeUpdate:@"CREATE TABLE IF NOT EXISTS t_sharedRoute (id integer PRIMARY KEY, route blob NOT NULL, userObjectId text NOT NULL, classification text NOT NULL);"];
 }
 
 
@@ -274,11 +274,10 @@ static FMDatabase *_db;
     FMResultSet *set = [_db executeQuery:sql];
     while (set.next) {
         NSData *routeData = [set objectForColumnName:@"route"];
-        ACRouteModel *route = [NSKeyedUnarchiver unarchiveObjectWithData:routeData];
+        ACSharedRouteModel *route = [NSKeyedUnarchiver unarchiveObjectWithData:routeData];
         [routeList addObject:route];
     }
     return routeList;
-
 }
 
 
