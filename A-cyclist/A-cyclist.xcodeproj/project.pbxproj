@@ -120,11 +120,9 @@
 		A28FA7161C43868800507139 /* libFMDB.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A28FA7151C43868800507139 /* libFMDB.a */; };
 		A28FA7181C438A5B00507139 /* libMBProgressHUD.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A28FA7171C438A5B00507139 /* libMBProgressHUD.a */; };
 		A28FA71A1C439CE100507139 /* libSDWebImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A28FA7191C439CE100507139 /* libSDWebImage.a */; };
+		A28FA71C1C43A54400507139 /* libActionSheetPicker-3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A28FA71B1C43A54400507139 /* libActionSheetPicker-3.0.a */; };
 		A2A43CD81B7324990099011F /* ACProfileHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A43CD71B7324990099011F /* ACProfileHeaderView.m */; };
 		A2A43CDA1B7324A90099011F /* ACProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2A43CD91B7324A90099011F /* ACProfileHeaderView.xib */; };
-		A2AA76631B7F0BD8004F648B /* ActionSheetMultipleStringPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = A2AA76611B7F0BD8004F648B /* ActionSheetMultipleStringPicker.m */; };
-		A2AA76651B7F22B4004F648B /* CoreActionSheetPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AA76621B7F0BD8004F648B /* CoreActionSheetPicker.framework */; };
-		A2AA76661B7F22B4004F648B /* CoreActionSheetPicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A2AA76621B7F0BD8004F648B /* CoreActionSheetPicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A2AA766D1B7F2D02004F648B /* ACSettingFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2AA766C1B7F2D02004F648B /* ACSettingFeedbackViewController.m */; };
 		A2AA76701B7F5FC5004F648B /* ACWeatherModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2AA766F1B7F5FC5004F648B /* ACWeatherModel.m */; };
 		A2AD90BD1B5FAAB100847F72 /* BaiduMapAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AD90BC1B5FAAB100847F72 /* BaiduMapAPI.framework */; };
@@ -187,7 +185,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				A2AA76661B7F22B4004F648B /* CoreActionSheetPicker.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -385,12 +382,10 @@
 		A28FA7151C43868800507139 /* libFMDB.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFMDB.a; path = "Pods/../build/Debug-iphoneos/libFMDB.a"; sourceTree = "<group>"; };
 		A28FA7171C438A5B00507139 /* libMBProgressHUD.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMBProgressHUD.a; path = "Pods/../build/Debug-iphoneos/libMBProgressHUD.a"; sourceTree = "<group>"; };
 		A28FA7191C439CE100507139 /* libSDWebImage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDWebImage.a; path = "Pods/../build/Debug-iphoneos/libSDWebImage.a"; sourceTree = "<group>"; };
+		A28FA71B1C43A54400507139 /* libActionSheetPicker-3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libActionSheetPicker-3.0.a"; path = "Pods/../build/Debug-iphoneos/libActionSheetPicker-3.0.a"; sourceTree = "<group>"; };
 		A2A43CD61B7324990099011F /* ACProfileHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACProfileHeaderView.h; sourceTree = "<group>"; };
 		A2A43CD71B7324990099011F /* ACProfileHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACProfileHeaderView.m; sourceTree = "<group>"; };
 		A2A43CD91B7324A90099011F /* ACProfileHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ACProfileHeaderView.xib; sourceTree = "<group>"; };
-		A2AA76601B7F0BD8004F648B /* ActionSheetMultipleStringPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetMultipleStringPicker.h; sourceTree = "<group>"; };
-		A2AA76611B7F0BD8004F648B /* ActionSheetMultipleStringPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionSheetMultipleStringPicker.m; sourceTree = "<group>"; };
-		A2AA76621B7F0BD8004F648B /* CoreActionSheetPicker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CoreActionSheetPicker.framework; sourceTree = "<group>"; };
 		A2AA766B1B7F2D02004F648B /* ACSettingFeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACSettingFeedbackViewController.h; sourceTree = "<group>"; };
 		A2AA766C1B7F2D02004F648B /* ACSettingFeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACSettingFeedbackViewController.m; sourceTree = "<group>"; };
 		A2AA766E1B7F5FC5004F648B /* ACWeatherModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACWeatherModel.h; sourceTree = "<group>"; };
@@ -478,6 +473,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A28FA71C1C43A54400507139 /* libActionSheetPicker-3.0.a in Frameworks */,
 				A28FA71A1C439CE100507139 /* libSDWebImage.a in Frameworks */,
 				A28FA7181C438A5B00507139 /* libMBProgressHUD.a in Frameworks */,
 				A28FA7161C43868800507139 /* libFMDB.a in Frameworks */,
@@ -499,7 +495,6 @@
 				A2FEDF501B7DF20200BCD092 /* libSocialSina.a in Frameworks */,
 				A2845EAD1B5AB19D006E0CE0 /* MediaPlayer.framework in Frameworks */,
 				A2845EAB1B5AB198006E0CE0 /* AVFoundation.framework in Frameworks */,
-				A2AA76651B7F22B4004F648B /* CoreActionSheetPicker.framework in Frameworks */,
 				A2845EA91B5AB186006E0CE0 /* libicucore.dylib in Frameworks */,
 				A266D9AE1B5C9FE600D4B326 /* libWeiboSDK.a in Frameworks */,
 				A2845EA71B5AB17C006E0CE0 /* libsqlite3.dylib in Frameworks */,
@@ -1003,7 +998,6 @@
 		A28BFEE81B53B35B00A712F1 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
-				A2AA765F1B7F0BD8004F648B /* CoreActionSheetPicker */,
 				A2FEDF231B7DEA9100BCD092 /* UMSocial_Sdk_4.2.3 */,
 				A28E46151B7DC551002B97D6 /* libQQSDK */,
 				A2AD90BC1B5FAAB100847F72 /* BaiduMapAPI.framework */,
@@ -1266,16 +1260,6 @@
 			path = libQQSDK;
 			sourceTree = "<group>";
 		};
-		A2AA765F1B7F0BD8004F648B /* CoreActionSheetPicker */ = {
-			isa = PBXGroup;
-			children = (
-				A2AA76601B7F0BD8004F648B /* ActionSheetMultipleStringPicker.h */,
-				A2AA76611B7F0BD8004F648B /* ActionSheetMultipleStringPicker.m */,
-				A2AA76621B7F0BD8004F648B /* CoreActionSheetPicker.framework */,
-			);
-			path = CoreActionSheetPicker;
-			sourceTree = "<group>";
-		};
 		A2AA76671B7F2CCD004F648B /* Feedback */ = {
 			isa = PBXGroup;
 			children = (
@@ -1332,6 +1316,7 @@
 		A2EE88D9FE9F743387ED5633 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A28FA71B1C43A54400507139 /* libActionSheetPicker-3.0.a */,
 				A28FA7191C439CE100507139 /* libSDWebImage.a */,
 				A28FA7171C438A5B00507139 /* libMBProgressHUD.a */,
 				A28FA7151C43868800507139 /* libFMDB.a */,
@@ -1644,7 +1629,6 @@
 				A2CE5A511B6909940071AC59 /* NSArray+Log.m in Sources */,
 				A204B16A1B5BE144004C0A6C /* ACUserModel.m in Sources */,
 				A2845EB41B5AB825006E0CE0 /* MBProgressHUD+MJ.m in Sources */,
-				A2AA76631B7F0BD8004F648B /* ActionSheetMultipleStringPicker.m in Sources */,
 				A204B1601B5B506B004C0A6C /* HCKeyboardTool.m in Sources */,
 				A2158C771B79010C00BE27E1 /* ACHotRoutesCellView.m in Sources */,
 				A2FEDF5F1B7E285000BCD092 /* ACSharedTitleView.m in Sources */,

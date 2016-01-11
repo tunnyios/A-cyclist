@@ -28,13 +28,11 @@
 //SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-//#import "AbstractActionSheetPicker.h"
-#import <CoreActionSheetPicker/CoreActionSheetPicker.h>
-#import <UIKit/UIKit.h>
+#import "AbstractActionSheetPicker.h"
 
 @class ActionSheetMultipleStringPicker;
 typedef void(^ActionMultipleStringDoneBlock)(ActionSheetMultipleStringPicker *picker, NSArray *selectedIndexes, id selectedValues);
-typedef void(^ActionMultopleStringCancelBlock)(ActionSheetMultipleStringPicker *picker);
+typedef void(^ActionMultipleStringCancelBlock)(ActionSheetMultipleStringPicker *picker);
 
 @interface ActionSheetMultipleStringPicker : AbstractActionSheetPicker <UIPickerViewDelegate, UIPickerViewDataSource>
 /**
@@ -57,11 +55,11 @@ typedef void(^ActionMultopleStringCancelBlock)(ActionSheetMultipleStringPicker *
 
 
 
-+ (instancetype)showPickerWithTitle:(NSString *)title rows:(NSArray *)strings initialSelection:(NSArray *)indexes doneBlock:(ActionMultipleStringDoneBlock)doneBlock cancelBlock:(ActionMultopleStringCancelBlock)cancelBlock origin:(id)origin;
++ (instancetype)showPickerWithTitle:(NSString *)title rows:(NSArray *)strings initialSelection:(NSArray *)indexes doneBlock:(ActionMultipleStringDoneBlock)doneBlock cancelBlock:(ActionMultipleStringCancelBlock)cancelBlock origin:(id)origin;
 
-- (instancetype)initWithTitle:(NSString *)title rows:(NSArray *)strings initialSelection:(NSArray *)indexes doneBlock:(ActionMultipleStringDoneBlock)doneBlock cancelBlock:(ActionMultopleStringCancelBlock)cancelBlockOrNil origin:(id)origin;
+- (instancetype)initWithTitle:(NSString *)title rows:(NSArray *)strings initialSelection:(NSArray *)indexes doneBlock:(ActionMultipleStringDoneBlock)doneBlock cancelBlock:(ActionMultipleStringCancelBlock)cancelBlockOrNil origin:(id)origin;
 
 @property (nonatomic, copy) ActionMultipleStringDoneBlock onActionSheetDone;
-@property (nonatomic, copy) ActionMultopleStringCancelBlock onActionSheetCancel;
+@property (nonatomic, copy) ActionMultipleStringCancelBlock onActionSheetCancel;
 
 @end
