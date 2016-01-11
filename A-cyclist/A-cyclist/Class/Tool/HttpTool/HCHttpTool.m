@@ -16,13 +16,13 @@
  */
 + (void)GET:(NSString *)url parameters:(id)parameters success:(void (^)(id))success failure:(void (^)(NSError *))failure
 {
-    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
     
-    [mgr GET:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [mgr GET:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if (success) {
             success(responseObject);
         }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if (failure) {
             failure(error);
         }
@@ -34,13 +34,13 @@
  */
 + (void)POST:(NSString *)url parameters:(id)parameters success:(void (^)(id))success failure:(void (^)(NSError *))failure
 {
-    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
     
-    [mgr POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [mgr POST:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if (success) {
             success(responseObject);
         }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if (failure) {
             failure(error);
         }
@@ -52,9 +52,9 @@
  */
 + (void)POST:(NSString *)url parameters:(id)parameters constructingBodyWithBlock:(HCFileParamsModel *(^)())block success:(void (^)(id))success failure:(void (^)(NSError *))failure
 {
-    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
     
-    [mgr POST:url parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [mgr POST:url parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         if (block) {
             HCFileParamsModel *fileParmas = block();
             
@@ -64,11 +64,11 @@
                 [formData appendPartWithFileURL:fileParmas.url name:fileParmas.name fileName:fileParmas.fileName mimeType:fileParmas.mimeType error:nil];
             }
         }
-    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if (success) {
             success(responseObject);
         }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if (failure) {
             failure(error);
         }
