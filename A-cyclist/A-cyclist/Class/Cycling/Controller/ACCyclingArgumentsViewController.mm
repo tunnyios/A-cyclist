@@ -266,7 +266,7 @@
 - (IBAction)sharedBtnClick:(id)sender
 {
     //设置只分享图片
-    [UMSocialData defaultData].extConfig.qqData.qqMessageType = UMSocialQQMessageTypeImage;
+//    [UMSocialData defaultData].extConfig.qqData.qqMessageType = UMSocialQQMessageTypeImage;
     
     //1.截图
     ACSharedTitleView *titleView = [ACSharedTitleView sharedTitleView];
@@ -279,12 +279,12 @@
     //2.拼图
     UIImage *newImage = [self imageWithImageArray:@[titleImage, mapImage, argumentsImage, speedImage, climbingImage]];
     
-    [UMSocialSnsService presentSnsIconSheetView:self
-                                         appKey:@"55cdacb0e0f55ab21a0010ff"
-                                      shareText:nil
-                                     shareImage:newImage
-                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToQQ,nil]
-                                       delegate:self];
+//    [UMSocialSnsService presentSnsIconSheetView:self
+//                                         appKey:@"55cdacb0e0f55ab21a0010ff"
+//                                      shareText:nil
+//                                     shareImage:newImage
+//                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToQQ,nil]
+//                                       delegate:self];
 }
 
 /**

@@ -22,4 +22,7 @@
 
 /** 拼接图片(垂直方向) */
 + (instancetype)imageWithImageArray:(NSArray *)imageArray;
+
+/** 根据宽度等比例压缩图片 */
+-(UIImage *) imageCompressForWidth:(UIImage *)sourceImage targetWidth:(CGFloat)defineWidth;
 @end

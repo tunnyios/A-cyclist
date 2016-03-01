@@ -12,7 +12,7 @@
 #import "NSString+Extension.h"
 #import "ACShowAlertTool.h"
 #import "ACUserModel.h"
-#import "WeiboSDK.h"
+//#import "WeiboSDK.h"
 #import "ACTabBarController.h"
 #import "ACCacheDataTool.h"
 
@@ -128,33 +128,33 @@
 #pragma mark - 第三方登录
 - (IBAction)qqLogin
 {
-    if ([TencentOAuth iphoneQQInstalled]) {
-        //注册
-        _tencentOAuth = [[TencentOAuth alloc] initWithAppId:@"1104739169" andDelegate:self];
-        //授权
-        NSArray *permissions = [NSArray arrayWithObjects:kOPEN_PERMISSION_GET_INFO, kOPEN_PERMISSION_GET_USER_INFO, kOPEN_PERMISSION_GET_SIMPLE_USER_INFO,nil];
-        [_tencentOAuth authorize:permissions inSafari:NO];
-        [_tencentOAuth getUserInfo];
-
-    } else {
-        [ACShowAlertTool showError:ACSinaLoginError];
-    }
+//    if ([TencentOAuth iphoneQQInstalled]) {
+//        //注册
+//        _tencentOAuth = [[TencentOAuth alloc] initWithAppId:@"1104739169" andDelegate:self];
+//        //授权
+//        NSArray *permissions = [NSArray arrayWithObjects:kOPEN_PERMISSION_GET_INFO, kOPEN_PERMISSION_GET_USER_INFO, kOPEN_PERMISSION_GET_SIMPLE_USER_INFO,nil];
+//        [_tencentOAuth authorize:permissions inSafari:NO];
+//        [_tencentOAuth getUserInfo];
+//
+//    } else {
+//        [ACShowAlertTool showError:ACSinaLoginError];
+//    }
 }
 
 - (IBAction)weboLogin
 {
-    if([WeiboSDK isWeiboAppInstalled]){
-        //向新浪发送请求
-        WBAuthorizeRequest *request = [WBAuthorizeRequest request];
-        request.redirectURI = @"https://api.weibo.com/oauth2/default.html";
-        request.scope = @"all";
-        [WeiboSDK sendRequest:request];
-        
-        DLog(@"微博按钮点击");
-    } else {
-        [ACShowAlertTool showError:ACSinaLoginError];
-        
-    }
+//    if([WeiboSDK isWeiboAppInstalled]){
+//        //向新浪发送请求
+//        WBAuthorizeRequest *request = [WBAuthorizeRequest request];
+//        request.redirectURI = @"https://api.weibo.com/oauth2/default.html";
+//        request.scope = @"all";
+//        [WeiboSDK sendRequest:request];
+//        
+//        DLog(@"微博按钮点击");
+//    } else {
+//        [ACShowAlertTool showError:ACSinaLoginError];
+//        
+//    }
 }
 
 - (IBAction)wechatLogin
@@ -164,39 +164,39 @@
 
 
 #pragma mark - QQ的回调函数
-- (void)tencentDidLogin{
-    if (_tencentOAuth.accessToken && 0 != [_tencentOAuth.accessToken length]){
-        //  记录登录用户的OpenID、Token以及过期时间
-        NSString *accessToken = _tencentOAuth.accessToken;
-        NSString *uid = _tencentOAuth.openId;
-        NSDate *expiresDate = _tencentOAuth.expirationDate;
-        NSLog(@"acessToken:%@",accessToken);
-        NSLog(@"UserId:%@",uid);
-        NSLog(@"expiresDate:%@",expiresDate);
-        NSDictionary *dic = @{@"access_token":accessToken,@"uid":uid,@"expirationDate":expiresDate};
-        
-        //通过授权信息注册登录
-        [BmobUser loginInBackgroundWithAuthorDictionary:dic platform:BmobSNSPlatformQQ block:^(BmobUser *user, NSError *error) {
-            if (error) {
-                NSLog(@"weibo login error:%@",error);
-            } else if (user){
-                NSLog(@"user objectid is :%@",user.objectId);
-                [_tencentOAuth getUserInfo];
-//                ShowUserMessageViewController *showUser = [[ShowUserMessageViewController alloc] init];
-//                showUser.title = @"用户信息";
-//                
-//                [self.navigationController pushViewController:showUser animated:YES];
-            }
-        }];
-    }
-    
-}
+//- (void)tencentDidLogin{
+//    if (_tencentOAuth.accessToken && 0 != [_tencentOAuth.accessToken length]){
+//        //  记录登录用户的OpenID、Token以及过期时间
+//        NSString *accessToken = _tencentOAuth.accessToken;
+//        NSString *uid = _tencentOAuth.openId;
+//        NSDate *expiresDate = _tencentOAuth.expirationDate;
+//        NSLog(@"acessToken:%@",accessToken);
+//        NSLog(@"UserId:%@",uid);
+//        NSLog(@"expiresDate:%@",expiresDate);
+//        NSDictionary *dic = @{@"access_token":accessToken,@"uid":uid,@"expirationDate":expiresDate};
+//        
+//        //通过授权信息注册登录
+//        [BmobUser loginInBackgroundWithAuthorDictionary:dic platform:BmobSNSPlatformQQ block:^(BmobUser *user, NSError *error) {
+//            if (error) {
+//                NSLog(@"weibo login error:%@",error);
+//            } else if (user){
+//                NSLog(@"user objectid is :%@",user.objectId);
+//                [_tencentOAuth getUserInfo];
+////                ShowUserMessageViewController *showUser = [[ShowUserMessageViewController alloc] init];
+////                showUser.title = @"用户信息";
+////                
+////                [self.navigationController pushViewController:showUser animated:YES];
+//            }
+//        }];
+//    }
+//    
+//}
 
-- (void)tencentDidNotLogin:(BOOL)cancelled{
-}
-
-- (void)tencentDidNotNetWork{
-}
+//- (void)tencentDidNotLogin:(BOOL)cancelled{
+//}
+//
+//- (void)tencentDidNotNetWork{
+//}
 
 /**
  * 获取用户个人信息回调
@@ -204,10 +204,10 @@
  * \remarks 正确返回示例: \snippet example/getUserInfoResponse.exp success
  *          错误返回示例: \snippet example/getUserInfoResponse.exp fail
  */
-- (void)getUserInfoResponse:(APIResponse*) response
-{
-    [ACShowAlertTool showMessage:@"登录中..." onView:nil];
-    DLog(@"%@", response.jsonResponse);
+//- (void)getUserInfoResponse:(APIResponse*) response
+//{
+//    [ACShowAlertTool showMessage:@"登录中..." onView:nil];
+//    DLog(@"%@", response.jsonResponse);
     /*
      "nickname":"Peter",
      province = 上海;
@@ -218,40 +218,40 @@
      
      "gender":"男",
      */
-    NSString *gender = @"m";
-    if ([response.jsonResponse[@"gender"] isEqualToString:@"女"]) {
-        gender = @"f";
-    }
-    NSString *location = @"";
-    NSString *province = response.jsonResponse[@"province"];
-    NSString *city = response.jsonResponse[@"city"];
-    if ( 0 != province.length && 0 != city.length ) {
-        location = [NSString stringWithFormat:@"%@ %@", province, city];
-    }
-    //2. 更新的数据到数据库中
-    NSDictionary *dict = @{@"username" : response.jsonResponse[@"nickname"],
-                           @"profile_image_url" : response.jsonResponse[@"figureurl_qq_2"],
-                           @"avatar_large" : response.jsonResponse[@"figureurl_qq_2"],
-                           @"location" : location,
-                           @"gender" : gender,
-                           };
-    NSArray *keys = @[@"username", @"profile_image_url", @"avatar_large", @"location", @"gender"];
-    [ACDataBaseTool updateUserInfoWithDict:dict andKeys:keys withResultBlock:^(BOOL isSuccessful, NSError *error) {
-        DLog(@"qq isSuccessful is %d, error is %@", isSuccessful, error);
-        if (isSuccessful) {
-            //3. 本地缓存
-            ACUserModel *user = [ACDataBaseTool getCurrentUser];
-            DLog(@"qq user is %@", user);
-            [ACCacheDataTool saveUserInfo:user withObjectId:user.objectId];
-            
-            //跳转
-            [ACShowAlertTool hideMessage];
-            UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
-            ACTabBarController *tabBarController = [[ACTabBarController alloc] init];
-            keyWindow.rootViewController = tabBarController;
-            [self.navigationController pushViewController:tabBarController animated:YES];
-        }
-    }];
-}
+//    NSString *gender = @"m";
+//    if ([response.jsonResponse[@"gender"] isEqualToString:@"女"]) {
+//        gender = @"f";
+//    }
+//    NSString *location = @"";
+//    NSString *province = response.jsonResponse[@"province"];
+//    NSString *city = response.jsonResponse[@"city"];
+//    if ( 0 != province.length && 0 != city.length ) {
+//        location = [NSString stringWithFormat:@"%@ %@", province, city];
+//    }
+//    //2. 更新的数据到数据库中
+//    NSDictionary *dict = @{@"username" : response.jsonResponse[@"nickname"],
+//                           @"profile_image_url" : response.jsonResponse[@"figureurl_qq_2"],
+//                           @"avatar_large" : response.jsonResponse[@"figureurl_qq_2"],
+//                           @"location" : location,
+//                           @"gender" : gender,
+//                           };
+//    NSArray *keys = @[@"username", @"profile_image_url", @"avatar_large", @"location", @"gender"];
+//    [ACDataBaseTool updateUserInfoWithDict:dict andKeys:keys withResultBlock:^(BOOL isSuccessful, NSError *error) {
+//        DLog(@"qq isSuccessful is %d, error is %@", isSuccessful, error);
+//        if (isSuccessful) {
+//            //3. 本地缓存
+//            ACUserModel *user = [ACDataBaseTool getCurrentUser];
+//            DLog(@"qq user is %@", user);
+//            [ACCacheDataTool saveUserInfo:user withObjectId:user.objectId];
+//            
+//            //跳转
+//            [ACShowAlertTool hideMessage];
+//            UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
+//            ACTabBarController *tabBarController = [[ACTabBarController alloc] init];
+//            keyWindow.rootViewController = tabBarController;
+//            [self.navigationController pushViewController:tabBarController animated:YES];
+//        }
+//    }];
+//}
 
 @end

@@ -11,7 +11,7 @@
 #import "UIColor+Tools.h"
 #import "ACTabBarController.h"
 #import <BmobSDK/Bmob.h>
-#import "WeiboSDK.h"
+//#import "WeiboSDK.h"
 #import "HCHttpTool.h"
 #import "ACDataBaseTool.h"
 #import "ACCacheDataTool.h"
@@ -20,11 +20,13 @@
 #import <AVFoundation/AVFoundation.h>
 #import "ACLoginViewController.h"
 #import "UMSocial.h"
-#import "UMSocialSinaSSOHandler.h"
-#import "UMSocialQQHandler.h"
 #import "SDWebImageManager.h"
+//#import "UMSocialSinaSSOHandler.h"
+//#import "UMSocialQQHandler.h"
+//#import "SDWebImageManager.h"
 
-@interface AppDelegate () <WeiboSDKDelegate>
+//@interface AppDelegate () <WeiboSDKDelegate>
+@interface AppDelegate ()
 /** 百度地图管理者 */
 @property (nonatomic, strong) BMKMapManager *bmkMapManager;
 @property (nonatomic, strong) AVAudioPlayer *player;
@@ -36,14 +38,14 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     //设置友盟社会化组件appkey
-    [UMSocialData setAppKey:@"55cdacb0e0f55ab21a0010ff"];
+//    [UMSocialData setAppKey:@"55cdacb0e0f55ab21a0010ff"];
     //开启新浪微博SSO授权开关
-    [UMSocialSinaSSOHandler openNewSinaSSOWithRedirectURL:@"https://api.weibo.com/oauth2/default.html"];
-    [UMSocialQQHandler setQQWithAppId:@"1104739169" appKey:@"nJ9vASx3n7zUP0vQ" url:@"http://github.com/tunnyios"];
+//    [UMSocialSinaSSOHandler openNewSinaSSOWithRedirectURL:@"https://api.weibo.com/oauth2/default.html"];
+//    [UMSocialQQHandler setQQWithAppId:@"1104739169" appKey:@"nJ9vASx3n7zUP0vQ" url:@"http://github.com/tunnyios"];
     
     [Bmob registerWithAppKey:ACBmobAppKey];
-    [WeiboSDK enableDebugMode:YES];
-    [WeiboSDK registerApp:ACSinaAppKey];
+//    [WeiboSDK enableDebugMode:YES];
+//    [WeiboSDK registerApp:ACSinaAppKey];
     // 要使用百度地图，请先启动BaiduMapManager
     self.bmkMapManager = [[BMKMapManager alloc] init];
     // 如果要关注网络及授权验证事件，请设定     generalDelegate参数
@@ -145,27 +147,34 @@
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
 //    return [TencentOAuth HandleOpenURL:url] ||
 //    [WeiboSDK handleOpenURL:url delegate:self];
-    BOOL result = [UMSocialSnsService handleOpenURL:url];
-    if (result == FALSE) {
-        result = [TencentOAuth HandleOpenURL:url] ||
-        [WeiboSDK handleOpenURL:url delegate:self];
-    }
-    return result;
+    
+//    BOOL result = [UMSocialSnsService handleOpenURL:url];
+//    if (result == FALSE) {
+//        result = [TencentOAuth HandleOpenURL:url] ||
+//        [WeiboSDK handleOpenURL:url delegate:self];
+//    }
+//    return result;
+    
+    return YES;
 }
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
 //    return [TencentOAuth HandleOpenURL:url] ||
 //    [WeiboSDK handleOpenURL:url delegate:self];
-    BOOL result = [UMSocialSnsService handleOpenURL:url];
-    if (result == FALSE) {
-        result = [TencentOAuth HandleOpenURL:url] ||
-        [WeiboSDK handleOpenURL:url delegate:self];
-    }
-    return result;
+    
+//    BOOL result = [UMSocialSnsService handleOpenURL:url];
+//    if (result == FALSE) {
+//        result = [TencentOAuth HandleOpenURL:url] ||
+//        [WeiboSDK handleOpenURL:url delegate:self];
+//    }
+//    return result;
+    
+    return YES;
 }
 
 # pragma mark - 新浪回调
 //收到回复时的回调
+#if 0
 - (void)didReceiveWeiboResponse:(WBBaseResponse *)response{
     NSString *accessToken = [(WBAuthorizeResponse *)response accessToken];
     NSString *uid = [(WBAuthorizeResponse *)response userID];
@@ -229,6 +238,6 @@
 //发送请求时的回调
 -(void)didReceiveWeiboRequest:(WBBaseRequest *)request{
 }
-
+#endif
 
 @end

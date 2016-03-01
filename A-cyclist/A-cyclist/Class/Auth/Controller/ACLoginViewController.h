@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "HCBaseKeyboardViewController.h"
-#import <TencentOpenAPI/TencentOAuth.h>
+//#import <TencentOpenAPI/TencentOAuth.h>
 
-@interface ACLoginViewController : HCBaseKeyboardViewController<TencentSessionDelegate>
-@property (nonatomic, retain)TencentOAuth *tencentOAuth;
+//@interface ACLoginViewController : HCBaseKeyboardViewController<TencentSessionDelegate>
+@interface ACLoginViewController : HCBaseKeyboardViewController
+//@property (nonatomic, retain)TencentOAuth *tencentOAuth;
 @end

@@ -61,9 +61,10 @@
 {
     [super viewDidLoad];
     
+    self.tableView.rowHeight = 44;
     // 设置下拉刷新,加载数据
     //添加刷新控件
-    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
 
     //2. 从本地获取数据
     if (0 == self.routeArray.count) {
@@ -266,7 +267,7 @@
 {
 //    [self.dataList removeAllObjects];
     // 马上进入刷新状态
-    [self.tableView.header beginRefreshing];
+    [self.tableView.mj_header beginRefreshing];
 }
 
 /**
@@ -280,7 +281,7 @@
     [self getDataFromDataBase];
     
     //2. 关闭刷新
-    [self.tableView.header endRefreshing];
+    [self.tableView.mj_header endRefreshing];
 }
 
 - (void)getDataFromDataBase
