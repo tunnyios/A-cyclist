@@ -9,17 +9,20 @@
 
 #import <Foundation/Foundation.h>
 
-
-//const定义
-
+/*****************************「const定义」********************************/
 #pragma mark - 授权信息
 /** Bmob授权 */
 extern NSString * const ACBmobAppKey;
 /** 新浪微博授权 */
 extern NSString * const ACSinaAppKey;
+extern NSString * const ACSinaSecret;
+extern NSString * const ACSinaRedirectURL;
+/** QQ授权 */
+extern NSString * const ACQQAppId;
+extern NSString * const ACQQAppKey;
+extern NSString * const ACQQRedirectURL;
 /** 百度地图授权 */
 extern NSString * const ACBaiduAppKey;
-
 
 #pragma mark - Bmob数据相关常量
 /** BmobURL地址AccessKey */
@@ -32,7 +35,6 @@ extern int const ACBmobValidTime;
 extern NSUInteger const ACBmobThumbnailRuleID;
 /** Bmob服务器缩略图规格 180x180 */
 extern NSUInteger const ACBmobMiddleRuleID;
-
 
 #pragma mark - 提示信息
 /** 登录成功 */
@@ -60,14 +62,15 @@ extern NSString * const ACErrorUserName;
 extern NSString * const ACPasswordError;
 
 
-// 宏定义
-
+/*****************************「宏定义」********************************/
 #ifdef  DEBUG
-#define DLog( s, ... ) NSLog( @"<%p %@:(%d) %s> %@", self, [[NSString stringWithUTF8String:__FILE__] lastPathComponent], __LINE__, __func__, [NSString stringWithFormat:(s), ##__VA_ARGS__] )
+#define DLog( s, ... ) NSLog( @"<%@:(%d) %s> %@", [[NSString stringWithUTF8String:__FILE__] lastPathComponent], __LINE__, __func__, [NSString stringWithFormat:(s), ##__VA_ARGS__] )
 #else
 #define DLog( s, ... )
 #endif
 
 #define ACScreenBounds  [UIScreen mainScreen].bounds
 #define iOS8 ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0)
+
+
 

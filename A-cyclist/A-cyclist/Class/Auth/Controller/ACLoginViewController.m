@@ -15,6 +15,8 @@
 //#import "WeiboSDK.h"
 #import "ACTabBarController.h"
 #import "ACCacheDataTool.h"
+#import "ACUtility.h"
+//#import "UMSocial.h"
 
 
 @interface ACLoginViewController ()
@@ -128,6 +130,12 @@
 #pragma mark - 第三方登录
 - (IBAction)qqLogin
 {
+    [self SSOByQQSuccess:^(id result) {
+//        [ACDataBaseTool loginWithAccessToken:[result objectForKey:@"accessToken"] uid:[result objectForKey:@"uid"] expirationDate:[result objectForKey:@"sss"] platform:<#(ACLoginPlatform)#> success:<#^(id result)success#> failure:<#^(NSError *error)failure#>]
+        
+    } failure:^(NSError *error) {
+        
+    }];
 //    if ([TencentOAuth iphoneQQInstalled]) {
 //        //注册
 //        _tencentOAuth = [[TencentOAuth alloc] initWithAppId:@"1104739169" andDelegate:self];
@@ -143,6 +151,12 @@
 
 - (IBAction)weboLogin
 {
+    [self SSOByWeiboSuccess:^(id result) {
+        
+    } failure:^(NSError *error) {
+        
+    }];
+    
 //    if([WeiboSDK isWeiboAppInstalled]){
 //        //向新浪发送请求
 //        WBAuthorizeRequest *request = [WBAuthorizeRequest request];
@@ -170,24 +184,34 @@
 //        NSString *accessToken = _tencentOAuth.accessToken;
 //        NSString *uid = _tencentOAuth.openId;
 //        NSDate *expiresDate = _tencentOAuth.expirationDate;
-//        NSLog(@"acessToken:%@",accessToken);
-//        NSLog(@"UserId:%@",uid);
-//        NSLog(@"expiresDate:%@",expiresDate);
-//        NSDictionary *dic = @{@"access_token":accessToken,@"uid":uid,@"expirationDate":expiresDate};
+////        NSLog(@"acessToken:%@",accessToken);
+////        NSLog(@"UserId:%@",uid);
+////        NSLog(@"expiresDate:%@",expiresDate);
+////        NSDictionary *dic = @{@"access_token":accessToken,@"uid":uid,@"expirationDate":expiresDate};
 //        
 //        //通过授权信息注册登录
-//        [BmobUser loginInBackgroundWithAuthorDictionary:dic platform:BmobSNSPlatformQQ block:^(BmobUser *user, NSError *error) {
-//            if (error) {
-//                NSLog(@"weibo login error:%@",error);
-//            } else if (user){
-//                NSLog(@"user objectid is :%@",user.objectId);
-//                [_tencentOAuth getUserInfo];
-////                ShowUserMessageViewController *showUser = [[ShowUserMessageViewController alloc] init];
-////                showUser.title = @"用户信息";
-////                
-////                [self.navigationController pushViewController:showUser animated:YES];
-//            }
+//        [ACDataBaseTool loginWithAccessToken:accessToken uid:uid expirationDate:expiresDate platform:ACLoginPlatformQQ success:^(id result) {
+//            NSLog(@"user objectid is :%@",result);
+//            [_tencentOAuth getUserInfo];
+//            //                ShowUserMessageViewController *showUser = [[ShowUserMessageViewController alloc] init];
+//            //                showUser.title = @"用户信息";
+//            //
+//            //                [self.navigationController pushViewController:showUser animated:YES];
+//        } failure:^(NSError *error) {
+//            NSLog(@"weibo login error:%@",error);
 //        }];
+////        [BmobUser loginInBackgroundWithAuthorDictionary:dic platform:BmobSNSPlatformQQ block:^(BmobUser *user, NSError *error) {
+////            if (error) {
+////                
+////            } else if (user){
+////                NSLog(@"user objectid is :%@",user.objectId);
+////                [_tencentOAuth getUserInfo];
+//////                ShowUserMessageViewController *showUser = [[ShowUserMessageViewController alloc] init];
+//////                showUser.title = @"用户信息";
+//////                
+//////                [self.navigationController pushViewController:showUser animated:YES];
+////            }
+////        }];
 //    }
 //    
 //}
@@ -208,16 +232,16 @@
 //{
 //    [ACShowAlertTool showMessage:@"登录中..." onView:nil];
 //    DLog(@"%@", response.jsonResponse);
-    /*
-     "nickname":"Peter",
-     province = 上海;
-     city = 浦东新区;
-     "figureurl_qq_1":"http://q.qlogo.cn/qqapp/100312990/DE1931D5330620DBD07FB4A5422917B6/40",
-     
-     "figureurl_qq_2":"http://q.qlogo.cn/qqapp/100312990/DE1931D5330620DBD07FB4A5422917B6/100",
-     
-     "gender":"男",
-     */
+//    /*
+//     "nickname":"Peter",
+//     province = 上海;
+//     city = 浦东新区;
+//     "figureurl_qq_1":"http:q.qlogo.cn/qqapp/100312990/DE1931D5330620DBD07FB4A5422917B6/40",
+//     
+//     "figureurl_qq_2":"http:q.qlogo.cn/qqapp/100312990/DE1931D5330620DBD07FB4A5422917B6/100",
+//     
+//     "gender":"男",
+//     */
 //    NSString *gender = @"m";
 //    if ([response.jsonResponse[@"gender"] isEqualToString:@"女"]) {
 //        gender = @"f";

@@ -141,8 +141,8 @@ extern NSString *const UMShareToFlickr;
  */
 typedef enum {
     UMSocialSnsTypeNone = 0,
+    UMSocialSnsTypeSina = 9,                  //sina weibo
     UMSocialSnsTypeQzone = 10,
-    UMSocialSnsTypeSina,                  //sina weibo
     UMSocialSnsTypeTenc,                  //tencent weibo
     UMSocialSnsTypeRenr,                  //renren
     UMSocialSnsTypeDouban,                //douban

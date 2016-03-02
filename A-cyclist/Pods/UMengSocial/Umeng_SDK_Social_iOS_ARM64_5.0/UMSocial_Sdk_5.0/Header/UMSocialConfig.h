@@ -182,9 +182,9 @@ typedef void (^UMTableViewCellConfig)(UITableViewCell *cell,UMSViewControllerTyp
 +(void)setFinishToastIsHidden:(BOOL)isHidden position:(UMSocialiToastPosition)toastPosition;
 
 /**
- 设置官方微博账号,设置之后可以在授权页面有关注微博的选项，默认勾选，授权之后用户即关注官方微博，仅支持新浪微博和腾讯微博
+ 设置官方微博账号,设置之后可以在授权页面有关注微博的选项，默认勾选，授权之后用户即关注官方微博，仅支持腾讯微博
  
- @param weiboUids  腾讯微博和新浪微博的key分别是`UMShareToSina`和`UMShareToTenc`,值分别是官方微博的uid,例如`[UMSocialConfig setFollowWeiboUids:[NSDictionary dictionaryWithObjectsAndKeys:@"yourSinaUid",UMShareToSina,nil]];`
+ @param weiboUids  腾讯微博的key是`UMShareToTenc`,值是官方微博的uid,例如`[UMSocialConfig setFollowWeiboUids:[NSDictionary dictionaryWithObjectsAndKeys:@"yourSinaUid",UMShareToTenc,nil]];`
  */
 + (void)setFollowWeiboUids:(NSDictionary *)weiboUids;
 

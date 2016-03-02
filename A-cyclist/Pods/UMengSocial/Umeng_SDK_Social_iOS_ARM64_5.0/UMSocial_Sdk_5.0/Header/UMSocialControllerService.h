@@ -198,4 +198,6 @@
 */
 - (UIViewController *)getSocialViewController:(UMSViewControllerType)viewControllerType withSnsType:(NSString *)snsName;
 
+-(void)setCurrentViewControllerType:(UMSViewControllerType)viewControllerType;
+
 @end

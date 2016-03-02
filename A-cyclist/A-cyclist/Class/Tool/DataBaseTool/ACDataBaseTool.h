@@ -9,6 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <BmobSDK/Bmob.h>
 
+typedef enum : NSUInteger {
+    ACLoginPlatformQQ = 0,
+    ACLoginPlatformSinaWeibo,
+    ACLoginPlatformWeiXin,
+} ACLoginPlatform;
 
 @class ACUserModel, ACRouteModel, ACSharedRouteModel;
 @interface ACDataBaseTool : NSObject
@@ -19,6 +24,16 @@
 
 /** 账户登录 */
 + (void)loginWithAccount:(NSString *)account passWord:(NSString *)pwd block:(void (^) (ACUserModel *user, NSError *error))block;
+
+/**
+ *  通过授权信息注册登录
+ *
+ *  @param accessToken    获取的token
+ *  @param uid            授权后获取的id
+ *  @param expirationDate 获取的过期时间
+ *  @param platform       新浪微博，或者腾讯qq，微信
+ */
++ (void)loginWithAccessToken:(NSString *)accessToken uid:(NSString *)uid expirationDate:(NSDate *)expirationDate platform:(ACLoginPlatform)platform success:(void (^)(id result))success failure:(void (^)(NSError *error))failure;
 
 /** 重置密码--通过邮箱 */
 + (void)restPasswordWithEmail:(NSString *)email;

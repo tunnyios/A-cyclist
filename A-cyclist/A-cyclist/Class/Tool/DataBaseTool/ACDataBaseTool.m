@@ -63,6 +63,35 @@
 }
 
 /**
+ *  通过授权信息注册登录
+ *
+ *  @param accessToken    获取的token
+ *  @param uid            授权后获取的id
+ *  @param expirationDate 授权后获取的id
+ */
++ (void)loginWithAccessToken:(NSString *)accessToken uid:(NSString *)uid expirationDate:(NSDate *)expirationDate platform:(ACLoginPlatform)platform success:(void (^)(id))success failure:(void (^)(NSError *))failure
+{
+    if (!accessToken || !uid || !expirationDate) {
+        DLog(@"error is 参数不能为空");
+        return;
+    }
+    
+    NSDictionary *dic = @{@"access_token":accessToken,@"uid":uid,@"expirationDate":expirationDate};
+    [BmobUser loginInBackgroundWithAuthorDictionary:dic platform:(BmobSNSPlatform)platform block:^(BmobUser *user, NSError *error) {
+        if (!error){
+            if (success) {
+                ACUserModel *ACUser = [ACUserModel userWithBmobUser:user];
+                success(ACUser);
+            }
+        } else {
+            if (failure) {
+                failure(error);
+            }
+        }
+    }];
+}
+
+/**
  *  根据邮箱重置密码
  */
 + (void)restPasswordWithEmail:(NSString *)email

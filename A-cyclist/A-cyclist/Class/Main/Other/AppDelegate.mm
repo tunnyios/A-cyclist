@@ -19,11 +19,10 @@
 #import <BaiduMapAPI/BMapKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import "ACLoginViewController.h"
-#import "UMSocial.h"
 #import "SDWebImageManager.h"
-//#import "UMSocialSinaSSOHandler.h"
-//#import "UMSocialQQHandler.h"
-//#import "SDWebImageManager.h"
+#import "UMSocial.h"
+#import "UMSocialSinaSSOHandler.h"
+#import "UMSocialQQHandler.h"
 
 //@interface AppDelegate () <WeiboSDKDelegate>
 @interface AppDelegate ()
@@ -38,10 +37,18 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     //设置友盟社会化组件appkey
-//    [UMSocialData setAppKey:@"55cdacb0e0f55ab21a0010ff"];
-    //开启新浪微博SSO授权开关
+    [UMSocialData setAppKey:@"55cdacb0e0f55ab21a0010ff"];
+    //打开新浪微博的SSO开关，设置新浪微博回调地址，这里必须要和你在新浪微博后台设置的回调地址一致。需要 #import "UMSocialSinaSSOHandler.h"
+    [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:ACSinaAppKey
+                                              secret:ACSinaSecret
+                                         RedirectURL:ACSinaRedirectURL];
+    //设置手机QQ 的AppId，Appkey，和分享URL，需要#import "UMSocialQQHandler.h"
+    [UMSocialQQHandler setQQWithAppId:ACQQAppId appKey:ACQQAppKey url:ACQQRedirectURL];
 //    [UMSocialSinaSSOHandler openNewSinaSSOWithRedirectURL:@"https://api.weibo.com/oauth2/default.html"];
 //    [UMSocialQQHandler setQQWithAppId:@"1104739169" appKey:@"nJ9vASx3n7zUP0vQ" url:@"http://github.com/tunnyios"];
+    //设置微信AppId、appSecret，分享url
+//    [UMSocialWechatHandler setWXAppId:@"wxd930ea5d5a258f4f" appSecret:@"db426a9829e4b49a0dcac7b4162da6b6" url:@"http://www.umeng.com/social"];
+    
     
     [Bmob registerWithAppKey:ACBmobAppKey];
 //    [WeiboSDK enableDebugMode:YES];
@@ -148,28 +155,22 @@
 //    return [TencentOAuth HandleOpenURL:url] ||
 //    [WeiboSDK handleOpenURL:url delegate:self];
     
-//    BOOL result = [UMSocialSnsService handleOpenURL:url];
-//    if (result == FALSE) {
-//        result = [TencentOAuth HandleOpenURL:url] ||
-//        [WeiboSDK handleOpenURL:url delegate:self];
-//    }
-//    return result;
-    
-    return YES;
+    BOOL result = [UMSocialSnsService handleOpenURL:url];
+    if (result == FALSE) {
+        
+    }
+    return result;
 }
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
 //    return [TencentOAuth HandleOpenURL:url] ||
 //    [WeiboSDK handleOpenURL:url delegate:self];
     
-//    BOOL result = [UMSocialSnsService handleOpenURL:url];
-//    if (result == FALSE) {
-//        result = [TencentOAuth HandleOpenURL:url] ||
-//        [WeiboSDK handleOpenURL:url delegate:self];
-//    }
-//    return result;
-    
-    return YES;
+    BOOL result = [UMSocialSnsService handleOpenURL:url];
+    if (result == FALSE) {
+        
+    }
+    return result;
 }
 
 # pragma mark - 新浪回调

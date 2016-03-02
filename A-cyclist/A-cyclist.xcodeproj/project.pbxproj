@@ -46,6 +46,11 @@
 		A21DE5E41B71AD3A00BC0D31 /* ACProfileCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A21DE5E31B71AD3A00BC0D31 /* ACProfileCellView.xib */; };
 		A21DE5E71B71AD7400BC0D31 /* ACProfileCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = A21DE5E61B71AD7400BC0D31 /* ACProfileCellView.m */; };
 		A21DE5EA1B71D36400BC0D31 /* ACProfileCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A21DE5E91B71D36400BC0D31 /* ACProfileCellModel.m */; };
+		A24BE3EC1C86921100EBBEC2 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A24BE3EB1C86921100EBBEC2 /* libiconv.tbd */; };
+		A24BE3EE1C86922600EBBEC2 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A24BE3ED1C86922600EBBEC2 /* libsqlite3.tbd */; };
+		A24BE3F01C86923500EBBEC2 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A24BE3EF1C86923500EBBEC2 /* libstdc++.tbd */; };
+		A24BE3F21C86923D00EBBEC2 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A24BE3F11C86923D00EBBEC2 /* libz.tbd */; };
+		A24BE3F51C86977700EBBEC2 /* ACUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = A24BE3F41C86977700EBBEC2 /* ACUtility.m */; };
 		A24CABA01C8449D800869C82 /* ACBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A24CAB9F1C8449D800869C82 /* ACBaseViewController.m */; };
 		A26143211B5DFA6C007EA45C /* ACArrowWithSubtitleSettingCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A26143201B5DFA6C007EA45C /* ACArrowWithSubtitleSettingCellModel.m */; };
 		A26143241B5E1F43007EA45C /* ACPhotoSettingCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A26143231B5E1F43007EA45C /* ACPhotoSettingCellModel.m */; };
@@ -113,17 +118,12 @@
 		A28DE43F1B808E9000093B17 /* ACAnnotationEndModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A28DE43E1B808E9000093B17 /* ACAnnotationEndModel.m */; };
 		A28E461B1B7DC599002B97D6 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A28E461A1B7DC599002B97D6 /* libiconv.dylib */; };
 		A28E461D1B7DC5AC002B97D6 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A28E461C1B7DC5AC002B97D6 /* libstdc++.dylib */; };
-		A28FA7101C437CB000507139 /* libAFNetworking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A28FA70F1C437CB000507139 /* libAFNetworking.a */; };
-		A28FA7121C43827500507139 /* libMJRefresh.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A28FA7111C43827500507139 /* libMJRefresh.a */; };
-		A28FA7141C43848100507139 /* libMJExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A28FA7131C43848100507139 /* libMJExtension.a */; };
-		A28FA7161C43868800507139 /* libFMDB.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A28FA7151C43868800507139 /* libFMDB.a */; };
-		A28FA7181C438A5B00507139 /* libMBProgressHUD.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A28FA7171C438A5B00507139 /* libMBProgressHUD.a */; };
-		A28FA71A1C439CE100507139 /* libSDWebImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A28FA7191C439CE100507139 /* libSDWebImage.a */; };
-		A28FA71C1C43A54400507139 /* libActionSheetPicker-3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A28FA71B1C43A54400507139 /* libActionSheetPicker-3.0.a */; };
 		A2A43CD81B7324990099011F /* ACProfileHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A43CD71B7324990099011F /* ACProfileHeaderView.m */; };
 		A2A43CDA1B7324A90099011F /* ACProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2A43CD91B7324A90099011F /* ACProfileHeaderView.xib */; };
 		A2AA766D1B7F2D02004F648B /* ACSettingFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2AA766C1B7F2D02004F648B /* ACSettingFeedbackViewController.m */; };
 		A2AA76701B7F5FC5004F648B /* ACWeatherModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2AA766F1B7F5FC5004F648B /* ACWeatherModel.m */; };
+		A2AB7E341C86BC1B00D79C6A /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A2AB7E331C86BC1B00D79C6A /* KeychainItemWrapper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		A2AB7E371C86C93400D79C6A /* ACCommonRequestHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = A2AB7E361C86C93400D79C6A /* ACCommonRequestHttp.m */; };
 		A2AD90BD1B5FAAB100847F72 /* BaiduMapAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AD90BC1B5FAAB100847F72 /* BaiduMapAPI.framework */; };
 		A2AD90BF1B5FAAE200847F72 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AD90BE1B5FAAE200847F72 /* OpenGLES.framework */; };
 		A2C256DF1B804C0800295882 /* HCDropDownMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C256DE1B804C0800295882 /* HCDropDownMenuView.m */; };
@@ -244,6 +244,12 @@
 		A21DE5E61B71AD7400BC0D31 /* ACProfileCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACProfileCellView.m; sourceTree = "<group>"; };
 		A21DE5E81B71D36400BC0D31 /* ACProfileCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACProfileCellModel.h; sourceTree = "<group>"; };
 		A21DE5E91B71D36400BC0D31 /* ACProfileCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACProfileCellModel.m; sourceTree = "<group>"; };
+		A24BE3EB1C86921100EBBEC2 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		A24BE3ED1C86922600EBBEC2 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		A24BE3EF1C86923500EBBEC2 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
+		A24BE3F11C86923D00EBBEC2 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		A24BE3F31C86977700EBBEC2 /* ACUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACUtility.h; sourceTree = "<group>"; };
+		A24BE3F41C86977700EBBEC2 /* ACUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACUtility.m; sourceTree = "<group>"; };
 		A24CAB9E1C8449D800869C82 /* ACBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACBaseViewController.h; sourceTree = "<group>"; };
 		A24CAB9F1C8449D800869C82 /* ACBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACBaseViewController.m; sourceTree = "<group>"; };
 		A261431F1B5DFA6C007EA45C /* ACArrowWithSubtitleSettingCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACArrowWithSubtitleSettingCellModel.h; sourceTree = "<group>"; };
@@ -363,6 +369,10 @@
 		A2AA766C1B7F2D02004F648B /* ACSettingFeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACSettingFeedbackViewController.m; sourceTree = "<group>"; };
 		A2AA766E1B7F5FC5004F648B /* ACWeatherModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACWeatherModel.h; sourceTree = "<group>"; };
 		A2AA766F1B7F5FC5004F648B /* ACWeatherModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACWeatherModel.m; sourceTree = "<group>"; };
+		A2AB7E321C86BC1B00D79C6A /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
+		A2AB7E331C86BC1B00D79C6A /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
+		A2AB7E351C86C93400D79C6A /* ACCommonRequestHttp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACCommonRequestHttp.h; sourceTree = "<group>"; };
+		A2AB7E361C86C93400D79C6A /* ACCommonRequestHttp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACCommonRequestHttp.m; sourceTree = "<group>"; };
 		A2AD90BC1B5FAAB100847F72 /* BaiduMapAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI.framework; sourceTree = "<group>"; };
 		A2AD90BE1B5FAAE200847F72 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		A2C256DD1B804C0800295882 /* HCDropDownMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCDropDownMenuView.h; sourceTree = "<group>"; };
@@ -415,13 +425,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A28FA71C1C43A54400507139 /* libActionSheetPicker-3.0.a in Frameworks */,
-				A28FA71A1C439CE100507139 /* libSDWebImage.a in Frameworks */,
-				A28FA7181C438A5B00507139 /* libMBProgressHUD.a in Frameworks */,
-				A28FA7161C43868800507139 /* libFMDB.a in Frameworks */,
-				A28FA7141C43848100507139 /* libMJExtension.a in Frameworks */,
-				A28FA7121C43827500507139 /* libMJRefresh.a in Frameworks */,
-				A28FA7101C437CB000507139 /* libAFNetworking.a in Frameworks */,
+				A24BE3F21C86923D00EBBEC2 /* libz.tbd in Frameworks */,
+				A24BE3F01C86923500EBBEC2 /* libstdc++.tbd in Frameworks */,
+				A2845EA11B5AB143006E0CE0 /* CoreTelephony.framework in Frameworks */,
+				A24BE3EE1C86922600EBBEC2 /* libsqlite3.tbd in Frameworks */,
+				A2845E9B1B5AB126006E0CE0 /* CoreGraphics.framework in Frameworks */,
+				A2845EA31B5AB156006E0CE0 /* SystemConfiguration.framework in Frameworks */,
+				A24BE3EC1C86921100EBBEC2 /* libiconv.tbd in Frameworks */,
+				A2845E991B5AB112006E0CE0 /* Security.framework in Frameworks */,
 				A28E461D1B7DC5AC002B97D6 /* libstdc++.dylib in Frameworks */,
 				A28E461B1B7DC599002B97D6 /* libiconv.dylib in Frameworks */,
 				A2AD90BF1B5FAAE200847F72 /* OpenGLES.framework in Frameworks */,
@@ -429,7 +440,6 @@
 				A266D9BE1B5CAF6A00D4B326 /* Foundation.framework in Frameworks */,
 				A266D9BC1B5CAF6300D4B326 /* UIKit.framework in Frameworks */,
 				A266D9BA1B5CAF4B00D4B326 /* CoreText.framework in Frameworks */,
-				A2845E991B5AB112006E0CE0 /* Security.framework in Frameworks */,
 				A266D9B81B5CAF1700D4B326 /* ImageIO.framework in Frameworks */,
 				A266D9B61B5CAF1100D4B326 /* QuartzCore.framework in Frameworks */,
 				A2845EAD1B5AB19D006E0CE0 /* MediaPlayer.framework in Frameworks */,
@@ -437,12 +447,9 @@
 				A2845EA91B5AB186006E0CE0 /* libicucore.dylib in Frameworks */,
 				A2845EA71B5AB17C006E0CE0 /* libsqlite3.dylib in Frameworks */,
 				A2845EA51B5AB15C006E0CE0 /* libz.1.2.5.dylib in Frameworks */,
-				A2845EA31B5AB156006E0CE0 /* SystemConfiguration.framework in Frameworks */,
-				A2845EA11B5AB143006E0CE0 /* CoreTelephony.framework in Frameworks */,
 				A2845E9F1B5AB13E006E0CE0 /* CFNetwork.framework in Frameworks */,
 				A2845E9D1B5AB12C006E0CE0 /* MobileCoreServices.framework in Frameworks */,
 				A2AD90BD1B5FAAB100847F72 /* BaiduMapAPI.framework in Frameworks */,
-				A2845E9B1B5AB126006E0CE0 /* CoreGraphics.framework in Frameworks */,
 				A2845E971B5AB10D006E0CE0 /* CoreLocation.framework in Frameworks */,
 				A2845E951B5AB0F2006E0CE0 /* BmobSDK.framework in Frameworks */,
 				7CB41B3C934DDDB8F93A82C5 /* libPods.a in Frameworks */,
@@ -638,6 +645,8 @@
 			children = (
 				A266D9E21B5CFA0B00D4B326 /* HCHttpTool.h */,
 				A266D9E31B5CFA0B00D4B326 /* HCHttpTool.m */,
+				A2AB7E351C86C93400D79C6A /* ACCommonRequestHttp.h */,
+				A2AB7E361C86C93400D79C6A /* ACCommonRequestHttp.m */,
 				A266D9E41B5CFA0B00D4B326 /* Model */,
 			);
 			path = HttpTool;
@@ -911,6 +920,7 @@
 		A28BFEE81B53B35B00A712F1 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				A2AB7E311C86BC1B00D79C6A /* KeyChain */,
 				A2AD90BC1B5FAAB100847F72 /* BaiduMapAPI.framework */,
 				A2082E691B62259800CA3325 /* mapapi.bundle */,
 				A2F7FE3D1B5FD6BF0000D6EA /* VPImageCropper */,
@@ -1157,6 +1167,8 @@
 				A266D9E11B5CFA0B00D4B326 /* HttpTool */,
 				A266D9B11B5CA13900D4B326 /* ShowAlert */,
 				A204B1631B5B8210004C0A6C /* DataBaseTool */,
+				A24BE3F31C86977700EBBEC2 /* ACUtility.h */,
+				A24BE3F41C86977700EBBEC2 /* ACUtility.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -1168,6 +1180,15 @@
 				A2AA766C1B7F2D02004F648B /* ACSettingFeedbackViewController.m */,
 			);
 			path = Feedback;
+			sourceTree = "<group>";
+		};
+		A2AB7E311C86BC1B00D79C6A /* KeyChain */ = {
+			isa = PBXGroup;
+			children = (
+				A2AB7E321C86BC1B00D79C6A /* KeychainItemWrapper.h */,
+				A2AB7E331C86BC1B00D79C6A /* KeychainItemWrapper.m */,
+			);
+			path = KeyChain;
 			sourceTree = "<group>";
 		};
 		A2D1ECF31B550E3A00344246 /* View */ = {
@@ -1217,6 +1238,10 @@
 		A2EE88D9FE9F743387ED5633 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A24BE3F11C86923D00EBBEC2 /* libz.tbd */,
+				A24BE3EF1C86923500EBBEC2 /* libstdc++.tbd */,
+				A24BE3ED1C86922600EBBEC2 /* libsqlite3.tbd */,
+				A24BE3EB1C86921100EBBEC2 /* libiconv.tbd */,
 				A28FA71B1C43A54400507139 /* libActionSheetPicker-3.0.a */,
 				A28FA7191C439CE100507139 /* libSDWebImage.a */,
 				A28FA7171C438A5B00507139 /* libMBProgressHUD.a */,
@@ -1458,6 +1483,7 @@
 				A204B0941B5B30F7004C0A6C /* NSString+Extension.m in Sources */,
 				A204B15F1B5B506B004C0A6C /* HCBaseKeyboardViewController.m in Sources */,
 				A26E8EDA1B78474D003FFC37 /* ACHotRoutesController.m in Sources */,
+				A2AB7E371C86C93400D79C6A /* ACCommonRequestHttp.m in Sources */,
 				A2AA766D1B7F2D02004F648B /* ACSettingFeedbackViewController.m in Sources */,
 				A2A43CD81B7324990099011F /* ACProfileHeaderView.m in Sources */,
 				A2AA76701B7F5FC5004F648B /* ACWeatherModel.m in Sources */,
@@ -1490,10 +1516,12 @@
 				A21D7B651B76FC760014466C /* ACRankingBehindCellView.m in Sources */,
 				A261435E1B5E4AF7007EA45C /* ACChangeNameController.m in Sources */,
 				A21D7B601B76FC010014466C /* ACRankingFormerCellView.m in Sources */,
+				A24BE3F51C86977700EBBEC2 /* ACUtility.m in Sources */,
 				A2EB8DDA1B69F706008F5D48 /* ACNavigationViewController.m in Sources */,
 				A281C5961B6DD62500DF31C0 /* ACCyclingDetailCell.m in Sources */,
 				A28DE43F1B808E9000093B17 /* ACAnnotationEndModel.m in Sources */,
 				A2C256E21B804D2900295882 /* HCNewTypeButtonView.m in Sources */,
+				A2AB7E341C86BC1B00D79C6A /* KeychainItemWrapper.m in Sources */,
 				A281C58F1B6DD61E00DF31C0 /* ACScrollView.m in Sources */,
 				A2D483AC1B5515B700BC8406 /* ACTabBarController.m in Sources */,
 				A266D9E71B5CFA0B00D4B326 /* HCHttpTool.m in Sources */,
@@ -1660,7 +1688,10 @@
 					"$(PROJECT_DIR)/A-cyclist/Class/Lib/libWeiboSDK",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -1688,7 +1719,10 @@
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 					"$(PROJECT_DIR)/A-cyclist/Class/Lib/libWeiboSDK",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

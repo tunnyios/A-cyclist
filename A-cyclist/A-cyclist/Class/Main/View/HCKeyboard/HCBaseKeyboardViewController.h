@@ -10,8 +10,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ACBaseViewController.h"
 
-@interface HCBaseKeyboardViewController : UIViewController
+@interface HCBaseKeyboardViewController : ACBaseViewController
 /** 输入框View */
 @property (weak, nonatomic) UIView *contentView;
 

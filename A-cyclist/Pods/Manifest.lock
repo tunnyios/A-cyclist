@@ -24,7 +24,7 @@ PODS:
   - SDWebImage (3.7.5):
     - SDWebImage/Core (= 3.7.5)
   - SDWebImage/Core (3.7.5)
-  - UMengSocial (4.4)
+  - UMengSocial (5.0)
 
 DEPENDENCIES:
   - ActionSheetPicker-3.0 (= 2.0.4)
@@ -34,7 +34,7 @@ DEPENDENCIES:
   - MJExtension
   - MJRefresh
   - SDWebImage (~> 3.7)
-  - UMengSocial (= 4.4)
+  - UMengSocial (~> 5.0)
 
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: 860466cb4a66854e6acb590071ecee404b48f49d
@@ -44,6 +44,6 @@ SPEC CHECKSUMS:
   MJExtension: d86aacb740c87519d20e3cca55b6fa4be6cc7548
   MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
-  UMengSocial: aba7296602310385114d82c255539a7bef3b7ab0
+  UMengSocial: 48b67179c492a8cf7803fbb0438b8f55432e2fc1
 
 COCOAPODS: 0.39.0

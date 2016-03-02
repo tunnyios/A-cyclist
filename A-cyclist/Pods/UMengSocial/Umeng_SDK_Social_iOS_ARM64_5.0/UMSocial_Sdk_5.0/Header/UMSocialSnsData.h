@@ -19,7 +19,9 @@ typedef enum {
     UMSocialUrlResourceTypeDefault,             //无
     UMSocialUrlResourceTypeImage,               //图片
     UMSocialUrlResourceTypeVideo,               //视频
-    UMSocialUrlResourceTypeMusic                //音乐
+    UMSocialUrlResourceTypeMusic,                //音乐
+    UMSocialUrlResourceTypeWeb,                //网页
+    UMSocialUrlResourceTypeCount                
 }UMSocialUrlResourceType;
 
 /**
