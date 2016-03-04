@@ -8,10 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "ACUserModel.h"
 
 @interface ACUtility : NSObject
 /*****************************「全局变量」********************************/
 extern NSString * deviceId;         //deviceId
+extern ACUserModel * ACUser;        //用户模型
 
 
 /*****************************「公共方法」********************************/
@@ -45,5 +47,10 @@ extern NSString * deviceId;         //deviceId
  *  获取deviceId
  */
 + (void)getUUID;
+
+/**
+ *  设置字号
+ */
++ (UIFont *)setFontWithSize:(CGFloat)size;
 
 @end

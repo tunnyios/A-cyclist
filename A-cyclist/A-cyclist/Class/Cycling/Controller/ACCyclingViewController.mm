@@ -267,6 +267,7 @@ typedef enum : NSUInteger {
     [self stopRecord];
     //5. 停止计时
     [self stopTimer];
+    [self.bmkLocationService stopUserLocationService];
 }
 
 /**

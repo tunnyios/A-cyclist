@@ -22,6 +22,8 @@
 #import "VPImageCropperViewController.h"
 #import "ACShowAlertTool.h"
 #import "ActionSheetMultipleStringPicker.h"
+#import "ACNavUtility.h"
+#import "ACTabBarController.h"
 
 
 #define ORIGINAL_MAX_WIDTH 640.0f
@@ -33,6 +35,9 @@
 @property (nonatomic, strong) BMKLocationService *bmkLocationService;
 /** 头像view */
 //@property (nonatomic, strong) UIImageView *portraitImageView;
+/** 体重 */
+@property (nonatomic, strong) NSNumber *weight;
+
 
 @end
 
@@ -51,9 +56,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(saveClicked)];
+    [ACNavUtility setNav:self.navigationController setNavItem:self.navigationItem setTitle:@"个人信息"];
+    if (PushFromTypeLogin != self.pushFromType) {
+        self.navigationItem.leftBarButtonItem = [ACNavUtility setNavButtonWithImage:@"back_icon.png" target:self action:@selector(goBack) frame:CGRectMake(0, 0, 20, 20)];
+    }
+    self.navigationItem.rightBarButtonItem = [ACNavUtility setNavButtonWithTitle:@"保存" target:self action:@selector(saveClicked) frame:CGRectMake(0, 0, 45, 30)];
     //指定最小距离更新(米)
     [BMKLocationService setLocationDistanceFilter:1000.f];
     
@@ -65,26 +72,32 @@
     
 }
 
+- (void)goBack
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 /**
- *  添加第一组数据
+ *  添加一组数据
  *
  *  @param user 用户数据
  */
 - (void)addGroup0With:(ACUserModel *)user
 {
+    __weak typeof (self)weakSelf = self;
     //数据部分
     //头像
     ACPhotoSettingCellModel *cell0 = [ACPhotoSettingCellModel photoSettingCellWithTitle:@"头像" photoURL:user.profile_image_url orPhotoImage:nil];
     cell0.option = ^(NSIndexPath *indexPath){
         //设置头像
-        [self changeAvatarWith:indexPath];
+        [weakSelf changeAvatarWith:indexPath];
     };
     
     //昵称
     ACArrowWithSubtitleSettingCellModel *cell1 = [ACArrowWithSubtitleSettingCellModel arrowWithSubtitleCellWithTitle:@"昵称" subTitle:user.username icon:nil destClass:nil];
     cell1.option = ^(NSIndexPath *indexPath){
         //修改昵称
-        [self changeNicknameWith:indexPath];
+        [weakSelf changeNicknameWith:indexPath];
     };
     
     //性别
@@ -97,14 +110,14 @@
     ACBlankSettingCellModel *cell2 = [ACBlankSettingCellModel blankSettingCellWithTitle:@"性别" subTitle:gender icon:nil];
     cell2.option = ^(NSIndexPath *indexPath){
         //设置性别
-        [self changeGenderWith:indexPath];
+        [weakSelf changeGenderWith:indexPath];
     };
     
     //地区
     ACBlankSettingCellModel *cell3 = [ACBlankSettingCellModel blankSettingCellWithTitle:@"地区" subTitle:(user.location ? user.location : @"未填写") icon:nil];
     cell3.option = ^(NSIndexPath *indexPath){
         //定位
-        [self changeLocationWith:indexPath];
+        [weakSelf changeLocationWith:indexPath];
     };
     
     //体重
@@ -112,6 +125,7 @@
     if (!user.weight) {
         weightStr = @"未填写";
     }
+    
     ACBlankSettingCellModel *cell4 = [ACBlankSettingCellModel blankSettingCellWithTitle:@"体重" subTitle:weightStr icon:nil];
     cell4.option = ^(NSIndexPath *indexPath){
         NSMutableArray *weight = [NSMutableArray array];
@@ -123,11 +137,11 @@
         [ActionSheetMultipleStringPicker showPickerWithTitle:@"体重" rows:colors initialSelection:initialSelection doneBlock:^(ActionSheetMultipleStringPicker *picker, NSArray *selectedIndexes, id selectedValues) {
             DLog(@"%@, values is %@ class is %@", selectedIndexes, selectedValues[0], [selectedValues[0] class]);
             //设置体重
-            [self changeWeight:(NSNumber *)selectedValues[0] indexPath:indexPath];
+            [weakSelf changeWeight:(NSNumber *)selectedValues[0] indexPath:indexPath];
             
         } cancelBlock:^(ActionSheetMultipleStringPicker *picker) {
             
-        } origin:self.tableView];
+        } origin:weakSelf.tableView];
     };
     
     //邮箱
@@ -167,7 +181,7 @@
 - (void)dealloc
 {
     //视图销毁时，停止定位
-    [self.bmkLocationService stopUserLocationService];
+//    [self.bmkLocationService stopUserLocationService];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -518,6 +532,10 @@
 #pragma mark - 保存按钮的事件点击
 - (void)saveClicked
 {
+    if (!self.user.weight) {
+        [self showAlertMsg:@"请认真填写体重" cancelBtn:@"确定"];
+        return;
+    }
     //1. 保存到本地缓存
     [ACCacheDataTool updateUserInfo:self.user withObjectId:self.user.objectId];
     
@@ -525,6 +543,11 @@
     [ACDataBaseTool updateUserInfoWith:self.user withResultBlock:^(BOOL isSuccessful, NSError *error) {
         DLog(@"保存用户信息成功到数据库");
         [ACShowAlertTool showSuccess:@"保存成功"];
+        if (PushFromTypeLogin == self.pushFromType) {
+            UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
+            keyWindow.rootViewController = [[ACTabBarController alloc] init];
+        }
+        [self.bmkLocationService stopUserLocationService];
     }];
 }
 

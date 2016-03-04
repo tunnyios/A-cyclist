@@ -46,6 +46,7 @@
 		A21DE5E41B71AD3A00BC0D31 /* ACProfileCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A21DE5E31B71AD3A00BC0D31 /* ACProfileCellView.xib */; };
 		A21DE5E71B71AD7400BC0D31 /* ACProfileCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = A21DE5E61B71AD7400BC0D31 /* ACProfileCellView.m */; };
 		A21DE5EA1B71D36400BC0D31 /* ACProfileCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A21DE5E91B71D36400BC0D31 /* ACProfileCellModel.m */; };
+		A246F1561C873F7A007C6C5E /* ACNavUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = A246F1551C873F7A007C6C5E /* ACNavUtility.m */; };
 		A24BE3EC1C86921100EBBEC2 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A24BE3EB1C86921100EBBEC2 /* libiconv.tbd */; };
 		A24BE3EE1C86922600EBBEC2 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A24BE3ED1C86922600EBBEC2 /* libsqlite3.tbd */; };
 		A24BE3F01C86923500EBBEC2 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A24BE3EF1C86923500EBBEC2 /* libstdc++.tbd */; };
@@ -244,6 +245,8 @@
 		A21DE5E61B71AD7400BC0D31 /* ACProfileCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACProfileCellView.m; sourceTree = "<group>"; };
 		A21DE5E81B71D36400BC0D31 /* ACProfileCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACProfileCellModel.h; sourceTree = "<group>"; };
 		A21DE5E91B71D36400BC0D31 /* ACProfileCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACProfileCellModel.m; sourceTree = "<group>"; };
+		A246F1541C873F7A007C6C5E /* ACNavUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACNavUtility.h; sourceTree = "<group>"; };
+		A246F1551C873F7A007C6C5E /* ACNavUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACNavUtility.m; sourceTree = "<group>"; };
 		A24BE3EB1C86921100EBBEC2 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		A24BE3ED1C86922600EBBEC2 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		A24BE3EF1C86923500EBBEC2 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
@@ -1169,6 +1172,8 @@
 				A204B1631B5B8210004C0A6C /* DataBaseTool */,
 				A24BE3F31C86977700EBBEC2 /* ACUtility.h */,
 				A24BE3F41C86977700EBBEC2 /* ACUtility.m */,
+				A246F1541C873F7A007C6C5E /* ACNavUtility.h */,
+				A246F1551C873F7A007C6C5E /* ACNavUtility.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -1292,8 +1297,8 @@
 			buildConfigurationList = A28BFED91B53A2CD00A712F1 /* Build configuration list for PBXNativeTarget "A-cyclist" */;
 			buildPhases = (
 				4AFFCC70861C72841087AE52 /* Check Pods Manifest.lock */,
-				A28BFEB21B53A2CC00A712F1 /* Sources */,
 				A28BFEB31B53A2CC00A712F1 /* Frameworks */,
+				A28BFEB21B53A2CC00A712F1 /* Sources */,
 				A28BFEB41B53A2CC00A712F1 /* Resources */,
 				A2AA764D1B7EF4D4004F648B /* Embed Frameworks */,
 				5E47D26005FD16175CE25A3C /* Embed Pods Frameworks */,
@@ -1500,6 +1505,7 @@
 				A2CE5A511B6909940071AC59 /* NSArray+Log.m in Sources */,
 				A204B16A1B5BE144004C0A6C /* ACUserModel.m in Sources */,
 				A2845EB41B5AB825006E0CE0 /* MBProgressHUD+MJ.m in Sources */,
+				A246F1561C873F7A007C6C5E /* ACNavUtility.m in Sources */,
 				A204B1601B5B506B004C0A6C /* HCKeyboardTool.m in Sources */,
 				A2158C771B79010C00BE27E1 /* ACHotRoutesCellView.m in Sources */,
 				A2FEDF5F1B7E285000BCD092 /* ACSharedTitleView.m in Sources */,

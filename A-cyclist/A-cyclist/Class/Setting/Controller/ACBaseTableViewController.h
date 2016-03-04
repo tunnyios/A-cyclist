@@ -13,8 +13,21 @@
 
 #import <UIKit/UIKit.h>
 
-
 @interface ACBaseTableViewController : UITableViewController
 /** 数据数组(包含了groupModel，groupModel中又包含了cellModel) */
 @property (nonatomic, strong) NSMutableArray *dataList;
+
+/**
+ *  alert弹框提示
+ */
+-(void)showAlertMsg:(NSString *)msg cancelBtn:(NSString *)cancelBtnTitle;
+
+/**
+ *  确定/取消 Alert 弹窗 iOS7需要实现alertDelegate
+ */
+- (void)showAlertWithTitle:(NSString *)title
+                   message:(NSString *)message
+            cancelBtnTitle:(NSString *)cancelBtnTitle
+             otherBtnTitle:(NSString *)otherBtnTitle
+                   handler:(void (^)())handler;
 @end

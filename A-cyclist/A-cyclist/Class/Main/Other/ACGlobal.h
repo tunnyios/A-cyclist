@@ -69,8 +69,12 @@ extern NSString * const ACPasswordError;
 #define DLog( s, ... )
 #endif
 
-#define ACScreenBounds  [UIScreen mainScreen].bounds
-#define iOS8 ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0)
+#define ACScreenBounds          [UIScreen mainScreen].bounds
+#define RGBColor(r,g,b,a)       [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
+#define iOS8                    ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0)
+#define isiOS7 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0 ? YES : NO)    //是否高于iOS7
+#define isiOS8 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0 ? YES : NO)   //是否高于iOS8
+#define isiOS9 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9.0 ? YES : NO)   //是否高于iOS9
 
 
 

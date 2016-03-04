@@ -125,5 +125,36 @@
     }
 }
 
+#pragma mark - 确定/取消 Alert弹窗
+/**
+ *  alert弹框提示
+ */
+-(void)showAlertMsg:(NSString *)msg cancelBtn:(NSString *)cancelBtnTitle{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"温馨提示" message:msg preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:cancelBtnTitle style:UIAlertActionStyleCancel handler:nil];
+    [alertController addAction:cancelAction];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
 
+/**
+ *  alert弹框提示选择，确定、取消
+ */
+- (void)showAlertWithTitle:(NSString *)title
+                   message:(NSString *)message
+            cancelBtnTitle:(NSString *)cancelBtnTitle
+             otherBtnTitle:(NSString *)otherBtnTitle
+                   handler:(void (^)())handler
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancelActoin = [UIAlertAction actionWithTitle:cancelBtnTitle style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *sureActoin = [UIAlertAction actionWithTitle:otherBtnTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        if (handler) {
+            handler();
+        }
+    }];
+    
+    [alertController addAction:cancelActoin];
+    [alertController addAction:sureActoin];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
 @end

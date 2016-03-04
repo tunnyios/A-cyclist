@@ -8,10 +8,10 @@
 
 #import "AppDelegate.h"
 #import "ACGlobal.h"
+#import "ACUtility.h"
 #import "UIColor+Tools.h"
 #import "ACTabBarController.h"
 #import <BmobSDK/Bmob.h>
-//#import "WeiboSDK.h"
 #import "HCHttpTool.h"
 #import "ACDataBaseTool.h"
 #import "ACCacheDataTool.h"
@@ -19,13 +19,16 @@
 #import <BaiduMapAPI/BMapKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import "ACLoginViewController.h"
+#import "ACSettingProfileInfoViewController.h"
+#import "ACCommonRequestHttp.h"
 #import "SDWebImageManager.h"
 #import "UMSocial.h"
 #import "UMSocialSinaSSOHandler.h"
 #import "UMSocialQQHandler.h"
+#import "WeiboSDK.h"
 
-//@interface AppDelegate () <WeiboSDKDelegate>
-@interface AppDelegate ()
+@interface AppDelegate () <WeiboSDKDelegate>
+//@interface AppDelegate ()
 /** 百度地图管理者 */
 @property (nonatomic, strong) BMKMapManager *bmkMapManager;
 @property (nonatomic, strong) AVAudioPlayer *player;
@@ -33,7 +36,6 @@
 @end
 
 @implementation AppDelegate
-
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     //设置友盟社会化组件appkey
@@ -44,8 +46,6 @@
                                          RedirectURL:ACSinaRedirectURL];
     //设置手机QQ 的AppId，Appkey，和分享URL，需要#import "UMSocialQQHandler.h"
     [UMSocialQQHandler setQQWithAppId:ACQQAppId appKey:ACQQAppKey url:ACQQRedirectURL];
-//    [UMSocialSinaSSOHandler openNewSinaSSOWithRedirectURL:@"https://api.weibo.com/oauth2/default.html"];
-//    [UMSocialQQHandler setQQWithAppId:@"1104739169" appKey:@"nJ9vASx3n7zUP0vQ" url:@"http://github.com/tunnyios"];
     //设置微信AppId、appSecret，分享url
 //    [UMSocialWechatHandler setWXAppId:@"wxd930ea5d5a258f4f" appSecret:@"db426a9829e4b49a0dcac7b4162da6b6" url:@"http://www.umeng.com/social"];
     
@@ -151,94 +151,74 @@
 
 
 #pragma mark - 重写两个handle方法
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
-//    return [TencentOAuth HandleOpenURL:url] ||
-//    [WeiboSDK handleOpenURL:url delegate:self];
-    
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
     BOOL result = [UMSocialSnsService handleOpenURL:url];
     if (result == FALSE) {
-        
+        return [TencentOAuth HandleOpenURL:url] ||
+        [WeiboSDK handleOpenURL:url delegate:self];
     }
     return result;
 }
 
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
-//    return [TencentOAuth HandleOpenURL:url] ||
-//    [WeiboSDK handleOpenURL:url delegate:self];
-    
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
     BOOL result = [UMSocialSnsService handleOpenURL:url];
     if (result == FALSE) {
-        
+        return [TencentOAuth HandleOpenURL:url] ||
+        [WeiboSDK handleOpenURL:url delegate:self];
     }
     return result;
 }
 
 # pragma mark - 新浪回调
 //收到回复时的回调
-#if 0
 - (void)didReceiveWeiboResponse:(WBBaseResponse *)response{
-    NSString *accessToken = [(WBAuthorizeResponse *)response accessToken];
-    NSString *uid = [(WBAuthorizeResponse *)response userID];
-    NSDate *expiresDate = [(WBAuthorizeResponse *)response expirationDate];
-    DLog(@"acessToken:%@",accessToken);
-    DLog(@"UserId:%@",uid);
-    DLog(@"expiresDate:%@",expiresDate);
+    __block NSString *accessToken = [(WBAuthorizeResponse *)response accessToken];
+    __block NSString *uid = [(WBAuthorizeResponse *)response userID];
+    __block NSDate *expiresDate = [(WBAuthorizeResponse *)response expirationDate];
     if (!accessToken || !uid || !expiresDate) {
         return;
     }
-    
-    NSDictionary *dic = @{@"access_token":accessToken,@"uid":uid,@"expirationDate":expiresDate};
     //通过授权信息注册登录
-    [BmobUser loginInBackgroundWithAuthorDictionary:dic platform:BmobSNSPlatformSinaWeibo block:^(BmobUser *user, NSError *error) {
-        if (error) {
-            DLog(@"weibo login error:%@",error);
-        } else if (user) {
-            DLog(@"user objectid is :%@",user.objectId);
+    [ACDataBaseTool loginWithAccessToken:accessToken uid:uid expirationDate:expiresDate platform:ACLoginPlatformSinaWeibo success:^(id result) {
+        DLog(@"user objectid is :%@",result);
+        ACUserModel *userModel = (ACUserModel *)result;
+        if (userModel.weight && ![userModel.weight isEqual:@0]) {
+            //本地缓存
+            [ACCacheDataTool saveUserInfo:userModel withObjectId:userModel.objectId];
+            //创建tabbarController跳转
+            ACTabBarController *tabBarController = [[ACTabBarController alloc] init];
+            self.window.rootViewController = tabBarController;
+        } else {
             //1. 发送请求从新浪微博获取用户详细信息
-            NSString *url = @"https://api.weibo.com/2/users/show.json";
-            NSDictionary *params = @{@"access_token" : accessToken,
-                                     @"uid" : uid};
-            [HCHttpTool GET:url parameters:params success:^(id responseObject) {
-                DLog(@"%@", responseObject);
-                /*
-                 avatar_large
-                 avatar_hd
-                 profile_image_url
-                 location
-                 screen_name
-                 */
-                //2. 更新的数据到数据库中
-                NSDictionary *dict = @{@"username" : responseObject[@"screen_name"],
-                                       @"profile_image_url" : responseObject[@"avatar_large"],
-                                       @"avatar_large" : responseObject[@"avatar_large"],
-                                       @"location" : responseObject[@"location"],
-                                       @"gender" : responseObject[@"gender"]
-                                       };
-                NSArray *keys = @[@"username", @"profile_image_url", @"avatar_large", @"location", @"gender"];
-                [ACDataBaseTool updateUserInfoWithDict:dict andKeys:keys withResultBlock:^(BOOL isSuccessful, NSError *error) {
-                    DLog(@"isSuccessful is %d, error is %@", isSuccessful, error);
-                }];
-                
+            [ACCommonRequestHttp getUserDetailFromSinaWithAccessToken:accessToken uid:uid success:^(id result) {
+                DLog(@"%@", result);
                 //3. 本地缓存
-                ACUserModel *user = [ACDataBaseTool getCurrentUser];
-                DLog(@"user is %@", user);
-                [ACCacheDataTool saveUserInfo:user withObjectId:user.objectId];
+                userModel.username = [ACUtility stringWithId:[result objectForKey:@"screen_name"]];
+                userModel.profile_image_url = [ACUtility stringWithId:[result objectForKey:@"avatar_large"]];
+                userModel.avatar_large = [ACUtility stringWithId:[result objectForKey:@"avatar_large"]];
+                userModel.location = [ACUtility stringWithId:[result objectForKey:@"location"]];
+                userModel.gender = [ACUtility stringWithId:[result objectForKey:@"gender"]];
+                [ACCacheDataTool saveUserInfo:userModel withObjectId:userModel.objectId];
                 
-                //跳转
-                //创建tabbarController
-                ACTabBarController *tabBarController = [[ACTabBarController alloc] init];
-                self.window.rootViewController = tabBarController;
-                
+                //跳转至settingProfileVC
+                ACSettingProfileInfoViewController *setProfileVC = [[ACSettingProfileInfoViewController alloc] init];
+                setProfileVC.pushFromType = PushFromTypeLogin;
+                UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:setProfileVC];
+                self.window.rootViewController = nav;
             } failure:^(NSError *error) {
                 DLog(@"获取用户信息失败 error:%@", error);
             }];
         }
+        
+    } failure:^(NSError *error) {
+        DLog(@"weibo login error:%@",error);
     }];
 }
 
 //发送请求时的回调
 -(void)didReceiveWeiboRequest:(WBBaseRequest *)request{
 }
-#endif
 
 @end

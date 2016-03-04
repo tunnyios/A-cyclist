@@ -8,6 +8,13 @@
 
 #import "ACBaseTableViewController.h"
 
+typedef enum : NSUInteger {
+    PushFromTypeOther,
+    PushFromTypeLogin,
+} PushFromType;
+
 @interface ACSettingProfileInfoViewController : ACBaseTableViewController
+/** pushFrom */
+@property (nonatomic, assign) PushFromType pushFromType;
 
 @end

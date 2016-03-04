@@ -10,6 +10,7 @@
 #import "UMSocial.h"
 #import "ACGlobal.h"
 #import "ACUtility.h"
+#import "ACNavUtility.h"
 
 @interface ACBaseViewController ()
 
@@ -84,14 +85,53 @@
     });
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma 设置导航栏样式和标题
+- (void)setNavigation:(NSString *)title
+{
+    [ACNavUtility setNav:self.navigationController setNavItem:self.navigationItem setTitle:title];
 }
-*/
+
+#pragma 设置导航栏样式、标题和左边返回按钮
+- (void)setNavigationWithBackItem:(NSString *)title withAction:(SEL)action
+{
+    [ACNavUtility setNav:self.navigationController setNavItem:self.navigationItem setTitle:title];
+    self.navigationItem.leftBarButtonItem = [ACNavUtility setNavButtonWithImage:@"back_icon.png"
+                                                                        target:self
+                                                                        action:action
+                                                                         frame:CGRectMake(0, 0, 20, 20)];
+}
+
+#pragma mark - 确定/取消 Alert弹窗
+/**
+ *  alert弹框提示
+ */
+-(void)showAlertMsg:(NSString *)msg cancelBtn:(NSString *)cancelBtnTitle{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"温馨提示" message:msg preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:cancelBtnTitle style:UIAlertActionStyleCancel handler:nil];
+    [alertController addAction:cancelAction];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
+/**
+ *  alert弹框提示选择，确定、取消
+ */
+- (void)showAlertWithTitle:(NSString *)title
+                   message:(NSString *)message
+            cancelBtnTitle:(NSString *)cancelBtnTitle
+             otherBtnTitle:(NSString *)otherBtnTitle
+                   handler:(void (^)())handler
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancelActoin = [UIAlertAction actionWithTitle:cancelBtnTitle style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *sureActoin = [UIAlertAction actionWithTitle:otherBtnTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        if (handler) {
+            handler();
+        }
+    }];
+    
+    [alertController addAction:cancelActoin];
+    [alertController addAction:sureActoin];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
 
 @end

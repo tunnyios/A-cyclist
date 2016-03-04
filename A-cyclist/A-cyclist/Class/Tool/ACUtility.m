@@ -8,10 +8,13 @@
 
 #import "ACUtility.h"
 #import "KeychainItemWrapper.h"
+#import "ACGlobal.h"
 
-@implementation ACUtility
+ACUserModel *ACUser;
 // 设备ID
 NSString *deviceId = nil;
+
+@implementation ACUtility
 
 #pragma mark 接收转字符串处理
 + (NSString *)stringWithId:(id)value
@@ -105,5 +108,17 @@ NSString *deviceId = nil;
     NSLog(@"deviceId: %@", deviceId);
 }
 
+#pragma mark - 设置字号
++ (UIFont *)setFontWithSize:(CGFloat)size
+{
+    UIFont *font = [[UIFont alloc] init];
+    if (isiOS9) {
+        font = [UIFont fontWithName:@"PingFangSC-Light" size:size];
+    } else {
+        font = [UIFont fontWithName:@"STHeitiSC-Light" size:size];
+    }
+    
+    return font;
+}
 
 @end
