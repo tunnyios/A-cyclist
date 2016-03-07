@@ -21,7 +21,6 @@
 #import "NSDate+Extension.h"
 #import "UIImage+Extension.h"
 #import "UIColor+Tools.h"
-#import <BaiduMapAPI/BMapKit.h>
 #import "ACUploadSharedRouteController.h"
 #import "ACShowAlertTool.h"
 #import "ACUserModel.h"
@@ -31,6 +30,9 @@
 #import "ACAnnotationStartModel.h"
 #import "ACAnnotationEndModel.h"
 #import "UMSocial.h"
+#import <BaiduMapAPI_Map/BMKMapComponent.h>
+#import <BaiduMapAPI_Base/BMKBaseComponent.h>
+#import <BaiduMapAPI_Utils/BMKUtilsComponent.h>
 
 @interface ACCyclingArgumentsViewController () <UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, BMKMapViewDelegate, UMSocialUIDelegate>
 /** 约束 */

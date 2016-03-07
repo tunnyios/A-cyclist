@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 tunny. All rights reserved.
 //
 
-#import <BaiduMapAPI/BMKAnnotationView.h>
+#import <BaiduMapAPI_Map/BMKMapComponent.h>
 
 @interface ACAnnotationView : BMKAnnotationView
 

@@ -16,7 +16,6 @@
 #import "ACDataBaseTool.h"
 #import "ACCacheDataTool.h"
 #import "ACUserModel.h"
-#import <BaiduMapAPI/BMapKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import "ACLoginViewController.h"
 #import "ACSettingProfileInfoViewController.h"
@@ -26,9 +25,9 @@
 #import "UMSocialSinaSSOHandler.h"
 #import "UMSocialQQHandler.h"
 #import "WeiboSDK.h"
+#import <BaiduMapAPI_Map/BMKMapComponent.h>
 
 @interface AppDelegate () <WeiboSDKDelegate>
-//@interface AppDelegate ()
 /** 百度地图管理者 */
 @property (nonatomic, strong) BMKMapManager *bmkMapManager;
 @property (nonatomic, strong) AVAudioPlayer *player;

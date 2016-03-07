@@ -7,7 +7,7 @@
 //  根据cityID将已下载的离线地图状态存储到偏好设置
 
 #import "ACSettingOffLineMapsViewController.h"
-#import <BaiduMapAPI/BMapKit.h>
+#import <BaiduMapAPI_Map/BMKMapComponent.h>
 #import "ACBlankSettingCellModel.h"
 #import "ACSettingGroupModel.h"
 #import "ACGlobal.h"

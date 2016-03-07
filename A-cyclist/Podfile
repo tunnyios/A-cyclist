@@ -30,4 +30,4 @@ pod 'ActionSheetPicker-3.0', '2.0.4'
 pod 'UMengSocial', '~> 5.0'
 
 # 百度地图SDK
-#pod 'BaiduMapKit'
+pod 'BaiduMapKit'

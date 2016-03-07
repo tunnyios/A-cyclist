@@ -125,7 +125,6 @@
 		A2AA76701B7F5FC5004F648B /* ACWeatherModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2AA766F1B7F5FC5004F648B /* ACWeatherModel.m */; };
 		A2AB7E341C86BC1B00D79C6A /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A2AB7E331C86BC1B00D79C6A /* KeychainItemWrapper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A2AB7E371C86C93400D79C6A /* ACCommonRequestHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = A2AB7E361C86C93400D79C6A /* ACCommonRequestHttp.m */; };
-		A2AD90BD1B5FAAB100847F72 /* BaiduMapAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AD90BC1B5FAAB100847F72 /* BaiduMapAPI.framework */; };
 		A2AD90BF1B5FAAE200847F72 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AD90BE1B5FAAE200847F72 /* OpenGLES.framework */; };
 		A2C256DF1B804C0800295882 /* HCDropDownMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C256DE1B804C0800295882 /* HCDropDownMenuView.m */; };
 		A2C256E21B804D2900295882 /* HCNewTypeButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C256E11B804D2900295882 /* HCNewTypeButtonView.m */; };
@@ -376,7 +375,6 @@
 		A2AB7E331C86BC1B00D79C6A /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
 		A2AB7E351C86C93400D79C6A /* ACCommonRequestHttp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACCommonRequestHttp.h; sourceTree = "<group>"; };
 		A2AB7E361C86C93400D79C6A /* ACCommonRequestHttp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACCommonRequestHttp.m; sourceTree = "<group>"; };
-		A2AD90BC1B5FAAB100847F72 /* BaiduMapAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI.framework; sourceTree = "<group>"; };
 		A2AD90BE1B5FAAE200847F72 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		A2C256DD1B804C0800295882 /* HCDropDownMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCDropDownMenuView.h; sourceTree = "<group>"; };
 		A2C256DE1B804C0800295882 /* HCDropDownMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCDropDownMenuView.m; sourceTree = "<group>"; };
@@ -452,7 +450,6 @@
 				A2845EA51B5AB15C006E0CE0 /* libz.1.2.5.dylib in Frameworks */,
 				A2845E9F1B5AB13E006E0CE0 /* CFNetwork.framework in Frameworks */,
 				A2845E9D1B5AB12C006E0CE0 /* MobileCoreServices.framework in Frameworks */,
-				A2AD90BD1B5FAAB100847F72 /* BaiduMapAPI.framework in Frameworks */,
 				A2845E971B5AB10D006E0CE0 /* CoreLocation.framework in Frameworks */,
 				A2845E951B5AB0F2006E0CE0 /* BmobSDK.framework in Frameworks */,
 				7CB41B3C934DDDB8F93A82C5 /* libPods.a in Frameworks */,
@@ -924,7 +921,6 @@
 			isa = PBXGroup;
 			children = (
 				A2AB7E311C86BC1B00D79C6A /* KeyChain */,
-				A2AD90BC1B5FAAB100847F72 /* BaiduMapAPI.framework */,
 				A2082E691B62259800CA3325 /* mapapi.bundle */,
 				A2F7FE3D1B5FD6BF0000D6EA /* VPImageCropper */,
 				A2845EAE1B5AB825006E0CE0 /* MBProgressHUD_MJ */,

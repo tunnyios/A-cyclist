@@ -17,14 +17,14 @@
 #import "ACSettingViewCell.h"
 #import "ACPhotoSettingCellModel.h"
 #import "ACChangeNameController.h"
-#import <BaiduMapAPI/BMapKit.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "VPImageCropperViewController.h"
 #import "ACShowAlertTool.h"
 #import "ActionSheetMultipleStringPicker.h"
 #import "ACNavUtility.h"
 #import "ACTabBarController.h"
-
+#import <BaiduMapAPI_Location/BMKLocationComponent.h>
+#import <BaiduMapAPI_Search/BMKSearchComponent.h>
 
 #define ORIGINAL_MAX_WIDTH 640.0f
 
@@ -62,7 +62,7 @@
     }
     self.navigationItem.rightBarButtonItem = [ACNavUtility setNavButtonWithTitle:@"保存" target:self action:@selector(saveClicked) frame:CGRectMake(0, 0, 45, 30)];
     //指定最小距离更新(米)
-    [BMKLocationService setLocationDistanceFilter:1000.f];
+    self.bmkLocationService.distanceFilter = 1000.f;
     
     //1. 读取本地数据库，展示数据
     self.user = [ACCacheDataTool getUserInfo];

@@ -7,7 +7,10 @@
 //
 
 #import "ACCyclingViewController.h"
-#import <BaiduMapAPI/BMapKit.h>
+#import <BaiduMapAPI_Map/BMKMapComponent.h>
+#import <BaiduMapAPI_Location/BMKLocationComponent.h>
+#import <BaiduMapAPI_Search/BMKSearchComponent.h>
+#import <BaiduMapAPI_Utils/BMKUtilsComponent.h>
 #import "ACGlobal.h"
 #import "ACUserModel.h"
 #import "ACRouteModel.h"
@@ -168,8 +171,8 @@ typedef enum : NSUInteger {
     _bmkLocationService = [[BMKLocationService alloc] init];
     
     //设置位置频率(单位：米;必须要在开始定位之前设置)
-    [BMKLocationService setLocationDistanceFilter:10000.f];
-    [BMKLocationService setLocationDesiredAccuracy:kCLLocationAccuracyBestForNavigation];
+    self.bmkLocationService.distanceFilter = 10000.f;
+    self.bmkLocationService.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
     [_bmkLocationService startUserLocationService];
     
     self.bmkMapView.showsUserLocation = YES;
@@ -346,8 +349,8 @@ typedef enum : NSUInteger {
     [self startTimer];
     //2. 设置更新位置频率(单位：米;必须要在开始定位之前设置)
     [self.bmkLocationService stopUserLocationService];
-    [BMKLocationService setLocationDistanceFilter:1];
-    [BMKLocationService setLocationDesiredAccuracy:kCLLocationAccuracyBestForNavigation];
+    self.bmkLocationService.distanceFilter = 10.0f;
+    self.bmkLocationService.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
     [_bmkLocationService startUserLocationService];
     
     self.bmkMapView.showsUserLocation = YES;
@@ -398,11 +401,11 @@ typedef enum : NSUInteger {
 {
     CLLocation *location = userLocation.location;
 
-    //1. 每5米记录一个点
+    //1. 每10米记录一个点
     if (self.locationArrayM.count > 0) {
         CLLocationDistance distance = [location distanceFromLocation:self.preLocation];
         DLog(@"distance:%f", distance);
-        if (distance < 5) {
+        if (distance < 10) {
             return;
         }
     }
@@ -441,7 +444,7 @@ typedef enum : NSUInteger {
      location.horizontalAccuracy; 水平精准度
      location.verticalAccuracy; 垂直精准度
      location.timestamp; 定位信息返回的时间
-     location.speed; 设备移动速度 单位是米/秒, 适用于行车速度而不太适用于不行
+     location.speed; 设备移动速度 单位是米/秒, 适用于行车速度而不太适用于步行
      */
     if (self.preLocation) {
         //计算上一次和这一次的距离差(直线距离)，这次距离
@@ -496,13 +499,14 @@ typedef enum : NSUInteger {
         DLog(@"这次距离：%f米\n, 这次耗时：%f秒\n, 瞬时速度:%fkm/h\n, 总路程：%f米\n, 总时间:%f秒\n, 平均速度:%f\n, 极速:%f\n", distance, timeInterval, location.speed * 3.6, self.totleDistance, self.totleTime, averageSpeed * 3.6, self.maxSpeed * 3.6);
     } else {
         //极速
-        self.maxSpeed = fabs(location.speed);
+//        self.maxSpeed = fabs(location.speed);
+        self.maxSpeed = 0;
         // 瞬时速度
-        self.currentSpeed.text = [NSString stringWithFormat:@"%.2f", fabs(location.speed * 3.6)];
+        self.currentSpeed.text = @"0.00";
         //距离间隔
         self.distanceInterval = @"0";
         self.maxAltitude = location.altitude;
-        self.minAltitude = 0;
+        self.minAltitude = location.altitude;
     }
     //最高速度label
     self.currentMaxSpeed.text = [NSString stringWithFormat:@"%.2f", self.maxSpeed * 3.6];
@@ -836,9 +840,11 @@ typedef enum : NSUInteger {
     [ACCacheDataTool addRouteWith:self.route withUserObjectId:self.user.objectId];
     
     //存储到数据库
+    __weak typeof (self)weakSelf = self;
     [ACDataBaseTool addRouteWith:self.route userObjectId:self.user.objectId resultBlock:^(BOOL isSuccessful, NSError *error) {
         if (isSuccessful) {
             DLog(@"存储路线到数据库成功");
+            [weakSelf saveUserData];
         } else {
             DLog(@"存储路线到数据库失败 error is %@", error);
         }

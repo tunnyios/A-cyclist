@@ -117,7 +117,7 @@
     //数据部分
     NSString *subTitle0 = @"";
     if (0 != self.maxDistanceRoute.steps.count) {
-        subTitle0 = [NSString stringWithFormat:@"%@ km", self.maxDistanceRoute.distance];
+        subTitle0 = [NSString stringWithFormat:@"%.2f km", self.maxDistanceRoute.distance.doubleValue];
     }
     ACProfileCellModel *cell0 = [ACProfileCellModel profileCellWithTitle:@"最远骑行距离" subTitle:subTitle0 route:self.maxDistanceRoute];
     cell0.option = ^(NSIndexPath *indexPath){
@@ -133,7 +133,7 @@
     
     NSString *subTitle1 = @"";
     if (0 != self.maxSpeedRoute.steps.count) {
-        subTitle1 = [NSString stringWithFormat:@"%@ km/h", self.maxSpeedRoute.maxSpeed];
+        subTitle1 = [NSString stringWithFormat:@"%.2f km/h", self.maxSpeedRoute.maxSpeed.doubleValue];
     }
     ACProfileCellModel *cell1 = [ACProfileCellModel profileCellWithTitle:@"极速" subTitle:subTitle1 route:self.maxSpeedRoute];
     cell1.option = ^(NSIndexPath *indexPath){
@@ -149,7 +149,7 @@
     
     NSString *subTitle2 = @"";
     if (0 != self.maxAverageRoute.steps.count) {
-        subTitle2 = [NSString stringWithFormat:@"%@ km/h", self.maxAverageRoute.averageSpeed];
+        subTitle2 = [NSString stringWithFormat:@"%.2f km/h", self.maxAverageRoute.averageSpeed.doubleValue];
     }
     ACProfileCellModel *cell2 = [ACProfileCellModel profileCellWithTitle:@"平均速度" subTitle:subTitle2 route:self.maxAverageRoute];
     cell2.option = ^(NSIndexPath *indexPath){
@@ -323,7 +323,7 @@
                 NSString *subTitleDistance = @"";
                 NSString *timeStrDistance = @"";
                 if (0 != self.maxDistanceRoute.steps.count) {
-                    subTitleDistance = [NSString stringWithFormat:@"%@ km", self.maxDistanceRoute.distance];
+                    subTitleDistance = [NSString stringWithFormat:@"%.2f km", self.maxDistanceRoute.distance.doubleValue];
                     timeStrDistance = [NSDate dateToString:self.maxDistanceRoute.cyclingStartTime WithFormatter:@"yyyy-MM-dd"];
                 }
                 ACProfileCellModel *maxDistanceModle = [self.dataList[1] cellList][0];
@@ -344,8 +344,7 @@
                     NSString *subTitleSpeed = @"";
                     NSString *timeStrSpeed = @"";
                     if (0 != self.maxSpeedRoute.steps.count) {
-//                        subTitleSpeed = [NSString stringWithFormat:@"%@ km", self.maxSpeedRoute.distance];
-                        subTitleSpeed = [NSString stringWithFormat:@"%@ km/h", self.maxSpeedRoute.maxSpeed];
+                        subTitleSpeed = [NSString stringWithFormat:@"%.2f km/h", self.maxSpeedRoute.maxSpeed.doubleValue];
                         timeStrSpeed = [NSDate dateToString:self.maxSpeedRoute.cyclingStartTime WithFormatter:@"yyyy-MM-dd"];
                     }
                     ACProfileCellModel *maxSpeedModle = [self.dataList[1] cellList][1];
@@ -366,8 +365,7 @@
                         NSString *subTitleAverage = @"";
                         NSString *timeStrAverage = @"";
                         if (0 != self.maxAverageRoute.steps.count) {
-//                            subTitleAverage = [NSString stringWithFormat:@"%@ km", self.maxAverageRoute.distance];
-                            subTitleAverage = [NSString stringWithFormat:@"%@ km/h", self.maxAverageRoute.averageSpeed];
+                            subTitleAverage = [NSString stringWithFormat:@"%.2f km/h", self.maxAverageRoute.averageSpeed.doubleValue];
                             timeStrAverage = [NSDate dateToString:self.maxAverageRoute.cyclingStartTime WithFormatter:@"yyyy-MM-dd"];
                         }
                         ACProfileCellModel *maxAverageModle = [self.dataList[1] cellList][2];

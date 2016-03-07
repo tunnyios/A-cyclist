@@ -39,7 +39,7 @@
         self.totalTimeLabel.text = @"00:00";
     }
     if (user.accruedDistance) {
-        self.totalDistanceLabel.text = [NSString stringWithFormat:@"%@", user.accruedDistance];
+        self.totalDistanceLabel.text = [NSString stringWithFormat:@"%.2f", user.accruedDistance.doubleValue];
     } else {
         self.totalDistanceLabel.text = @"0.00";
     }
