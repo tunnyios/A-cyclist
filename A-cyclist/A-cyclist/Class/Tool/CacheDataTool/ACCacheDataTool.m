@@ -82,12 +82,19 @@ static FMDatabase *_db;
  */
 + (BOOL)deleteUserData
 {
-    NSString *sqlstr = @"DELETE FROM t_user";
-    if (![_db executeUpdate:sqlstr])
+    NSString *sqlUser = @"DELETE FROM t_user";
+    NSString *sqlPersonRoute = @"DELETE FROM t_personRoute";
+    if (![_db executeUpdate:sqlUser])
     {
-        DLog(@"Erase table error!");
+        DLog(@"Erase t_user table error!");
         return NO;
     }
+    
+    if (![_db executeUpdate:sqlPersonRoute]) {
+        DLog(@"Erase t_personRoute table error!");
+        return NO;
+    }
+
     return YES;
 }
 

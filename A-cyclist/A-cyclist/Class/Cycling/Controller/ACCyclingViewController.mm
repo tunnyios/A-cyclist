@@ -70,8 +70,8 @@ typedef enum : NSUInteger {
 @property (nonatomic, copy) NSString *distanceInterval;
 /** 位置数组 */
 @property (nonatomic, strong) NSMutableArray *locationArrayM;
-/** 轨迹 */
-@property (nonatomic, strong) BMKPolyline *polyLine;
+/** 轨迹数组 */
+@property (nonatomic, strong) NSMutableArray *polyLineArray;
 /** 轨迹记录状态 */
 @property (nonatomic, assign) HCTrail trail;
 /** 起点大头针 */
@@ -164,6 +164,15 @@ typedef enum : NSUInteger {
     return _locationArrayM;
 }
 
+- (NSMutableArray *)polyLineArray
+{
+    if (_polyLineArray == nil) {
+        _polyLineArray = [NSMutableArray array];
+    }
+    
+    return _polyLineArray;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -172,7 +181,7 @@ typedef enum : NSUInteger {
     
     //设置位置频率(单位：米;必须要在开始定位之前设置)
     self.bmkLocationService.distanceFilter = 10000.f;
-    self.bmkLocationService.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
+    self.bmkLocationService.desiredAccuracy = kCLLocationAccuracyThreeKilometers;
     [_bmkLocationService startUserLocationService];
     
     self.bmkMapView.showsUserLocation = YES;
@@ -207,7 +216,6 @@ typedef enum : NSUInteger {
 }
 
 #pragma mark - 按钮的监听事件
-
 /**
  *  开始骑行
  */
@@ -278,8 +286,6 @@ typedef enum : NSUInteger {
  */
 - (void)cleanLabel
 {
-    self.totleTime = 0;
-    self.totleDistance = 0;
     self.currentSpeed.text = @"0.00";
     self.currentMileage.text = @"0.00";
     self.currentTimeConsuming.text = @"00:00";
@@ -350,7 +356,7 @@ typedef enum : NSUInteger {
     //2. 设置更新位置频率(单位：米;必须要在开始定位之前设置)
     [self.bmkLocationService stopUserLocationService];
     self.bmkLocationService.distanceFilter = 10.0f;
-    self.bmkLocationService.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
+    self.bmkLocationService.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
     [_bmkLocationService startUserLocationService];
     
     self.bmkMapView.showsUserLocation = YES;
@@ -365,9 +371,6 @@ typedef enum : NSUInteger {
  */
 - (void)startRecord
 {
-    //清理地图
-    [self cleanMap];
-    
     self.trail = HCTrailStart;
 }
 
@@ -389,6 +392,9 @@ typedef enum : NSUInteger {
  */
 - (void)stopRecord
 {
+    //清理地图
+    [self cleanMap];
+    
     self.trail = HCTrailEnd;
 }
 
@@ -410,11 +416,10 @@ typedef enum : NSUInteger {
         }
     }
     
-    //2. 每5米更新一次参数信息
+    //2. 每10米更新一次参数信息
     [self updateCyclingParamsInfoWithLocation:location];
-    
-    NSString *latitude = [NSString stringWithFormat:@"%f", location.coordinate.latitude];
-    NSString *longitude = [NSString stringWithFormat:@"%f", location.coordinate.longitude];
+    NSString *latitude = [[NSNumber numberWithDouble:location.coordinate.latitude] stringValue];
+    NSString *longitude = [[NSNumber numberWithDouble:location.coordinate.longitude] stringValue];
     NSString *altitude = [NSString stringWithFormat:@"%ld", (long)location.altitude];
     NSString *speed = [NSString stringWithFormat:@"%.2f", fabs(location.speed * 3.6)];
     ACStepModel *step = [ACStepModel stepModelWithLatitude:latitude longitude:longitude altitude:altitude currentSpeed:speed distanceInterval:self.distanceInterval];
@@ -423,10 +428,10 @@ typedef enum : NSUInteger {
     //3. 记录
     [self.locationArrayM addObject:step];
     DLog(@"count %lu", (unsigned long)self.locationArrayM.count);
-    self.preLocation = location;
     
     //4. 绘图
-    [self onGetWalkPolyline];
+    [self onGetWalkPolylineWithLocation:location];
+    self.preLocation = location;
 }
 
 /**
@@ -458,16 +463,17 @@ typedef enum : NSUInteger {
         //总时间
         self.totleTime += timeInterval;
         //计算平均速度
-        CLLocationSpeed averageSpeed = self.totleDistance / self.totleTime;
+        CLLocationSpeed speed = (location.speed > 0) ? location.speed : 0;
+        CLLocationSpeed averageSpeed = ((self.totleDistance / self.totleTime) > speed) ? speed : (self.totleDistance / self.totleTime);
      
         // 瞬时速度
-        self.currentSpeed.text = [NSString stringWithFormat:@"%.2f", fabs(location.speed * 3.6)];
+        self.currentSpeed.text = [NSString stringWithFormat:@"%.2f", speed * 3.6];
         // 当前里程
         self.currentMileage.text = [NSString stringWithFormat:@"%.2f", self.totleDistance * 0.001];
         // 平均速度
         self.currentAverageSpeed.text = [NSString stringWithFormat:@"%.2f", averageSpeed * 3.6];
         // 最高速度
-        self.maxSpeed = self.maxSpeed >= fabs(location.speed) ? self.maxSpeed : fabs(location.speed);
+        self.maxSpeed = (self.maxSpeed >= speed) ? self.maxSpeed : speed;
         //海拔高度
         self.altitude.text = [NSString stringWithFormat:@"%.0f M", location.altitude];
         self.maxAltitude = self.maxAltitude >= location.altitude ? self.maxAltitude : location.altitude;
@@ -499,7 +505,6 @@ typedef enum : NSUInteger {
         DLog(@"这次距离：%f米\n, 这次耗时：%f秒\n, 瞬时速度:%fkm/h\n, 总路程：%f米\n, 总时间:%f秒\n, 平均速度:%f\n, 极速:%f\n", distance, timeInterval, location.speed * 3.6, self.totleDistance, self.totleTime, averageSpeed * 3.6, self.maxSpeed * 3.6);
     } else {
         //极速
-//        self.maxSpeed = fabs(location.speed);
         self.maxSpeed = 0;
         // 瞬时速度
         self.currentSpeed.text = @"0.00";
@@ -516,40 +521,32 @@ typedef enum : NSUInteger {
 /**
  *  绘制骑行轨迹路线
  */
-- (void)onGetWalkPolyline
+- (void)onGetWalkPolylineWithLocation:(CLLocation *)location
 {
-    //轨迹点
-    NSUInteger count = self.locationArrayM.count;
-    BMKMapPoint *tempPoints = new BMKMapPoint[count];
-    
-    [self.locationArrayM enumerateObjectsUsingBlock:^(ACStepModel *step, NSUInteger idx, BOOL *stop) {
+/**
+ 优化，每次画两个点，连续。而不是每次擦掉上次的再画new+old个点
+ */
+    if (self.preLocation) {
+        BMKMapPoint lastPoint = BMKMapPointForCoordinate(self.preLocation.coordinate);
+        BMKMapPoint currentPoint = BMKMapPointForCoordinate(location.coordinate);
+        BMKMapPoint *tempPoints = new BMKMapPoint[2];
+        tempPoints[0] = lastPoint;
+        tempPoints[1] = currentPoint;
         
-        CLLocationDegrees latitude = [step.latitude doubleValue];
-        CLLocationDegrees longitude = [step.longitude doubleValue];
-        CLLocation *location = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
-        BMKMapPoint locationPoint = BMKMapPointForCoordinate(location.coordinate);
-        tempPoints[idx] = locationPoint;
+        BMKPolyline *polyLineTemp = [BMKPolyline polylineWithPoints:tempPoints count:2];
+        [self.polyLineArray addObject:polyLineTemp];
         
+        //添加路线,绘图
+        [_bmkMapView addOverlay:polyLineTemp];
+        delete []tempPoints;
+        [self mapViewFitPolyLine:polyLineTemp];
+    } else {
         //设置起点
         if (!self.startPoint) {
             self.startPoint = [self creatPointWithLocaiton:location title:@"起点"];
         }
-    }];
-    
-    //移除原有的绘图
-    if (self.polyLine) {
-        [_bmkMapView removeOverlay:self.polyLine];
+        return;
     }
-    
-    // 通过points构建BMKPolyline
-    self.polyLine = [BMKPolyline polylineWithPoints:tempPoints count:count];
-    
-    //添加路线,绘图
-    if (self.polyLine) {
-        [_bmkMapView addOverlay:self.polyLine];
-    }
-    delete []tempPoints;
-    [self mapViewFitPolyLine:self.polyLine];
 }
 
 /**
@@ -575,22 +572,36 @@ typedef enum : NSUInteger {
 
 
 /**
- *  清空数组以及地图上的轨迹
+ *  清空数组以及地图上的轨迹以及上一次的记录
  */
 - (void)cleanMap
 {
     //清空数组
     [self.locationArrayM removeAllObjects];
+    self.preLocation = nil;
+    self.distanceInterval = @"0";
+    self.totleTime = 0;
+    self.totleDistance = 0;
+    self.maxSpeed = 0;
+    self.ascendingAltitude = 0;
+    self.ascendingTime = 0;
+    self.ascendingDistance = 0;
+    self.descendingTime = 0;
+    self.descendingDistance = 0;
+    self.flatTime = 0;
+    self.flatDistance = 0;
+    
     //清屏
     if (_startPoint) {
         [_bmkMapView removeAnnotation:self.startPoint];
+        self.startPoint = nil;
     }
     if (_endPoint) {
         [_bmkMapView removeAnnotation:self.endPoint];
+        self.endPoint = nil;
     }
-    if (_polyLine) {
-        [_bmkMapView removeOverlay:self.polyLine];
-    }
+    
+    [_bmkMapView removeOverlays:self.polyLineArray];
 }
 
 /**
