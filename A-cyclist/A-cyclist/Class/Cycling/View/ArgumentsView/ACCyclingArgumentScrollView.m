@@ -7,6 +7,7 @@
 //
 
 #import "ACCyclingArgumentScrollView.h"
+#import "ACGlobal.h"
 
 @implementation ACCyclingArgumentScrollView
 
@@ -26,10 +27,10 @@
     // 获取当前的位置
     CGPoint current = [touch locationInView:self];
     CGSize scrollSize = self.bounds.size;
-    NSLog(@"current:%@ size:%@", NSStringFromCGPoint(current), NSStringFromCGSize(scrollSize));
+    DLog(@"current:%@ size:%@", NSStringFromCGPoint(current), NSStringFromCGSize(scrollSize));
     if ((current.x < scrollSize.width) && (current.y < (scrollSize.height - 120))) {
         //在地图上
-        NSLog(@"在地图上, 不滚动, view class is %@", view.class);
+        DLog(@"在地图上, 不滚动, view class is %@", view.class);
         return YES;
     } else {
         if ([view isKindOfClass:[UIButton class]]) {

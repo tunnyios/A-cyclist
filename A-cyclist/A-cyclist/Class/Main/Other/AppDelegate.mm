@@ -38,7 +38,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     //设置友盟社会化组件appkey
-    [UMSocialData setAppKey:@"55cdacb0e0f55ab21a0010ff"];
+    [UMSocialData setAppKey:ACYouMengAppKey];
     //打开新浪微博的SSO开关，设置新浪微博回调地址，这里必须要和你在新浪微博后台设置的回调地址一致。需要 #import "UMSocialSinaSSOHandler.h"
     [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:ACSinaAppKey
                                               secret:ACSinaSecret
@@ -57,7 +57,7 @@
     // 如果要关注网络及授权验证事件，请设定     generalDelegate参数
     BOOL ret = [self.bmkMapManager start:ACBaiduAppKey  generalDelegate:nil];
     if (!ret) {
-        NSLog(@"manager start failed!");
+        DLog(@"manager start failed!");
     }
     
     //1. 创建window
@@ -199,6 +199,8 @@
                 userModel.avatar_large = [ACUtility stringWithId:[result objectForKey:@"avatar_large"]];
                 userModel.location = [ACUtility stringWithId:[result objectForKey:@"location"]];
                 userModel.gender = [ACUtility stringWithId:[result objectForKey:@"gender"]];
+                userModel.accruedDistance = @0;
+                userModel.accruedTime = @0;
                 [ACCacheDataTool saveUserInfo:userModel withObjectId:userModel.objectId];
                 
                 //跳转至settingProfileVC

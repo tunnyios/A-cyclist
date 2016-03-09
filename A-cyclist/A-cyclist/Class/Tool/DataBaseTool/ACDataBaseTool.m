@@ -683,7 +683,7 @@
         }
     } progress:^(NSUInteger index, CGFloat progress) {
         //index表示正在上传的文件其路径在数组当中的索引，progress表示该文件的上传进度
-        NSLog(@"index %lu progress %f",(unsigned long)index,progress);
+        DLog(@"index %lu progress %f",(unsigned long)index,progress);
         if (progressBlock) {
             progressBlock(index, progress);
         }

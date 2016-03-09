@@ -220,7 +220,7 @@ typedef enum : NSUInteger {
             [self presentViewController:controller
                                animated:YES
                              completion:^(void){
-                                 NSLog(@"Picker View Controller is presented");
+                                 DLog(@"Picker View Controller is presented");
                              }];
         }
     }];
@@ -238,7 +238,7 @@ typedef enum : NSUInteger {
             [self presentViewController:controller
                                animated:YES
                              completion:^(void){
-                                 NSLog(@"Picker View Controller is presented");
+                                 DLog(@"Picker View Controller is presented");
                              }];
         }
     }];
@@ -395,7 +395,7 @@ typedef enum : NSUInteger {
     [sourceImage drawInRect:thumbnailRect];
     
     newImage = UIGraphicsGetImageFromCurrentImageContext();
-    if(newImage == nil) NSLog(@"could not scale image");
+    if(newImage == nil) DLog(@"could not scale image");
     
     //pop the context to get back to the default
     UIGraphicsEndImageContext();

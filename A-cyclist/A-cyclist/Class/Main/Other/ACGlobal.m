@@ -22,6 +22,8 @@ NSString * const ACQQAppKey = @"nJ9vASx3n7zUP0vQ";
 NSString * const ACQQRedirectURL = @"http://github.com/tunnyios";
 /** 百度地图微博授权 */
 NSString * const ACBaiduAppKey = @"sVLUnWrBkQpHrpKc8d0QeNFO";
+/** 友盟授权 */
+NSString * const ACYouMengAppKey = @"55cdacb0e0f55ab21a0010ff";
 
 
 #pragma mark - Bmob数据库相关常量

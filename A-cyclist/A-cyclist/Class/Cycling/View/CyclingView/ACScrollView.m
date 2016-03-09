@@ -7,6 +7,7 @@
 //
 
 #import "ACScrollView.h"
+#import "ACGlobal.h"
 
 @implementation ACScrollView
 
@@ -28,7 +29,7 @@
     CGFloat x = [UIScreen mainScreen].bounds.size.width;
     if (current.x >= x + 10) {
         //在地图上
-        NSLog(@"在地图上, 不滚动, view class is %@", view.class);
+        DLog(@"在地图上, 不滚动, view class is %@", view.class);
         return YES;
     } else {
         if ([view isKindOfClass:[UIButton class]]) {
@@ -42,7 +43,7 @@
 - (BOOL)touchesShouldCancelInContentView:(UIView *)view
 {
     return NO;
-//    NSLog(@"cancle class is %@", view.class);
+//    DLog(@"cancle class is %@", view.class);
 //    if ([view isKindOfClass:NSClassFromString(@"TapDetectingView")] ||
 //        [view isKindOfClass:NSClassFromString(@"SingleCircleView")]) {
 //        return NO;

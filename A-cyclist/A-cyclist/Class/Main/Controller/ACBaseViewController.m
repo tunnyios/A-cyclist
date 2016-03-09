@@ -40,7 +40,7 @@
         //          获取微博用户名、uid、token等
         if (response.responseCode == UMSResponseCodeSuccess) {
             UMSocialAccountEntity *snsAccount = [[UMSocialAccountManager socialAccountDictionary] valueForKey:UMShareToSina];
-            NSLog(@"username is %@, uid is %@, token is %@ url is %@",snsAccount.userName,snsAccount.usid,snsAccount.accessToken,snsAccount.iconURL);
+            DLog(@"username is %@, uid is %@, token is %@ url is %@",snsAccount.userName,snsAccount.usid,snsAccount.accessToken,snsAccount.iconURL);
             NSDictionary *dict = @{@"userName"  :   [ACUtility stringWithId:snsAccount.userName],
                                    @"uid"       :   [ACUtility stringWithId:snsAccount.usid],
                                    @"accessToken":  [ACUtility stringWithId:snsAccount.accessToken]
@@ -68,7 +68,7 @@
         //          获取QQ用户名、uid、token等
         if (response.responseCode == UMSResponseCodeSuccess) {
             UMSocialAccountEntity *snsAccount = [[UMSocialAccountManager socialAccountDictionary] valueForKey:UMShareToQQ];
-            NSLog(@"username is %@, uid is %@, token is %@ url is %@",snsAccount.userName,snsAccount.usid,snsAccount.accessToken,snsAccount.iconURL);
+            DLog(@"username is %@, uid is %@, token is %@ url is %@",snsAccount.userName,snsAccount.usid,snsAccount.accessToken,snsAccount.iconURL);
             NSDictionary *dict = @{@"userName"  :   [ACUtility stringWithId:snsAccount.userName],
                                    @"uid"       :   [ACUtility stringWithId:snsAccount.usid],
                                    @"accessToken":  [ACUtility stringWithId:snsAccount.accessToken]

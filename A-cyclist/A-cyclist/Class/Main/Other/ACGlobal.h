@@ -23,6 +23,9 @@ extern NSString * const ACQQAppKey;
 extern NSString * const ACQQRedirectURL;
 /** 百度地图授权 */
 extern NSString * const ACBaiduAppKey;
+/** 友盟授权 */
+extern NSString * const ACYouMengAppKey;
+
 
 #pragma mark - Bmob数据相关常量
 /** BmobURL地址AccessKey */

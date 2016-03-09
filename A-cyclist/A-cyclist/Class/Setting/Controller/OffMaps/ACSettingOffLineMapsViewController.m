@@ -213,7 +213,7 @@
         //id为state的城市正在下载或更新，start后会毁掉此类型
         BMKOLUpdateElement* updateInfo;
         updateInfo = [_offlineMap getUpdateInfo:state];
-        NSLog(@"城市名：%@,下载比例:%d, 匹配的城市名: %@",updateInfo.cityName,updateInfo.ratio, self.lastChildCityName);
+        DLog(@"城市名：%@,下载比例:%d, 匹配的城市名: %@",updateInfo.cityName,updateInfo.ratio, self.lastChildCityName);
         
         if (updateInfo.cityName) {
             [self.progressView setProgress:updateInfo.ratio * 0.01 animated:YES];
@@ -241,14 +241,14 @@
         //id为state的state城市有新版本,可调用update接口进行更新
         BMKOLUpdateElement* updateInfo;
         updateInfo = [_offlineMap getUpdateInfo:state];
-        NSLog(@"是否有更新%d",updateInfo.update);
+        DLog(@"是否有更新%d",updateInfo.update);
     }
     if (type == TYPE_OFFLINE_UNZIP) {
         //正在解压第state个离线包，导入时会回调此类型
     }
     if (type == TYPE_OFFLINE_ZIPCNT) {
         //检测到state个离线包，开始导入时会回调此类型
-        NSLog(@"检测到%d个离线包",state);
+        DLog(@"检测到%d个离线包",state);
         if(state==0)
         {
 //            [self showImportMesg:state];
@@ -256,10 +256,10 @@
     }
     if (type == TYPE_OFFLINE_ERRZIP) {
         //有state个错误包，导入完成后会回调此类型
-        NSLog(@"有%d个离线包导入错误",state);
+        DLog(@"有%d个离线包导入错误",state);
     }
     if (type == TYPE_OFFLINE_UNZIPFINISH) {
-        NSLog(@"成功导入%d个离线包",state);
+        DLog(@"成功导入%d个离线包",state);
         //导入成功state个离线包，导入成功后会回调此类型
 //        [self showImportMesg:state];
     }

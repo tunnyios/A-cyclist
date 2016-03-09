@@ -105,7 +105,7 @@ NSString *deviceId = nil;
         //保存账户名称
         //[keychainItem setObject:deviceId forKey:(__bridge id)kSecAttrService];
     }
-    NSLog(@"deviceId: %@", deviceId);
+    DLog(@"deviceId: %@", deviceId);
 }
 
 #pragma mark - 设置字号

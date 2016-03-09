@@ -11,7 +11,7 @@
 #import "ACLineChartLabelView.h"
 #import "ACStepModel.h"
 #import "UIColor+Tools.h"
-
+#import "ACGlobal.h"
 
 #define AClineHeight 30
 
@@ -59,14 +59,14 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    NSLog(@"awakeFormNib");
+    DLog(@"awakeFormNib");
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        NSLog(@"initWithCoder");
+        DLog(@"initWithCoder");
     }
     
     return self;
@@ -91,13 +91,13 @@
     for (int i = 0; i < 6; i++) {
         [self.vAltitudeArray addObject:[NSString stringWithFormat:@"%.0f", self.route.minAltitude.doubleValue + altitudeInterval * i]];
     }
-    NSLog(@"vAltitudeArray is %@", self.vAltitudeArray);
+    DLog(@"vAltitudeArray is %@", self.vAltitudeArray);
     
     double speedInterval = self.route.maxSpeed.doubleValue * 0.2;
     for (int i = 0; i < 6; i++) {
         [self.vSpeedArray addObject:[NSString stringWithFormat:@"%.0f", 0 + speedInterval * i]];
     }
-    NSLog(@"vSpeedArray is %@", self.vSpeedArray);
+    DLog(@"vSpeedArray is %@", self.vSpeedArray);
     
     double distanceInterval = self.route.distance.doubleValue * 1000 * 0.2;
     for (int i = 0; i < 6 ; i++) {
@@ -108,8 +108,8 @@
             [self.hDistanceArray addObject:[NSString stringWithFormat:@"%.0f m", distance]];
         }
     }
-    NSLog(@"hDistanceArray is %@", self.hDistanceArray);
-    NSLog(@"arraySpeed is %@", self.route.steps);
+    DLog(@"hDistanceArray is %@", self.hDistanceArray);
+    DLog(@"arraySpeed is %@", self.route.steps);
     
     //画图
     [self setClearsContextBeforeDrawing: YES];
@@ -205,7 +205,7 @@
         accruedDistance += step.distanceInterval.doubleValue;
         trueHInterval = (accruedDistance / (self.route.distance.doubleValue * 1000)) * (viewW - 2 * AClineHeight);
         CGPoint tempPoint = CGPointMake(basePoint.x + trueHInterval, basePoint.y - trueVIntervalAltitude);
-        NSLog(@"<%f : %f>, trueVIntervalAltitude is %f, trueHInterval is %f, viewH is %f, totleAltitude is %f", basePoint.x + trueHInterval, basePoint.y - trueVIntervalAltitude, trueVIntervalAltitude, trueHInterval, viewH, totleAltitude);
+        DLog(@"<%f : %f>, trueVIntervalAltitude is %f, trueHInterval is %f, viewH is %f, totleAltitude is %f", basePoint.x + trueHInterval, basePoint.y - trueVIntervalAltitude, trueVIntervalAltitude, trueHInterval, viewH, totleAltitude);
         [pathAltitude addLineToPoint:tempPoint];
         [pathAltitude moveToPoint:tempPoint];
     }
@@ -224,7 +224,7 @@
         accruedDistance += step.distanceInterval.doubleValue;
         trueHInterval = (accruedDistance / (self.route.distance.doubleValue * 1000)) * (viewW - 2 * AClineHeight);
         CGPoint tempPoint = CGPointMake(basePoint.x + trueHInterval, basePoint.y - trueVintervalSpeed);
-        NSLog(@"(%f : %f)", basePoint.x + trueHInterval, basePoint.y - trueVintervalSpeed);
+        DLog(@"(%f : %f)", basePoint.x + trueHInterval, basePoint.y - trueVintervalSpeed);
         [pathSpeed addLineToPoint:tempPoint];
         [pathSpeed moveToPoint:tempPoint];
     }

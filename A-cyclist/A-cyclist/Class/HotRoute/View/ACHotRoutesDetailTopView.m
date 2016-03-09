@@ -148,7 +148,7 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     //根据contentOffset的值来进行判断，当前是第几张图
-    NSLog(@"%@", NSStringFromCGPoint(scrollView.contentOffset));
+    DLog(@"%@", NSStringFromCGPoint(scrollView.contentOffset));
     
     self.index = scrollView.contentOffset.x / kimageWidth;
     //根据当前值设置pageControl
@@ -158,14 +158,14 @@
 /** scrollView的拖拽事件 */
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
-    NSLog(@"开始拖拽...%@", NSStringFromCGPoint(scrollView.contentOffset));
+    DLog(@"开始拖拽...%@", NSStringFromCGPoint(scrollView.contentOffset));
     //停止时钟
     [self stopTimer];
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
-    NSLog(@"结束拖拽...");
+    DLog(@"结束拖拽...");
     //启动时钟
     [self startTimer];
 }

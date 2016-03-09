@@ -9,6 +9,7 @@
 #import "ACSettingFeedbackViewController.h"
 #import <BmobSDK/Bmob.h>
 #import "ACShowAlertTool.h"
+#import "ACGlobal.h"
 
 @interface ACSettingFeedbackViewController () <UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *contactTextField;
@@ -48,7 +49,7 @@
             //推送内容为反馈的内容
             [push setMessage:self.messageTextView.text];
             [push sendPushInBackgroundWithBlock:^(BOOL isSuccessful, NSError *error) {
-                NSLog(@"push error =====>%@",[error description]);
+                DLog(@"push error =====>%@",[error description]);
             }];
             [self.navigationController popViewControllerAnimated:YES];
             [ACShowAlertTool showSuccess:@"发送成功"];

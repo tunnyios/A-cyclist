@@ -732,9 +732,9 @@ typedef enum : NSUInteger {
 {
     if ([overlay isKindOfClass:[BMKPolyline class]]) {
         BMKPolylineView* polylineView = [[BMKPolylineView alloc] initWithOverlay:overlay];
-        polylineView.fillColor = [[UIColor cyanColor] colorWithAlphaComponent:1];
-        polylineView.strokeColor = [[UIColor blueColor] colorWithAlphaComponent:0.7];
-        polylineView.lineWidth = 3.0;
+        polylineView.fillColor = [RGBColor(237, 65, 45, 1) colorWithAlphaComponent:1];
+        polylineView.strokeColor = [RGBColor(237, 65, 45, 1) colorWithAlphaComponent:1];
+        polylineView.lineWidth = 5.0;
         return polylineView;
     }
     return nil;
@@ -853,6 +853,7 @@ typedef enum : NSUInteger {
 
 - (void)saveUserData
 {
+    //取缓存中的里程和time数据
     self.accruedTime = self.user.accruedTime.doubleValue + self.totleTime;
     self.accruedDistance = self.user.accruedDistance.doubleValue + self.totleDistance;
     

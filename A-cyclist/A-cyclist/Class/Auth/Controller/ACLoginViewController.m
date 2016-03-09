@@ -174,7 +174,7 @@
         
         //通过授权信息注册登录
         [ACDataBaseTool loginWithAccessToken:accessToken uid:uid expirationDate:expiresDate platform:ACLoginPlatformQQ success:^(id result) {
-            NSLog(@"user objectid is :%@",result);
+            DLog(@"user objectid is :%@",result);
             self.tempUserModel = (ACUserModel *)result;
             if (self.tempUserModel.weight && ![self.tempUserModel.weight isEqual:@0]) {
                 //本地缓存
@@ -187,7 +187,7 @@
                 [self.tencentOAuth getUserInfo];
             }
         } failure:^(NSError *error) {
-            NSLog(@"weibo login error:%@",error);
+            DLog(@"weibo login error:%@",error);
         }];
     }
 }

@@ -209,7 +209,7 @@
             [self presentViewController:controller
                                animated:YES
                              completion:^(void){
-                                 NSLog(@"Picker View Controller is presented");
+                                 DLog(@"Picker View Controller is presented");
                              }];
         }
     }];
@@ -227,7 +227,7 @@
             [self presentViewController:controller
                                animated:YES
                              completion:^(void){
-                                 NSLog(@"Picker View Controller is presented");
+                                 DLog(@"Picker View Controller is presented");
                              }];
         }
     }];
@@ -488,7 +488,7 @@
     [sourceImage drawInRect:thumbnailRect];
     
     newImage = UIGraphicsGetImageFromCurrentImageContext();
-    if(newImage == nil) NSLog(@"could not scale image");
+    if(newImage == nil) DLog(@"could not scale image");
     
     //pop the context to get back to the default
     UIGraphicsEndImageContext();
@@ -533,7 +533,7 @@
 - (void)saveClicked
 {
     if (!self.user.weight) {
-        [self showAlertMsg:@"请认真填写体重" cancelBtn:@"确定"];
+        [self showAlertMsg:@"请填写真实的体重" cancelBtn:@"确定"];
         return;
     }
     //1. 保存到本地缓存

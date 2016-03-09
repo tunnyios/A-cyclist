@@ -268,7 +268,7 @@
 - (IBAction)sharedBtnClick:(id)sender
 {
     //设置只分享图片
-//    [UMSocialData defaultData].extConfig.qqData.qqMessageType = UMSocialQQMessageTypeImage;
+    [UMSocialData defaultData].extConfig.qqData.qqMessageType = UMSocialQQMessageTypeImage;
     
     //1.截图
     ACSharedTitleView *titleView = [ACSharedTitleView sharedTitleView];
@@ -281,12 +281,12 @@
     //2.拼图
     UIImage *newImage = [self imageWithImageArray:@[titleImage, mapImage, argumentsImage, speedImage, climbingImage]];
     
-//    [UMSocialSnsService presentSnsIconSheetView:self
-//                                         appKey:@"55cdacb0e0f55ab21a0010ff"
-//                                      shareText:nil
-//                                     shareImage:newImage
-//                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToQQ,nil]
-//                                       delegate:self];
+    [UMSocialSnsService presentSnsIconSheetView:self
+                                         appKey:ACYouMengAppKey
+                                      shareText:nil
+                                     shareImage:newImage
+                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToQQ,nil]
+                                       delegate:self];
 }
 
 /**
@@ -347,7 +347,7 @@
 - (void)setTrailData
 {
     self.routeNameLabel.text = self.route.routeName;
-    self.distanceLabel.text = [NSString stringWithFormat:@"%@", self.route.distance];
+    self.distanceLabel.text = [NSString stringWithFormat:@"%.2f", self.route.distance.doubleValue];
     self.timeLabel.text = self.route.time;
     self.kcalLabel.text = [NSString stringWithFormat:@"%@", self.route.kcal];
     self.ascendAltitudeLabel.text = self.route.ascendAltitude;
@@ -466,9 +466,9 @@
 {
     if ([overlay isKindOfClass:[BMKPolyline class]]) {
         BMKPolylineView* polylineView = [[BMKPolylineView alloc] initWithOverlay:overlay];
-        polylineView.fillColor = [[UIColor cyanColor] colorWithAlphaComponent:1];
-        polylineView.strokeColor = [[UIColor blueColor] colorWithAlphaComponent:0.7];
-        polylineView.lineWidth = 3.0;
+        polylineView.fillColor = [RGBColor(237, 65, 45, 1) colorWithAlphaComponent:1];
+        polylineView.strokeColor = [RGBColor(237, 65, 45, 1) colorWithAlphaComponent:1];
+        polylineView.lineWidth = 5.0;
         return polylineView;
     }
     return nil;
@@ -532,7 +532,7 @@
 - (void)addGroup0
 {
     //数据部分
-    ACCyclingDetailModel *cell0 = [ACCyclingDetailModel settingCellWithTitle:@"运动里程" subTitle:[NSString stringWithFormat:@"%@", self.route.distance]];
+    ACCyclingDetailModel *cell0 = [ACCyclingDetailModel settingCellWithTitle:@"运动里程" subTitle:[NSString stringWithFormat:@"%.2f", self.route.distance.doubleValue]];
     
     ACSettingGroupModel *group = [[ACSettingGroupModel alloc] init];
     group.cellList = @[cell0];
@@ -543,8 +543,8 @@
 
 - (void)addGroup1
 {
-    ACCyclingDetailModel *cell0 = [ACCyclingDetailModel settingCellWithTitle:@"平均速度" subTitle:[NSString stringWithFormat:@"%@", self.route.averageSpeed]];
-    ACCyclingDetailModel *cell1 = [ACCyclingDetailModel settingCellWithTitle:@"极速" subTitle:[NSString stringWithFormat:@"%@", self.route.maxSpeed]];
+    ACCyclingDetailModel *cell0 = [ACCyclingDetailModel settingCellWithTitle:@"平均速度" subTitle:[NSString stringWithFormat:@"%.2f", self.route.averageSpeed.doubleValue]];
+    ACCyclingDetailModel *cell1 = [ACCyclingDetailModel settingCellWithTitle:@"极速" subTitle:[NSString stringWithFormat:@"%.2f", self.route.maxSpeed.doubleValue]];
     
     ACSettingGroupModel *group = [[ACSettingGroupModel alloc] init];
     group.cellList = @[cell0, cell1];
