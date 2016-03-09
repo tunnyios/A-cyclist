@@ -27,9 +27,10 @@ pod 'SDWebImage', '~>3.7'
 pod 'ActionSheetPicker-3.0', '2.0.4'
 
 # UMengSocial
-pod 'UMengSocial', '~> 5.0'
+pod 'UMengSocial', '5.0'
 
 # 百度地图SDK
 pod 'BaiduMapKit'
 
+pod 'Toast', '3.0'
 

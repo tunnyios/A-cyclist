@@ -43,4 +43,10 @@
              otherBtnTitle:(NSString *)otherBtnTitle
                    handler:(void (^)())handler;
 
+/**
+ *  中间弹框
+ */
+- (void)showMsgCenter:(NSString *)msg;
+
+
 @end

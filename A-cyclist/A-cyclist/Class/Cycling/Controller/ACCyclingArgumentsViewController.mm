@@ -262,6 +262,7 @@
     sharedRoute.route = sender[1];
 }
 
+#pragma mark - 分享
 /**
  *  点击了分享按钮
  */
@@ -298,6 +299,7 @@
     if(response.responseCode == UMSResponseCodeSuccess)
     {
         //得到分享到的微博平台名
+        [self showMsgCenter:@"分享成功"];
 //        NSLog(@"share to sns name is %@",[[response.data allKeys] objectAtIndex:0]);
     }
 }

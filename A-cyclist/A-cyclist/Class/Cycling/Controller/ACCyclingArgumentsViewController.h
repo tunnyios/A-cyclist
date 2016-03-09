@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ACBaseViewController.h"
 
 @class ACRouteModel;
-@interface ACCyclingArgumentsViewController : UIViewController
+@interface ACCyclingArgumentsViewController : ACBaseViewController
 /** 路线对象 */
 @property (nonatomic, strong) ACRouteModel *route;
 

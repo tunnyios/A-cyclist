@@ -40,6 +40,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     //设置友盟社会化组件appkey
     [UMSocialData setAppKey:ACYouMengAppKey];
+    //取消友盟自带的弹窗
+    [UMSocialConfig setFinishToastIsHidden:YES position:UMSocialiToastPositionCenter];
     //打开新浪微博的SSO开关，设置新浪微博回调地址，这里必须要和你在新浪微博后台设置的回调地址一致。
     [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:ACSinaAppKey
                                               secret:ACSinaSecret
@@ -50,8 +52,6 @@
     [UMSocialWechatHandler setWXAppId:ACWechatAppId appSecret:ACWechatSecret url:ACWechatRedirectURL];
     
     [Bmob registerWithAppKey:ACBmobAppKey];
-//    [WeiboSDK enableDebugMode:YES];
-//    [WeiboSDK registerApp:ACSinaAppKey];
     // 要使用百度地图，请先启动BaiduMapManager
     self.bmkMapManager = [[BMKMapManager alloc] init];
     // 如果要关注网络及授权验证事件，请设定     generalDelegate参数
