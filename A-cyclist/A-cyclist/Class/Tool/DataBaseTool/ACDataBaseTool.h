@@ -79,7 +79,7 @@ typedef enum : NSUInteger {
 
 /* sharedRoute路线 */
 /** 根据classification类别来获取sharedRoute列表 */
-+ (void)getSharedRouteListClass:(NSString *)classification resultBlock:(void (^) (NSArray *sharedRoutes, NSError *error))block;
++ (void)getSharedRouteListClass:(NSString *)classification pageIndex:(NSUInteger)pageIndex resultBlock:(void (^) (NSArray *sharedRoutes, NSError *error))block;
 
 /** 添加一条共享路线到sharedRoute数据库 */
 + (void)addSharedRouteWith:(ACSharedRouteModel *)sharedRoute userObjectId:(NSString *)objectId resultBlock:(void (^) (BOOL isSuccessful, NSError *error))block;
@@ -90,7 +90,7 @@ typedef enum : NSUInteger {
 + (void)getRankingNumWithUserId:(NSString *)objectId resultBlock:(void (^) (NSString *numStr, NSError *error))block;
 
 /** 对所有用户按累计里程进行降序排序 */
-+ (void)getUserListWithResutl:(void (^) (NSArray *userList, NSError *error))block;
++ (void)getUserListWithPageIndex:(NSUInteger)pageIndex result:(void (^) (NSArray *userList, NSError *error))block;
 
 
 #pragma mark - BQL查询类

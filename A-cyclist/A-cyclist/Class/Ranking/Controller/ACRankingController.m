@@ -12,6 +12,7 @@
 #import "ACDataBaseTool.h"
 #import "UIImageView+WebCache.h"
 #import "UIImage+Extension.h"
+#import "MBProgressHUD+MJ.h"
 #import "ACGlobal.h"
 #import "ACRankingFormerCellView.h"
 #import "ACRankingBehindCellView.h"
@@ -20,23 +21,17 @@
 #import "ACNavigationViewController.h"
 #import "ACCyclingArgumentsViewController.h"
 #import "ACUserDetailController.h"
+#import "ACRankingHeaderView.h"
+#import <MJRefresh.h>
 
-
-@interface ACRankingController ()
-/** 头像 */
-@property (weak, nonatomic) IBOutlet UIImageView *iconView;
-/** 昵称 */
-@property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
-/** 累计里程 */
-@property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
-/** 排名 */
-@property (weak, nonatomic) IBOutlet UILabel *rankingNumLabel;
+@interface ACRankingController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
 /** 用户对象 */
 @property (nonatomic, strong) ACUserModel *user;
 /** 用户列表 */
 @property (nonatomic, strong) NSMutableArray *dataList;
+/** pageIndex */
+@property (nonatomic, assign) NSUInteger pageIndex;
 
 @end
 
@@ -64,89 +59,51 @@
     [super viewDidLoad];
     
     self.tableView.rowHeight = 64;
-    //1. 设置用户信息View
-    [self setUserData];
-    //2. 设置排名信息tableView
+    self.tableView.sectionHeaderHeight = 120;
+    //上下拉刷新
+    [self initRefreshView];
+    //设置排名信息tableView
     [self setRankingData];
 }
 
 /**
- *  设置用户信息View
- */
-- (void)setUserData
-{
-    //1. 根据URL下载头像
-    NSURL *url = [NSURL URLWithString:self.user.profile_image_url];
-    [self.iconView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"signup_avatar_default"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        if (error) {
-            DLog(@"下载图片失败 error is %@", error);
-        } else {
-            DLog(@"下载图片成功");
-        }
-    }];
-    //裁剪图片
-    [UIImage clipImageWithView:self.iconView border:2 borderColor:[UIColor colorWithRed:158 green:185 blue:224 alpha:1] radius:self.iconView.bounds.size.width * 0.5];
-    
-    //2. 设置其他数据
-    self.userNameLabel.text = self.user.username;
-    if (self.user.accruedDistance) {
-        self.distanceLabel.text = [NSString stringWithFormat:@"%@ km", self.user.accruedDistance];
-        
-        //3. 获取当前用户的排名
-        [ACDataBaseTool getRankingNumWithUserId:self.user.objectId resultBlock:^(NSString *numStr, NSError *error) {
-            if (!error) {
-                self.rankingNumLabel.text = [NSString stringWithFormat:@"%@ 名", numStr];
-            } else {
-                DLog(@"从数据库获取当前用户排名失败，error is %@", error);
-            }
-        }];
-    } else {    //数据库中accruedDistance 为NULL
-        self.distanceLabel.text = @"0 km";
-        self.rankingNumLabel.text = @"未上榜";
-    }
-    
-    
-}
-
-/**
- *  设置排名信息tableView
+ *  获取排名信息tableView
  */
 - (void)setRankingData
 {
-    [ACDataBaseTool getUserListWithResutl:^(NSArray *userList, NSError *error) {
+    [MBProgressHUD showMessage:@"正在加载"];
+    __weak typeof (self)weakSelf = self;
+    [ACDataBaseTool getUserListWithPageIndex:self.pageIndex result:^(NSArray *userList, NSError *error) {
         if (error) {
-            DLog(@"从数据库中获取用户列表失败， error is %@", error);
+            DLog(@"从服务器中获取用户列表失败， error is %@", error);
+            [weakSelf.tableView.mj_header endRefreshing];
+            [weakSelf.tableView.mj_footer endRefreshing];
+            [MBProgressHUD hideHUD];
+            [weakSelf showMsgCenter:ACRankGetListError];
         } else {
+            if (1 == weakSelf.pageIndex) {
+                [weakSelf.dataList removeAllObjects];
+            }
+            
             [userList enumerateObjectsUsingBlock:^(ACUserModel *user, NSUInteger idx, BOOL *stop) {
-                if (idx < 3) {
-                    NSString *distance = [NSString stringWithFormat:@"%.0f", user.accruedDistance.doubleValue];
-                    NSString *suffxIcon = [NSString stringWithFormat:@"Ranklist_No%lu", idx + 1];
-                    ACRankingFormerCellModel *formerModel = [ACRankingFormerCellModel settingCellWithTitle:user.username icon:user.profile_image_url location:user.location distance:distance suffixIcon:suffxIcon];
-                    
-                    formerModel.option = ^(){
-                        UIStoryboard *rankSB = [UIStoryboard storyboardWithName:@"ranking" bundle:nil];
-                        ACUserDetailController *userDetailController = [rankSB instantiateViewControllerWithIdentifier:@"userDetailController"];
-                        userDetailController.userModel = user;
-                        [self.navigationController pushViewController:userDetailController animated:YES];
-                    };
-                    [self.dataList addObject:formerModel];
-                    
+                if (1 == weakSelf.pageIndex) {
+                    if (idx < 3) {
+                        ACRankingFormerCellModel *formerModel = [weakSelf creatFormerCellModelWithData:user idx:idx];
+                        [weakSelf.dataList addObject:formerModel];
+                    } else {
+                        ACRankingBehindCellModel *behindModel = [weakSelf creatBehindCellModelWithData:user idx:idx];
+                        [weakSelf.dataList addObject:behindModel];
+                    }
                 } else {
-                    NSString *distance = [NSString stringWithFormat:@"%.0f", user.accruedDistance.doubleValue];
-                    NSString *suffxNum = [NSString stringWithFormat:@"%lu", idx + 1];
-                    ACRankingBehindCellModel *behindModel = [ACRankingBehindCellModel settingCellWithTitle:user.username icon:user.profile_image_url location:user.location distance:distance suffixNum:suffxNum];
-                    
-                    behindModel.option = ^(){
-                        UIStoryboard *rankSB = [UIStoryboard storyboardWithName:@"ranking" bundle:nil];
-                        ACUserDetailController *userDetailController = [rankSB instantiateViewControllerWithIdentifier:@"userDetailController"];
-                        userDetailController.userModel = user;
-                        [self.navigationController pushViewController:userDetailController animated:YES];
-                    };
-                    [self.dataList addObject:behindModel];
+                    ACRankingBehindCellModel *behindModel = [weakSelf creatBehindCellModelWithData:user idx:idx];
+                    [weakSelf.dataList addObject:behindModel];
                 }
             }];
             
-            [self.tableView reloadData];
+            [weakSelf.tableView reloadData];
+            [weakSelf.tableView.mj_header endRefreshing];
+            [weakSelf.tableView.mj_footer endRefreshing];
+            [MBProgressHUD hideHUD];
         }
 
     }];
@@ -155,6 +112,61 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - 初始化上下拉刷新
+- (void)initRefreshView
+{
+    //设置索引
+    self.pageIndex = 1;
+    __weak typeof (self)weakSelf = self;
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        weakSelf.pageIndex = 1;
+        [weakSelf setRankingData];
+    }];
+    
+    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        weakSelf.pageIndex++;
+        [weakSelf setRankingData];
+    }];
+}
+
+/**
+ *  创建前三名
+ */
+- (ACRankingFormerCellModel *)creatFormerCellModelWithData:(ACUserModel *)user idx:(NSUInteger)idx
+{
+    NSString *distance = [NSString stringWithFormat:@"%.0f", user.accruedDistance.doubleValue];
+    NSString *suffxIcon = [NSString stringWithFormat:@"Ranklist_No%lu", idx + 1];
+    ACRankingFormerCellModel *formerModel = [ACRankingFormerCellModel settingCellWithTitle:user.username icon:user.profile_image_url location:user.location distance:distance suffixIcon:suffxIcon];
+    __weak typeof (self)weakSelf = self;
+    formerModel.option = ^(){
+        UIStoryboard *rankSB = [UIStoryboard storyboardWithName:@"ranking" bundle:nil];
+        ACUserDetailController *userDetailController = [rankSB instantiateViewControllerWithIdentifier:@"userDetailController"];
+        userDetailController.userModel = user;
+        [weakSelf.navigationController pushViewController:userDetailController animated:YES];
+    };
+    
+    return formerModel;
+}
+
+/**
+ *  创建后几名
+ */
+- (ACRankingBehindCellModel *)creatBehindCellModelWithData:(ACUserModel *)user idx:(NSUInteger)idx
+{
+    NSString *distance = [NSString stringWithFormat:@"%.0f", user.accruedDistance.doubleValue];
+    NSString *suffxNum = [NSString stringWithFormat:@"%lu", (30 * (self.pageIndex - 1))+ idx + 1];
+    ACRankingBehindCellModel *behindModel = [ACRankingBehindCellModel settingCellWithTitle:user.username icon:user.profile_image_url location:user.location distance:distance suffixNum:suffxNum];
+    __weak typeof (self)weakSelf = self;
+    behindModel.option = ^(){
+        UIStoryboard *rankSB = [UIStoryboard storyboardWithName:@"ranking" bundle:nil];
+        ACUserDetailController *userDetailController = [rankSB instantiateViewControllerWithIdentifier:@"userDetailController"];
+        userDetailController.userModel = user;
+        [weakSelf.navigationController pushViewController:userDetailController animated:YES];
+    };
+    
+    return behindModel;
 }
 
 
@@ -183,6 +195,12 @@
     }
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    ACRankingHeaderView *headerView = [ACRankingHeaderView headerView];
+    headerView.userModel = self.user;
+    return headerView;
+}
 
 #pragma mark - tableView的代理方法
 
@@ -199,6 +217,5 @@
         cellModel.option(indexPath);
     }
 }
-
 
 @end

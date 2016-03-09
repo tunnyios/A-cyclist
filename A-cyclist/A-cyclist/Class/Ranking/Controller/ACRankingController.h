@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ACBaseViewController.h"
 
-@interface ACRankingController : UIViewController
+@interface ACRankingController : ACBaseViewController
 
 @end

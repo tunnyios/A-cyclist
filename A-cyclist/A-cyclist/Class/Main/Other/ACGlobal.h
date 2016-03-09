@@ -43,6 +43,10 @@ extern NSUInteger const ACBmobThumbnailRuleID;
 /** Bmob服务器缩略图规格 180x180 */
 extern NSUInteger const ACBmobMiddleRuleID;
 
+#pragma mark - 公共常量
+/** 获取数据分页常量 */
+extern NSUInteger const ACDataLimitCount;
+
 #pragma mark - 提示信息
 /** 登录成功 */
 extern NSString * const ACLoginSuccess;
@@ -67,6 +71,12 @@ extern NSString * const ACEmptyEmail;
 extern NSString * const ACErrorUserName;
 /** 密码不合法 */
 extern NSString * const ACPasswordError;
+
+/** 获取热门路线失败 */
+extern NSString * const ACSharedRouteGetListError;
+
+/** 获取排行榜失败 */
+extern NSString * const ACRankGetListError;
 
 
 /*****************************「宏定义」********************************/

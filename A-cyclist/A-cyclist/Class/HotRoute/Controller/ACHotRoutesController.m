@@ -16,6 +16,9 @@
 #import "HCNewTypeButtonView.h"
 #import "HCDropDownMenuView.h"
 #import "ACHotRoutesCitiesController.h"
+#import "MBProgressHUD+MJ.h"
+#import <MJRefresh.h>
+#import <UIView+Toast.h>
 
 @interface ACHotRoutesController () <ACHotRoutesCityDelegate>
 /** 数据数组(包含了cellModel) */
@@ -24,6 +27,11 @@
 @property (nonatomic, strong) HCDropDownMenuView *dropMenu;
 /** 导航栏左边的button */
 @property (nonatomic, strong) HCNewTypeButtonView *leftBtn;
+/** selectedCityName */
+@property (nonatomic, copy) NSString *selectedCityName;
+/** pageIndex */
+@property (nonatomic, assign) NSUInteger pageIndex;
+
 @end
 
 @implementation ACHotRoutesController
@@ -46,8 +54,11 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.leftBtn];
     
     self.tableView.rowHeight = 162;
-    //2. 设置路线数据
-    [self setHotRoutesDataWithCityName:@"北京"];
+    self.selectedCityName = @"北京";
+    //上下拉刷新
+    [self initRefreshView];
+    //从缓存中获取路线
+    [self setHotRoutesDataWithCityName:self.selectedCityName];
 }
 
 /** 点击首页的下拉菜单 */
@@ -73,46 +84,33 @@
     };
 }
 
-/**
- *  获取数据
- *  先从本地获取，如果本地没有再从服务器获取
- */
-- (void)setHotRoutesDataWithCityName:(NSString *)cityName
+#pragma mark - 初始化上下拉刷新
+- (void)initRefreshView
 {
-    //1. 从本地缓存中获取
+    //设置索引
+    self.pageIndex = 1;
+    __weak typeof (self)weakSelf = self;
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        weakSelf.pageIndex = 1;
+        [weakSelf setHotRoutesDataWithCityName:self.selectedCityName];
+    }];
+    
+    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        weakSelf.pageIndex++;
+        [weakSelf setHotRoutesDataWithCityName:self.selectedCityName];
+    }];
+}
+
+#if 0
+/**
+ *  从缓存中获取数据
+ *
+ */
+- (void)getCacheRoutesDataWithCityName:(NSString *)cityName
+{
+    __weak typeof (self)weakSelf = self;
     NSArray *sharedRoutes = [ACCacheDataTool getSharedRouteWithRouteClass:cityName];
-    if (0 == sharedRoutes.count) {
-        DLog(@"从服务中获取...");
-        //2. 从服务器中获取数据
-        [ACDataBaseTool getSharedRouteListClass:cityName resultBlock:^(NSArray *sharedRoutes, NSError *error) {
-            if (error) {
-                DLog(@"从数据库中获取共享路线失败");
-            } else {
-                DLog(@"从数据库中获取共享路线成功, sharedRoutes is %@", sharedRoutes);
-                //1. 设置dataList数据
-                [sharedRoutes enumerateObjectsUsingBlock:^(ACSharedRouteModel *sharedRoute, NSUInteger idx, BOOL *stop) {
-                    ACHotRoutesCellModel *hotRouteCellModel = [ACHotRoutesCellModel hotRoute:sharedRoute];
-                    hotRouteCellModel.option = ^(){
-                        UIStoryboard *hotRoutesSB = [UIStoryboard storyboardWithName:@"hotRoutes" bundle:nil];
-                        ACHotRoutesDetailController *hotRoutesDetailController = [hotRoutesSB instantiateViewControllerWithIdentifier:@"hotRoutesDetail"];
-                        hotRoutesDetailController.sharedRoute = sharedRoute;
-                        
-                        [self.navigationController pushViewController:hotRoutesDetailController animated:YES];
-                    };
-                    [self.dataList addObject:hotRouteCellModel];
-                    
-                    //2. 回到主线程刷新数据
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [self.tableView reloadData];
-                    });
-                    
-                    //3. 将这批同一cityName的热门路线添加到本地
-                    [ACCacheDataTool addSharedRouteListWith:sharedRoutes];
-                }];
-            }
-        }];
-        
-    } else {
+    if (sharedRoutes.count > 0) {
         DLog(@"从本地获取...");
         //1. 设置dataList数据
         [sharedRoutes enumerateObjectsUsingBlock:^(ACSharedRouteModel *sharedRoute, NSUInteger idx, BOOL *stop) {
@@ -133,7 +131,54 @@
             [self.tableView reloadData];
         });
     }
-    
+}
+#endif
+
+/**
+ *  从服务器获取数据
+ */
+- (void)setHotRoutesDataWithCityName:(NSString *)cityName
+{
+    [MBProgressHUD showMessage:@"正在加载"];
+    __weak typeof (self)weakSelf = self;
+    [ACDataBaseTool getSharedRouteListClass:cityName pageIndex:self.pageIndex resultBlock:^(NSArray *sharedRoutes, NSError *error) {
+        if (error) {
+            DLog(@"从服务器获取共享路线失败");
+            [weakSelf.tableView.mj_header endRefreshing];
+            [weakSelf.tableView.mj_footer endRefreshing];
+            [MBProgressHUD hideHUD];
+            [weakSelf.view makeToast:ACSharedRouteGetListError duration:2.5f position:CSToastPositionCenter];
+        } else {
+            DLog(@"从服务器获取共享路线成功, sharedRoutes is %@", sharedRoutes);
+            if (1 == self.pageIndex) {
+                [weakSelf.dataList removeAllObjects];
+            }
+            
+            //1. 设置dataList数据
+            [sharedRoutes enumerateObjectsUsingBlock:^(ACSharedRouteModel *sharedRoute, NSUInteger idx, BOOL *stop) {
+                ACHotRoutesCellModel *hotRouteCellModel = [ACHotRoutesCellModel hotRoute:sharedRoute];
+                hotRouteCellModel.option = ^(){
+                    UIStoryboard *hotRoutesSB = [UIStoryboard storyboardWithName:@"hotRoutes" bundle:nil];
+                    ACHotRoutesDetailController *hotRoutesDetailController = [hotRoutesSB instantiateViewControllerWithIdentifier:@"hotRoutesDetail"];
+                    hotRoutesDetailController.sharedRoute = sharedRoute;
+                    
+                    [weakSelf.navigationController pushViewController:hotRoutesDetailController animated:YES];
+                };
+                [weakSelf.dataList addObject:hotRouteCellModel];
+                
+                //2. 回到主线程刷新数据
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [weakSelf.tableView reloadData];
+                });
+                
+                //3. 将这批同一cityName的热门路线添加到本地
+                [ACCacheDataTool addSharedRouteListWith:sharedRoutes];
+                [weakSelf.tableView.mj_header endRefreshing];
+                [weakSelf.tableView.mj_footer endRefreshing];
+                [MBProgressHUD hideHUD];
+            }];
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -180,6 +225,7 @@
 #pragma mark - 点击城市的代理事件
 - (void)hotRoutesCityClick:(ACHotRoutesCitiesController *)citiesController cityName:(NSString *)cityName
 {
+    self.selectedCityName = cityName;
     //修改左上角的button的值
     [self.leftBtn setTitle:cityName forState:UIControlStateNormal];
     //销毁下拉菜单
@@ -187,7 +233,7 @@
     
     //从数据库中获取热门路线，并刷新界面
     [self.dataList removeAllObjects];
-    [self setHotRoutesDataWithCityName:cityName];
+    [self setHotRoutesDataWithCityName:self.selectedCityName];
 }
 
 @end

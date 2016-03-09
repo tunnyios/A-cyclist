@@ -471,9 +471,11 @@
  *  根据classification类别来获取sharedRoute列表
  *
  */
-+ (void)getSharedRouteListClass:(NSString *)classification resultBlock:(void (^)(NSArray *, NSError *))block
++ (void)getSharedRouteListClass:(NSString *)classification pageIndex:(NSUInteger)pageIndex resultBlock:(void (^)(NSArray *, NSError *))block
 {
     BmobQuery *bquery = [BmobQuery queryWithClassName:@"sharedRoute"];
+    bquery.limit = ACDataLimitCount;
+    bquery.skip = bquery.limit * (pageIndex - 1);
     
     //构造约束条件
     [bquery whereKey:@"classification" equalTo:classification];
@@ -571,9 +573,11 @@
 /**
  *  对所有用户按累计里程进行降序排序
  */
-+ (void)getUserListWithResutl:(void (^)(NSArray *, NSError *))block
++ (void)getUserListWithPageIndex:(NSUInteger)pageIndex result:(void (^)(NSArray *, NSError *))block
 {
     BmobQuery *bquery = [BmobQuery queryWithClassName:@"_User"];
+    bquery.limit = ACDataLimitCount;
+    bquery.skip = bquery.limit * (pageIndex - 1);
     //排序
     [bquery orderByDescending:@"accruedDistance"];
     

@@ -133,6 +133,8 @@
 		A2C256F11B8060CA00295882 /* ACHotRoutesCitiesCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C256F01B8060CA00295882 /* ACHotRoutesCitiesCellView.m */; };
 		A2C256F31B80610700295882 /* ACHotRoutesCitiesCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2C256F21B80610700295882 /* ACHotRoutesCitiesCellView.xib */; };
 		A2C256F61B807F6F00295882 /* ACAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C256F51B807F6F00295882 /* ACAnnotationView.m */; };
+		A2C3435B1C9014910009DD30 /* ACRankingHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C3435A1C9014910009DD30 /* ACRankingHeaderView.m */; };
+		A2C3435F1C9014A60009DD30 /* ACRankingHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2C3435E1C9014A60009DD30 /* ACRankingHeaderView.xib */; };
 		A2CE5A4B1B6879860071AC59 /* ACRouteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2CE5A4A1B6879860071AC59 /* ACRouteModel.m */; };
 		A2CE5A4E1B687F130071AC59 /* ACStepModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A2CE5A4D1B687F130071AC59 /* ACStepModel.m */; };
 		A2CE5A511B6909940071AC59 /* NSArray+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = A2CE5A501B6909940071AC59 /* NSArray+Log.m */; };
@@ -389,6 +391,9 @@
 		A2C256F21B80610700295882 /* ACHotRoutesCitiesCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ACHotRoutesCitiesCellView.xib; sourceTree = "<group>"; };
 		A2C256F41B807F6F00295882 /* ACAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACAnnotationView.h; sourceTree = "<group>"; };
 		A2C256F51B807F6F00295882 /* ACAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACAnnotationView.m; sourceTree = "<group>"; };
+		A2C343591C9014910009DD30 /* ACRankingHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACRankingHeaderView.h; sourceTree = "<group>"; };
+		A2C3435A1C9014910009DD30 /* ACRankingHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACRankingHeaderView.m; sourceTree = "<group>"; };
+		A2C3435E1C9014A60009DD30 /* ACRankingHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ACRankingHeaderView.xib; sourceTree = "<group>"; };
 		A2CE5A491B6879860071AC59 /* ACRouteModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACRouteModel.h; sourceTree = "<group>"; };
 		A2CE5A4A1B6879860071AC59 /* ACRouteModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACRouteModel.m; sourceTree = "<group>"; };
 		A2CE5A4C1B687F130071AC59 /* ACStepModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACStepModel.h; sourceTree = "<group>"; };
@@ -1090,6 +1095,9 @@
 				A21D7B5D1B76FC010014466C /* ACRankingFormerCellView.h */,
 				A21D7B5E1B76FC010014466C /* ACRankingFormerCellView.m */,
 				A21D7B5F1B76FC010014466C /* ACRankingFormerCellView.xib */,
+				A2C343591C9014910009DD30 /* ACRankingHeaderView.h */,
+				A2C3435A1C9014910009DD30 /* ACRankingHeaderView.m */,
+				A2C3435E1C9014A60009DD30 /* ACRankingHeaderView.xib */,
 				A21D7B621B76FC760014466C /* ACRankingBehindCellView.h */,
 				A21D7B631B76FC760014466C /* ACRankingBehindCellView.m */,
 				A21D7B641B76FC760014466C /* ACRankingBehindCellView.xib */,
@@ -1382,6 +1390,7 @@
 				A218F7051B5A3FB2007CBADA /* ACLogin.storyboard in Resources */,
 				A28BFF181B53F9AD00A712F1 /* profile.storyboard in Resources */,
 				A28BFF1E1B53F9FD00A712F1 /* setting.storyboard in Resources */,
+				A2C3435F1C9014A60009DD30 /* ACRankingHeaderView.xib in Resources */,
 				A21DE5E41B71AD3A00BC0D31 /* ACProfileCellView.xib in Resources */,
 				A2845EB51B5AB825006E0CE0 /* MBProgressHUD.bundle in Resources */,
 				A2158C951B7A1BD600BE27E1 /* HCStarView.xib in Resources */,
@@ -1512,6 +1521,7 @@
 				A26143211B5DFA6C007EA45C /* ACArrowWithSubtitleSettingCellModel.m in Sources */,
 				A266D9E81B5CFA0B00D4B326 /* HCFileParamsModel.m in Sources */,
 				A2F7FE401B5FD6BF0000D6EA /* VPImageCropperViewController.m in Sources */,
+				A2C3435B1C9014910009DD30 /* ACRankingHeaderView.m in Sources */,
 				A261B0001B5762D1006C8917 /* ACSettingGroupModel.m in Sources */,
 				A2082E6D1B62993400CA3325 /* ACCyclingViewController.mm in Sources */,
 				A2FB6FF61B6F65C60028731B /* ACLineChartLabelView.m in Sources */,

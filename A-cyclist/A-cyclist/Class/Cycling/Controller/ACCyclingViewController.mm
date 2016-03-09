@@ -816,7 +816,8 @@ typedef enum : NSUInteger {
     self.route.routeOne = [NSString stringWithFormat:@"%@%@", self.user.objectId, timeName];
     self.route.routeName = timeName;
     self.route.steps = self.locationArrayM;
-    self.route.distance = [NSNumber numberWithDouble:self.currentMileage.text.doubleValue];
+
+    self.route.distance = [NSNumber numberWithDouble:self.totleDistance * 0.001];
     self.route.time = self.currentTimeConsuming.text;
     self.route.timeNumber = [NSNumber numberWithDouble:[NSString stringWithFormat:@"%.2f", self.totleTime].doubleValue];
     self.route.averageSpeed = [NSNumber numberWithDouble:self.currentAverageSpeed.text.doubleValue];
@@ -866,7 +867,7 @@ typedef enum : NSUInteger {
 {
     //取缓存中的里程和time数据
     self.accruedTime = self.user.accruedTime.doubleValue + self.totleTime;
-    self.accruedDistance = self.user.accruedDistance.doubleValue + self.totleDistance;
+    self.accruedDistance = self.user.accruedDistance.doubleValue + (self.totleDistance * 0.001);
     
     self.user.accruedTime = [NSNumber numberWithDouble:[NSString stringWithFormat:@"%.2f", self.accruedTime].doubleValue];
     self.user.accruedDistance = [NSNumber numberWithDouble:[NSString stringWithFormat:@"%.2f", self.accruedDistance].doubleValue];

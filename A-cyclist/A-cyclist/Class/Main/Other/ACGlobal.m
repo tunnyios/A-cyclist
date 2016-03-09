@@ -43,6 +43,11 @@ NSUInteger const ACBmobThumbnailRuleID = 1;
 NSUInteger const ACBmobMiddleRuleID = 2;
 
 
+#pragma mark - 公共常量
+/** 获取数据分页常量 */
+NSUInteger const ACDataLimitCount = 20;
+
+
 #pragma mark - 提示信息
 /** 登录成功 */
 NSString * const ACLoginSuccess = @"登录成功";
@@ -67,3 +72,9 @@ NSString * const ACEmptyEmail = @"请填写邮箱地址";
 NSString * const ACErrorUserName = @"昵称中不能包含(除_以外的)特殊字符， 最短3个字符最长不超过16个字符";
 /** 密码不合法 */
 NSString * const ACPasswordError = @"密码不能为空";
+
+/** 获取热门路线失败 */
+NSString * const ACSharedRouteGetListError = @"获取共享路线失败";
+
+/** 获取排行榜失败 */
+NSString * const ACRankGetListError = @"获取排行榜失败";
