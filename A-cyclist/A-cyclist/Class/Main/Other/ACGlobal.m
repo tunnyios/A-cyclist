@@ -20,6 +20,10 @@ NSString * const ACSinaRedirectURL = @"https://api.weibo.com/oauth2/default.html
 NSString * const ACQQAppId = @"1104739169";
 NSString * const ACQQAppKey = @"nJ9vASx3n7zUP0vQ";
 NSString * const ACQQRedirectURL = @"http://github.com/tunnyios";
+/** Wechat授权 */
+NSString * const ACWechatAppId = @"wx4486760012956d1d";
+NSString * const ACWechatSecret = @"0e2e90ae23a15c93768d9d50c0dca5fb";
+NSString * const ACWechatRedirectURL = @"http://tunnyios.github.io";
 /** 百度地图微博授权 */
 NSString * const ACBaiduAppKey = @"sVLUnWrBkQpHrpKc8d0QeNFO";
 /** 友盟授权 */

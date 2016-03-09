@@ -24,6 +24,7 @@
 #import "UMSocial.h"
 #import "UMSocialSinaSSOHandler.h"
 #import "UMSocialQQHandler.h"
+#import <UMSocialWechatHandler.h>
 #import "WeiboSDK.h"
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
 
@@ -39,15 +40,14 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     //设置友盟社会化组件appkey
     [UMSocialData setAppKey:ACYouMengAppKey];
-    //打开新浪微博的SSO开关，设置新浪微博回调地址，这里必须要和你在新浪微博后台设置的回调地址一致。需要 #import "UMSocialSinaSSOHandler.h"
+    //打开新浪微博的SSO开关，设置新浪微博回调地址，这里必须要和你在新浪微博后台设置的回调地址一致。
     [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:ACSinaAppKey
                                               secret:ACSinaSecret
                                          RedirectURL:ACSinaRedirectURL];
     //设置手机QQ 的AppId，Appkey，和分享URL，需要#import "UMSocialQQHandler.h"
     [UMSocialQQHandler setQQWithAppId:ACQQAppId appKey:ACQQAppKey url:ACQQRedirectURL];
     //设置微信AppId、appSecret，分享url
-//    [UMSocialWechatHandler setWXAppId:@"wxd930ea5d5a258f4f" appSecret:@"db426a9829e4b49a0dcac7b4162da6b6" url:@"http://www.umeng.com/social"];
-    
+    [UMSocialWechatHandler setWXAppId:ACWechatAppId appSecret:ACWechatSecret url:ACWechatRedirectURL];
     
     [Bmob registerWithAppKey:ACBmobAppKey];
 //    [WeiboSDK enableDebugMode:YES];

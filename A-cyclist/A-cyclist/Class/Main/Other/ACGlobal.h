@@ -21,6 +21,10 @@ extern NSString * const ACSinaRedirectURL;
 extern NSString * const ACQQAppId;
 extern NSString * const ACQQAppKey;
 extern NSString * const ACQQRedirectURL;
+/** Wechat授权 */
+extern NSString * const ACWechatAppId;
+extern NSString * const ACWechatSecret;
+extern NSString * const ACWechatRedirectURL;
 /** 百度地图授权 */
 extern NSString * const ACBaiduAppKey;
 /** 友盟授权 */

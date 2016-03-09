@@ -269,7 +269,8 @@
 {
     //设置只分享图片
     [UMSocialData defaultData].extConfig.qqData.qqMessageType = UMSocialQQMessageTypeImage;
-    
+    [UMSocialData defaultData].extConfig.wechatSessionData.wxMessageType = UMSocialWXMessageTypeImage;
+    [UMSocialData defaultData].extConfig.wechatTimelineData.wxMessageType = UMSocialWXMessageTypeImage;
     //1.截图
     ACSharedTitleView *titleView = [ACSharedTitleView sharedTitleView];
     titleView.dateStr = [NSDate dateToString:self.route.cyclingStartTime WithFormatter:@"yyyy-MM-dd"];
@@ -285,8 +286,20 @@
                                          appKey:ACYouMengAppKey
                                       shareText:nil
                                      shareImage:newImage
-                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToQQ,nil]
+                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToQQ,UMShareToWechatSession,UMShareToWechatTimeline,nil]
                                        delegate:self];
+}
+
+/**
+ *  友盟分享的回掉方法
+ */
+- (void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
+{
+    if(response.responseCode == UMSResponseCodeSuccess)
+    {
+        //得到分享到的微博平台名
+//        NSLog(@"share to sns name is %@",[[response.data allKeys] objectAtIndex:0]);
+    }
 }
 
 /**
