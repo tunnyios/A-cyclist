@@ -58,7 +58,7 @@
     self.selectedCityName = @"北京";
     //上下拉刷新
     [self initRefreshView];
-    //从缓存中获取路线
+    //从服务器中获取路线
     [self setHotRoutesDataWithCityName:self.selectedCityName];
 }
 

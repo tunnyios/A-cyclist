@@ -111,7 +111,7 @@
     //从数据库中获取该用户的数据
     __weak typeof (self)weakSelf = self;
     [ACDataBaseTool getAllMaxRoutesWithUserId:self.userModel.objectId success:^(NSDictionary *result) {
-        DLog(@"resutl is %@", result);
+//        DLog(@"resutl is %@", result);
         if (result.count > 0) {
             if ([(NSArray *)[result objectForKey:@"routeArray"] count] > 0) {
                 weakSelf.routeArray = [result objectForKey:@"routeArray"];

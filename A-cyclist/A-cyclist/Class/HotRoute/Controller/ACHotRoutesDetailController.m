@@ -33,7 +33,9 @@
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     DLog(@"self.sharedRoute is %@", self.sharedRoute);
     //1. topView图片轮播
-    self.topView.photoArray = self.sharedRoute.imageList;
+    if (self.sharedRoute.imageList.count > 0) {
+        self.topView.photoArray = self.sharedRoute.imageList;
+    }
     //2. 参数
     HCStarView *difficultyView = [HCStarView starViewWithLevel:self.sharedRoute.difficultyLevel.integerValue];
     difficultyView.frame = self.difficultyView.bounds;
@@ -50,7 +52,7 @@
     //4. mapView
     ACSharedRoutePhotoModel *photoModel = [self.sharedRoute.imageList lastObject];
     NSURL *url = [NSURL URLWithString:photoModel.photoURL];
-    [self.routeMapView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@""] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    [self.routeMapView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"signup_avatar_default"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         if (error) {
             DLog(@"从网络上下载图片失败, error is %@", error);
         } else {

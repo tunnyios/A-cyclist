@@ -278,14 +278,14 @@
     
     //匹配查询
     [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
-                DLog(@"array is %@, error is %@", array, error);
+                DLog(@"array error is %@", error);
         //将BmobObject对象数组转换成Route对象数组
         NSArray *routeArray = nil;
         if (error == nil) {
             routeArray = [ACRouteModel routeModelArrayWithBmobObjectArray:array];
         }
         if (block) {
-            DLog(@"routeArray is %@, error is %@", routeArray, error);
+            DLog(@"routeArray error is %@", error);
             block(routeArray.firstObject, error);
         }
     }];
@@ -320,7 +320,7 @@
             routeArray = [ACRouteModel routeModelArrayWithBmobObjectArray:array];
         }
         if (block) {
-            DLog(@"routeArray is %@, error is %@", routeArray, error);
+            DLog(@"routeArray error is %@", error);
             block(routeArray, error);
         }
     }];
@@ -348,7 +348,7 @@
             routeArray = [ACRouteModel routeModelArrayWithBmobObjectArray:array];
         }
         if (block) {
-            DLog(@"routeArray is %@, error is %@", routeArray, error);
+            DLog(@"routeArray error is %@", error);
             block(routeArray, error);
         }
     }];
@@ -376,7 +376,7 @@
             routeModel = [ACRouteModel routeModelWithBmobObject:(BmobObject *)array.firstObject];
         }
         if (block) {
-            DLog(@"maxDistanceRouteModel is %@, error is %@", routeModel, error);
+            DLog(@"maxDistanceRouteModel error is %@", error);
             block(routeModel, error);
         }
     }];
@@ -404,7 +404,7 @@
             routeModel = [ACRouteModel routeModelWithBmobObject:(BmobObject *)array.firstObject];
         }
         if (block) {
-            DLog(@"maxSpeedRouteModel is %@, error is %@", routeModel, error);
+            DLog(@"maxSpeedRouteModel error is %@", error);
             block(routeModel, error);
         }
     }];
@@ -432,7 +432,7 @@
             routeModel = [ACRouteModel routeModelWithBmobObject:(BmobObject *)array.firstObject];
         }
         if (block) {
-            DLog(@"maxAverageSpeedRouteModel is %@, error is %@", routeModel, error);
+            DLog(@"maxAverageSpeedRouteModel error is %@", error);
             block(routeModel, error);
         }
     }];
@@ -460,7 +460,7 @@
             routeModel = [ACRouteModel routeModelWithBmobObject:(BmobObject *)array.firstObject];
         }
         if (block) {
-            DLog(@"maxTimeRouteModel is %@, error is %@", routeModel, error);
+            DLog(@"maxTimeRouteModel error is %@", error);
             block(routeModel, error);
         }
     }];
@@ -477,6 +477,7 @@
     bquery.limit = ACDataLimitCount;
     bquery.skip = bquery.limit * (pageIndex - 1);
     
+    [bquery orderByDescending:@"createdAt"];
     //构造约束条件
     [bquery whereKey:@"classification" equalTo:classification];
     
@@ -557,7 +558,7 @@
             
         } else {
             routeArray = routes;
-            DLog(@"数据库 routes is %@", routes);
+//            DLog(@"数据库 routes is %@", routes);
         }
         
         //1. 获取最长距离路线数据
@@ -567,7 +568,7 @@
                 
             } else {
                 maxDistanceRoute = route;
-                DLog(@"数据库：最长距离路线：%@", maxDistanceRoute);
+//                DLog(@"数据库：最长距离路线：%@", maxDistanceRoute);
             }
             
             //2. 获取最快极速路线数据
@@ -577,7 +578,7 @@
                     
                 } else {
                     maxSpeedRoute = route;
-                    DLog(@"数据库：最快极速路线：%@", maxSpeedRoute);
+//                    DLog(@"数据库：最快极速路线：%@", maxSpeedRoute);
                 }
                 
                 //3. 获取最快平均速度路线数据
@@ -587,7 +588,7 @@
                         
                     } else {
                         maxAverageRoute = route;
-                        DLog(@"数据库：最快平均速度路线：%@", maxAverageRoute);
+//                        DLog(@"数据库：最快平均速度路线：%@", maxAverageRoute);
                     }
                     
                     //4. 获取最长时间路线数据
@@ -597,7 +598,7 @@
                             
                         } else {
                             maxTimeRoute = route;
-                            DLog(@"数据库：最长时间路线：%@", maxTimeRoute);
+//                            DLog(@"数据库：最长时间路线：%@", maxTimeRoute);
                         }
                         
                         if (routeArray && maxDistanceRoute && maxSpeedRoute && maxAverageRoute && maxTimeRoute) {

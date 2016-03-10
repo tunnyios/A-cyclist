@@ -11,7 +11,7 @@
 #import "ACSharedRoutePhotoModel.h"
 #import "UIImageView+WebCache.h"
 
-#define kpageNumbers    ((self.photoArray.count) - 1)
+#define kpageNumbers    ((_photoArray.count) - 1)
 #define kimageWidth     ACScreenBounds.size.width
 
 @interface ACHotRoutesDetailTopView() <UIScrollViewDelegate>

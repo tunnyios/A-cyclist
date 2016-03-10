@@ -114,9 +114,6 @@ typedef enum : NSUInteger {
     self.sceneryView = [HCStarViewBigSize starViewBigSize];
     self.sceneryView.frame = self.sceneryContentView.bounds;
     [self.sceneryContentView addSubview:self.sceneryView];
-    //上传图片
-    
-    
 }
 
 - (void)dealloc
@@ -252,23 +249,35 @@ typedef enum : NSUInteger {
 }
 
 #pragma mark - UIImagePickerControllerDelegate
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
     /** 此处防止block的循环引用问题 */
     __weak typeof(self) appsVc = self;
     [picker dismissViewControllerAnimated:YES completion:^() {
         UIImage *portraitImg = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
-        portraitImg = [self imageByScalingToMaxSize:portraitImg];
-        // 裁剪
-        VPImageCropperViewController *imgEditorVC = [[VPImageCropperViewController alloc] initWithImage:portraitImg cropFrame:CGRectMake(0, 100.0f, self.view.frame.size.width, self.view.frame.size.width * 0.75) limitScaleRatio:3.0];
-        imgEditorVC.delegate = appsVc;
-        [self presentViewController:imgEditorVC animated:YES completion:^{
-            // TO DO
-            DLog(@"....TO..DO");
-        }];
+        //设置image到对应的imageView
+        if (ACImageClickedFirst == self.imageClicked) {
+            appsVc.leftImageView.image = portraitImg;
+        } else if (ACImageClickedSecond == self.imageClicked) {
+            appsVc.middleImageView.image = portraitImg;
+        } else if (ACImageClickedThird == self.imageClicked) {
+            appsVc.rightImageView.image = portraitImg;
+        } else {
+            DLog(@"未知错误");
+        }
+//        portraitImg = [self imageByScalingToMaxSize:portraitImg];
+//        // 裁剪
+//        VPImageCropperViewController *imgEditorVC = [[VPImageCropperViewController alloc] initWithImage:portraitImg cropFrame:CGRectMake(0, 100.0f, self.view.frame.size.width, self.view.frame.size.width * 0.75) limitScaleRatio:3.0];
+//        imgEditorVC.delegate = appsVc;
+//        [self presentViewController:imgEditorVC animated:YES completion:^{
+//            // TO DO
+//            DLog(@"....TO..DO");
+//        }];
     }];
 }
 
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
     [picker dismissViewControllerAnimated:YES completion:^(){
     }];
     DLog(@"picker dismissed");
@@ -280,7 +289,8 @@ typedef enum : NSUInteger {
  *  裁剪完图片后调用的操作
  *  @param editedImage       裁减后的图片
  */
-- (void)imageCropper:(VPImageCropperViewController *)cropperViewController didFinished:(UIImage *)editedImage {
+- (void)imageCropper:(VPImageCropperViewController *)cropperViewController didFinished:(UIImage *)editedImage
+{
     //设置image到对应的imageView
     if (ACImageClickedFirst == self.imageClicked) {
         self.leftImageView.image = editedImage;
@@ -295,31 +305,37 @@ typedef enum : NSUInteger {
     [cropperViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)imageCropperDidCancel:(VPImageCropperViewController *)cropperViewController {
+- (void)imageCropperDidCancel:(VPImageCropperViewController *)cropperViewController
+{
     [cropperViewController dismissViewControllerAnimated:YES completion:^{
     }];
 }
 
 
 #pragma mark camera utility
-- (BOOL) isCameraAvailable{
+- (BOOL) isCameraAvailable
+{
     return [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
 }
 
-- (BOOL) isFrontCameraAvailable {
+- (BOOL) isFrontCameraAvailable
+{
     return [UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceFront];
 }
 
-- (BOOL) doesCameraSupportTakingPhotos {
+- (BOOL) doesCameraSupportTakingPhotos
+{
     return [self cameraSupportsMedia:(__bridge NSString *)kUTTypeImage sourceType:UIImagePickerControllerSourceTypeCamera];
 }
 
-- (BOOL) isPhotoLibraryAvailable{
+- (BOOL) isPhotoLibraryAvailable
+{
     return [UIImagePickerController isSourceTypeAvailable:
             UIImagePickerControllerSourceTypePhotoLibrary];
 }
 
-- (BOOL) cameraSupportsMedia:(NSString *)paramMediaType sourceType:(UIImagePickerControllerSourceType)paramSourceType{
+- (BOOL) cameraSupportsMedia:(NSString *)paramMediaType sourceType:(UIImagePickerControllerSourceType)paramSourceType
+{
     __block BOOL result = NO;
     if ([paramMediaType length] == 0) {
         return NO;
@@ -336,7 +352,8 @@ typedef enum : NSUInteger {
 }
 
 #pragma mark image scale utility
-- (UIImage *)imageByScalingToMaxSize:(UIImage *)sourceImage {
+- (UIImage *)imageByScalingToMaxSize:(UIImage *)sourceImage
+{
     DLog(@"sourceImage.size is %@", NSStringFromCGSize(sourceImage.size));
     if (sourceImage.size.width < ORIGINAL_MAX_WIDTH) return sourceImage;
     CGFloat btWidth = 0.0f;
@@ -352,7 +369,8 @@ typedef enum : NSUInteger {
     return [self imageByScalingAndCroppingForSourceImage:sourceImage targetSize:targetSize];
 }
 
-- (UIImage *)imageByScalingAndCroppingForSourceImage:(UIImage *)sourceImage targetSize:(CGSize)targetSize {
+- (UIImage *)imageByScalingAndCroppingForSourceImage:(UIImage *)sourceImage targetSize:(CGSize)targetSize
+{
     UIImage *newImage = nil;
     CGSize imageSize = sourceImage.size;
     CGFloat width = imageSize.width;
@@ -408,10 +426,10 @@ typedef enum : NSUInteger {
 {
     //1. 上传图片到数据库，并获取URL
     //构造上传文件data字典数组
-    NSData *data1 = UIImageJPEGRepresentation(self.leftImageView.image, 1.0f);
-    NSData *data2 = UIImageJPEGRepresentation(self.middleImageView.image, 1.0f);
-    NSData *data3 = UIImageJPEGRepresentation(self.rightImageView.image, 1.0f);
-    NSData *data4 = UIImageJPEGRepresentation(self.routeMapImage, 1.0f);
+    NSData *data1 = UIImageJPEGRepresentation(self.leftImageView.image, 0.2f);
+    NSData *data2 = UIImageJPEGRepresentation(self.middleImageView.image, 0.2f);
+    NSData *data3 = UIImageJPEGRepresentation(self.rightImageView.image, 0.2f);
+    NSData *data4 = UIImageJPEGRepresentation(self.routeMapImage, 0.5f);
 
     NSDictionary *dict1 = nil;
     NSDictionary *dict2 = nil;

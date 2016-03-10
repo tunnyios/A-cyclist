@@ -811,7 +811,7 @@ typedef enum : NSUInteger {
 #pragma mark - 数据的存储操作
 - (void)saveRouteData
 {
-    NSString *timeName = [NSDate dateToString:self.route.cyclingStartTime WithFormatter:@"yyyy-MM-dd HH:mm"];
+    NSString *timeName = [NSDate dateToString:self.route.cyclingStartTime WithFormatter:@"yyyy-MM-dd HH:mm:ss"];
     //设置唯一键
     self.route.routeOne = [NSString stringWithFormat:@"%@%@", self.user.objectId, timeName];
     self.route.routeName = timeName;
