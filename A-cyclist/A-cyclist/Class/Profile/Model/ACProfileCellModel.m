@@ -19,7 +19,7 @@
     
     model.title = title;
     model.subTitle = subTitle;
-    if (route == nil) {
+    if (route.objectId == nil) {
         model.timeStr = @"";
     } else {
         model.timeStr = [NSDate dateToString:route.cyclingStartTime WithFormatter:@"yyyy-MM-dd"];

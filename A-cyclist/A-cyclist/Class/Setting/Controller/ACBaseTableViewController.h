@@ -23,11 +23,18 @@
 -(void)showAlertMsg:(NSString *)msg cancelBtn:(NSString *)cancelBtnTitle;
 
 /**
- *  确定/取消 Alert 弹窗 iOS7需要实现alertDelegate
+ *  确定/取消 Alert 弹窗
  */
 - (void)showAlertWithTitle:(NSString *)title
                    message:(NSString *)message
             cancelBtnTitle:(NSString *)cancelBtnTitle
              otherBtnTitle:(NSString *)otherBtnTitle
                    handler:(void (^)())handler;
+
+/**
+ *  中间弹框
+ */
+- (void)showMsgCenter:(NSString *)msg;
+
+
 @end

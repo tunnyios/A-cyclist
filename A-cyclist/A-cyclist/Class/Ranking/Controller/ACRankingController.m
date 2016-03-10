@@ -10,8 +10,6 @@
 #import "ACUserModel.h"
 #import "ACCacheDataTool.h"
 #import "ACDataBaseTool.h"
-#import "UIImageView+WebCache.h"
-#import "UIImage+Extension.h"
 #import "MBProgressHUD+MJ.h"
 #import "ACGlobal.h"
 #import "ACRankingFormerCellView.h"
@@ -60,6 +58,7 @@
     
     self.tableView.rowHeight = 64;
     self.tableView.sectionHeaderHeight = 120;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     //上下拉刷新
     [self initRefreshView];
     //设置排名信息tableView

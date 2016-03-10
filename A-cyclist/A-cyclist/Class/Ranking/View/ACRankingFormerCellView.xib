@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="64" id="KGk-i7-Jjw" customClass="ACRankingFormerCellView">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="64" id="KGk-i7-Jjw" customClass="ACRankingFormerCellView">
             <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="63.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9jb-Op-UmD" userLabel="imageContentView">
@@ -91,15 +92,28 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XUZ-Tq-W21">
+                        <rect key="frame" x="0.0" y="63" width="320" height="0.5"/>
+                        <color key="backgroundColor" red="0.74509803919999995" green="0.74509803919999995" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="adobeRGB1998"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="DZ3-yb-EvZ"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="mt6-Kr-23s" secondAttribute="trailing" constant="10" id="4eD-RO-4bK"/>
                     <constraint firstItem="CdW-pG-I97" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="6fk-dW-E9G"/>
+                    <constraint firstItem="XUZ-Tq-W21" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="EUm-5T-v9q"/>
                     <constraint firstAttribute="centerY" secondItem="mt6-Kr-23s" secondAttribute="centerY" id="QrJ-gE-Xzz"/>
                     <constraint firstItem="9jb-Op-UmD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="YBP-WA-fXP"/>
                     <constraint firstItem="9jb-Op-UmD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="bO8-A7-ZBx"/>
+                    <constraint firstAttribute="bottom" secondItem="XUZ-Tq-W21" secondAttribute="bottom" id="bsK-f7-RfO"/>
                     <constraint firstItem="mt6-Kr-23s" firstAttribute="leading" secondItem="pje-DM-pfA" secondAttribute="trailing" constant="10" id="mA4-lc-ZC3"/>
                     <constraint firstItem="CdW-pG-I97" firstAttribute="leading" secondItem="9jb-Op-UmD" secondAttribute="trailing" constant="30" id="rEA-4K-7fc"/>
+                    <constraint firstAttribute="trailing" secondItem="XUZ-Tq-W21" secondAttribute="trailing" id="w3H-LB-iSQ"/>
                     <constraint firstAttribute="centerY" secondItem="pje-DM-pfA" secondAttribute="centerY" id="w9j-K1-Nt7"/>
                 </constraints>
             </tableViewCellContentView>

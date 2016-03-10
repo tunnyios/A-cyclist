@@ -78,3 +78,6 @@ NSString * const ACSharedRouteGetListError = @"获取共享路线失败";
 
 /** 获取排行榜失败 */
 NSString * const ACRankGetListError = @"获取排行榜失败";
+
+/** 请求类报错 */
+NSString * const ACRequestError = @"网络不给力，请稍候再试";

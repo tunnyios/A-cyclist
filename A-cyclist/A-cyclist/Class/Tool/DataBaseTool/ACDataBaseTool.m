@@ -540,6 +540,86 @@
     }];
 }
 
+/**
+ *  获取最远骑行距离、极速、平均速度、单次最长时间路线
+ */
++ (void)getAllMaxRoutesWithUserId:(NSString *)objectId success:(void (^)(NSDictionary *result))success failure:(void (^)(NSString  *error))failure
+{
+    //0. 获取数据库中的用户已共享的路线列表
+    __block NSArray *routeArray = nil;
+    __block ACRouteModel *maxDistanceRoute = nil;
+    __block ACRouteModel *maxSpeedRoute = nil;
+    __block ACRouteModel *maxAverageRoute = nil;
+    __block ACRouteModel *maxTimeRoute = nil;
+    [ACDataBaseTool getSharedRouteListWithUserObjectId:objectId resultBlock:^(NSArray *routes, NSError *error) {
+        if (error) {
+            DLog(@"从数据库中获取用户路线数据失败, error:%@", error);
+            
+        } else {
+            routeArray = routes;
+            DLog(@"数据库 routes is %@", routes);
+        }
+        
+        //1. 获取最长距离路线数据
+        [ACDataBaseTool getMaxDistanceRouteWithUserObjectId:objectId resultBlock:^(ACRouteModel *route, NSError *error) {
+            if (error) {
+                DLog(@"从数据库中获取最长距离数据失败, error:%@", error);
+                
+            } else {
+                maxDistanceRoute = route;
+                DLog(@"数据库：最长距离路线：%@", maxDistanceRoute);
+            }
+            
+            //2. 获取最快极速路线数据
+            [ACDataBaseTool getMaxSpeedRouteWithUserObjectId:objectId resultBlock:^(ACRouteModel *route, NSError *error) {
+                if (error) {
+                    DLog(@"从数据库中获取最快极速数据失败, error:%@", error);
+                    
+                } else {
+                    maxSpeedRoute = route;
+                    DLog(@"数据库：最快极速路线：%@", maxSpeedRoute);
+                }
+                
+                //3. 获取最快平均速度路线数据
+                [ACDataBaseTool getMaxAverageSpeedRouteWithUserObjectId:objectId resultBlock:^(ACRouteModel *route, NSError *error) {
+                    if (error) {
+                        DLog(@"从数据库中获取最快平均速度数据失败, error:%@", error);
+                        
+                    } else {
+                        maxAverageRoute = route;
+                        DLog(@"数据库：最快平均速度路线：%@", maxAverageRoute);
+                    }
+                    
+                    //4. 获取最长时间路线数据
+                    [ACDataBaseTool getMaxTimeRouteWithUserObjectId:objectId resultBlock:^(ACRouteModel *route, NSError *error) {
+                        if (error) {
+                            DLog(@"从数据库中获取最长时间数据失败, error:%@", error);
+                            
+                        } else {
+                            maxTimeRoute = route;
+                            DLog(@"数据库：最长时间路线：%@", maxTimeRoute);
+                        }
+                        
+                        if (routeArray && maxDistanceRoute && maxSpeedRoute && maxAverageRoute && maxTimeRoute) {
+                            if (success) {
+                                NSDictionary *dict = @{@"routeArray" : routeArray,
+                                                       @"maxDistanceRoute" : maxDistanceRoute,
+                                                       @"maxSpeedRoute" : maxSpeedRoute,
+                                                       @"maxAverageRoute" : maxAverageRoute,
+                                                       @"maxTimeRoute" : maxTimeRoute};
+                                success(dict);
+                            }
+                        } else {
+                            if (failure) {
+                                failure(@"获取路线失败");
+                            }
+                        }
+                    }];
+                }];
+            }];
+        }];
+    }];
+}
 
 #pragma mark - 排行相关
 /**

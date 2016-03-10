@@ -58,7 +58,7 @@
     routeModel.isShared = [bmobObj objectForKey:@"isShared"];
     routeModel.cyclingStartTime = [bmobObj objectForKey:@"cyclingStartTime"];
     routeModel.cyclingEndTime = [bmobObj objectForKey:@"cyclingEndTime"];
-    routeModel.objectId = [bmobObj objectForKey:@"objectId"];
+    routeModel.objectId = bmobObj.objectId;
     routeModel.routeOne = [bmobObj objectForKey:@"routeOne"];
     routeModel.kcal = [bmobObj objectForKey:@"kcal"];
     

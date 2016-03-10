@@ -78,6 +78,9 @@ extern NSString * const ACSharedRouteGetListError;
 /** 获取排行榜失败 */
 extern NSString * const ACRankGetListError;
 
+/** 请求类报错 */
+extern NSString * const ACRequestError;
+
 
 /*****************************「宏定义」********************************/
 #ifdef  DEBUG

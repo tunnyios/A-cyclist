@@ -54,6 +54,7 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.leftBtn];
     
     self.tableView.rowHeight = 162;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.selectedCityName = @"北京";
     //上下拉刷新
     [self initRefreshView];
@@ -173,10 +174,10 @@
                 
                 //3. 将这批同一cityName的热门路线添加到本地
                 [ACCacheDataTool addSharedRouteListWith:sharedRoutes];
-                [weakSelf.tableView.mj_header endRefreshing];
-                [weakSelf.tableView.mj_footer endRefreshing];
-                [MBProgressHUD hideHUD];
             }];
+            [weakSelf.tableView.mj_header endRefreshing];
+            [weakSelf.tableView.mj_footer endRefreshing];
+            [MBProgressHUD hideHUD];
         }
     }];
 }

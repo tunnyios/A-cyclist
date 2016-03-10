@@ -32,8 +32,6 @@
 
 - (void)addData
 {
-//    __block NSMutableArray *arrayM = [NSMutableArray array];
-    
     [self.routeArrayModel enumerateObjectsUsingBlock:^(ACRouteModel *route, NSUInteger idx, BOOL *stop) {
         NSString *subTitle = [NSString stringWithFormat:@"%@", route.distance];
         ACProfileCellModel *profileCellM = [ACProfileCellModel profileCellWithTitle:route.routeName subTitle:subTitle route:route];
@@ -52,10 +50,6 @@
         group.cellList = arrayM;
         [self.dataList addObject:group];
     }];
-    
-//    ACSettingGroupModel *group = [[ACSettingGroupModel alloc] init];
-//    group.cellList = arrayM;
-//    [self.dataList addObject:group];
 }
 
 - (void)didReceiveMemoryWarning {

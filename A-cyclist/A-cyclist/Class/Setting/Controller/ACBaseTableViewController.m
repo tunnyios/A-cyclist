@@ -14,6 +14,7 @@
 #import "ACArrowSettingCellModel.h"
 #import "ACLogoutSettingViewCell.h"
 #import "UIColor+Tools.h"
+#import <UIView+Toast.h>
 
 @interface ACBaseTableViewController ()
 
@@ -157,4 +158,15 @@
     [alertController addAction:sureActoin];
     [self presentViewController:alertController animated:YES completion:nil];
 }
+
+#pragma mark 中间弹框
+- (void)showMsgCenter:(NSString *)msg
+{
+    if ([msg isEqualToString:@""]) {
+        [self.view makeToast:@"您的网络有问题，请稍后再试..." duration:2.5f position:CSToastPositionCenter];
+    }else{
+        [self.view makeToast:msg duration:2.5f position:CSToastPositionCenter];
+    }
+}
+
 @end
