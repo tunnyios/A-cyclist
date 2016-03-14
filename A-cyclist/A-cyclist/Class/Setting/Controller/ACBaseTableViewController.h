@@ -36,5 +36,14 @@
  */
 - (void)showMsgCenter:(NSString *)msg;
 
+/**
+ *  设置导航栏样式和标题
+ */
+- (void)setNavigation:(NSString *)title;
+
+/**
+ *  设置导航栏样式、标题和左边返回按钮
+ */
+- (void)setNavigationWithBackItem:(NSString *)title withAction:(SEL)action;
 
 @end

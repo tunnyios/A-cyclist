@@ -17,6 +17,7 @@
 #import "ACCacheDataTool.h"
 #import "ACDataBaseTool.h"
 #import "ACGlobal.h"
+#import "ACNavUtility.h"
 #import "NSDate+Extension.h"
 #import "ACRouteModel.h"
 #import "ACProfileHeaderView.h"
@@ -67,6 +68,8 @@ typedef enum : NSUInteger {
 {
     [super viewDidLoad];
     
+    self.navigationItem.rightBarButtonItem = [ACNavUtility setNavButtonWithImage:@"tab_more_iphone_5" target:self action:@selector(settingBtnClick:) frame:CGRectMake(0, 0, 24, 4)];
+    
     self.tableView.rowHeight = 44;
     // 设置下拉刷新,加载数据
     //添加刷新控件
@@ -95,6 +98,14 @@ typedef enum : NSUInteger {
     
     [self addGroup0];
     [self addGroup1];
+}
+
+- (void)settingBtnClick:(UIBarButtonItem *)item
+{
+    UIStoryboard *settingSB = [UIStoryboard storyboardWithName:@"setting" bundle:nil];
+    UINavigationController *settingNav = [settingSB instantiateInitialViewController];
+    UIViewController *settingVc = settingNav.topViewController;
+    [self.navigationController pushViewController:settingVc animated:YES];
 }
 
 - (void)addGroup0

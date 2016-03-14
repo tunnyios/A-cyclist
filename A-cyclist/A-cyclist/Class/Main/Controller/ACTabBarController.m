@@ -39,10 +39,11 @@
 //    routeVc.view.backgroundColor = [UIColor colorWithRandom];
 
     UIViewController *cyclingVc = [cyclingSB instantiateInitialViewController];
+    [self creatChildViewController:cyclingVc title:@"记录" icon:@"tab_more_iphone_5" selectedIcon:@"tab_more_white_iphone_5"];
     
     UINavigationController *rankingNav = [rankingSB instantiateInitialViewController];
     UIViewController *rankingVc = rankingNav.topViewController;
-    [self creatChildViewController:rankingVc title:@"排行榜" icon:@"tab_ranking_iphone_2" selectedIcon:@"tab_ranking_white_iphone_2"];
+    [self creatChildViewController:rankingVc title:@"排行" icon:@"tab_ranking_iphone_2" selectedIcon:@"tab_ranking_white_iphone_2"];
 //    rankingVc.view.backgroundColor = [UIColor colorWithRandom];
 
     UINavigationController *settingNav = [settingSB instantiateInitialViewController];
@@ -50,19 +51,26 @@
     [self creatChildViewController:settingVc title:@"更多" icon:@"tab_more_iphone_5" selectedIcon:@"tab_more_white_iphone_5"];
 //    settingVc.view.backgroundColor = [UIColor colorWithRandom];
     
-    self.viewControllers = @[profileNav,
-                             rankingNav,
-                             cyclingVc,
-                             routeNav,
-                             settingNav];
+//    self.viewControllers = @[profileNav,
+//                             rankingNav,
+//                             cyclingVc,
+//                             routeNav,
+//                             settingNav];
     
     //用自定义的tabBar来替换系统自己的taBar
-    HCTabBar5ContentView *tabBars = [[HCTabBar5ContentView alloc] init];
+//    HCTabBar5ContentView *tabBars = [[HCTabBar5ContentView alloc] init];
     //KVC赋值
-    [self setValue:tabBars forKey:@"tabBar"];
+//    [self setValue:tabBars forKey:@"tabBar"];
     
+    
+        self.viewControllers = @[routeNav,
+                                 cyclingVc,
+                                 rankingNav,
+                                 profileNav];
+    self.tabBar.backgroundImage = [UIImage imageNamed:@"tabbar_img~iphone"];
+
     //设置已启动程序先进入骑行界面
-    [self setSelectedIndex:2];
+    [self setSelectedIndex:1];
     
 }
 

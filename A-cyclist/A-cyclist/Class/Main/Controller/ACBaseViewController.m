@@ -99,7 +99,7 @@
     self.navigationItem.leftBarButtonItem = [ACNavUtility setNavButtonWithImage:@"back_icon.png"
                                                                         target:self
                                                                         action:action
-                                                                         frame:CGRectMake(0, 0, 20, 20)];
+                                                                       frame:CGRectMake(0, 0, 20, 20)];
 }
 
 #pragma mark - 确定/取消 Alert弹窗

@@ -233,7 +233,7 @@
     [self.dropMenu disMiss];
     
     //从数据库中获取热门路线，并刷新界面
-    [self.dataList removeAllObjects];
+    self.pageIndex = 1;
     [self setHotRoutesDataWithCityName:self.selectedCityName];
 }
 

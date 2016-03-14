@@ -10,6 +10,7 @@
 #import "ACSettingGroupModel.h"
 #import "ACSettingCellModel.h"
 #import "ACGlobal.h"
+#import "ACNavUtility.h"
 #import "ACSettingViewCell.h"
 #import "ACArrowSettingCellModel.h"
 #import "ACLogoutSettingViewCell.h"
@@ -167,6 +168,22 @@
     }else{
         [self.view makeToast:msg duration:2.5f position:CSToastPositionCenter];
     }
+}
+
+#pragma 设置导航栏样式和标题
+- (void)setNavigation:(NSString *)title
+{
+    [ACNavUtility setNav:self.navigationController setNavItem:self.navigationItem setTitle:title];
+}
+
+#pragma 设置导航栏样式、标题和左边返回按钮
+- (void)setNavigationWithBackItem:(NSString *)title withAction:(SEL)action
+{
+    [ACNavUtility setNav:self.navigationController setNavItem:self.navigationItem setTitle:title];
+    self.navigationItem.leftBarButtonItem = [ACNavUtility setNavButtonWithImage:@"back_icon.png"
+                                                                         target:self
+                                                                         action:action
+                                                                          frame:CGRectMake(0, 0, 20, 20)];
 }
 
 @end
