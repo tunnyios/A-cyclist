@@ -62,7 +62,7 @@
 - (IBAction)login
 {
     NSString *email = _loginEmail.text;
-    if (![email isAvailPhoneNumber]) {
+    if (![email isAvailPhoneNumber] && ![email isAvailEmail] &&![email isAvailUserName]) {
         [ACShowAlertTool showError:ACErrorEmail];
         return;
     }

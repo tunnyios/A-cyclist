@@ -110,7 +110,7 @@
     [ACShowAlertTool showMessage:@"加载中..." onView:nil];
     //从数据库中获取该用户的数据
     __weak typeof (self)weakSelf = self;
-    [ACDataBaseTool getAllMaxRoutesWithUserId:self.userModel.objectId success:^(NSDictionary *result) {
+    [ACDataBaseTool getShareAllMaxRoutesWithUserId:self.userModel.objectId success:^(NSDictionary *result) {
 //        DLog(@"resutl is %@", result);
         if (result.count > 0) {
             if ([(NSArray *)[result objectForKey:@"routeArray"] count] > 0) {

@@ -243,6 +243,20 @@ static FMDatabase *_db;
     return routeList.firstObject;
 }
 
+/**
+ *  清空个人本地路线缓存
+ */
++ (BOOL)clearPersonRoute
+{
+    NSString *sqlPersonRoute = @"DELETE FROM t_personRoute";
+    if (![_db executeUpdate:sqlPersonRoute])
+    {
+        DLog(@"Erase t_personRoute table error!");
+        return NO;
+    }
+    return YES;
+}
+
 
 #pragma mark - 共享路线相关
 /**

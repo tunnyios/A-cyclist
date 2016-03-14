@@ -51,6 +51,11 @@
 /** 从本地缓存中获取最长时间的一次骑行路线 */
 + (ACRouteModel *)getmaxTimeRouteWithId:(NSString *)objectId;
 
+/**
+ *  清空个人本地路线缓存
+ */
++ (BOOL)clearPersonRoute;
+
 #pragma mark - 共享路线相关
 /* 热门路线 */
 /** 添加一条共享路线到本地缓存sqlite3 */

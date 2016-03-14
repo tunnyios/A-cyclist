@@ -107,9 +107,16 @@ typedef enum : NSUInteger {
 + (void)addSharedRouteWith:(ACSharedRouteModel *)sharedRoute userObjectId:(NSString *)objectId resultBlock:(void (^) (BOOL isSuccessful, NSError *error))block;
 
 /**
+ *  获取共享的骑行路线
  *  获取最远骑行距离、极速、平均速度、单次最长时间路线
  */
-+ (void)getAllMaxRoutesWithUserId:(NSString *)objectId success:(void (^)(NSDictionary *result))success failure:(void (^)(NSString  *error))failure;
++ (void)getShareAllMaxRoutesWithUserId:(NSString *)objectId success:(void (^)(NSDictionary *result))success failure:(void (^)(NSString  *error))failure;
+
+/**
+ *  获取个人的骑行路线
+ *  获取最远骑行距离、极速、平均速度、单次最长时间路线
+ */
++ (void)getPersonalAllMaxRoutesWithUserId:(NSString *)objectId success:(void (^)(NSDictionary *result))success failure:(void (^)(NSString  *error))failure;
 
 
 #pragma mark - 排行相关
