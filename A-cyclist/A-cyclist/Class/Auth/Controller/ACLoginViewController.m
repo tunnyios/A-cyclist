@@ -17,6 +17,7 @@
 #import "ACUtility.h"
 #import "WeiboSDK.h"
 #import "ACSettingProfileInfoViewController.h"
+#import "ACRegisterViewController.h"
 
 @interface ACLoginViewController ()<TencentSessionDelegate>
 /** 输入框容器View */
@@ -45,6 +46,15 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    /* 手动移除通知，并退出键盘 */
+    [self.view endEditing:YES];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 #pragma mark - 登录相关
 /**
  *  登录账户
@@ -52,7 +62,7 @@
 - (IBAction)login
 {
     NSString *email = _loginEmail.text;
-    if (![email isAvailEmail]) {
+    if (![email isAvailPhoneNumber]) {
         [ACShowAlertTool showError:ACErrorEmail];
         return;
     }
@@ -64,25 +74,26 @@
     }
     
     //登录
+    [ACShowAlertTool showMessage:@"登录中..." onView:nil];
     [ACDataBaseTool loginWithAccount:email passWord:pwd block:^(ACUserModel *user, NSError *error) {
         if (!error) {
-            [ACShowAlertTool showSuccess:ACLoginSuccess];
-            DLog(@"user #%@#", user);
-            
-            //缓存数据到本地
-            [ACCacheDataTool saveUserInfo:user withObjectId:user.objectId];
-            
-            /* 手动移除通知，并退出键盘 */
-            [self.view endEditing:YES];
-            [[NSNotificationCenter defaultCenter] removeObserver:self];
-            
-            //跳转至主控制器
             UIWindow *window = [UIApplication sharedApplication].keyWindow;
-            ACTabBarController *tabBarController = [[ACTabBarController alloc] init];
-            
-            window.rootViewController = tabBarController;
-            [self.navigationController pushViewController:tabBarController animated:YES];
+            //本地缓存
+            [ACCacheDataTool saveUserInfo:user withObjectId:user.objectId];
+            if (user.weight && ![user.weight isEqual:@0]) {
+                //创建tabbarController跳转
+                ACTabBarController *tabBarController = [[ACTabBarController alloc] init];
+                window.rootViewController = tabBarController;
+            } else {
+                //跳转至settingProfileVC
+                ACSettingProfileInfoViewController *setProfileVC = [[ACSettingProfileInfoViewController alloc] init];
+                setProfileVC.pushFromType = PushFromTypeLogin;
+                UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:setProfileVC];
+                window.rootViewController = nav;
+            }
+            [ACShowAlertTool hideMessage];
         } else {
+            [ACShowAlertTool hideMessage];
             [ACShowAlertTool showError:ACLoginError];
             return;
         }
@@ -94,12 +105,13 @@
  */
 - (IBAction)newUserRegister
 {
-    /* 手动移除通知，并退出键盘 */
-    [self.view endEditing:YES];
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+//    /* 手动移除通知，并退出键盘 */
+//    [self.view endEditing:YES];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     UIStoryboard *loginSB = [UIStoryboard storyboardWithName:@"ACLogin" bundle:nil];
-    UIViewController *registerVc = [loginSB instantiateViewControllerWithIdentifier:@"register"];
+    ACRegisterViewController *registerVc = [loginSB instantiateViewControllerWithIdentifier:@"register"];
+    registerVc.from = RegisterPushFromTypeRegister;
     [self presentViewController:registerVc animated:YES completion:nil];
 }
 
@@ -108,24 +120,29 @@
  */
 - (IBAction)findPwd
 {
-    NSString *email = self.loginEmail.text;
-    if ([email isAvailEmail]) {
-        //从数据库中查找匹配的邮箱地址
-        NSString *sql = [NSString stringWithFormat:@"select * from _User where email = '%@'", email];
-        DLog(@"sql #%@#",sql);
-        
-        [ACDataBaseTool queryWithSQL:sql pValues:nil block:^(NSArray *result, NSError *error) {
-            DLog(@"result #%@# error #%@#", result, error);
-            if (result.count > 0) {    //找到匹配的邮箱地址
-                [ACDataBaseTool restPasswordWithEmail:email];
-                [ACShowAlertTool showSuccess:ACRegisterSuccess];
-            } else {
-                [ACShowAlertTool showError:ACRegisterError];
-            }
-        }];
-    } else {
-        [ACShowAlertTool showError:ACEmptyEmail];
-    }
+    UIStoryboard *loginSB = [UIStoryboard storyboardWithName:@"ACLogin" bundle:nil];
+    ACRegisterViewController *registerVc = [loginSB instantiateViewControllerWithIdentifier:@"register"];
+    registerVc.from = RegisterPushFromTypeRestPwd;
+    [self presentViewController:registerVc animated:YES completion:nil];
+    
+//    NSString *email = self.loginEmail.text;
+//    if ([email isAvailEmail]) {
+//        //从数据库中查找匹配的邮箱地址
+//        NSString *sql = [NSString stringWithFormat:@"select * from _User where email = '%@'", email];
+//        DLog(@"sql #%@#",sql);
+//        
+//        [ACDataBaseTool queryWithSQL:sql pValues:nil block:^(NSArray *result, NSError *error) {
+//            DLog(@"result #%@# error #%@#", result, error);
+//            if (result.count > 0) {    //找到匹配的邮箱地址
+//                [ACDataBaseTool restPasswordWithEmail:email];
+//                [ACShowAlertTool showSuccess:ACRegisterSuccess];
+//            } else {
+//                [ACShowAlertTool showError:ACRegisterError];
+//            }
+//        }];
+//    } else {
+//        [ACShowAlertTool showError:ACEmptyEmail];
+//    }
 }
 
 #pragma mark - 第三方登录

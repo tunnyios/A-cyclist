@@ -11,7 +11,6 @@
 #import "ACUtility.h"
 #import "UIColor+Tools.h"
 #import "ACTabBarController.h"
-#import <BmobSDK/Bmob.h>
 #import "HCHttpTool.h"
 #import "ACDataBaseTool.h"
 #import "ACCacheDataTool.h"
@@ -27,6 +26,8 @@
 #import <UMSocialWechatHandler.h>
 #import "WeiboSDK.h"
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
+#import <BmobSDK/Bmob.h>
+#import <BmobSDK/BmobMessage.h>
 
 @interface AppDelegate () <WeiboSDKDelegate>
 /** 百度地图管理者 */
@@ -199,8 +200,8 @@
                 userModel.avatar_large = [ACUtility stringWithId:[result objectForKey:@"avatar_large"]];
                 userModel.location = [ACUtility stringWithId:[result objectForKey:@"location"]];
                 userModel.gender = [ACUtility stringWithId:[result objectForKey:@"gender"]];
-                userModel.accruedDistance = @0;
-                userModel.accruedTime = @0;
+//                userModel.accruedDistance = @0;
+//                userModel.accruedTime = @0;
                 [ACCacheDataTool saveUserInfo:userModel withObjectId:userModel.objectId];
                 
                 //跳转至settingProfileVC

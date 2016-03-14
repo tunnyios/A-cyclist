@@ -431,12 +431,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2845E971B5AB10D006E0CE0 /* CoreLocation.framework in Frameworks */,
+				A2845EA31B5AB156006E0CE0 /* SystemConfiguration.framework in Frameworks */,
 				A24BE3F21C86923D00EBBEC2 /* libz.tbd in Frameworks */,
 				A24BE3F01C86923500EBBEC2 /* libstdc++.tbd in Frameworks */,
 				A2845EA11B5AB143006E0CE0 /* CoreTelephony.framework in Frameworks */,
 				A24BE3EE1C86922600EBBEC2 /* libsqlite3.tbd in Frameworks */,
 				A2845E9B1B5AB126006E0CE0 /* CoreGraphics.framework in Frameworks */,
-				A2845EA31B5AB156006E0CE0 /* SystemConfiguration.framework in Frameworks */,
 				A24BE3EC1C86921100EBBEC2 /* libiconv.tbd in Frameworks */,
 				A2845E991B5AB112006E0CE0 /* Security.framework in Frameworks */,
 				A28E461D1B7DC5AC002B97D6 /* libstdc++.dylib in Frameworks */,
@@ -455,7 +456,6 @@
 				A2845EA51B5AB15C006E0CE0 /* libz.1.2.5.dylib in Frameworks */,
 				A2845E9F1B5AB13E006E0CE0 /* CFNetwork.framework in Frameworks */,
 				A2845E9D1B5AB12C006E0CE0 /* MobileCoreServices.framework in Frameworks */,
-				A2845E971B5AB10D006E0CE0 /* CoreLocation.framework in Frameworks */,
 				A2845E951B5AB0F2006E0CE0 /* BmobSDK.framework in Frameworks */,
 				7CB41B3C934DDDB8F93A82C5 /* libPods.a in Frameworks */,
 			);
@@ -1690,6 +1690,7 @@
 					"$(PROJECT_DIR)/A-cyclist/Class/Lib",
 					"$(PROJECT_DIR)/A-cyclist/Class/Lib/libQQSDK",
 					"$(PROJECT_DIR)/A-cyclist/Class/Lib/CoreActionSheetPicker",
+					"$(PROJECT_DIR)/A-cyclist/Class",
 				);
 				INFOPLIST_FILE = "A-cyclist/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -1722,6 +1723,7 @@
 					"$(PROJECT_DIR)/A-cyclist/Class/Lib",
 					"$(PROJECT_DIR)/A-cyclist/Class/Lib/libQQSDK",
 					"$(PROJECT_DIR)/A-cyclist/Class/Lib/CoreActionSheetPicker",
+					"$(PROJECT_DIR)/A-cyclist/Class",
 				);
 				INFOPLIST_FILE = "A-cyclist/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;

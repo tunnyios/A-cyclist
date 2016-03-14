@@ -63,6 +63,12 @@ extern NSString * const ACLoginError;
 extern NSString * const ACSinaLoginError;
 /** 注册失败 */
 extern NSString * const ACRegisterError;
+/** 手机号码不合法 */
+extern NSString * const ACInvalidPhone;
+/** 验证码不正确 */
+extern NSString * const ACInvalidSMSMask;
+/** 验证失败 */
+extern NSString * const ACVerifySMSError;
 /** 邮件格式错误 */
 extern NSString * const ACErrorEmail;
 /** 邮箱地址不能为空 */

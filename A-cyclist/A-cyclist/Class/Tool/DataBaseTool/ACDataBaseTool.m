@@ -23,6 +23,65 @@
 
 #pragma mark - 账户相关
 /**
+ *  手机号码登录
+ */
++ (void)signUpWithPhone:(NSString *)phoneNum smsMask:(NSString *)smsMask passWord:(NSString *)pwd success:(void (^)(ACUserModel *))success failure:(void (^)(NSError *))failure
+{
+    [BmobUser signOrLoginInbackgroundWithMobilePhoneNumber:phoneNum andSMSCode:smsMask block:^(BmobUser *user, NSError *error) {
+        if (user) {
+            if (success) {
+                ACUserModel *ACUser = [ACUserModel userWithBmobUser:user];
+                success(ACUser);
+            }
+        } else {
+            if (failure) {
+                failure(error);
+            }
+        }
+    }];
+
+}
+
+/**
+ *  请求获取验证码
+ *  @param template 发送短信的模板名
+ */
++ (void)requestSMSCodeWithPhoneNum:(NSString *)phoneNum template:(NSString *)templateStr block:(void (^)(int, NSError *))block
+{
+    //请求验证码
+    [BmobSMS requestSMSCodeInBackgroundWithPhoneNumber:phoneNum andTemplate:templateStr resultBlock:^(int number, NSError *error) {
+        if (block) {
+            block(number, error);
+        }
+    }];
+}
+
+/**
+ *  验证 验证码
+ */
++ (void)verifySMSCodeWithPhoneNum:(NSString *)phoneNum code:(NSString *)smsCode block:(void (^)(BOOL, NSError *))block
+{
+    //验证
+    [BmobSMS verifySMSCodeInBackgroundWithPhoneNumber:phoneNum andSMSCode:smsCode resultBlock:^(BOOL isSuccessful, NSError *error) {
+        if (block) {
+            block(isSuccessful, error);
+        }
+    }];
+}
+
+/**
+ *  根据手机验证码重置密码
+ */
++ (void)resetPasswordWithCode:(NSString *)smsCode password:(NSString *)password block:(void (^)(BOOL, NSError *))block
+{
+    [BmobUser resetPasswordInbackgroundWithSMSCode:smsCode andNewPassword:password block:^(BOOL isSuccessful, NSError *error) {
+        if (block) {
+            block(isSuccessful, error);
+        }
+    }];
+}
+
+/**
  *  邮箱注册
  *
  *  @param userName 昵称
@@ -55,8 +114,7 @@
     [BmobUser loginInbackgroundWithAccount:account andPassword:pwd block:^(BmobUser *user, NSError *error) {
         DLog(@"bmobuser #%@#", user);
         if (block) {
-            ACUserModel *ACUser = [ACUserModel userWithBmobUser:user];
-            
+            ACUserModel *ACUser = (user) ? [ACUserModel userWithBmobUser:user] : nil;
             block(ACUser, error);
         }
     }];
@@ -149,7 +207,7 @@
 {
     BmobUser *user = [BmobUser getCurrentUser];
     DLog(@"bmobUser is %@", user);
-    ACUserModel *ACUser = [ACUserModel userWithBmobUser:user];
+    ACUserModel *ACUser = (user) ? [ACUserModel userWithBmobUser:user] : nil;
     
     return ACUser;
 }
@@ -643,9 +701,10 @@
 {
     NSMutableArray *userArrayM = [NSMutableArray array];
     [array enumerateObjectsUsingBlock:^(BmobUser *obj, NSUInteger idx, BOOL *stop) {
-        ACUserModel *user = [ACUserModel userWithBmobUser:obj];
-        
-        [userArrayM addObject:user];
+        if (obj) {
+            ACUserModel *user = [ACUserModel userWithBmobUser:obj];
+            [userArrayM addObject:user];
+        }
     }];
     
     return userArrayM;

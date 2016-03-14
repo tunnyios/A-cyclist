@@ -23,7 +23,7 @@ extern ACUserModel * ACUser;        //用户模型
 + (NSString *)stringWithId:(id)value;
 
 /**
- *  显示系统弹框
+ *  显示系统弹框alertView
  */
 + (void)showMessage:(NSString *)msg target:(id)target;
 

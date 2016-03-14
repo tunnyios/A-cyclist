@@ -9,6 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "HCBaseKeyboardViewController.h"
 
+typedef enum : NSUInteger {
+    RegisterPushFromTypeRegister,   //注册
+    RegisterPushFromTypeRestPwd,    //重置密码
+} RegisterPushFromType;
+
 @interface ACRegisterViewController : HCBaseKeyboardViewController
+/** 来源 */
+@property (nonatomic, assign) RegisterPushFromType from;
 
 @end

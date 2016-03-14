@@ -30,7 +30,7 @@
 @property (nonatomic, copy) NSString *location;
 
 /** 体重 */
-@property (nonatomic, copy) NSNumber *weight;
+@property (nonatomic, strong) NSNumber *weight;
 
 /** 性别，m：男、f：女、n：未知 */
 @property (nonatomic, copy) NSString *gender;
@@ -48,23 +48,23 @@
 @property (nonatomic, copy) NSString *avatar_large;
 
 /** 累计时间(秒)*/
-@property (nonatomic, copy) NSNumber *accruedTime;
+@property (nonatomic, strong) NSNumber *accruedTime;
 
 /** 累计距离(km) */
-@property (nonatomic, copy) NSNumber *accruedDistance;
+@property (nonatomic, strong) NSNumber *accruedDistance;
 
 
 /**	BmobObject对象的id */
-@property(nonatomic,copy)NSString *objectId;
+@property(nonatomic, copy)NSString *objectId;
 
 /** BmobObject对象的最后更新时间 */
-@property(nonatomic,retain)NSDate *updatedAt;
+@property(nonatomic, strong)NSDate *updatedAt;
 
 /** BmobObject对象的生成时间 */
-@property(nonatomic,retain)NSDate *createdAt;
+@property(nonatomic, strong)NSDate *createdAt;
 
 /** BmobObject对象的表名 */
-@property(nonatomic,copy)NSString * className;
+@property(nonatomic, copy)NSString * className;
 
 
 + (instancetype)userWithBmobUser:(BmobUser *)user;

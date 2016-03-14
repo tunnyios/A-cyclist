@@ -19,6 +19,28 @@ typedef enum : NSUInteger {
 @interface ACDataBaseTool : NSObject
 
 #pragma mark - 账户相关
+/**
+ *  请求获取验证码
+ *  @param template 发送短信的模板名
+ */
++ (void)requestSMSCodeWithPhoneNum:(NSString *)phoneNum template:(NSString *)templateStr block:(void (^)(int number, NSError *error))block;
+
+
+/**
+ *  验证 验证码
+ */
++ (void)verifySMSCodeWithPhoneNum:(NSString *)phoneNum code:(NSString *)smsCode block:(void (^)(BOOL isSuccessful, NSError *error))block;
+
+/**
+ *  根据手机验证码重置密码
+ */
++ (void)resetPasswordWithCode:(NSString *)smsCode password:(NSString *)password block:(void (^)(BOOL isSuccessful, NSError *error))block;
+
+/**
+ *  手机号码注册登录
+ */
++ (void)signUpWithPhone:(NSString *)phoneNum smsMask:(NSString *)smsMask passWord:(NSString *)pwd success:(void (^)(ACUserModel *user))success failure:(void (^)(NSError *error))failure;
+
 /** 邮箱注册 */
 + (void)signUpWithUserName:(NSString *)userName email:(NSString *)email passWord:(NSString *)pwd block:(void(^)(BOOL isSuccessful, NSError *error))block;
 

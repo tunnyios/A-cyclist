@@ -50,6 +50,9 @@
     //当键盘即将改变frame的时候，调整view的frame
     //1. 获取当前的键盘的第一响应者index
     NSInteger textIndex = [self getCurrentTextIndex];
+    if (textIndex < 0) {
+        return;
+    }
     //2. 取当前第一响应者的最大Y值
     //转换坐标系到self.view
     CGRect textFrame = [self.textFieldArray[textIndex] convertRect:[self.textFieldArray[textIndex] bounds] toView:self.view];

@@ -55,11 +55,11 @@ NSString * const ACLoginSuccess = @"登录成功";
 NSString * const ACRegisterSuccess = @"注册成功";
 
 /** 重置密码 */
-NSString * const ACRestPasswordSuccess = @"重置密码的邮件已经发送至您的邮箱";
-NSString * const ACRestPasswordError = @"输入的邮箱还未注册";
+NSString * const ACRestPasswordSuccess = @"重置密码成功";
+NSString * const ACRestPasswordError = @"重置密码失败";
 
 /** 登录失败 */
-NSString * const ACLoginError = @"登录失败";
+NSString * const ACLoginError = @"登录失败,用户名或密码错误";
 /** 新浪微博登录失败 */
 NSString * const ACSinaLoginError = @"没有安装新浪微博客户端";
 /** 注册失败 */
@@ -68,6 +68,12 @@ NSString * const ACRegisterError = @"注册失败";
 NSString * const ACErrorEmail = @"邮箱不合法";
 /** 邮箱地址不能为空 */
 NSString * const ACEmptyEmail = @"请填写邮箱地址";
+/** 手机号码不合法 */
+NSString * const ACInvalidPhone = @"请输入正确的手机号码";
+/** 验证码不正确 */
+NSString * const ACInvalidSMSMask = @"请输入正确的验证码";
+/** 验证失败 */
+NSString * const ACVerifySMSError = @"验证失败";
 /** 用户名格式错误 */
 NSString * const ACErrorUserName = @"昵称中不能包含(除_以外的)特殊字符， 最短3个字符最长不超过16个字符";
 /** 密码不合法 */

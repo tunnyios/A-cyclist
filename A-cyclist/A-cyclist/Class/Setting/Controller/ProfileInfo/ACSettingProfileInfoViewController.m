@@ -536,6 +536,13 @@
         [self showAlertMsg:@"请填写真实的体重" cancelBtn:@"确定"];
         return;
     }
+    if (!self.user.accruedTime) {
+        self.user.accruedTime = @0;
+    }
+    if (!self.user.accruedDistance) {
+        self.user.accruedDistance = @0;
+    }
+    
     //1. 保存到本地缓存
     [ACCacheDataTool updateUserInfo:self.user withObjectId:self.user.objectId];
     
