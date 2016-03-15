@@ -1348,6 +1348,11 @@
 					A28BFEB51B53A2CC00A712F1 = {
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = M5Y66439GA;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					A28BFECE1B53A2CD00A712F1 = {
 						CreatedOnToolsVersion = 6.4;
@@ -1683,7 +1688,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hongcheng Su (WREQDPG9VM)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1705,8 +1710,9 @@
 					"$(inherited)",
 					"-ObjC",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = cn.tunny.acyclist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "469f3159-4291-426f-9089-3011ae7e8acb";
 			};
 			name = Debug;
 		};
@@ -1716,7 +1722,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hongcheng Su (WREQDPG9VM)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1737,8 +1743,9 @@
 					"$(inherited)",
 					"-ObjC",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = cn.tunny.acyclist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "469f3159-4291-426f-9089-3011ae7e8acb";
 			};
 			name = Release;
 		};

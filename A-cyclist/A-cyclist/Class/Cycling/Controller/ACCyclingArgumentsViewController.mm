@@ -268,6 +268,7 @@
  */
 - (IBAction)sharedBtnClick:(id)sender
 {
+    [UMSocialConfig hiddenNotInstallPlatforms:@[UMShareToQQ, UMShareToSina, UMShareToWechatSession, UMShareToWechatTimeline]];
     //设置只分享图片
     [UMSocialData defaultData].extConfig.qqData.qqMessageType = UMSocialQQMessageTypeImage;
     [UMSocialData defaultData].extConfig.wechatSessionData.wxMessageType = UMSocialWXMessageTypeImage;

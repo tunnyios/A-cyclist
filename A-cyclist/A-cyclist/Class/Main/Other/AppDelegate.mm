@@ -61,6 +61,14 @@
         DLog(@"manager start failed!");
     }
     
+    //注册推送通知
+    UIMutableUserNotificationCategory *categorys = [[UIMutableUserNotificationCategory alloc]init];
+    categorys.identifier=@"com.bmob.bmobpushdemo";
+    UIUserNotificationSettings *userNotifiSetting = [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound) categories:[NSSet setWithObjects:categorys,nil]];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:userNotifiSetting];
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
+    
+    
     //1. 创建window
     self.window = [[UIWindow alloc] initWithFrame:ACScreenBounds];
     
@@ -133,6 +141,19 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+-(void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
+    
+    //注册成功后上传Token至服务器
+    BmobInstallation  *currentIntallation = [BmobInstallation currentInstallation];
+    [currentIntallation setDeviceTokenFromData:deviceToken];
+    [currentIntallation saveInBackground];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    
 }
 
 /**

@@ -194,7 +194,7 @@
                                             <action selector="weboLogin" destination="n18-el-Z7F" eventType="touchUpInside" id="60S-Ex-pWp"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vHo-sd-2LF" userLabel="微信">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vHo-sd-2LF" userLabel="微信">
                                         <rect key="frame" x="80" y="0.0" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="30" id="c5J-AJ-LdT"/>
@@ -272,6 +272,9 @@
                         <outlet property="containerView" destination="x0k-1F-rE9" id="n4b-n5-jVz"/>
                         <outlet property="loginEmail" destination="LAd-Qq-wFD" id="xQj-PE-NdE"/>
                         <outlet property="loginPwd" destination="4zP-Xt-Zig" id="oDQ-Ng-Mhx"/>
+                        <outlet property="qqBtn" destination="29E-qw-59F" id="hDp-Ai-NeE"/>
+                        <outlet property="wechatBtn" destination="vHo-sd-2LF" id="FfN-C4-lan"/>
+                        <outlet property="weiboBtn" destination="OyM-uu-YzB" id="6S4-Wi-waw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="avl-ro-1f9" userLabel="First Responder" sceneMemberID="firstResponder"/>

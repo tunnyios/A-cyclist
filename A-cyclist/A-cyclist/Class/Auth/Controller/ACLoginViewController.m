@@ -28,6 +28,11 @@
 @property (weak, nonatomic) IBOutlet UITextField *loginPwd;
 /** tempUserModel */
 @property (nonatomic, strong) ACUserModel *tempUserModel;
+@property (weak, nonatomic) IBOutlet UIButton *qqBtn;
+@property (weak, nonatomic) IBOutlet UIButton *weiboBtn;
+@property (weak, nonatomic) IBOutlet UIButton *wechatBtn;
+
+
 
 @end
 
@@ -38,7 +43,19 @@
     
     self.contentView = _containerView;
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    if ([TencentOAuth iphoneQQInstalled]) {
+        //注册
+        self.qqBtn.hidden = NO;
+    } else {
+        self.qqBtn.hidden = YES;
+    }
+    if([WeiboSDK isWeiboAppInstalled]){
+        //向新浪发送请求
+        self.weiboBtn.hidden = NO;
+    } else {
+        self.weiboBtn.hidden = YES;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
