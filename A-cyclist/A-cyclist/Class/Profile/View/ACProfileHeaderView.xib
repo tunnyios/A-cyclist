@@ -138,7 +138,7 @@
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="signup_avatar_default" translatesAutoresizingMaskIntoConstraints="NO" id="XMa-lb-moR">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XMa-lb-moR">
                             <rect key="frame" x="35" y="0.0" width="80" height="80"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="80" id="cYm-tp-b9F"/>
@@ -181,6 +181,5 @@
     <resources>
         <image name="login_textfield_mid2" width="1" height="300"/>
         <image name="profile_background_image" width="640" height="460"/>
-        <image name="signup_avatar_default" width="228" height="228"/>
     </resources>
 </document>

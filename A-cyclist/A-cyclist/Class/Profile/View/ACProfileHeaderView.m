@@ -47,13 +47,8 @@
     
     //根据URL下载图片
     NSURL *url = [NSURL URLWithString:user.profile_image_url];
-    [self.iconView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"signup_avatar_default"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        if (error) {
-            DLog(@"下载图片失败 error is %@", error);
-        } else {
-            DLog(@"下载图片成功");
-        }
-    }];
+    [self.iconView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"signup_avatar_default"]];
+    
     //裁剪图片
     [UIImage clipImageWithView:self.iconView border:2 borderColor:[UIColor colorWithR:158 G:185 B:224 A:1] radius:self.iconView.bounds.size.width * 0.5];
 }

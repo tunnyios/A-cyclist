@@ -21,7 +21,7 @@
     ACUser.objectId = user.objectId;
     ACUser.createdAt = user.createdAt;
     ACUser.updatedAt = user.updatedAt;
-    ACUser.emailVerified = [user objectForKey:@"emailVerified"];
+    ACUser.emailVerified = [[user objectForKey:@"emailVerified"] boolValue];
     ACUser.location = [user objectForKey:@"location"];
     ACUser.weight = [user objectForKey:@"weight"];
     ACUser.profile_image_url = [user objectForKey:@"profile_image_url"];

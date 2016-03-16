@@ -163,6 +163,7 @@
                     ACHotRoutesDetailController *hotRoutesDetailController = [hotRoutesSB instantiateViewControllerWithIdentifier:@"hotRoutesDetail"];
                     hotRoutesDetailController.sharedRoute = sharedRoute;
                     
+                    [hotRoutesDetailController setHidesBottomBarWhenPushed:YES];
                     [weakSelf.navigationController pushViewController:hotRoutesDetailController animated:YES];
                 };
                 [weakSelf.dataList addObject:hotRouteCellModel];

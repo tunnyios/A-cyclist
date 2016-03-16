@@ -104,6 +104,7 @@
         UIStoryboard *settingSB = [UIStoryboard storyboardWithName:@"setting" bundle:nil];
         ACSettingFeedbackViewController *feedBackVC = [settingSB instantiateViewControllerWithIdentifier:@"settingFeedback"];
         
+        [feedBackVC setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:feedBackVC animated:YES];
     };
     

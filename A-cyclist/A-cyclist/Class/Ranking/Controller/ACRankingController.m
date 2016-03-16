@@ -143,6 +143,7 @@
         UIStoryboard *rankSB = [UIStoryboard storyboardWithName:@"ranking" bundle:nil];
         ACUserDetailController *userDetailController = [rankSB instantiateViewControllerWithIdentifier:@"userDetailController"];
         userDetailController.userModel = user;
+        [userDetailController setHidesBottomBarWhenPushed:YES];
         [weakSelf.navigationController pushViewController:userDetailController animated:YES];
     };
     
@@ -162,6 +163,7 @@
         UIStoryboard *rankSB = [UIStoryboard storyboardWithName:@"ranking" bundle:nil];
         ACUserDetailController *userDetailController = [rankSB instantiateViewControllerWithIdentifier:@"userDetailController"];
         userDetailController.userModel = user;
+        [userDetailController setHidesBottomBarWhenPushed:YES];
         [weakSelf.navigationController pushViewController:userDetailController animated:YES];
     };
     

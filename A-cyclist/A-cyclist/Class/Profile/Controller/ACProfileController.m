@@ -225,6 +225,7 @@ typedef enum : NSUInteger {
         if (self.routeArray.count > 0) {
             ACRouteHistoryController *routeHistoryVC = [[ACRouteHistoryController alloc] init];
             routeHistoryVC.routeArrayModel = self.routeArray;
+            [routeHistoryVC setHidesBottomBarWhenPushed:YES];
             [self.navigationController pushViewController:routeHistoryVC animated:YES];
         }
     } else {
@@ -234,6 +235,7 @@ typedef enum : NSUInteger {
             ACNavigationViewController *cell2Nav = [ArgumentsSB instantiateViewControllerWithIdentifier:@"ACNavigationController"];
             ACCyclingArgumentsViewController *cell2VC = (ACCyclingArgumentsViewController *)cell2Nav.topViewController;
             cell2VC.route = cellModel.route;
+            [cell2VC setHidesBottomBarWhenPushed:YES];
             [self.navigationController pushViewController:cell2VC animated:YES];
         }
     }

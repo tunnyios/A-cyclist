@@ -506,8 +506,6 @@
         annotationView.BMKimage = [UIImage imageNamed:@"Mine_runHistrotyDetails_startPoint"];
     } else if ( [annotation isKindOfClass:[ACAnnotationEndModel class]]) {
         annotationView.BMKimage = [UIImage imageNamed:@"Mine_runHistrotyDetails_endPoint"];
-    } else {
-        annotationView.BMKimage = [UIImage imageNamed:@""];
     }
     return annotationView;
 }
