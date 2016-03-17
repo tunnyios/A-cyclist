@@ -166,7 +166,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dOa-Sw-L0D" userLabel="第三方登录View">
-                                <rect key="frame" x="245" y="518" width="110" height="45"/>
+                                <rect key="frame" x="265" y="518" width="70" height="45"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="29E-qw-59F" userLabel="QQ">
                                         <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
@@ -212,7 +212,7 @@
                                 <constraints>
                                     <constraint firstItem="OyM-uu-YzB" firstAttribute="top" secondItem="dOa-Sw-L0D" secondAttribute="top" id="AqV-lN-hTd"/>
                                     <constraint firstItem="29E-qw-59F" firstAttribute="top" secondItem="dOa-Sw-L0D" secondAttribute="top" id="NrP-IE-tto"/>
-                                    <constraint firstAttribute="width" constant="110" id="Uib-NU-Er6"/>
+                                    <constraint firstAttribute="width" constant="70" id="Uib-NU-Er6"/>
                                     <constraint firstItem="OyM-uu-YzB" firstAttribute="leading" secondItem="29E-qw-59F" secondAttribute="trailing" constant="10" id="ne2-2p-ljX"/>
                                     <constraint firstItem="vHo-sd-2LF" firstAttribute="top" secondItem="dOa-Sw-L0D" secondAttribute="top" id="nzX-Ga-efo"/>
                                     <constraint firstItem="vHo-sd-2LF" firstAttribute="leading" secondItem="OyM-uu-YzB" secondAttribute="trailing" constant="10" id="odi-a2-rgL"/>

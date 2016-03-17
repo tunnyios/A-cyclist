@@ -52,6 +52,8 @@
 
 /** 是否共享 */
 @property (nonatomic, assign) NSNumber *isShared;
+/** personSharedRouteId */
+@property (nonatomic, copy) NSString *personSharedRouteId;
 
 /** 唯一键(用来从本地缓存中取出对应的路线) */
 @property (nonatomic, copy) NSString *routeOne;

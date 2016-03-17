@@ -98,14 +98,6 @@ typedef enum : NSUInteger {
 /** 根据用户id获取当前用户的路线中最长时间的一条路线 */
 + (void)getMaxTimeRouteWithUserObjectId:(NSString *)objectId resultBlock:(void (^) (ACRouteModel *route, NSError *error))block;
 
-
-/* sharedRoute路线 */
-/** 根据classification类别来获取sharedRoute列表 */
-+ (void)getSharedRouteListClass:(NSString *)classification pageIndex:(NSUInteger)pageIndex resultBlock:(void (^) (NSArray *sharedRoutes, NSError *error))block;
-
-/** 添加一条共享路线到sharedRoute数据库 */
-+ (void)addSharedRouteWith:(ACSharedRouteModel *)sharedRoute userObjectId:(NSString *)objectId resultBlock:(void (^) (BOOL isSuccessful, NSError *error))block;
-
 /**
  *  获取共享的骑行路线
  *  获取最远骑行距离、极速、平均速度、单次最长时间路线
@@ -117,6 +109,21 @@ typedef enum : NSUInteger {
  *  获取最远骑行距离、极速、平均速度、单次最长时间路线
  */
 + (void)getPersonalAllMaxRoutesWithUserId:(NSString *)objectId success:(void (^)(NSDictionary *result))success failure:(void (^)(NSString  *error))failure;
+
+
+/****************************** personSharedRoute表 personSharedRoute路线 **************************/
+/** 添加一条共享路线到personSharedRoute数据库 */
++ (void)addPersonSharedRouteWith:(ACSharedRouteModel *)sharedRoute userObjectId:(NSString *)objectId resultBlock:(void (^) (BOOL isSuccessful, NSString *objectId, NSError *error))block;
+
+/** 删除一条共享路线到personSharedRoute数据库 */
++ (void)delPersonSharedRouteWithObjectId:(NSString *)objectId resultBlock:(void (^) (BOOL isSuccessful, NSError *error))block;
+
+
+/****************************** sharedRoute表 sharedRoute路线 **************************/
+/** 根据classification类别来获取sharedRoute列表 */
++ (void)getSharedRouteListClass:(NSString *)classification pageIndex:(NSUInteger)pageIndex resultBlock:(void (^) (NSArray *sharedRoutes, NSError *error))block;
+
+
 
 
 #pragma mark - 排行相关

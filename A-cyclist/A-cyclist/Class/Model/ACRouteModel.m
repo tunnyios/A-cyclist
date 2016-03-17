@@ -56,6 +56,7 @@
     routeModel.descendDistance = [bmobObj objectForKey:@"descendDistance"];
     routeModel.userObjectId = [bmobObj objectForKey:@"userObjectId"];
     routeModel.isShared = [bmobObj objectForKey:@"isShared"];
+    routeModel.personSharedRouteId = [bmobObj objectForKey:@"personSharedRouteId"];
     routeModel.cyclingStartTime = [bmobObj objectForKey:@"cyclingStartTime"];
     routeModel.cyclingEndTime = [bmobObj objectForKey:@"cyclingEndTime"];
     routeModel.objectId = bmobObj.objectId;
@@ -95,6 +96,7 @@
     [aCoder encodeObject:self.averageSpeed forKey:@"averageSpeed"];
     [aCoder encodeObject:self.maxSpeed forKey:@"maxSpeed"];
     [aCoder encodeObject:self.isShared forKey:@"isShared"];
+    [aCoder encodeObject:self.personSharedRouteId forKey:@"personSharedRouteId"];
     [aCoder encodeObject:self.userObjectId forKey:@"userObjectId"];
     
     [aCoder encodeObject:self.maxAltitude forKey:@"maxAltitude"];
@@ -129,6 +131,7 @@
         self.averageSpeed = [aDecoder decodeObjectForKey:@"averageSpeed"];
         self.maxSpeed = [aDecoder decodeObjectForKey:@"maxSpeed"];
         self.isShared = [aDecoder decodeObjectForKey:@"isShared"];
+        self.personSharedRouteId = [aDecoder decodeObjectForKey:@"personSharedRouteId"];
         self.userObjectId = [aDecoder decodeObjectForKey:@"userObjectId"];
         
         self.maxAltitude = [aDecoder decodeObjectForKey:@"maxAltitude"];
@@ -155,7 +158,7 @@
 {
 //    return [NSString stringWithFormat:@" <%p:%@>\n {routeName = %@\n steps = %@\n distance = %@\n time = %@\n averageSpeed = %@\n maxSpeed = %@\n isShared = %@\n hotLevel = %@\n imageList = %@\n userObjectId = %@}", self.routeName, self, self.class, self.steps, self.distance, self.time, self.averageSpeed, self.maxSpeed, self.isShared, self.hotLevel, self.imageList, self.userObjectId];
     
-    return [NSString stringWithFormat:@"<%p : %@>\n {\n routeName = %@,\n steps = %@,\n distance = %@,\n time = %@,\n timeNumber = %@,\n averageSpeed = %@,\n maxSpeed = %@,\n maxAltitude = %@,\n minAltitude = %@,\n ascendAltitude = %@,\n ascendTime = %@,\n ascendDistance = %@,\n flatTime = %@,\n flatDistance = %@,\n descendTime = %@,\n descendDistance = %@,\n kcal = %@,\n isShared = %@,\n userObjectId = %@,\n objectId = %@,\n routeOne = %@,\n  cyclingStartTime = %@,\n cyclingEndTime = %@\n}", self, self.class, self.routeName, self.steps, self.distance, self.time, self.timeNumber, self.averageSpeed, self.maxSpeed, self.maxAltitude, self.minAltitude, self.ascendAltitude, self.ascendTime, self.ascendDistance, self.flatTime, self.flatDistance, self.descendTime, self.descendDistance, self.kcal, self.isShared, self.userObjectId, self.objectId, self.routeOne, self.cyclingStartTime, self.cyclingEndTime];
+    return [NSString stringWithFormat:@"<%p : %@>\n {\n routeName = %@,\n steps = %@,\n distance = %@,\n time = %@,\n timeNumber = %@,\n averageSpeed = %@,\n maxSpeed = %@,\n maxAltitude = %@,\n minAltitude = %@,\n ascendAltitude = %@,\n ascendTime = %@,\n ascendDistance = %@,\n flatTime = %@,\n flatDistance = %@,\n descendTime = %@,\n descendDistance = %@,\n kcal = %@,\n isShared = %@,\n personSharedRouteId = %@,\n userObjectId = %@,\n objectId = %@,\n routeOne = %@,\n  cyclingStartTime = %@,\n cyclingEndTime = %@\n}", self, self.class, self.routeName, self.steps, self.distance, self.time, self.timeNumber, self.averageSpeed, self.maxSpeed, self.maxAltitude, self.minAltitude, self.ascendAltitude, self.ascendTime, self.ascendDistance, self.flatTime, self.flatDistance, self.descendTime, self.descendDistance, self.kcal, self.isShared, self.personSharedRouteId, self.userObjectId, self.objectId, self.routeOne, self.cyclingStartTime, self.cyclingEndTime];
 }
 
 @end

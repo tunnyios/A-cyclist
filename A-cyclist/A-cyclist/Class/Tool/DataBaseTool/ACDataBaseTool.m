@@ -555,15 +555,15 @@
 }
 
 /**
- *  添加一条共享路线到sharedRoute数据库
+ *  添加一条共享路线到personSharedRoute数据库
  *
  *  @param sharedRoute 共享路线模型
  *  @param objectId    该路线的来源用户id
  *  @param block
  */
-+ (void)addSharedRouteWith:(ACSharedRouteModel *)sharedRoute userObjectId:(NSString *)objectId resultBlock:(void (^)(BOOL, NSError *))block
++ (void)addPersonSharedRouteWith:(ACSharedRouteModel *)sharedRoute userObjectId:(NSString *)objectId resultBlock:(void (^)(BOOL, NSString *, NSError *))block
 {
-    BmobObject *post = [BmobObject objectWithClassName:@"sharedRoute"];
+    BmobObject *post = [BmobObject objectWithClassName:@"personSharedRoute"];
     
     //设置共享路线基本参数
     [post setObject:sharedRoute.nameCN forKey:@"nameCN"];
@@ -593,6 +593,23 @@
     
     //异步保存
     [post saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+        if (block) {
+            block(isSuccessful, post.objectId, error);
+        }
+    }];
+}
+
+/**
+ *  删除一条共享路线到personSharedRoute数据库
+ *
+ *  @param sharedRoute 共享路线模型
+ *  @param objectId    共享路线objectID
+ *  @param block
+ */
++ (void)delPersonSharedRouteWithObjectId:(NSString *)objectId resultBlock:(void (^)(BOOL, NSError *))block
+{
+    BmobObject *bmobObject = [BmobObject objectWithoutDatatWithClassName:@"personSharedRoute"  objectId:objectId];
+    [bmobObject deleteInBackgroundWithBlock:^(BOOL isSuccessful, NSError *error) {
         if (block) {
             block(isSuccessful, error);
         }

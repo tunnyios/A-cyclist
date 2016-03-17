@@ -509,14 +509,16 @@ typedef enum : NSUInteger {
     self.sharedRoute.maxAlitude = [NSNumber numberWithDouble:self.route.maxAltitude.doubleValue];
     
     //保存
-    [ACDataBaseTool addSharedRouteWith:self.sharedRoute userObjectId:self.user.objectId resultBlock:^(BOOL isSuccessful, NSError *error) {
+    [ACDataBaseTool addPersonSharedRouteWith:self.sharedRoute userObjectId:self.user.objectId resultBlock:^(BOOL isSuccessful, NSString *objectId, NSError *error) {
         if (isSuccessful) {
             DLog(@"上传共享路线到服务器成功");
             [ACShowAlertTool showSuccess:@"上传成功"];
             
             //更新该路线的isShared为1，到personRoute数据库
             NSArray *keys = @[@"isShared"];
-            NSDictionary *dict = @{@"isShared" : @1};
+            NSDictionary *dict = @{@"isShared" : @1,
+                                   @"personSharedRouteId" : objectId
+                                   };
             [ACDataBaseTool updateRouteWithUserObjectId:self.user.objectId routeStartDate:self.route.cyclingStartTime dict:dict andKeys:keys withResultBlock:^(BOOL isSuccessful, NSError *error) {
                 if (isSuccessful) {
                     DLog(@"更新路线的isShared成功");

@@ -25,6 +25,7 @@
 #import "ACShowAlertTool.h"
 #import "ACUserModel.h"
 #import "ACCacheDataTool.h"
+#import "ACDataBaseTool.h"
 #import "ACSharedTitleView.h"
 #import "ACAnnotationView.h"
 #import "ACAnnotationStartModel.h"
@@ -123,7 +124,6 @@
     
     
     //判断当前用户与该路线的来源用户是否一致，若不一致，则隐藏上传路线按钮
-//    DLog(@"self.currentUser.objectId is %@, self.route.objectId is %@", self.currentUser.objectId, self.route.userObjectId);
     //此处不能用懒加载
     self.currentUser = [ACCacheDataTool getUserInfo];
     if (0 != self.currentUser.objectId.length && 0 != self.route.userObjectId.length) {
@@ -135,6 +135,14 @@
         }
     } else {
         self.sharedBtn.hidden = NO;
+    }
+    
+    //判断路线是否已分享
+    if ([self.route.isShared isEqual:@1]) {
+        //已分享，修改button
+        [self.sharedBtn setTitle:@"删除已上传路线" forState:UIControlStateNormal];
+    } else {
+        [self.sharedBtn setTitle:@"上传热门路线" forState:UIControlStateNormal];
     }
     
     //1. 最先展示轨迹
@@ -240,10 +248,33 @@
  */
 - (IBAction)uploadRoute:(id)sender
 {
-    //0. 判断路线是否已经分享过了(分享过了则无需再分享)
+    //0. 判断路线是否已经分享过了
     if ([self.route.isShared isEqual:@1]) {
-        [ACShowAlertTool showError:@"该路线已经上传，请勿重复上传"];
-        DLog(@"该路线已经上传，请勿重复上传");
+        //删除已分享路线
+        [self showAlertWithTitle:@"提示" message:@"确定要移除已分享的路线吗？" cancelBtnTitle:@"取消" otherBtnTitle:@"确定" handler:^{
+           //delete
+            __weak typeof (self)weakSelf = self;
+            [ACDataBaseTool delPersonSharedRouteWithObjectId:self.route.personSharedRouteId resultBlock:^(BOOL isSuccessful, NSError *error) {
+                if (isSuccessful) {
+                    __strong __typeof(weakSelf)strongSelf = weakSelf;
+                    NSDictionary *dict = @{@"isShared" : @0,
+                                           @"personSharedRoute" : @""
+                                           };
+                    [ACDataBaseTool updateRouteWithUserObjectId:strongSelf.route.userObjectId routeStartDate:strongSelf.route.cyclingStartTime dict:dict andKeys:@[@"isShared", @"personSharedRoute"] withResultBlock:^(BOOL isSuccessful, NSError *error) {
+                        if (isSuccessful) {
+                            strongSelf.route.isShared = @0;
+                            //更新缓存
+                            [ACCacheDataTool updateRouteWith:strongSelf.route routeOne:strongSelf.route.routeOne];
+                            [strongSelf showMsgCenter:@"移除已分享路线成功"];
+                        } else {
+                            [strongSelf showMsgCenter:@"移除已分享路线失败，请稍后再试"];
+                        }
+                    }];
+                } else {
+                    [weakSelf showMsgCenter:@"移除已分享路线失败，请稍后再试"];
+                }
+            }];
+        }];
         
     } else {
         //1. 截屏:截取路线地图图片
