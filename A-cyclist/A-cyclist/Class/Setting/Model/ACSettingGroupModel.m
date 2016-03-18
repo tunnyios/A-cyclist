@@ -9,5 +9,12 @@
 #import "ACSettingGroupModel.h"
 
 @implementation ACSettingGroupModel
-
+- (NSMutableArray *)cellList
+{
+    if (_cellList == nil) {
+        _cellList = [NSMutableArray array];
+    }
+    
+    return _cellList;
+}
 @end

@@ -50,7 +50,8 @@
 //    ACArrowSettingCellModel *cell2 = [ACArrowSettingCellModel arrowSettingCellModelWithTitle:@"推送与提醒" icon:@"MorePush" destClass:[UIViewController class]];
     
     ACSettingGroupModel *group = [[ACSettingGroupModel alloc] init];
-    group.cellList = @[cell0, cell1];
+    [group.cellList addObject:cell0];
+    [group.cellList addObject:cell1];
     
     [self.dataList addObject:group];
 }
@@ -73,7 +74,8 @@
     };
     
     ACSettingGroupModel *group = [[ACSettingGroupModel alloc] init];
-    group.cellList = @[cell0];
+    [group.cellList addObject:cell0];
+
     [self.dataList addObject:group];
 }
 
@@ -113,7 +115,11 @@
     ACArrowSettingCellModel *cell3 = [ACArrowSettingCellModel arrowSettingCellModelWithTitle:@"关于Acyclist" icon:@"setting_icon_about" destClass:[UIViewController class]];
     
     ACSettingGroupModel *group = [[ACSettingGroupModel alloc] init];
-    group.cellList = @[cell1, cell2, cell3];
+//    group.cellList = @[cell1, cell2, cell3];
+    [group.cellList addObject:cell1];
+    [group.cellList addObject:cell2];
+    [group.cellList addObject:cell3];
+
     [self.dataList addObject:group];
 }
 
@@ -127,7 +133,8 @@
     };
     
     ACSettingGroupModel *group = [[ACSettingGroupModel alloc] init];
-    group.cellList = @[cell0];
+    [group.cellList addObject:cell0];
+
     [self.dataList addObject:group];
 }
 

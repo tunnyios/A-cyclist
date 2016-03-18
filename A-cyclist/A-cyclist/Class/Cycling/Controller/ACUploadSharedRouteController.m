@@ -515,7 +515,7 @@ typedef enum : NSUInteger {
             [ACShowAlertTool showSuccess:@"上传成功"];
             
             //更新该路线的isShared为1，到personRoute数据库
-            NSArray *keys = @[@"isShared"];
+            NSArray *keys = @[@"isShared", @"personSharedRouteId"];
             NSDictionary *dict = @{@"isShared" : @1,
                                    @"personSharedRouteId" : objectId
                                    };
@@ -528,6 +528,7 @@ typedef enum : NSUInteger {
             }];
             //更新该路线到本地缓存
             self.route.isShared = @1;
+            self.route.personSharedRouteId = objectId;
             [ACCacheDataTool updateRouteWith:self.route routeOne:self.route.routeOne];
             
         } else {

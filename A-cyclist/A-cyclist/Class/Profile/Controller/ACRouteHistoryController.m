@@ -8,17 +8,45 @@
 
 #import "ACRouteHistoryController.h"
 #import "ACRouteModel.h"
+#import "ACUserModel.h"
 #import "ACProfileCellModel.h"
 #import "ACNavigationViewController.h"
 #import "ACCyclingArgumentsViewController.h"
 #import "ACSettingGroupModel.h"
 #import "ACRouteHistoryCellView.h"
+#import "ACGlobal.h"
+#import "ACDataBaseTool.h"
+#import "ACCacheDataTool.h"
+#import "ACShowAlertTool.h"
+#import <MJRefresh.h>
 
 @interface ACRouteHistoryController ()
+/** 骑行轨迹数组 */
+@property (nonatomic, strong) NSMutableArray *routeArrayModel;
+@property (nonatomic, strong) ACUserModel *userInfo;
+/** pageIndex */
+@property (nonatomic, assign) NSUInteger pageIndex;
 
 @end
 
 @implementation ACRouteHistoryController
+- (ACUserModel *)userInfo
+{
+    if (_userInfo == nil) {
+        _userInfo = [ACCacheDataTool getUserInfo];
+    }
+    
+    return _userInfo;
+}
+
+- (NSMutableArray *)routeArrayModel
+{
+    if (_routeArrayModel == nil) {
+        _routeArrayModel = [NSMutableArray array];
+    }
+    
+    return _routeArrayModel;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -27,12 +55,33 @@
     self.tableView.rowHeight = 100;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    [self addData];
+    [self initRefreshView];
+    [self getRouteDataWithRouteType:self.routeType];
 }
 
-- (void)addData
+#pragma mark - 初始化上下拉刷新
+- (void)initRefreshView
 {
-    [self.routeArrayModel enumerateObjectsUsingBlock:^(ACRouteModel *route, NSUInteger idx, BOOL *stop) {
+    //设置索引
+    self.pageIndex = 1;
+    __weak typeof (self)weakSelf = self;
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        weakSelf.pageIndex = 1;
+        [weakSelf getRouteDataWithRouteType:weakSelf.routeType];
+    }];
+    
+    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        weakSelf.pageIndex++;
+        [weakSelf getRouteDataWithRouteType:weakSelf.routeType];
+    }];
+}
+
+- (void)addDataWithRouteList:(NSArray *)routes pageIndex:(NSUInteger)pageIndex
+{
+    if (1 == pageIndex) {
+        [self.dataList removeAllObjects];
+    }
+    [routes enumerateObjectsUsingBlock:^(ACRouteModel *route, NSUInteger idx, BOOL *stop) {
         NSString *subTitle = [NSString stringWithFormat:@"%@", route.distance];
         ACProfileCellModel *profileCellM = [ACProfileCellModel profileCellWithTitle:route.routeName subTitle:subTitle route:route];
         
@@ -44,12 +93,44 @@
             [self.navigationController pushViewController:cellVC animated:YES];
         };
         
-        NSMutableArray *arrayM = [NSMutableArray array];
-        [arrayM addObject:profileCellM];
         ACSettingGroupModel *group = [[ACSettingGroupModel alloc] init];
-        group.cellList = arrayM;
+        [group.cellList addObject:profileCellM];
         [self.dataList addObject:group];
     }];
+}
+
+- (void)getRouteDataWithRouteType:(RouteListType)routeType
+{
+    [ACShowAlertTool showMessage:@"正在加载" onView:nil];
+    __weak typeof (self)weakSelf = self;
+    if (RouteListTypePersonal == routeType) {   //个人路线
+        [ACDataBaseTool getRouteListWithUserObjectId:self.userInfo.objectId pageIndex:self.pageIndex resultBlock:^(NSArray *routes, NSError *error) {
+            [ACShowAlertTool hideMessage];
+            [weakSelf.tableView.mj_header endRefreshing];
+            [weakSelf.tableView.mj_footer endRefreshing];
+            
+            if (!error) {
+                [weakSelf addDataWithRouteList:routes pageIndex:self.pageIndex];
+                [weakSelf.tableView reloadData];
+            } else {
+                [ACShowAlertTool showError:ACRequestError];
+                weakSelf.pageIndex--;
+            }
+        }];
+    } else {    //个人已共享路线
+        [ACDataBaseTool getSharedRouteListWithUserObjectId:self.userInfo.objectId pageIndex:self.pageIndex resultBlock:^(NSArray *routes, NSError *error) {
+            [ACShowAlertTool hideMessage];
+            [weakSelf.tableView.mj_header endRefreshing];
+            [weakSelf.tableView.mj_footer endRefreshing];
+            if (!error) {
+                [weakSelf addDataWithRouteList:routes pageIndex:self.pageIndex];
+                [weakSelf.tableView reloadData];
+            } else {
+                [ACShowAlertTool showError:ACRequestError];
+                weakSelf.pageIndex--;
+            }
+        }];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -60,9 +141,12 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //取分组模型
-    ACSettingGroupModel *group = self.dataList[indexPath.section];
-    //取cell模型
-    ACProfileCellModel *cellModel = group.cellList[indexPath.row];
+    ACProfileCellModel *cellModel = nil;
+    if (indexPath.row < [self.dataList count]) {
+        ACSettingGroupModel *group = self.dataList[indexPath.section];
+        //取cell模型
+        cellModel = group.cellList[indexPath.row];
+    }
     ACRouteHistoryCellView *cell = [ACRouteHistoryCellView settingViewCellWithTableView:tableView];
     cell.profileModel = cellModel;
     
@@ -76,12 +160,36 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     //取模型
-    ACSettingGroupModel *group  = self.dataList[indexPath.section];
-    ACProfileCellModel *cellModel = group.cellList[indexPath.row];
+    if (indexPath.section < [self.dataList count]) {
+        ACSettingGroupModel *group  = self.dataList[indexPath.section];
+        ACProfileCellModel *cellModel = group.cellList[indexPath.row];
+            
+        //2.执行对应的选中操作
+        if (cellModel.option) {
+            cellModel.option(indexPath);
+        }
+    }
     
-    //2.执行对应的选中操作
-    if (cellModel.option) {
-        cellModel.option(indexPath);
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (UITableViewCellEditingStyleDelete == editingStyle) {
+        NSMutableArray *tempArray = [self.dataList copy];
+        __block ACSettingGroupModel *group  = tempArray[indexPath.section];
+        ACProfileCellModel *cellModel = group.cellList[indexPath.row];
+        __weak typeof (self)weakSelf = self;
+        [ACDataBaseTool delRouteWithRouteObjectId:cellModel.route.objectId success:^(BOOL isSuccessful) {
+            if (isSuccessful) {
+                [weakSelf.dataList removeObject:group];
+
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [weakSelf.tableView reloadData];
+                });
+            }
+        } failure:^(NSError *error) {
+            [weakSelf showMsgCenter:@"移除路线失败"];
+        }];
     }
 }
 

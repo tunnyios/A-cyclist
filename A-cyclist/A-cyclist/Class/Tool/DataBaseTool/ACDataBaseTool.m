@@ -312,8 +312,21 @@
             }
         }
     }];
-    
-    
+}
+
+/**
+ *  删除一条路线数据到数据库
+ */
++ (void)delRouteWithRouteObjectId:(NSString *)routeObjectId success:(void (^)(BOOL))success failure:(void (^)(NSError *))failure
+{
+    BmobObject *bmobObject = [BmobObject objectWithoutDatatWithClassName:@"personRoute" objectId:routeObjectId];
+    [bmobObject deleteInBackgroundWithBlock:^(BOOL isSuccessful, NSError *error) {
+        if (!error) {
+            success(isSuccessful);
+        } else {
+            failure(error);
+        }
+    }];
 }
 
 /**
@@ -358,7 +371,7 @@
  *
  *  @return BmobObject对象数组
  */
-+ (void)getRouteListWithUserObjectId:(NSString *)objectId resultBlock:(void (^)(NSArray *, NSError *))block
++ (void)getRouteListWithUserObjectId:(NSString *)objectId pageIndex:(NSUInteger)pageIndex resultBlock:(void (^)(NSArray *, NSError *))block
 {
     BmobQuery *bquery = [BmobQuery queryWithClassName:@"personRoute"];
     
@@ -366,6 +379,8 @@
     BmobQuery *inQuery = [BmobQuery queryWithClassName:@"_User"];
     [inQuery whereKey:@"objectId" equalTo:objectId];
     
+    bquery.limit = ACDataLimitCount;
+    bquery.skip = bquery.limit * (pageIndex - 1);
     //匹配查询
     [bquery whereKey:@"user" matchesQuery:inQuery];
     [bquery orderByDescending:@"cyclingEndTime"];
@@ -387,7 +402,7 @@
 /**
  *  根据用户id查询数据库中，用户已经共享了的路线列表
  */
-+ (void)getSharedRouteListWithUserObjectId:(NSString *)objectId resultBlock:(void (^)(NSArray *, NSError *))block
++ (void)getSharedRouteListWithUserObjectId:(NSString *)objectId pageIndex:(NSUInteger)pageIndex resultBlock:(void (^)(NSArray *, NSError *))block
 {
     BmobQuery *bquery = [BmobQuery queryWithClassName:@"personRoute"];
     
@@ -397,6 +412,9 @@
     NSArray *condictionArray = @[condiction1,condiction2];
     [bquery addTheConstraintByAndOperationWithArray:condictionArray];
     
+    bquery.limit = ACDataLimitCount;
+    bquery.skip = bquery.limit * (pageIndex - 1);
+    [bquery orderByDescending:@"cyclingEndTime"];
     //匹配查询
     [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
         //        DLog(@"array is %@, error is %@", array, error);
@@ -408,6 +426,40 @@
         if (block) {
             DLog(@"routeArray error is %@", error);
             block(routeArray, error);
+        }
+    }];
+}
+
+/**
+ *  根据用户id获取当前用户的路线数量
+ */
++ (void)getRouteListCountWithUserObjectId:(NSString *)objectId resultBlock:(void (^)(int, NSError *))block
+{
+    BmobQuery *bquery = [BmobQuery queryWithClassName:@"personRoute"];
+    [bquery whereKey:@"userObjectId" equalTo:objectId];
+    [bquery countObjectsInBackgroundWithBlock:^(int number,NSError  *error){
+        if (block) {
+            block(number, error);
+        }
+    }];
+}
+
+/**
+ *  根据用户id获取当前用户共享的路线数量
+ */
++ (void)getSharedRouteListCountWithUserObjectId:(NSString *)objectId resultBlock:(void (^)(int, NSError *))block
+{
+    BmobQuery *bquery = [BmobQuery queryWithClassName:@"personRoute"];
+    [bquery whereKey:@"userObjectId" equalTo:objectId];
+    //构造约束条件
+    NSDictionary *condiction1 = @{@"userObjectId" : objectId};
+    NSDictionary *condiction2 = @{@"isShared" : @1};
+    NSArray *condictionArray = @[condiction1,condiction2];
+    [bquery addTheConstraintByAndOperationWithArray:condictionArray];
+    
+    [bquery countObjectsInBackgroundWithBlock:^(int number,NSError  *error){
+        if (block) {
+            block(number, error);
         }
     }];
 }
@@ -623,16 +675,16 @@
 + (void)getShareAllMaxRoutesWithUserId:(NSString *)objectId success:(void (^)(NSDictionary *result))success failure:(void (^)(NSString  *error))failure
 {
     //0. 获取数据库中的用户已共享的路线列表
-    __block NSArray *routeArray = nil;
+    __block NSNumber *routeCounts = nil;
     __block ACRouteModel *maxDistanceRoute = nil;
     __block ACRouteModel *maxSpeedRoute = nil;
     __block ACRouteModel *maxAverageRoute = nil;
     __block ACRouteModel *maxTimeRoute = nil;
-    [ACDataBaseTool getSharedRouteListWithUserObjectId:objectId resultBlock:^(NSArray *routes, NSError *error) {
+    [ACDataBaseTool getSharedRouteListCountWithUserObjectId:objectId resultBlock:^(int routeCount, NSError *error) {
         if (error) {
             DLog(@"从数据库中获取用户路线数据失败, error:%@", error);
         } else {
-            routeArray = routes;
+            routeCounts = [NSNumber numberWithInt:routeCount];
         }
         
         //1. 获取最长距离路线数据
@@ -667,9 +719,9 @@
                             maxTimeRoute = route;
                         }
                         
-                        if (routeArray && maxDistanceRoute && maxSpeedRoute && maxAverageRoute && maxTimeRoute) {
+                        if (routeCounts && maxDistanceRoute && maxSpeedRoute && maxAverageRoute && maxTimeRoute) {
                             if (success) {
-                                NSDictionary *dict = @{@"routeArray" : routeArray,
+                                NSDictionary *dict = @{@"routeCount" : routeCounts,
                                                        @"maxDistanceRoute" : maxDistanceRoute,
                                                        @"maxSpeedRoute" : maxSpeedRoute,
                                                        @"maxAverageRoute" : maxAverageRoute,
@@ -696,16 +748,16 @@
 + (void)getPersonalAllMaxRoutesWithUserId:(NSString *)objectId success:(void (^)(NSDictionary *result))success failure:(void (^)(NSString  *error))failure
 {
     //0. 获取数据库中的用户已共享的路线列表
-    __block NSArray *routeArray = nil;
+    __block NSNumber *routeCounts = nil;
     __block ACRouteModel *maxDistanceRoute = nil;
     __block ACRouteModel *maxSpeedRoute = nil;
     __block ACRouteModel *maxAverageRoute = nil;
     __block ACRouteModel *maxTimeRoute = nil;
-    [ACDataBaseTool getRouteListWithUserObjectId:objectId resultBlock:^(NSArray *routes, NSError *error) {
+    [ACDataBaseTool getRouteListCountWithUserObjectId:objectId resultBlock:^(int routeCount, NSError *error) {
         if (error) {
             DLog(@"从数据库中获取用户路线数据失败, error:%@", error);
         } else {
-            routeArray = routes;
+            routeCounts = [NSNumber numberWithInt:routeCount];
         }
         
         //1. 获取最长距离路线数据
@@ -740,9 +792,9 @@
                             maxTimeRoute = route;
                         }
                         
-                        if (routeArray && maxDistanceRoute && maxSpeedRoute && maxAverageRoute && maxTimeRoute) {
+                        if (routeCounts && maxDistanceRoute && maxSpeedRoute && maxAverageRoute && maxTimeRoute) {
                             if (success) {
-                                NSDictionary *dict = @{@"routeArray" : routeArray,
+                                NSDictionary *dict = @{@"routeCount" : routeCounts,
                                                        @"maxDistanceRoute" : maxDistanceRoute,
                                                        @"maxSpeedRoute" : maxSpeedRoute,
                                                        @"maxAverageRoute" : maxAverageRoute,

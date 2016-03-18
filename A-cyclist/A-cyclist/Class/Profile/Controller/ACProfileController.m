@@ -37,8 +37,8 @@ typedef enum : NSUInteger {
 @interface ACProfileController ()
 /** 用户数据 */
 @property (nonatomic, strong) ACUserModel *userModel;
-/** 路线数组 */
-@property (nonatomic, strong) NSArray *routeArray;
+/** 路线数量 */
+@property (nonatomic, assign) int routeCount;
 /** 最长距离路线 */
 @property (nonatomic, strong) ACRouteModel *maxDistanceRoute;
 /** 最快极速路线 */
@@ -76,9 +76,7 @@ typedef enum : NSUInteger {
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
 
     //2. 从本地获取数据
-    if (0 == self.routeArray.count) {
-        self.routeArray = [ACCacheDataTool getUserRouteWithid:self.userModel.objectId];
-        DLog(@"本地 routeArray, count is %lu", (unsigned long)self.routeArray.count);
+    if (0 == self.routeCount) {
         //从本地获取最长距离路线数据
         if (nil == self.maxDistanceRoute) {
             self.maxDistanceRoute = [ACCacheDataTool getMaxDistanceRouteWithId:self.userModel.objectId];
@@ -95,7 +93,7 @@ typedef enum : NSUInteger {
         //    DLog(@"本地：最长距离路线:%@\n 最快极速路线:%@\n 最快平均速度路线:%@\n 最长时间路线:%@", self.maxDistanceRoute, self.maxSpeedRoute, self.maxAverageRoute, self.maxTimeRoute);
         [self addGroup0];
         [self addGroup1];
-        if (self.routeArray.count <= 0) {
+        if (self.routeCount <= 0) {
             //下拉刷新
             [self.tableView.mj_header beginRefreshing];
         }
@@ -113,11 +111,11 @@ typedef enum : NSUInteger {
 - (void)addGroup0
 {
     //加载数据
-    NSString *subTitle = [NSString stringWithFormat:@"%lu", (unsigned long)self.routeArray.count];
+    NSString *subTitle = [NSString stringWithFormat:@"%d", self.routeCount];
     ACArrowWithSubtitleSettingCellModel *cell0 = [ACArrowWithSubtitleSettingCellModel arrowWithSubtitleCellWithTitle:@"骑行记录" subTitle:subTitle icon:nil destClass:nil];
     
     ACSettingGroupModel *group = [[ACSettingGroupModel alloc] init];
-    group.cellList = @[cell0];
+    [group.cellList addObject:cell0];
     
     [self.dataList addObject:group];
 }
@@ -150,7 +148,10 @@ typedef enum : NSUInteger {
     ACProfileCellModel *cell3 = [ACProfileCellModel profileCellWithTitle:@"单次最长时间" subTitle:subTitle3 route:self.maxTimeRoute];
     
     ACSettingGroupModel *group = [[ACSettingGroupModel alloc] init];
-    group.cellList = @[cell0, cell1, cell2, cell3];
+    [group.cellList addObject:cell0];
+    [group.cellList addObject:cell1];
+    [group.cellList addObject:cell2];
+    [group.cellList addObject:cell3];
     group.headerText = @"个人最佳纪录";
     [self.dataList addObject:group];
 }
@@ -222,9 +223,9 @@ typedef enum : NSUInteger {
     
     if (0 == indexPath.section) {
         //跳转至对应的控制器
-        if (self.routeArray.count > 0) {
+        if (self.routeCount > 0) {
             ACRouteHistoryController *routeHistoryVC = [[ACRouteHistoryController alloc] init];
-            routeHistoryVC.routeArrayModel = self.routeArray;
+            routeHistoryVC.routeType = RouteListTypePersonal;
             [routeHistoryVC setHidesBottomBarWhenPushed:YES];
             [self.navigationController pushViewController:routeHistoryVC animated:YES];
         }
@@ -268,21 +269,21 @@ typedef enum : NSUInteger {
     [ACShowAlertTool showMessage:@"加载中..." onView:nil];
     __weak typeof (self)weakSelf = self;
     [ACDataBaseTool getPersonalAllMaxRoutesWithUserId:self.userModel.objectId success:^(NSDictionary *result) {
-        DLog(@"resutl is %@", result);
+//        DLog(@"resutl is %@", result);
         if (result.count > 0) {
-            if ([(NSArray *)[result objectForKey:@"routeArray"] count] > 0) {
-                weakSelf.routeArray = [result objectForKey:@"routeArray"];
-                ACArrowWithSubtitleSettingCellModel *arrowModel = [self.dataList[0] cellList][0];
-                arrowModel.subTitle = [NSString stringWithFormat:@"%lu", (unsigned long)self.routeArray.count];
+            if ([[result objectForKey:@"routeCount"] intValue] > 0) {
+                weakSelf.routeCount = [[result objectForKey:@"routeCount"] intValue];
+                ACArrowWithSubtitleSettingCellModel *arrowModel = [weakSelf.dataList[0] cellList][0];
+                arrowModel.subTitle = [NSString stringWithFormat:@"%d", weakSelf.routeCount];
                 
-                //清空本地路线数据库
-                BOOL blTmp = [ACCacheDataTool clearPersonRoute];
-                if (blTmp) {   //本地数据库中对应id的路线为空
-                    //保存新的路线里表到本地缓存
-                    [self.routeArray enumerateObjectsUsingBlock:^(ACRouteModel *route, NSUInteger idx, BOOL *stop) {
-                        [ACCacheDataTool addRouteWith:route withUserObjectId:self.userModel.objectId];
-                    }];
-                }
+//                //清空本地路线数据库
+//                BOOL blTmp = [ACCacheDataTool clearPersonRoute];
+//                if (blTmp) {   //本地数据库中对应id的路线为空
+//                    //保存新的路线里表到本地缓存
+//                    [self.routeArray enumerateObjectsUsingBlock:^(ACRouteModel *route, NSUInteger idx, BOOL *stop) {
+//                        [ACCacheDataTool addRouteWith:route withUserObjectId:self.userModel.objectId];
+//                    }];
+//                }
             }
             if ([(ACRouteModel *)[result objectForKey:@"maxDistanceRoute"] objectId]) {
                 weakSelf.maxDistanceRoute = [result objectForKey:@"maxDistanceRoute"];

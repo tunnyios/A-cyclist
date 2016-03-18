@@ -15,5 +15,5 @@
 /** footer */
 @property (nonatomic, copy) NSString *footerText;
 /** cell模型数组 */
-@property (nonatomic, strong) NSArray *cellList;
+@property (nonatomic, strong) NSMutableArray *cellList;
 @end

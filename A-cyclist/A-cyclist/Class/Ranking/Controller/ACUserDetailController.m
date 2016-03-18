@@ -28,8 +28,8 @@
 
 
 @interface ACUserDetailController ()
-/** 路线数组 */
-@property (nonatomic, strong) NSArray *routeArray;
+/** 路线数量 */
+@property (nonatomic, assign) int routeCount;
 /** 最长距离路线 */
 @property (nonatomic, strong) ACRouteModel *maxDistanceRoute;
 /** 最快极速路线 */
@@ -58,11 +58,12 @@
 - (void)addGroup0
 {
     //加载数据
-    NSString *subTitle = [NSString stringWithFormat:@"%lu", (unsigned long)self.routeArray.count];
+    NSString *subTitle = [NSString stringWithFormat:@"%d", self.routeCount];
     ACArrowWithSubtitleSettingCellModel *cell0 = [ACArrowWithSubtitleSettingCellModel arrowWithSubtitleCellWithTitle:@"已共享的路线" subTitle:subTitle icon:nil destClass:nil];
     
     ACSettingGroupModel *group = [[ACSettingGroupModel alloc] init];
-    group.cellList = @[cell0];
+    [group.cellList addObject:cell0];
+
     [self.dataList addObject:group];
 }
 
@@ -94,7 +95,11 @@
     ACProfileCellModel *cell3 = [ACProfileCellModel profileCellWithTitle:@"单次最长时间" subTitle:subTitle3 route:self.maxTimeRoute];
     
     ACSettingGroupModel *group = [[ACSettingGroupModel alloc] init];
-    group.cellList = @[cell0, cell1, cell2, cell3];
+    [group.cellList addObject:cell0];
+    [group.cellList addObject:cell1];
+    [group.cellList addObject:cell2];
+    [group.cellList addObject:cell3];
+    
     group.headerText = @"个人最佳纪录";
     [self.dataList addObject:group];
 }
@@ -113,8 +118,8 @@
     [ACDataBaseTool getShareAllMaxRoutesWithUserId:self.userModel.objectId success:^(NSDictionary *result) {
 //        DLog(@"resutl is %@", result);
         if (result.count > 0) {
-            if ([(NSArray *)[result objectForKey:@"routeArray"] count] > 0) {
-                weakSelf.routeArray = [result objectForKey:@"routeArray"];
+            if ([[result objectForKey:@"routeCount"] intValue] > 0) {
+                weakSelf.routeCount = [[result objectForKey:@"routeCount"] intValue];
             }
             if ([(ACRouteModel *)[result objectForKey:@"maxDistanceRoute"] objectId]) {
                 weakSelf.maxDistanceRoute = [result objectForKey:@"maxDistanceRoute"];
@@ -204,9 +209,9 @@
     
     if (0 == indexPath.section) {
         //跳转至对应的控制器
-        if (self.routeArray.count > 0) {
+        if (self.routeCount > 0) {
             ACRouteHistoryController *routeHistoryVC = [[ACRouteHistoryController alloc] init];
-            routeHistoryVC.routeArrayModel = self.routeArray;
+            routeHistoryVC.routeType = RouteListTypeShared;
             [self.navigationController pushViewController:routeHistoryVC animated:YES];
         }
     } else {

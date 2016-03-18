@@ -8,8 +8,13 @@
 
 #import "ACBaseTableViewController.h"
 
+typedef enum : NSUInteger {
+    RouteListTypePersonal,  //个人路线
+    RouteListTypeShared,    //个人已共享路线
+} RouteListType;
 
 @interface ACRouteHistoryController : ACBaseTableViewController
-/** 骑行轨迹数组 */
-@property (nonatomic, strong) NSArray *routeArrayModel;
+/** 路线来源类别 */
+@property (nonatomic, assign) RouteListType routeType;
+
 @end

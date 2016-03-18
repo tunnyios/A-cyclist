@@ -18,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *routeAverSpeedLabel;
 @property (weak, nonatomic) IBOutlet UILabel *routeKcalLabel;
 @property (weak, nonatomic) IBOutlet UILabel *routeAscendAltitudeLabel;
+/** 已共享 */
+@property (weak, nonatomic) IBOutlet UILabel *sharedRouteLabel;
 
 @end
 @implementation ACRouteHistoryCellView
@@ -37,6 +39,11 @@
     self.routeAverSpeedLabel.text = [NSString stringWithFormat:@"%@", route.averageSpeed];
     self.routeKcalLabel.text = [NSString stringWithFormat:@"%@", route.kcal];
     self.routeAscendAltitudeLabel.text = route.ascendAltitude;
+    if ([route.isShared isEqual:@1]) {
+        self.sharedRouteLabel.hidden = NO;
+    } else {
+        self.sharedRouteLabel.hidden = YES;
+    }
 }
 
 + (instancetype)settingViewCellWithTableView:(UITableView *)tableView

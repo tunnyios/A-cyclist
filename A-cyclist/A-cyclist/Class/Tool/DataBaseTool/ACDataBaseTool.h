@@ -71,31 +71,64 @@ typedef enum : NSUInteger {
 #pragma mark - 路线数据相关
 
 /* personRoute路线 */
-/** 添加一条个人路线数据到personRoute数据库 */
+/**
+ *  添加一条个人路线数据到personRoute数据库
+ */
 + (void)addRouteWith:(ACRouteModel *)route userObjectId:(NSString *)objectId resultBlock:(void (^) (BOOL isSuccessful, NSError *error))block;
 
-/** 更新一条路线数据到数据库 */
+/**
+ *  更新一条路线数据到数据库
+ */
 + (void)updateRouteWithUserObjectId:(NSString *)userObjectId routeStartDate:(NSDate *)startDate dict:(NSDictionary *)dict andKeys:(NSArray *)keys withResultBlock:(void (^) (BOOL isSuccessful, NSError *error))block;
 
-/** 根据userObjectId 和 creatTime 获取一条personRoute */
+/**
+ *  删除一条路线数据到数据库
+ */
++ (void)delRouteWithRouteObjectId:(NSString *)routeObjectId success:(void (^)(BOOL isSuccessful))success failure:(void (^)(NSError *error))failure;
+
+/**
+ *  根据userObjectId 和 creatTime 获取一条personRoute
+ */
 + (void)getRouteWithUserObjectId:(NSString *)userObjectId routeStartDate:(NSDate *)startDate resultBlock:(void (^) (ACRouteModel *route, NSError *error))block;
 
-/** 根据用户id获取当前用户的路线列表 */
-+ (void)getRouteListWithUserObjectId:(NSString *)objectId resultBlock:(void (^) (NSArray *routes, NSError *error))block;
+/**
+ *  根据用户id获取当前用户的路线列表
+ */
++ (void)getRouteListWithUserObjectId:(NSString *)objectId pageIndex:(NSUInteger)pageIndex resultBlock:(void (^) (NSArray *routes, NSError *error))block;
 
-/** 根据用户id获取当前用户已共享的路线列表 */
-+ (void)getSharedRouteListWithUserObjectId:(NSString *)objectId resultBlock:(void (^) (NSArray *routes, NSError *error))block;
+/** 
+ *  根据用户id获取当前用户的路线数量
+ */
++ (void)getRouteListCountWithUserObjectId:(NSString *)objectId resultBlock:(void (^) (int routeCount, NSError *error))block;
 
-/** 根据用户id获取当前用户的路线中最远距离的一条路线 */
+/** 
+ *  根据用户id获取当前用户已共享的路线列表
+ */
++ (void)getSharedRouteListWithUserObjectId:(NSString *)objectId pageIndex:(NSUInteger)pageIndex resultBlock:(void (^) (NSArray *routes, NSError *error))block;
+
+/**
+ *  根据用户id获取当前用户的共享的路线数量
+ */
++ (void)getSharedRouteListCountWithUserObjectId:(NSString *)objectId resultBlock:(void (^) (int routeCount, NSError *error))block;
+
+/**
+ *  根据用户id获取当前用户的路线中最远距离的一条路线
+ */
 + (void)getMaxDistanceRouteWithUserObjectId:(NSString *)objectId resultBlock:(void (^) (ACRouteModel *route, NSError *error))block;
 
-/** 根据用户id获取当前用户的路线中最快极速的一条路线 */
+/**
+ *  根据用户id获取当前用户的路线中最快极速的一条路线
+ */
 + (void)getMaxSpeedRouteWithUserObjectId:(NSString *)objectId resultBlock:(void (^) (ACRouteModel *route, NSError *error))block;
 
-/** 根据用户id获取当前用户的路线中最快平均速度的一条路线 */
+/**
+ *  根据用户id获取当前用户的路线中最快平均速度的一条路线
+ */
 + (void)getMaxAverageSpeedRouteWithUserObjectId:(NSString *)objectId resultBlock:(void (^) (ACRouteModel *route, NSError *error))block;
 
-/** 根据用户id获取当前用户的路线中最长时间的一条路线 */
+/**
+ *  根据用户id获取当前用户的路线中最长时间的一条路线
+ */
 + (void)getMaxTimeRouteWithUserObjectId:(NSString *)objectId resultBlock:(void (^) (ACRouteModel *route, NSError *error))block;
 
 /**
@@ -111,11 +144,14 @@ typedef enum : NSUInteger {
 + (void)getPersonalAllMaxRoutesWithUserId:(NSString *)objectId success:(void (^)(NSDictionary *result))success failure:(void (^)(NSString  *error))failure;
 
 
+
 /****************************** personSharedRoute表 personSharedRoute路线 **************************/
 /** 添加一条共享路线到personSharedRoute数据库 */
 + (void)addPersonSharedRouteWith:(ACSharedRouteModel *)sharedRoute userObjectId:(NSString *)objectId resultBlock:(void (^) (BOOL isSuccessful, NSString *objectId, NSError *error))block;
 
-/** 删除一条共享路线到personSharedRoute数据库 */
+/** 
+ *  删除一条共享路线到personSharedRoute数据库
+ */
 + (void)delPersonSharedRouteWithObjectId:(NSString *)objectId resultBlock:(void (^) (BOOL isSuccessful, NSError *error))block;
 
 

@@ -580,7 +580,7 @@
     ACCyclingDetailModel *cell0 = [ACCyclingDetailModel settingCellWithTitle:@"运动里程" subTitle:[NSString stringWithFormat:@"%.2f", self.route.distance.doubleValue]];
     
     ACSettingGroupModel *group = [[ACSettingGroupModel alloc] init];
-    group.cellList = @[cell0];
+    [group.cellList addObject:cell0];
     group.headerText = @"里程(km)";
     
     [self.dataList addObject:group];
@@ -592,7 +592,8 @@
     ACCyclingDetailModel *cell1 = [ACCyclingDetailModel settingCellWithTitle:@"极速" subTitle:[NSString stringWithFormat:@"%.2f", self.route.maxSpeed.doubleValue]];
     
     ACSettingGroupModel *group = [[ACSettingGroupModel alloc] init];
-    group.cellList = @[cell0, cell1];
+    [group.cellList addObject:cell0];
+    [group.cellList addObject:cell1];
     group.headerText = @"速度(km/h)";
     
     [self.dataList addObject:group];
@@ -605,7 +606,8 @@
     ACCyclingDetailModel *cell1 = [ACCyclingDetailModel settingCellWithTitle:@"海拔范围" subTitle:range];
     
     ACSettingGroupModel *group = [[ACSettingGroupModel alloc] init];
-    group.cellList = @[cell0, cell1];
+    [group.cellList addObject:cell0];
+    [group.cellList addObject:cell1];
     group.headerText = @"海拔(m)";
     
     [self.dataList addObject:group];
@@ -620,7 +622,9 @@
     ACCyclingDetailModel *cell2 = [ACCyclingDetailModel settingCellWithTitle:@"结束时间" subTitle:endTimeStr];
     
     ACSettingGroupModel *group = [[ACSettingGroupModel alloc] init];
-    group.cellList = @[cell0, cell1, cell2];
+    [group.cellList addObject:cell0];
+    [group.cellList addObject:cell1];
+    [group.cellList addObject:cell2];
     group.headerText = @"时间(h:m)";
     
     [self.dataList addObject:group];

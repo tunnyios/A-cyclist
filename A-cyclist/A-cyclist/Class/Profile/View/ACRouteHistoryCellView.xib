@@ -41,9 +41,20 @@
                                     <constraint firstAttribute="height" constant="1" id="WDb-YA-lzd"/>
                                 </constraints>
                             </imageView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已共享" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HB5-sr-tSC">
+                                <rect key="frame" x="252" y="0.0" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="2ue-UT-4ST"/>
+                                    <constraint firstAttribute="width" constant="42" id="IwL-ez-raJ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.99215686270000003" green="0.6588235294" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <constraints>
                             <constraint firstItem="oBj-87-cE0" firstAttribute="leading" secondItem="FZ1-up-uRU" secondAttribute="trailing" constant="3" id="9fl-qc-leg"/>
+                            <constraint firstItem="HB5-sr-tSC" firstAttribute="top" secondItem="UB0-Q3-hQe" secondAttribute="top" id="AWj-1Z-ss4"/>
                             <constraint firstItem="FZ1-up-uRU" firstAttribute="leading" secondItem="UB0-Q3-hQe" secondAttribute="leading" constant="10" id="H1U-pC-7ie"/>
                             <constraint firstAttribute="bottom" secondItem="tCA-4N-TQm" secondAttribute="bottom" id="Hz7-AE-k5F"/>
                             <constraint firstAttribute="height" constant="20" id="XZh-tC-CYj"/>
@@ -52,6 +63,7 @@
                             <constraint firstAttribute="trailing" secondItem="tCA-4N-TQm" secondAttribute="trailing" constant="10" id="nBG-yc-Hjb"/>
                             <constraint firstAttribute="bottom" secondItem="tCA-4N-TQm" secondAttribute="bottom" id="nKt-jN-5vl"/>
                             <constraint firstItem="oBj-87-cE0" firstAttribute="top" secondItem="UB0-Q3-hQe" secondAttribute="top" id="ngP-1B-ETe"/>
+                            <constraint firstAttribute="trailing" secondItem="HB5-sr-tSC" secondAttribute="trailing" constant="10" id="qeV-G6-FyF"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -83,9 +95,9 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100:60" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="joT-5E-qjT">
-                                        <rect key="frame" x="15" y="0.0" width="42" height="12"/>
+                                        <rect key="frame" x="15" y="0.0" width="50" height="12"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="42" id="1rg-1t-ACF"/>
+                                            <constraint firstAttribute="width" constant="50" id="1rg-1t-ACF"/>
                                             <constraint firstAttribute="height" constant="12" id="Isj-Yu-Oti"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
@@ -265,6 +277,7 @@
                 <outlet property="routeKcalLabel" destination="Lbp-uW-xsa" id="Mq0-TH-Stz"/>
                 <outlet property="routeStartTimeLabel" destination="oBj-87-cE0" id="05k-gV-ySP"/>
                 <outlet property="routeTimeLabel" destination="joT-5E-qjT" id="thU-78-MWW"/>
+                <outlet property="sharedRouteLabel" destination="HB5-sr-tSC" id="Hgn-SQ-376"/>
             </connections>
             <point key="canvasLocation" x="122" y="232.5"/>
         </tableViewCell>

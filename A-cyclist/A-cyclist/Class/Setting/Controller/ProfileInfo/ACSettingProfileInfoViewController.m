@@ -148,8 +148,13 @@
     ACBlankSettingCellModel *cell5 = [ACBlankSettingCellModel blankSettingCellWithTitle:@"邮箱" subTitle:(user.email ? user.email : @"未填写") icon:nil];
     
     ACSettingGroupModel *group = [[ACSettingGroupModel alloc] init];
-    group.cellList = @[cell0, cell1, cell2, cell3, cell4, cell5];
-    
+    [group.cellList addObject:cell0];
+    [group.cellList addObject:cell1];
+    [group.cellList addObject:cell2];
+    [group.cellList addObject:cell3];
+    [group.cellList addObject:cell4];
+    [group.cellList addObject:cell5];
+
     [self.dataList addObject:group];
 }
 
