@@ -289,6 +289,13 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     ACUploadSharedRouteController *sharedRoute = segue.destinationViewController;
+    sharedRoute.option = ^(BOOL isShared) {
+        if (isShared) {
+            //设置已共享
+            self.route.isShared = @1;
+            [self.sharedBtn setTitle:@"删除已上传路线" forState:UIControlStateNormal];
+        }
+    };
     sharedRoute.routeMapImage = sender[0];
     sharedRoute.route = sender[1];
 }

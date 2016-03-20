@@ -509,6 +509,7 @@ typedef enum : NSUInteger {
     self.sharedRoute.maxAlitude = [NSNumber numberWithDouble:self.route.maxAltitude.doubleValue];
     
     //保存
+    __weak typeof (self)weakSelf = self;
     [ACDataBaseTool addPersonSharedRouteWith:self.sharedRoute userObjectId:self.user.objectId resultBlock:^(BOOL isSuccessful, NSString *objectId, NSError *error) {
         if (isSuccessful) {
             DLog(@"上传共享路线到服务器成功");
@@ -519,17 +520,22 @@ typedef enum : NSUInteger {
             NSDictionary *dict = @{@"isShared" : @1,
                                    @"personSharedRouteId" : objectId
                                    };
-            [ACDataBaseTool updateRouteWithUserObjectId:self.user.objectId routeStartDate:self.route.cyclingStartTime dict:dict andKeys:keys withResultBlock:^(BOOL isSuccessful, NSError *error) {
+            __strong typeof (weakSelf)strongSelf = weakSelf;
+            [ACDataBaseTool updateRouteWithUserObjectId:weakSelf.user.objectId routeStartDate:weakSelf.route.cyclingStartTime dict:dict andKeys:keys withResultBlock:^(BOOL isSuccessful, NSError *error) {
                 if (isSuccessful) {
                     DLog(@"更新路线的isShared成功");
+                    if (strongSelf.option) {
+                        strongSelf.option(YES);
+                    }
+                    
                 } else {
                     DLog(@"更新路线的isShared失败, error is %@", error);
                 }
             }];
             //更新该路线到本地缓存
-            self.route.isShared = @1;
-            self.route.personSharedRouteId = objectId;
-            [ACCacheDataTool updateRouteWith:self.route routeOne:self.route.routeOne];
+            weakSelf.route.isShared = @1;
+            weakSelf.route.personSharedRouteId = objectId;
+            [ACCacheDataTool updateRouteWith:weakSelf.route routeOne:weakSelf.route.routeOne];
             
         } else {
             [ACShowAlertTool showError:@"上传失败,请检查网络"];

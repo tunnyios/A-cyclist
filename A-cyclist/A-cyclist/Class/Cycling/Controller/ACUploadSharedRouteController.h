@@ -9,10 +9,16 @@
 #import <UIKit/UIKit.h>
 
 @class ACRouteModel;
-@interface ACUploadSharedRouteController : UIViewController
 
+//成功上传路线后
+typedef void(^uploadSharedRoute)(BOOL);
+
+@interface ACUploadSharedRouteController : UIViewController
 /** 路线地图Image */
 @property (nonatomic, strong) UIImage *routeMapImage;
 /** 路线对象 */
 @property (nonatomic, strong) ACRouteModel *route;
+/** 成功上传路线后的操作 */
+@property (nonatomic, strong) uploadSharedRoute option;
+
 @end
