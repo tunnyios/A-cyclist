@@ -122,10 +122,6 @@
  */
 - (IBAction)newUserRegister
 {
-//    /* 手动移除通知，并退出键盘 */
-//    [self.view endEditing:YES];
-//    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
     UIStoryboard *loginSB = [UIStoryboard storyboardWithName:@"ACLogin" bundle:nil];
     ACRegisterViewController *registerVc = [loginSB instantiateViewControllerWithIdentifier:@"register"];
     registerVc.from = RegisterPushFromTypeRegister;

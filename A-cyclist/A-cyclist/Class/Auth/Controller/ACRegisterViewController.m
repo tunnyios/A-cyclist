@@ -83,9 +83,16 @@
         [self showMsgCenter:ACInvalidPhone];
         return;
     }
+    __weak typeof (self)weakSelf = self;
+    //如果已经注册过了禁止注册
+    [ACDataBaseTool checkAlreadyUserWithPhoneNum:self.registerPhone.text withResultBlock:^(BOOL isSuccessful, NSError *error) {
+        if (isSuccessful) {
+            [weakSelf showMsgCenter:@"该号码已注册"];
+            return;
+        }
+    }];
 
     //请求验证码
-    __weak typeof (self)weakSelf = self;
     [ACDataBaseTool requestSMSCodeWithPhoneNum:self.registerPhone.text template:nil block:^(int number, NSError *error) {
         if (error) {
             [weakSelf showMsgCenter:@"发送验证码失败，请稍后再试"];

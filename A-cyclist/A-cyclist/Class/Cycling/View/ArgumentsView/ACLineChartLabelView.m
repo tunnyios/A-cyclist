@@ -19,7 +19,8 @@
         [self setMinimumScaleFactor:12.0f];
         
         [self setNumberOfLines:1];
-        [self setFont:[UIFont fontWithName:nil size:11.0f]];
+//        [self setFont:[UIFont fontWithName:nil size:11.0f]];
+        [self setFont:[UIFont systemFontOfSize:11.0f]];
         [self setTextColor: [UIColor grayColor]];
         self.backgroundColor = [UIColor clearColor];
         [self setTextAlignment:NSTextAlignmentLeft];

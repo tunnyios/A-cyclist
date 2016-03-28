@@ -67,6 +67,11 @@ typedef enum : NSUInteger {
 /** 获取当前用户对象 */
 + (ACUserModel *)getCurrentUser;
 
+/**
+ *  根据手机号检查是否已注册过
+ */
++ (void)checkAlreadyUserWithPhoneNum:(NSString *)number withResultBlock:(void (^)(BOOL isSuccessful, NSError *error))block;
+
 
 #pragma mark - 路线数据相关
 

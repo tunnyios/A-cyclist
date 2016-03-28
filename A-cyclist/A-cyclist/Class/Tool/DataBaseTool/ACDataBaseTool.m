@@ -212,6 +212,21 @@
     return ACUser;
 }
 
+/**
+ *  根据手机号检查是否已注册过
+ */
++ (void)checkAlreadyUserWithPhoneNum:(NSString *)number withResultBlock:(void (^)(BOOL, NSError *))block
+{
+    BmobQuery *query = [BmobUser query];
+    [query whereKey:@"mobilePhoneNumber" equalTo:number];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+        if (array.count > 0) {
+            block(YES, error);
+        } else {
+            block(NO, error);
+        }
+    }];
+}
 
 #pragma mark - 路线数据相关
 

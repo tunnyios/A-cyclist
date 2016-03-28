@@ -31,9 +31,16 @@
     CGFloat __block endAngel = 0;
     
     [array enumerateObjectsUsingBlock:^(NSString *num, NSUInteger idx, BOOL *stop) {
+        if ([num isEqualToString:@"0.00"]) {
+            return ;
+        }
         CGFloat scral = num.doubleValue / self.route.distance.doubleValue;
         startAngle = endAngel;
-        endAngel = startAngle + scral * M_PI * 2;
+        if (idx == (array.count - 1)) {
+            endAngel = M_PI * 2;
+        } else {
+            endAngel = startAngle + scral * M_PI * 2;
+        }
         
         DLog(@"num is %@, distance is %@", num, self.route.distance);
         DLog(@"scral is %f, startAngle is %f, endAngle is %f", scral, startAngle, endAngel);

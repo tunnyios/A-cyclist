@@ -121,6 +121,7 @@
     
     //1. 添加横纵轴标签和横线
     int tmpY = viewH;
+    
     for (int i = 0; i < self.vSpeedArray.count; i++) {
         CGPoint altitudePoint = CGPointMake(30, tmpY - 30);
         CGPoint speedPoint = CGPointMake(viewW, tmpY - 30);
@@ -198,16 +199,23 @@
 
     CGPoint basePoint = CGPointMake(30, viewH - 30);
     //海拔线
-    [pathAltitude moveToPoint:basePoint];
+//    [pathAltitude moveToPoint:basePoint];
     for (int i = 0; i < count; i++) {
         ACStepModel *step = self.route.steps[i];
+        if (totleAltitude <= 0) {
+            return;
+        }
         trueVIntervalAltitude = (step.altitude.doubleValue / totleAltitude) * (viewH - 2 * AClineHeight);
         accruedDistance += step.distanceInterval.doubleValue;
         trueHInterval = (accruedDistance / (self.route.distance.doubleValue * 1000)) * (viewW - 2 * AClineHeight);
         CGPoint tempPoint = CGPointMake(basePoint.x + trueHInterval, basePoint.y - trueVIntervalAltitude);
 //        DLog(@"<%f : %f>, trueVIntervalAltitude is %f, trueHInterval is %f, viewH is %f, totleAltitude is %f", basePoint.x + trueHInterval, basePoint.y - trueVIntervalAltitude, trueVIntervalAltitude, trueHInterval, viewH, totleAltitude);
-        [pathAltitude addLineToPoint:tempPoint];
-        [pathAltitude moveToPoint:tempPoint];
+        if (0 == i) {
+            [pathAltitude moveToPoint:tempPoint];
+        } else {
+            [pathAltitude addLineToPoint:tempPoint];
+            [pathAltitude moveToPoint:tempPoint];
+        }
     }
     //把路径添加到上下文
     CGContextAddPath(context, pathAltitude.CGPath);
@@ -217,16 +225,23 @@
     
     //速度线
     accruedDistance = 0;
-    [pathSpeed moveToPoint:basePoint];
+//    [pathSpeed moveToPoint:basePoint];
     for (int i = 0; i < count; i++) {
         ACStepModel *step = self.route.steps[i];
+        if (self.route.maxSpeed.doubleValue <= 0) {
+            return;
+        }
         trueVintervalSpeed = (step.currentSpeed.doubleValue / self.route.maxSpeed.doubleValue) * (viewH - 2 * AClineHeight);
         accruedDistance += step.distanceInterval.doubleValue;
         trueHInterval = (accruedDistance / (self.route.distance.doubleValue * 1000)) * (viewW - 2 * AClineHeight);
         CGPoint tempPoint = CGPointMake(basePoint.x + trueHInterval, basePoint.y - trueVintervalSpeed);
 //        DLog(@"(%f : %f)", basePoint.x + trueHInterval, basePoint.y - trueVintervalSpeed);
-        [pathSpeed addLineToPoint:tempPoint];
-        [pathSpeed moveToPoint:tempPoint];
+        if (0 == i) {
+            [pathSpeed moveToPoint:tempPoint];
+        } else {
+            [pathSpeed addLineToPoint:tempPoint];
+            [pathSpeed moveToPoint:tempPoint];
+        }
     }
     //把路径添加到上下文
     CGContextAddPath(context, pathSpeed.CGPath);

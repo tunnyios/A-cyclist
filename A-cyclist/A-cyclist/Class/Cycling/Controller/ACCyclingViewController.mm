@@ -298,7 +298,7 @@ typedef enum : NSUInteger {
  */
 - (IBAction)endCycling
 {
-    if (self.totleDistance < 5) {
+    if (self.totleDistance < 10) {
         //提示轨迹太短，不保存记录
         UIAlertController *alertVc = [UIAlertController alertControllerWithTitle:@"xxxxx" message:@"本次轨迹太短，将不会被保存" preferredStyle:UIAlertControllerStyleAlert];
         
@@ -321,8 +321,6 @@ typedef enum : NSUInteger {
             [self saveRouteData];
             //2. 结束，隐藏暂停和结束按钮，显示开始按钮
             [self hideBtn];
-            //3. 执行结束功能，分析此次骑行状态，跳转控制器
-            [self performSegueWithIdentifier:@"cyclingArgument" sender:self.route];
             
         }];
         
@@ -418,20 +416,23 @@ typedef enum : NSUInteger {
     
     //2. 每10米更新一次参数信息
     [self updateCyclingParamsInfoWithLocation:location];
-    NSString *latitude = [[NSNumber numberWithDouble:location.coordinate.latitude] stringValue];
-    NSString *longitude = [[NSNumber numberWithDouble:location.coordinate.longitude] stringValue];
-    NSString *altitude = [NSString stringWithFormat:@"%ld", (long)location.altitude];
-    NSString *speed = [NSString stringWithFormat:@"%.2f", fabs(location.speed * 3.6)];
-    ACStepModel *step = [ACStepModel stepModelWithLatitude:latitude longitude:longitude altitude:altitude currentSpeed:speed distanceInterval:self.distanceInterval];
-    DLog(@"step is %@", step);
-    
-    //3. 记录
-    [self.locationArrayM addObject:step];
-    DLog(@"count %lu", (unsigned long)self.locationArrayM.count);
-    
-    //4. 绘图
-    [self onGetWalkPolylineWithLocation:location];
-    self.preLocation = location;
+    CLLocationSpeed speedNum = (location.speed > 0) ? location.speed : 0;
+    NSString *speed = [NSString stringWithFormat:@"%.2f", speedNum * 3.6];
+    if (![speed isEqualToString:@"0.00"]) {
+        NSString *latitude = [[NSNumber numberWithDouble:location.coordinate.latitude] stringValue];
+        NSString *longitude = [[NSNumber numberWithDouble:location.coordinate.longitude] stringValue];
+        NSString *altitude = [NSString stringWithFormat:@"%ld", (long)location.altitude];
+        ACStepModel *step = [ACStepModel stepModelWithLatitude:latitude longitude:longitude altitude:altitude currentSpeed:speed distanceInterval:self.distanceInterval];
+        DLog(@"step is %@", step);
+        
+        //3. 记录
+        [self.locationArrayM addObject:step];
+        DLog(@"count %lu", (unsigned long)self.locationArrayM.count);
+        
+        //4. 绘图
+        [self onGetWalkPolylineWithLocation:location];
+        self.preLocation = location;
+    }
 }
 
 /**
@@ -452,8 +453,14 @@ typedef enum : NSUInteger {
      location.speed; 设备移动速度 单位是米/秒, 适用于行车速度而不太适用于步行
      */
     if (self.preLocation) {
+        CLLocationSpeed speed = (location.speed > 0) ? location.speed : 0;
+        NSString *currentSpeed = [NSString stringWithFormat:@"%.2f", speed * 3.6];
         //计算上一次和这一次的距离差(直线距离)，这次距离
         CLLocationDistance distance = [location distanceFromLocation:self.preLocation];
+        if ([currentSpeed isEqualToString:@"0.00"]) {
+            distance = 0;
+            speed = 0.00;
+        }
         self.distanceInterval = [NSString stringWithFormat:@"%.2f", distance];
         //计算两次的时间差,这次耗时
         NSTimeInterval timeInterval = [location.timestamp timeIntervalSinceDate:self.preLocation.timestamp];
@@ -463,7 +470,6 @@ typedef enum : NSUInteger {
         //总时间
         self.totleTime += timeInterval;
         //计算平均速度
-        CLLocationSpeed speed = (location.speed > 0) ? location.speed : 0;
         CLLocationSpeed averageSpeed = ((self.totleDistance / self.totleTime) > speed) ? speed : (self.totleDistance / self.totleTime);
      
         // 瞬时速度
@@ -846,6 +852,9 @@ typedef enum : NSUInteger {
     self.route.cyclingEndTime = [NSDate date];
     
     DLog(@"route.steps is %@\n, route is %@", self.route.steps, self.route);
+    //3. 执行结束功能，分析此次骑行状态，跳转控制器
+    [self performSegueWithIdentifier:@"cyclingArgument" sender:self.route];
+    
     //存储到缓存
     [ACCacheDataTool addRouteWith:self.route withUserObjectId:self.user.objectId];
     
