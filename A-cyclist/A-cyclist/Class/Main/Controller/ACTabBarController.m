@@ -39,7 +39,7 @@
 //    routeVc.view.backgroundColor = [UIColor colorWithRandom];
 
     UIViewController *cyclingVc = [cyclingSB instantiateInitialViewController];
-    [self creatChildViewController:cyclingVc title:@"记录" icon:@"tab_more_iphone_5" selectedIcon:@"tab_more_white_iphone_5"];
+    [self creatChildViewController:cyclingVc title:@"记录" icon:@"tab_cycling_icon_grey" selectedIcon:@"tab_more_white_iphone_5"];
     
     UINavigationController *rankingNav = [rankingSB instantiateInitialViewController];
     UIViewController *rankingVc = rankingNav.topViewController;

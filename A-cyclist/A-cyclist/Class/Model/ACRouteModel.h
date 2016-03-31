@@ -13,7 +13,7 @@
 /** 路线名称 */
 @property (nonatomic, copy) NSString *routeName;
 /** 轨迹 */
-@property (nonatomic, strong) NSMutableArray *steps;
+@property (nonatomic, strong) NSArray *steps;
 /** 里程(km) */
 @property (nonatomic, copy) NSNumber *distance;
 /** 耗时(h:min) */

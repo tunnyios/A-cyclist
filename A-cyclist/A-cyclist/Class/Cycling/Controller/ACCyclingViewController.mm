@@ -66,6 +66,8 @@ typedef enum : NSUInteger {
 /* 轨迹记录 */
 /** 记录上一次的位置 */
 @property (nonatomic, strong) CLLocation *preLocation;
+/** 上上一次位置 */
+@property (nonatomic, strong) CLLocation *prePreLocation;
 /** 两次位置的距离差(单位米) */
 @property (nonatomic, copy) NSString *distanceInterval;
 /** 位置数组 */
@@ -176,6 +178,8 @@ typedef enum : NSUInteger {
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.currentSpeed.attributedText = [self creatCurrentSpeedLabelWithStr:@"0.00km/h"];
+    
     //1. 定位
     _bmkLocationService = [[BMKLocationService alloc] init];
     
@@ -286,11 +290,54 @@ typedef enum : NSUInteger {
  */
 - (void)cleanLabel
 {
-    self.currentSpeed.text = @"0.00";
+    self.currentSpeed.attributedText = [self creatCurrentSpeedLabelWithStr:@"0.00km/h"];
     self.currentMileage.text = @"0.00";
     self.currentTimeConsuming.text = @"00:00";
     self.currentAverageSpeed.text = @"0.00";
     self.currentMaxSpeed.text = @"0.00";
+}
+
+/**
+ *  生成当前瞬时速度的富文本字符串
+ */
+- (NSMutableAttributedString *)creatCurrentSpeedLabelWithStr:(NSString *)str
+{
+    NSDictionary *speedFont = @{NSFontAttributeName : [UIFont boldSystemFontOfSize:86.0f]};
+    NSDictionary *kmFont = @{NSFontAttributeName : [UIFont systemFontOfSize:20.0f]};
+
+    NSArray *dictArray = @[@{@"textFormat" : speedFont,
+                             @"loc" : @0,
+                             @"len" : @4},
+                           @{@"textFormat" : kmFont,
+                             @"loc" : @4,
+                             @"len" : @4}];
+    return [self creatAttritudeStrWithStr:@"0.00km/h" dictArray:dictArray];
+}
+
+/**
+ *  生成一个富文本
+ *
+ *  @param str       基础文字
+ *  @param dictArray 格式 {textFormat : @{},
+                            loc      :  @number,
+                            len      : @number}
+ */
+- (NSMutableAttributedString *)creatAttritudeStrWithStr:(NSString *)str dictArray:(NSArray *)dictArray
+{
+    NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:str];
+    [dictArray enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull dict, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSNumber *loc = [dict objectForKey:@"loc"];
+        NSNumber *len = [dict objectForKey:@"len"];
+        NSDictionary *textFormatDic = [dict objectForKey:@"textFormat"];
+        if (!loc && !len) {
+            return;
+        }
+        if (textFormatDic) {
+            [attStr setAttributes:textFormatDic range:NSMakeRange(loc.unsignedIntegerValue, len.unsignedIntegerValue)];
+        }
+    }];
+    
+    return attStr;
 }
 
 /**
@@ -416,9 +463,9 @@ typedef enum : NSUInteger {
     
     //2. 每10米更新一次参数信息
     [self updateCyclingParamsInfoWithLocation:location];
-    CLLocationSpeed speedNum = (location.speed > 0) ? location.speed : 0;
+    CLLocationSpeed speedNum = round(((location.speed > 0) ? location.speed : 0.00) * 100)/100;
     NSString *speed = [NSString stringWithFormat:@"%.2f", speedNum * 3.6];
-    if (![speed isEqualToString:@"0.00"]) {
+    if (location.speed > 0 || self.preLocation.speed > 0) {
         NSString *latitude = [[NSNumber numberWithDouble:location.coordinate.latitude] stringValue];
         NSString *longitude = [[NSNumber numberWithDouble:location.coordinate.longitude] stringValue];
         NSString *altitude = [NSString stringWithFormat:@"%ld", (long)location.altitude];
@@ -431,6 +478,11 @@ typedef enum : NSUInteger {
         
         //4. 绘图
         [self onGetWalkPolylineWithLocation:location];
+        if (self.preLocation) {
+            self.prePreLocation = self.prePreLocation;
+        } else {
+            self.prePreLocation = location;
+        }
         self.preLocation = location;
     }
 }
@@ -453,14 +505,14 @@ typedef enum : NSUInteger {
      location.speed; 设备移动速度 单位是米/秒, 适用于行车速度而不太适用于步行
      */
     if (self.preLocation) {
-        CLLocationSpeed speed = (location.speed > 0) ? location.speed : 0;
-        NSString *currentSpeed = [NSString stringWithFormat:@"%.2f", speed * 3.6];
+        CLLocationSpeed speed = round(((location.speed > 0) ? location.speed : 0.00) * 100)/100;
+//        NSString *currentSpeed = [NSString stringWithFormat:@"%.2f", speed * 3.6];
         //计算上一次和这一次的距离差(直线距离)，这次距离
         CLLocationDistance distance = [location distanceFromLocation:self.preLocation];
-        if ([currentSpeed isEqualToString:@"0.00"]) {
-            distance = 0;
-            speed = 0.00;
-        }
+//        if ([currentSpeed isEqualToString:@"0.00"]) {
+//            distance = 0;
+//            speed = 0.00;
+//        }
         self.distanceInterval = [NSString stringWithFormat:@"%.2f", distance];
         //计算两次的时间差,这次耗时
         NSTimeInterval timeInterval = [location.timestamp timeIntervalSinceDate:self.preLocation.timestamp];
@@ -473,7 +525,7 @@ typedef enum : NSUInteger {
         CLLocationSpeed averageSpeed = ((self.totleDistance / self.totleTime) > speed) ? speed : (self.totleDistance / self.totleTime);
      
         // 瞬时速度
-        self.currentSpeed.text = [NSString stringWithFormat:@"%.2f", speed * 3.6];
+        self.currentSpeed.attributedText = [self creatCurrentSpeedLabelWithStr:[NSString stringWithFormat:@"%.2fkm/h", speed * 3.6]];
         // 当前里程
         self.currentMileage.text = [NSString stringWithFormat:@"%.2f", self.totleDistance * 0.001];
         // 平均速度
@@ -513,7 +565,7 @@ typedef enum : NSUInteger {
         //极速
         self.maxSpeed = 0;
         // 瞬时速度
-        self.currentSpeed.text = @"0.00";
+        self.currentSpeed.attributedText = [self creatCurrentSpeedLabelWithStr:@"0.00km/h"];
         //距离间隔
         self.distanceInterval = @"0";
         self.maxAltitude = location.altitude;
@@ -533,13 +585,15 @@ typedef enum : NSUInteger {
  优化，每次画两个点，连续。而不是每次擦掉上次的再画new+old个点
  */
     if (self.preLocation) {
+        BMKMapPoint preLastPoint = BMKMapPointForCoordinate(self.prePreLocation.coordinate);
         BMKMapPoint lastPoint = BMKMapPointForCoordinate(self.preLocation.coordinate);
         BMKMapPoint currentPoint = BMKMapPointForCoordinate(location.coordinate);
         BMKMapPoint *tempPoints = new BMKMapPoint[2];
-        tempPoints[0] = lastPoint;
-        tempPoints[1] = currentPoint;
+        tempPoints[0] = preLastPoint;
+        tempPoints[1] = lastPoint;
+        tempPoints[2] = currentPoint;
         
-        BMKPolyline *polyLineTemp = [BMKPolyline polylineWithPoints:tempPoints count:2];
+        BMKPolyline *polyLineTemp = [BMKPolyline polylineWithPoints:tempPoints count:3];
         [self.polyLineArray addObject:polyLineTemp];
         
         //添加路线,绘图
@@ -819,7 +873,7 @@ typedef enum : NSUInteger {
     //设置唯一键
     self.route.routeOne = [NSString stringWithFormat:@"%@%@", self.user.objectId, timeName];
     self.route.routeName = timeName;
-    self.route.steps = self.locationArrayM;
+    self.route.steps = (NSArray *)self.locationArrayM;
 
     self.route.distance = [NSNumber numberWithDouble:self.totleDistance * 0.001];
     self.route.time = self.currentTimeConsuming.text;
