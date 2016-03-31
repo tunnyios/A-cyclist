@@ -33,12 +33,32 @@
 /** 百度地图管理者 */
 @property (nonatomic, strong) BMKMapManager *bmkMapManager;
 @property (nonatomic, strong) AVAudioPlayer *player;
+@property (strong, nonatomic) UIView *lunchView;
+/** <#Description#> */
+@property (nonatomic, strong) UIImageView *imageV;
+/** timeIndex */
+@property (nonatomic, assign) NSUInteger timerIndex;
+/** <#Description#> */
+@property (nonatomic, strong) NSTimer *timer;
 
 @end
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    //设置启动动画并跳转
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    [self.window makeKeyAndVisible];
+    self.lunchView = [[NSBundle mainBundle]loadNibNamed:@"LaunchScreen" owner:nil options:nil][0];
+    self.lunchView.frame = CGRectMake(0, 0, self.window.screen.bounds.size.width, self.window.screen.bounds.size.height);
+    [self.window addSubview:self.lunchView];
+    self.imageV = [[UIImageView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.imageV.image = [UIImage imageNamed:@"default0"];
+    self.timerIndex = 0;
+    [NSTimer scheduledTimerWithTimeInterval:0.3f target:self selector:@selector(updateImage:) userInfo:nil repeats:YES];
+    [self.lunchView addSubview:self.imageV];
+    [self.window bringSubviewToFront:self.lunchView];
+    
     //设置友盟社会化组件appkey
     [UMSocialData setAppKey:ACYouMengAppKey];
     //取消友盟自带的弹窗
@@ -68,31 +88,33 @@
     [[UIApplication sharedApplication] registerUserNotificationSettings:userNotifiSetting];
     [[UIApplication sharedApplication] registerForRemoteNotifications];
     
-    
-    //1. 创建window
-    self.window = [[UIWindow alloc] initWithFrame:ACScreenBounds];
-    
-    //2. 设置根控制器
-    ACUserModel *user = [ACCacheDataTool getUserInfo];
-    if (user) {
-        //创建tabbarController
-        ACTabBarController *tabBarController = [[ACTabBarController alloc] init];
-        //设置根控制器
-        self.window.rootViewController = tabBarController;
-    } else {
-        UIStoryboard *loginSB = [UIStoryboard storyboardWithName:@"ACLogin" bundle:nil];
-        //设置根控制器
-        self.window.rootViewController = loginSB.instantiateInitialViewController;
-    }
-    
-//    UIStoryboard *loginSB = [UIStoryboard storyboardWithName:@"ACLogin" bundle:nil];
-    //设置根控制器
-//    self.window.rootViewController = loginSB.instantiateInitialViewController;
-    
-    //3. 显示window
-    [self.window makeKeyAndVisible];
-    
     return YES;
+}
+
+- (void)updateImage:(NSTimer *)timer
+{
+    self.timerIndex++;
+    [UIView animateWithDuration:0.3f animations:^{
+        NSString *imageStr = [NSString stringWithFormat:@"default%lu", (unsigned long)self.timerIndex];
+        self.imageV.image = [UIImage imageNamed:imageStr];
+    } completion:^(BOOL finished) {
+        if (12 == self.timerIndex) {
+            [self.lunchView removeFromSuperview];
+            [self.timer invalidate];
+            //2. 设置根控制器
+            ACUserModel *user = [ACCacheDataTool getUserInfo];
+            if (user) {
+                //创建tabbarController
+                ACTabBarController *tabBarController = [[ACTabBarController alloc] init];
+                //设置根控制器
+                self.window.rootViewController = tabBarController;
+            } else {
+                UIStoryboard *loginSB = [UIStoryboard storyboardWithName:@"ACLogin" bundle:nil];
+                //设置根控制器
+                self.window.rootViewController = loginSB.instantiateInitialViewController;
+            }
+        }
+    }];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
