@@ -55,7 +55,7 @@
     self.imageV = [[UIImageView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.imageV.image = [UIImage imageNamed:@"default0"];
     self.timerIndex = 0;
-    [NSTimer scheduledTimerWithTimeInterval:0.3f target:self selector:@selector(updateImage:) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:0.2f target:self selector:@selector(updateImage:) userInfo:nil repeats:YES];
     [self.lunchView addSubview:self.imageV];
     [self.window bringSubviewToFront:self.lunchView];
     
@@ -94,7 +94,7 @@
 - (void)updateImage:(NSTimer *)timer
 {
     self.timerIndex++;
-    [UIView animateWithDuration:0.3f animations:^{
+    [UIView animateWithDuration:0.2f animations:^{
         NSString *imageStr = [NSString stringWithFormat:@"default%lu", (unsigned long)self.timerIndex];
         self.imageV.image = [UIImage imageNamed:imageStr];
     } completion:^(BOOL finished) {

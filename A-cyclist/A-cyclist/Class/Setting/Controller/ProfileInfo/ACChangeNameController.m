@@ -21,10 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    //从缓存中获取用户昵称
-    ACUserModel *user = [ACCacheDataTool getUserInfo];
-    self.textView.text = user.username;
+    self.textView.text = self.defaultText;
 
 }
 
@@ -38,6 +35,7 @@
  */
 - (IBAction)changeCancle:(id)sender
 {
+    [self.view endEditing:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -46,26 +44,40 @@
  */
 - (IBAction)changeSave:(id)sender
 {
-    //1. 更新到本地缓存
-    ACUserModel *user = [ACCacheDataTool getUserInfo];
-    user.username = self.textView.text;
-    [ACCacheDataTool updateUserInfo:user withObjectId:user.objectId];
+    NSDictionary *dict = @{};
+    NSArray *array = @[];
+    __block ACUserModel *user = [ACCacheDataTool getUserInfo];
+    if (ChangeTextPushFromName == self.pushFrom) {
+        //昵称
+        user.username = self.textView.text;
+        dict = @{@"username" : self.textView.text};
+        array = @[@"username"];
+    } else {
+        //个性签名
+        user.signature = self.textView.text;
+        dict = @{@"signature" : self.textView.text};
+        array = @[@"signature"];
+    }
     
-    //2. 保存到数据库
-    NSDictionary *dict = @{@"username" : self.textView.text};
-    NSArray *array = @[@"username"];
+    //1. 保存到数据库
+    __weak typeof (self)weakSelf = self;
     [ACDataBaseTool updateUserInfoWithDict:dict andKeys:array withResultBlock:^(BOOL isSuccessful, NSError *error) {
         if (isSuccessful) {
             DLog(@"保存成功");
+            //2. 更新到本地缓存
+            [ACCacheDataTool updateUserInfo:user withObjectId:user.objectId];
+            //3. 使ProfileInfo控制器修改name
+            if ([weakSelf.delegate respondsToSelector:@selector(changeNameWith: withType:)]) {
+                [weakSelf.delegate changeNameWith:weakSelf.textView.text withType:weakSelf.pushFrom];
+            }
+            //4.dismiss
+            [weakSelf.view endEditing:YES];
+            [weakSelf dismissViewControllerAnimated:YES completion:nil];
         } else {
             DLog(@"保存失败");
+            [weakSelf showMsgCenter:@"保存失败"];
         }
     }];
-    
-    //3. 使ProfileInfo控制器修改name
-    if ([self.delegate respondsToSelector:@selector(changeNameWith:)]) {
-        [self.delegate changeNameWith:self.textView.text];
-    }
 }
 
 /*

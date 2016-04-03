@@ -11,9 +11,10 @@
 
 @class BmobUser;
 @interface ACUserModel : NSObject <NSCoding>
-/**  用户名 */
+/**  昵称 */
 @property (copy, nonatomic) NSString *username;
-
+/** 个性签名 */
+@property (nonatomic, copy) NSString *signature;
 /** 密码 */
 @property (copy, nonatomic) NSString *password;
 

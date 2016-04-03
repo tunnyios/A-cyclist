@@ -168,6 +168,7 @@
     BmobUser *bUser = [BmobUser getCurrentUser];
     
     [bUser setObject:user.username forKey:@"username"];
+    [bUser setObject:user.signature forKey:@"signature"];
     [bUser setObject:user.password forKey:@"password"];
     [bUser setObject:user.email forKey:@"email"];
     [bUser setObject:user.mobilePhoneNumber forKey:@"mobilePhoneNumber"];

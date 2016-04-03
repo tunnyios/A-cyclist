@@ -8,6 +8,7 @@
 
 #import "ACUserModel.h"
 #import <BmobSDK/Bmob.h>
+#import "ACUtility.h"
 
 @implementation ACUserModel
 
@@ -23,6 +24,7 @@
     ACUser.updatedAt = user.updatedAt;
     ACUser.emailVerified = [[user objectForKey:@"emailVerified"] boolValue];
     ACUser.location = [user objectForKey:@"location"];
+    ACUser.signature = [user objectForKey:@"signature"];
     ACUser.weight = [user objectForKey:@"weight"];
     ACUser.profile_image_url = [user objectForKey:@"profile_image_url"];
     ACUser.avatar_large = [user objectForKey:@"avatar_large"];
@@ -39,6 +41,7 @@
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:self.username forKey:@"username"];
+    [aCoder encodeObject:self.signature forKey:@"signature"];
     [aCoder encodeObject:self.password forKey:@"password"];
     [aCoder encodeObject:self.email forKey:@"email"];
     [aCoder encodeObject:self.location forKey:@"location"];
@@ -59,6 +62,7 @@
     self = [super init];
     if (self) {
         self.username = [aDecoder decodeObjectForKey:@"username"];
+        self.signature = [aDecoder decodeObjectForKey:@"signature"];
         self.password = [aDecoder decodeObjectForKey:@"password"];
         self.email = [aDecoder decodeObjectForKey:@"email"];
         self.location = [aDecoder decodeObjectForKey:@"location"];
@@ -76,6 +80,6 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<%p : %@>{\n className = %@;\n username = %@;\n password = %@;\n mobilePhoneNumber = %@;\n email = %@;\n location = %@;\n weight = %@;\n gender = %@;\n profile_image_url = %@;\n avatar_large = %@;\n objectId = %@;\n createdAt = %@;\n updatedAt = %@;\n emailVerified = %d;\n accruedTime = %@;\n accruedDistance = %@\n}", self, self.class, self.className, self.username, self.password, self.mobilePhoneNumber, self.email, self.location, self.weight, self.gender, self.profile_image_url, self.avatar_large, self.objectId, self.createdAt, self.updatedAt, self.emailVerified, self.accruedTime, self.accruedDistance];
+    return [NSString stringWithFormat:@"<%p : %@>{\n className = %@;\n username = %@;\n signature = %@;\n password = %@;\n mobilePhoneNumber = %@;\n email = %@;\n location = %@;\n weight = %@;\n gender = %@;\n profile_image_url = %@;\n avatar_large = %@;\n objectId = %@;\n createdAt = %@;\n updatedAt = %@;\n emailVerified = %d;\n accruedTime = %@;\n accruedDistance = %@\n}", self, self.class, self.className, self.username, self.signature, self.password, self.mobilePhoneNumber, self.email, self.location, self.weight, self.gender, self.profile_image_url, self.avatar_large, self.objectId, self.createdAt, self.updatedAt, self.emailVerified, self.accruedTime, self.accruedDistance];
 }
 @end

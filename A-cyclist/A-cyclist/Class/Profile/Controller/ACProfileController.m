@@ -127,7 +127,7 @@ typedef enum : NSUInteger {
     if (0 != self.maxDistanceRoute.steps.count) {
         subTitle0 = [NSString stringWithFormat:@"%.2f km", self.maxDistanceRoute.distance.doubleValue];
     }
-    ACProfileCellModel *cell0 = [ACProfileCellModel profileCellWithTitle:@"最远骑行距离" subTitle:subTitle0 route:self.maxDistanceRoute];
+    ACProfileCellModel *cell0 = [ACProfileCellModel profileCellWithTitle:@"最远距离" subTitle:subTitle0 route:self.maxDistanceRoute];
     
     NSString *subTitle1 = @"";
     if (0 != self.maxSpeedRoute.steps.count) {
@@ -145,14 +145,14 @@ typedef enum : NSUInteger {
     if (0 != self.maxTimeRoute.steps.count) {
         subTitle3 = self.maxTimeRoute.time;
     }
-    ACProfileCellModel *cell3 = [ACProfileCellModel profileCellWithTitle:@"单次最长时间" subTitle:subTitle3 route:self.maxTimeRoute];
+    ACProfileCellModel *cell3 = [ACProfileCellModel profileCellWithTitle:@"最长时间" subTitle:subTitle3 route:self.maxTimeRoute];
     
     ACSettingGroupModel *group = [[ACSettingGroupModel alloc] init];
     [group.cellList addObject:cell0];
     [group.cellList addObject:cell1];
     [group.cellList addObject:cell2];
     [group.cellList addObject:cell3];
-    group.headerText = @"个人最佳纪录";
+    group.headerText = @"  个人最佳纪录";
     [self.dataList addObject:group];
 }
 
@@ -206,7 +206,7 @@ typedef enum : NSUInteger {
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (0 == section) {
-        return 264;
+        return 237;
     } else {
         return 20;
     }

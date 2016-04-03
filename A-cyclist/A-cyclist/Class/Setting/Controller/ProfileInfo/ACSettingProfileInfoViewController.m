@@ -100,6 +100,13 @@
         [weakSelf changeNicknameWith:indexPath];
     };
     
+    //个性签名
+    ACArrowWithSubtitleSettingCellModel *cellSub = [ACArrowWithSubtitleSettingCellModel arrowWithSubtitleCellWithTitle:@"签名" subTitle:user.signature icon:nil destClass:nil];
+    cellSub.option = ^(NSIndexPath *indexPath){
+        //修改个性签名
+        [weakSelf changeSignatureWith:indexPath];
+    };
+    
     //性别
     NSString *gender = @"";
     if ([user.gender isEqualToString:@"m"]) {
@@ -150,6 +157,7 @@
     ACSettingGroupModel *group = [[ACSettingGroupModel alloc] init];
     [group.cellList addObject:cell0];
     [group.cellList addObject:cell1];
+    [group.cellList addObject:cellSub];
     [group.cellList addObject:cell2];
     [group.cellList addObject:cell3];
     [group.cellList addObject:cell4];
@@ -253,10 +261,24 @@
     //弹出控制器
     ACChangeNameController *changeNameVC = [[ACChangeNameController alloc] initWithNibName:@"ACChangeNameController" bundle:nil];
     changeNameVC.delegate = self;
-    
+    changeNameVC.pushFrom = ChangeTextPushFromName;
+    changeNameVC.defaultText = self.user.username;
     [self presentViewController:changeNameVC animated:YES completion:nil];
-    
 }
+
+/**
+ *  设置签名
+ */
+- (void)changeSignatureWith:(NSIndexPath *)indexpath
+{
+    //弹出控制器
+    ACChangeNameController *changeSignatureVC = [[ACChangeNameController alloc] initWithNibName:@"ACChangeNameController" bundle:nil];
+    changeSignatureVC.delegate = self;
+    changeSignatureVC.pushFrom = ChangeTextPushFromDesc;
+    changeSignatureVC.defaultText = self.user.signature;
+    [self presentViewController:changeSignatureVC animated:YES completion:nil];
+}
+
 
 /**
  *  设置性别
@@ -426,10 +448,15 @@
  *
  *  @param name
  */
-- (void)changeNameWith:(NSString *)name
+- (void)changeNameWith:(NSString *)name withType:(ChangeTextPushFrom)pushForm
 {
-    ACArrowWithSubtitleSettingCellModel *model = [self.dataList[0] cellList][1];
-    model.subTitle = name;
+    if (ChangeTextPushFromName == pushForm) {
+        ACArrowWithSubtitleSettingCellModel *model = [self.dataList[0] cellList][1];
+        model.subTitle = name;
+    } else {
+        ACArrowWithSubtitleSettingCellModel *model = [self.dataList[0] cellList][2];
+        model.subTitle = name;
+    }
     
     [self.tableView reloadData];
 }

@@ -23,6 +23,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *iconView;
 /** 昵称 */
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
+/** 个性签名 */
+@property (weak, nonatomic) IBOutlet UILabel *signatureLabel;
 
 @end
 
@@ -44,13 +46,13 @@
         self.totalDistanceLabel.text = @"0.00";
     }
     self.userNameLabel.text = user.username;
-    
+    self.signatureLabel.text = user.signature;
     //根据URL下载图片
     NSURL *url = [NSURL URLWithString:user.profile_image_url];
     [self.iconView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"signup_avatar_default"]];
     
     //裁剪图片
-    [UIImage clipImageWithView:self.iconView border:2 borderColor:[UIColor colorWithR:158 G:185 B:224 A:1] radius:self.iconView.bounds.size.width * 0.5];
+    [UIImage clipImageWithView:self.iconView border:5 borderColor:[UIColor whiteColor] radius:self.iconView.bounds.size.width * 0.5];
 }
 
 + (instancetype)profileHeaderView

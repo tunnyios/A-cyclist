@@ -84,13 +84,15 @@
         return;
     }
     __weak typeof (self)weakSelf = self;
-    //如果已经注册过了禁止注册
-    [ACDataBaseTool checkAlreadyUserWithPhoneNum:self.registerPhone.text withResultBlock:^(BOOL isSuccessful, NSError *error) {
-        if (isSuccessful) {
-            [weakSelf showMsgCenter:@"该号码已注册"];
-            return;
-        }
-    }];
+    if (RegisterPushFromTypeRegister == self.from) {
+        //如果已经注册过了禁止注册
+        [ACDataBaseTool checkAlreadyUserWithPhoneNum:self.registerPhone.text withResultBlock:^(BOOL isSuccessful, NSError *error) {
+            if (isSuccessful) {
+                [weakSelf showMsgCenter:@"该号码已注册"];
+                return;
+            }
+        }];
+    }
 
     //请求验证码
     [ACDataBaseTool requestSMSCodeWithPhoneNum:self.registerPhone.text template:nil block:^(int number, NSError *error) {
