@@ -103,9 +103,9 @@
     for (int i = 0; i < 6 ; i++) {
         double distance = 0 + distanceInterval * i;
         if (distance > 1000.0) {
-            [self.hDistanceArray addObject:[NSString stringWithFormat:@"%.2f km", distance * 0.001]];
+            [self.hDistanceArray addObject:[NSString stringWithFormat:@"%.2fkm", distance * 0.001]];
         } else {
-            [self.hDistanceArray addObject:[NSString stringWithFormat:@"%.0f m", distance]];
+            [self.hDistanceArray addObject:[NSString stringWithFormat:@"%.0fm", distance]];
         }
     }
 //    DLog(@"hDistanceArray is %@", self.hDistanceArray);
@@ -143,7 +143,7 @@
         [labelSpeed setText:[self.vSpeedArray objectAtIndex:i]];
         [self addSubview:labelSpeed];
         
-        ACLineChartLabelView *labelDistance = [[ACLineChartLabelView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+        ACLineChartLabelView *labelDistance = [[ACLineChartLabelView alloc] initWithFrame:CGRectMake(0, 0, 35, 30)];
         labelDistance.center = CGPointMake(distancePoint.x + self.hInterval * i, distancePoint.y + 15);
         [labelDistance setTextAlignment:NSTextAlignmentCenter];
         [labelDistance setBackgroundColor:[UIColor clearColor]];

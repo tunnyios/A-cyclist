@@ -48,7 +48,7 @@
         }
     }];
     //裁剪图片
-    [UIImage clipImageWithView:self.iconView border:2 borderColor:[UIColor colorWithRed:158 green:185 blue:224 alpha:1] radius:self.iconView.bounds.size.width * 0.5];
+    [UIImage clipImageWithView:self.iconView border:4 borderColor:[UIColor whiteColor] radius:self.iconView.bounds.size.width * 0.5];
     
     //2. 设置其他数据
     self.userNameLabel.text = userModel.username;

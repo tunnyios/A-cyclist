@@ -67,9 +67,9 @@ typedef enum : NSUInteger {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    self.navigationController.navigationBar.translucent = NO;
     self.navigationItem.rightBarButtonItem = [ACNavUtility setNavButtonWithImage:@"tab_more_iphone_5" target:self action:@selector(settingBtnClick:) frame:CGRectMake(0, 0, 24, 4)];
-    
+    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
     self.tableView.rowHeight = 44;
     // 设置下拉刷新,加载数据
     //添加刷新控件

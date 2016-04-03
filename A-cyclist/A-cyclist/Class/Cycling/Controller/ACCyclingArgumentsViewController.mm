@@ -18,6 +18,7 @@
 #import "ACCyclingDetailModel.h"
 #import "ACRouteModel.h"
 #import "ACGlobal.h"
+#import "ACUtility.h"
 #import "NSDate+Extension.h"
 #import "UIImage+Extension.h"
 #import "UIColor+Tools.h"
@@ -552,17 +553,38 @@
 #pragma mark - 设置图表界面数据
 - (void)setGraphicData
 {
-    self.chartMaxAltitudeLabel.text = self.route.maxAltitude;
-    self.chartMaxSpeedLabel.text = [NSString stringWithFormat:@"%@", self.route.maxSpeed];
+//    self.chartMaxAltitudeLabel.text = self.route.maxAltitude;
+    NSString *maxAltitudeStr = [NSString stringWithFormat:@"%@", self.route.maxAltitude];
+    self.chartMaxAltitudeLabel.attributedText = [self creatDataLabelWithStr:[NSString stringWithFormat:@"%@m", maxAltitudeStr] unitCount:1 dataCount:maxAltitudeStr.length];
+//    self.chartMaxSpeedLabel.text = [NSString stringWithFormat:@"%@", self.route.maxSpeed];
+    NSString *maxSpeedStr = [NSString stringWithFormat:@"%@", self.route.maxSpeed];
+    self.chartMaxSpeedLabel.attributedText = [self creatDataLabelWithStr:[NSString stringWithFormat:@"%@km/h", maxSpeedStr] unitCount:4 dataCount:maxSpeedStr.length];
  
     self.chartAscendTimeLabel.text = self.route.ascendTime;
-    self.charAscendDistanceLabel.text = [NSString stringWithFormat:@"%@ km",self.route.ascendDistance];
+    self.charAscendDistanceLabel.text = [NSString stringWithFormat:@"%@km",self.route.ascendDistance];
     self.chartFlatTimeLabel.text = self.route.flatTime;
-    self.charFlatDistanceLabel.text = [NSString stringWithFormat:@"%@ km",self.route.flatDistance];
+    self.charFlatDistanceLabel.text = [NSString stringWithFormat:@"%@km",self.route.flatDistance];
     self.chartDescendTimeLabel.text = self.route.descendTime;
-    self.chartDescendDistanceLabel.text = [NSString stringWithFormat:@"%@ km",self.route.descendDistance];
+    self.chartDescendDistanceLabel.text = [NSString stringWithFormat:@"%@km",self.route.descendDistance];
     self.circleChartView.route = self.route;
     self.lineChartView.route = self.route;
+}
+
+/**
+ *  生成最高海拔和最高速度的富文本字符串
+ */
+- (NSMutableAttributedString *)creatDataLabelWithStr:(NSString *)str unitCount:(NSInteger)unitCount dataCount:(NSInteger)dataCount;
+{
+    NSDictionary *speedFont = @{NSFontAttributeName : [UIFont systemFontOfSize:30.0f]};
+    NSDictionary *kmFont = @{NSFontAttributeName : [UIFont systemFontOfSize:14.0f]};
+    
+    NSArray *dictArray = @[@{@"textFormat" : speedFont,
+                             @"loc" : @0,
+                             @"len" : [NSNumber numberWithInteger:dataCount]},
+                           @{@"textFormat" : kmFont,
+                             @"loc" : [NSNumber numberWithInteger:dataCount],
+                             @"len" : [NSNumber numberWithInteger:unitCount]}];
+    return [ACUtility creatAttritudeStrWithStr:str dictArray:dictArray];
 }
 
 
@@ -573,7 +595,7 @@
     self.detialTableView.dataSource = self;
     self.detialTableView.sectionFooterHeight = 0;
     self.detialTableView.sectionHeaderHeight = 20;
-    self.detialTableView.contentInset = UIEdgeInsetsMake(-30, 0, 0, 0);
+    self.detialTableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
     
     [self addGroup0];
     [self addGroup1];
@@ -588,7 +610,7 @@
     
     ACSettingGroupModel *group = [[ACSettingGroupModel alloc] init];
     [group.cellList addObject:cell0];
-    group.headerText = @"里程(km)";
+    group.headerText = @"  里程(km)";
     
     [self.dataList addObject:group];
 }
@@ -601,7 +623,7 @@
     ACSettingGroupModel *group = [[ACSettingGroupModel alloc] init];
     [group.cellList addObject:cell0];
     [group.cellList addObject:cell1];
-    group.headerText = @"速度(km/h)";
+    group.headerText = @"  速度(km/h)";
     
     [self.dataList addObject:group];
 }
@@ -615,7 +637,7 @@
     ACSettingGroupModel *group = [[ACSettingGroupModel alloc] init];
     [group.cellList addObject:cell0];
     [group.cellList addObject:cell1];
-    group.headerText = @"海拔(m)";
+    group.headerText = @"  海拔(m)";
     
     [self.dataList addObject:group];
 }
@@ -632,7 +654,7 @@
     [group.cellList addObject:cell0];
     [group.cellList addObject:cell1];
     [group.cellList addObject:cell2];
-    group.headerText = @"时间(h:m)";
+    group.headerText = @"  时间(h:m)";
     
     [self.dataList addObject:group];
 }
@@ -699,6 +721,11 @@
     cell.cellModel = cellModel;
     
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 20;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section

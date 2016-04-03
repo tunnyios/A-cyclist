@@ -53,4 +53,15 @@ extern ACUserModel * ACUser;        //用户模型
  */
 + (UIFont *)setFontWithSize:(CGFloat)size;
 
+#pragma mark - 生成一个富文本
+/**
+ *  生成一个富文本
+ *
+ *  @param str       基础文字
+ *  @param dictArray 格式 {textFormat : @{},
+ loc      :  @number,
+ len      : @number}
+ */
++ (NSMutableAttributedString *)creatAttritudeStrWithStr:(NSString *)str dictArray:(NSArray *)dictArray;
+
 @end

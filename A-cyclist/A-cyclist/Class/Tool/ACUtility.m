@@ -121,4 +121,31 @@ NSString *deviceId = nil;
     return font;
 }
 
+#pragma mark - 生成一个富文本
+/**
+ *  生成一个富文本
+ *
+ *  @param str       基础文字
+ *  @param dictArray 格式 {textFormat : @{},
+ loc      :  @number,
+ len      : @number}
+ */
++ (NSMutableAttributedString *)creatAttritudeStrWithStr:(NSString *)str dictArray:(NSArray *)dictArray
+{
+    NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:str];
+    [dictArray enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull dict, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSNumber *loc = [dict objectForKey:@"loc"];
+        NSNumber *len = [dict objectForKey:@"len"];
+        NSDictionary *textFormatDic = [dict objectForKey:@"textFormat"];
+        if (!loc && !len) {
+            return;
+        }
+        if (textFormatDic) {
+            [attStr setAttributes:textFormatDic range:NSMakeRange(loc.unsignedIntegerValue, len.unsignedIntegerValue)];
+        }
+    }];
+    
+    return attStr;
+}
+
 @end

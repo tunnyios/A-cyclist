@@ -113,12 +113,12 @@
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"下载未完成,确定退出" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
         [alertView show];
     } else {
-        CATransition *caTran = [[CATransition alloc] init];
-        caTran.duration = 2.0;
-        caTran.delegate  = self;
-        caTran.type = @"rippleEffect";
-        [self.navigationController.view.layer addAnimation:caTran forKey:nil];
-        [self.navigationController popToRootViewControllerAnimated:YES];
+//        CATransition *caTran = [[CATransition alloc] init];
+//        caTran.duration = 2.0;
+//        caTran.delegate  = self;
+//        caTran.type = @"rippleEffect";
+//        [self.navigationController.view.layer addAnimation:caTran forKey:nil];
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 
@@ -133,12 +133,12 @@
         //隐藏进度条
         self.progressView.hidden = YES;
         
-        CATransition *caTran = [[CATransition alloc] init];
-        caTran.duration = 2.0;
-        caTran.delegate  = self;
-        caTran.type = @"rippleEffect";
-        [self.navigationController.view.layer addAnimation:caTran forKey:nil];
-        [self.navigationController popToRootViewControllerAnimated:YES];
+//        CATransition *caTran = [[CATransition alloc] init];
+//        caTran.duration = 2.0;
+//        caTran.delegate  = self;
+//        caTran.type = @"rippleEffect";
+//        [self.navigationController.view.layer addAnimation:caTran forKey:nil];
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 

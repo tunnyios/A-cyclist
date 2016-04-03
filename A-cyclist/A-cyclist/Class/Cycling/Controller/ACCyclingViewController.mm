@@ -26,7 +26,7 @@
 #import "ACAnnotationView.h"
 #import "ACAnnotationStartModel.h"
 #import "ACAnnotationEndModel.h"
-
+#import "ACUtility.h"
 
 typedef enum : NSUInteger {
     HCTrailPause = 0,
@@ -178,7 +178,7 @@ typedef enum : NSUInteger {
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.currentSpeed.attributedText = [self creatCurrentSpeedLabelWithStr:@"0.00km/h"];
+    self.currentSpeed.attributedText = [self creatCurrentSpeedLabelWithStr:@"0.00km/h" withSpeedNumCount:4];
     
     //1. 定位
     _bmkLocationService = [[BMKLocationService alloc] init];
@@ -290,7 +290,7 @@ typedef enum : NSUInteger {
  */
 - (void)cleanLabel
 {
-    self.currentSpeed.attributedText = [self creatCurrentSpeedLabelWithStr:@"0.00km/h"];
+    self.currentSpeed.attributedText = [self creatCurrentSpeedLabelWithStr:@"0.00km/h" withSpeedNumCount:4];
     self.currentMileage.text = @"0.00";
     self.currentTimeConsuming.text = @"00:00";
     self.currentAverageSpeed.text = @"0.00";
@@ -300,45 +300,45 @@ typedef enum : NSUInteger {
 /**
  *  生成当前瞬时速度的富文本字符串
  */
-- (NSMutableAttributedString *)creatCurrentSpeedLabelWithStr:(NSString *)str
+- (NSMutableAttributedString *)creatCurrentSpeedLabelWithStr:(NSString *)str withSpeedNumCount:(NSInteger)count
 {
     NSDictionary *speedFont = @{NSFontAttributeName : [UIFont boldSystemFontOfSize:86.0f]};
     NSDictionary *kmFont = @{NSFontAttributeName : [UIFont systemFontOfSize:20.0f]};
 
     NSArray *dictArray = @[@{@"textFormat" : speedFont,
                              @"loc" : @0,
-                             @"len" : @4},
+                             @"len" : [NSNumber numberWithInteger:count]},
                            @{@"textFormat" : kmFont,
-                             @"loc" : @4,
+                             @"loc" : [NSNumber numberWithInteger:count],
                              @"len" : @4}];
-    return [self creatAttritudeStrWithStr:@"0.00km/h" dictArray:dictArray];
+    return [ACUtility creatAttritudeStrWithStr:str dictArray:dictArray];
 }
 
-/**
- *  生成一个富文本
- *
- *  @param str       基础文字
- *  @param dictArray 格式 {textFormat : @{},
-                            loc      :  @number,
-                            len      : @number}
- */
-- (NSMutableAttributedString *)creatAttritudeStrWithStr:(NSString *)str dictArray:(NSArray *)dictArray
-{
-    NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:str];
-    [dictArray enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull dict, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSNumber *loc = [dict objectForKey:@"loc"];
-        NSNumber *len = [dict objectForKey:@"len"];
-        NSDictionary *textFormatDic = [dict objectForKey:@"textFormat"];
-        if (!loc && !len) {
-            return;
-        }
-        if (textFormatDic) {
-            [attStr setAttributes:textFormatDic range:NSMakeRange(loc.unsignedIntegerValue, len.unsignedIntegerValue)];
-        }
-    }];
-    
-    return attStr;
-}
+///**
+// *  生成一个富文本
+// *
+// *  @param str       基础文字
+// *  @param dictArray 格式 {textFormat : @{},
+//                            loc      :  @number,
+//                            len      : @number}
+// */
+//- (NSMutableAttributedString *)creatAttritudeStrWithStr:(NSString *)str dictArray:(NSArray *)dictArray
+//{
+//    NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:str];
+//    [dictArray enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull dict, NSUInteger idx, BOOL * _Nonnull stop) {
+//        NSNumber *loc = [dict objectForKey:@"loc"];
+//        NSNumber *len = [dict objectForKey:@"len"];
+//        NSDictionary *textFormatDic = [dict objectForKey:@"textFormat"];
+//        if (!loc && !len) {
+//            return;
+//        }
+//        if (textFormatDic) {
+//            [attStr setAttributes:textFormatDic range:NSMakeRange(loc.unsignedIntegerValue, len.unsignedIntegerValue)];
+//        }
+//    }];
+//    
+//    return attStr;
+//}
 
 /**
  *  完成、结束骑行
@@ -479,7 +479,7 @@ typedef enum : NSUInteger {
         //4. 绘图
         [self onGetWalkPolylineWithLocation:location];
         if (self.preLocation) {
-            self.prePreLocation = self.prePreLocation;
+            self.prePreLocation = self.preLocation;
         } else {
             self.prePreLocation = location;
         }
@@ -525,7 +525,8 @@ typedef enum : NSUInteger {
         CLLocationSpeed averageSpeed = ((self.totleDistance / self.totleTime) > speed) ? speed : (self.totleDistance / self.totleTime);
      
         // 瞬时速度
-        self.currentSpeed.attributedText = [self creatCurrentSpeedLabelWithStr:[NSString stringWithFormat:@"%.2fkm/h", speed * 3.6]];
+        NSString *currentSpeedTemp = [NSString stringWithFormat:@"%.2f", speed * 3.6];
+        self.currentSpeed.attributedText = [self creatCurrentSpeedLabelWithStr:[NSString stringWithFormat:@"%@km/h", currentSpeedTemp] withSpeedNumCount:currentSpeedTemp.length];
         // 当前里程
         self.currentMileage.text = [NSString stringWithFormat:@"%.2f", self.totleDistance * 0.001];
         // 平均速度
@@ -565,7 +566,7 @@ typedef enum : NSUInteger {
         //极速
         self.maxSpeed = 0;
         // 瞬时速度
-        self.currentSpeed.attributedText = [self creatCurrentSpeedLabelWithStr:@"0.00km/h"];
+        self.currentSpeed.attributedText = [self creatCurrentSpeedLabelWithStr:@"0.00km/h" withSpeedNumCount:4];
         //距离间隔
         self.distanceInterval = @"0";
         self.maxAltitude = location.altitude;
@@ -588,7 +589,7 @@ typedef enum : NSUInteger {
         BMKMapPoint preLastPoint = BMKMapPointForCoordinate(self.prePreLocation.coordinate);
         BMKMapPoint lastPoint = BMKMapPointForCoordinate(self.preLocation.coordinate);
         BMKMapPoint currentPoint = BMKMapPointForCoordinate(location.coordinate);
-        BMKMapPoint *tempPoints = new BMKMapPoint[2];
+        BMKMapPoint *tempPoints = new BMKMapPoint[3];
         tempPoints[0] = preLastPoint;
         tempPoints[1] = lastPoint;
         tempPoints[2] = currentPoint;

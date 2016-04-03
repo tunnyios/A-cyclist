@@ -52,7 +52,7 @@
     [self.iconView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"signup_avatar_default"]];
     
     //裁剪图片
-    [UIImage clipImageWithView:self.iconView border:5 borderColor:[UIColor whiteColor] radius:self.iconView.bounds.size.width * 0.5];
+    [UIImage clipImageWithView:self.iconView border:4 borderColor:[UIColor whiteColor] radius:self.iconView.bounds.size.width * 0.5];
 }
 
 + (instancetype)profileHeaderView

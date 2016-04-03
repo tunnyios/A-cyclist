@@ -52,11 +52,11 @@
         //设置绘图状态,即填充颜色
         UIColor *color = nil;
         if (0 == idx) { //上坡
-            color = [UIColor colorWithR:211 G:0 B:33 A:1];
+            color = [UIColor colorWithR:40 G:166 B:225 A:1];
         } else if (1 == idx) {  //平地
-            color = [UIColor colorWithR:207 G:146 B:66 A:1];
+            color = [UIColor colorWithR:56 G:132 B:207 A:1];
         } else {    //下坡
-            color = [UIColor colorWithR:39 G:153 B:44 A:1];
+            color = [UIColor colorWithR:45 G:55 B:140 A:1];
         }
         [color setFill];
         
