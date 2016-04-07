@@ -126,6 +126,7 @@
 		A2AB7E341C86BC1B00D79C6A /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A2AB7E331C86BC1B00D79C6A /* KeychainItemWrapper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A2AB7E371C86C93400D79C6A /* ACCommonRequestHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = A2AB7E361C86C93400D79C6A /* ACCommonRequestHttp.m */; };
 		A2AD90BF1B5FAAE200847F72 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AD90BE1B5FAAE200847F72 /* OpenGLES.framework */; };
+		A2B52EA41CB4059D006EF676 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2B52EA31CB4059D006EF676 /* Launch Screen.storyboard */; };
 		A2C256DF1B804C0800295882 /* HCDropDownMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C256DE1B804C0800295882 /* HCDropDownMenuView.m */; };
 		A2C256E21B804D2900295882 /* HCNewTypeButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C256E11B804D2900295882 /* HCNewTypeButtonView.m */; };
 		A2C256E81B805D2800295882 /* ACHotRoutesCitiesController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C256E71B805D2800295882 /* ACHotRoutesCitiesController.m */; };
@@ -378,6 +379,7 @@
 		A2AB7E351C86C93400D79C6A /* ACCommonRequestHttp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACCommonRequestHttp.h; sourceTree = "<group>"; };
 		A2AB7E361C86C93400D79C6A /* ACCommonRequestHttp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACCommonRequestHttp.m; sourceTree = "<group>"; };
 		A2AD90BE1B5FAAE200847F72 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		A2B52EA31CB4059D006EF676 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		A2C256DD1B804C0800295882 /* HCDropDownMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCDropDownMenuView.h; sourceTree = "<group>"; };
 		A2C256DE1B804C0800295882 /* HCDropDownMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCDropDownMenuView.m; sourceTree = "<group>"; };
 		A2C256E01B804D2900295882 /* HCNewTypeButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCNewTypeButtonView.h; sourceTree = "<group>"; };
@@ -787,6 +789,7 @@
 			children = (
 				A28BFEDF1B53B35B00A712F1 /* Class */,
 				A28BFEC61B53A2CC00A712F1 /* Images.xcassets */,
+				A2B52EA31CB4059D006EF676 /* Launch Screen.storyboard */,
 				A28BFEC81B53A2CC00A712F1 /* LaunchScreen.xib */,
 				A28BFEB91B53A2CC00A712F1 /* Supporting Files */,
 			);
@@ -1388,6 +1391,7 @@
 				A2D207131B67435B00214B09 /* silence.mp3 in Resources */,
 				A2C256F31B80610700295882 /* ACHotRoutesCitiesCellView.xib in Resources */,
 				A26E8ED71B78471F003FFC37 /* hotRoutes.storyboard in Resources */,
+				A2B52EA41CB4059D006EF676 /* Launch Screen.storyboard in Resources */,
 				A28BFECA1B53A2CC00A712F1 /* LaunchScreen.xib in Resources */,
 				A28BFF161B53F98200A712F1 /* cycling.storyboard in Resources */,
 				A261B04D1B57AC56006C8917 /* ACLogoutSettingViewCell.xib in Resources */,

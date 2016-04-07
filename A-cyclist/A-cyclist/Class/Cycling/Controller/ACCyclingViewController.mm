@@ -314,32 +314,6 @@ typedef enum : NSUInteger {
     return [ACUtility creatAttritudeStrWithStr:str dictArray:dictArray];
 }
 
-///**
-// *  生成一个富文本
-// *
-// *  @param str       基础文字
-// *  @param dictArray 格式 {textFormat : @{},
-//                            loc      :  @number,
-//                            len      : @number}
-// */
-//- (NSMutableAttributedString *)creatAttritudeStrWithStr:(NSString *)str dictArray:(NSArray *)dictArray
-//{
-//    NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:str];
-//    [dictArray enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull dict, NSUInteger idx, BOOL * _Nonnull stop) {
-//        NSNumber *loc = [dict objectForKey:@"loc"];
-//        NSNumber *len = [dict objectForKey:@"len"];
-//        NSDictionary *textFormatDic = [dict objectForKey:@"textFormat"];
-//        if (!loc && !len) {
-//            return;
-//        }
-//        if (textFormatDic) {
-//            [attStr setAttributes:textFormatDic range:NSMakeRange(loc.unsignedIntegerValue, len.unsignedIntegerValue)];
-//        }
-//    }];
-//    
-//    return attStr;
-//}
-
 /**
  *  完成、结束骑行
  */
@@ -364,11 +338,8 @@ typedef enum : NSUInteger {
         
         UIAlertAction *cancleAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
         UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            //1. 保存到数据库，以及缓存中
+            //保存到数据库，以及缓存中
             [self saveRouteData];
-            //2. 结束，隐藏暂停和结束按钮，显示开始按钮
-            [self hideBtn];
-            
         }];
         
         [alertVc addAction:cancleAction];
@@ -874,7 +845,7 @@ typedef enum : NSUInteger {
     //设置唯一键
     self.route.routeOne = [NSString stringWithFormat:@"%@%@", self.user.objectId, timeName];
     self.route.routeName = timeName;
-    self.route.steps = (NSArray *)self.locationArrayM;
+    self.route.steps = [self.locationArrayM copy];
 
     self.route.distance = [NSNumber numberWithDouble:self.totleDistance * 0.001];
     self.route.time = self.currentTimeConsuming.text;
@@ -905,14 +876,21 @@ typedef enum : NSUInteger {
     
     //开始和结束时间
     self.route.cyclingEndTime = [NSDate date];
+    //取缓存中的里程和time数据
+    self.accruedTime = self.user.accruedTime.doubleValue + self.totleTime;
+    self.accruedDistance = self.user.accruedDistance.doubleValue + (self.totleDistance * 0.001);
     
+    self.user.accruedTime = [NSNumber numberWithDouble:[NSString stringWithFormat:@"%.2f", self.accruedTime].doubleValue];
+    self.user.accruedDistance = [NSNumber numberWithDouble:[NSString stringWithFormat:@"%.2f", self.accruedDistance].doubleValue];
     DLog(@"route.steps is %@\n, route is %@", self.route.steps, self.route);
+    
+    //2. 结束，隐藏暂停和结束按钮，显示开始按钮
+    [self hideBtn];
     //3. 执行结束功能，分析此次骑行状态，跳转控制器
     [self performSegueWithIdentifier:@"cyclingArgument" sender:self.route];
     
     //存储到缓存
     [ACCacheDataTool addRouteWith:self.route withUserObjectId:self.user.objectId];
-    
     //存储到数据库
     __weak typeof (self)weakSelf = self;
     [ACDataBaseTool addRouteWith:self.route userObjectId:self.user.objectId resultBlock:^(BOOL isSuccessful, NSError *error) {
@@ -927,13 +905,6 @@ typedef enum : NSUInteger {
 
 - (void)saveUserData
 {
-    //取缓存中的里程和time数据
-    self.accruedTime = self.user.accruedTime.doubleValue + self.totleTime;
-    self.accruedDistance = self.user.accruedDistance.doubleValue + (self.totleDistance * 0.001);
-    
-    self.user.accruedTime = [NSNumber numberWithDouble:[NSString stringWithFormat:@"%.2f", self.accruedTime].doubleValue];
-    self.user.accruedDistance = [NSNumber numberWithDouble:[NSString stringWithFormat:@"%.2f", self.accruedDistance].doubleValue];
-    
     //存储到本地缓存
     [ACCacheDataTool updateUserInfo:self.user withObjectId:self.user.objectId];
     //存储到数据库

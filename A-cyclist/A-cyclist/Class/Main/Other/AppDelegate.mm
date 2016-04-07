@@ -49,13 +49,16 @@
     //设置启动动画并跳转
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [self.window makeKeyAndVisible];
-    self.lunchView = [[NSBundle mainBundle]loadNibNamed:@"LaunchScreen" owner:nil options:nil][0];
-    self.lunchView.frame = CGRectMake(0, 0, self.window.screen.bounds.size.width, self.window.screen.bounds.size.height);
+    UIViewController* myvc = [[UIViewController alloc] initWithNibName:nil bundle:nil];
+    self.window.rootViewController = myvc;
+    
+    UIViewController *viewController = [[UIStoryboard storyboardWithName:@"Launch Screen" bundle:nil] instantiateViewControllerWithIdentifier:@"LaunchScreen"];
+    self.lunchView = viewController.view;
     [self.window addSubview:self.lunchView];
     self.imageV = [[UIImageView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.imageV.image = [UIImage imageNamed:@"default0"];
     self.timerIndex = 0;
-    [NSTimer scheduledTimerWithTimeInterval:0.2f target:self selector:@selector(updateImage:) userInfo:nil repeats:YES];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.2f target:self selector:@selector(updateImage:) userInfo:nil repeats:YES];
     [self.lunchView addSubview:self.imageV];
     [self.window bringSubviewToFront:self.lunchView];
     
