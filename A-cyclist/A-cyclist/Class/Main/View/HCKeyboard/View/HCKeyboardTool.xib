@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -14,18 +15,22 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                     <color key="backgroundColor" red="0.90588241820000004" green="0.90588241820000004" blue="0.90588241820000004" alpha="1" colorSpace="deviceRGB"/>
                     <items>
-                        <barButtonItem title="上一个" id="8ps-gi-LqN">
+                        <barButtonItem image="HCButtonBarArrowLeft.png" id="8ps-gi-LqN">
+                            <color key="tintColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                             <connections>
                                 <action selector="previous:" destination="iN0-l3-epB" id="2cd-0K-yja"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem title="下一个" id="cWl-PW-uQd">
+                        <barButtonItem width="19" style="plain" systemItem="fixedSpace" id="S1b-Kc-5ve"/>
+                        <barButtonItem image="HCButtonBarArrowRight.png" id="cWl-PW-uQd">
+                            <color key="tintColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                             <connections>
                                 <action selector="next:" destination="iN0-l3-epB" id="XAw-Gf-5vf"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="Sb3-TI-YSJ"/>
-                        <barButtonItem title="完成" id="HBt-Qy-UHZ">
+                        <barButtonItem title="Done" id="HBt-Qy-UHZ">
+                            <color key="tintColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                             <connections>
                                 <action selector="done:" destination="iN0-l3-epB" id="VF5-D2-lIG"/>
                             </connections>
@@ -45,4 +50,8 @@
             <point key="canvasLocation" x="196" y="355"/>
         </view>
     </objects>
+    <resources>
+        <image name="HCButtonBarArrowLeft.png" width="12" height="21"/>
+        <image name="HCButtonBarArrowRight.png" width="12" height="21"/>
+    </resources>
 </document>

@@ -39,10 +39,9 @@
 @implementation ACLoginViewController
 
 - (void)viewDidLoad {
-    self.navigationController.navigationBar.hidden = YES;
-    
-    self.contentView = _containerView;
     [super viewDidLoad];
+    self.navigationController.navigationBar.hidden = YES;
+    [self initSomethingForSuper];
     
     if ([TencentOAuth iphoneQQInstalled]) {
         //注册
@@ -63,13 +62,31 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewWillDisappear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
-    [super viewWillDisappear:animated];
+    [super viewDidAppear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
     
     /* 手动移除通知，并退出键盘 */
     [self.view endEditing:YES];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+/**
+ *  设置基类属性
+ */
+- (void)initSomethingForSuper
+{
+    //传入textField数组
+    self.textFieldArray = [NSMutableArray arrayWithArray:@[self.loginEmail, self.loginPwd]];
+    //传入textField与键盘的偏移位置(64为多余的导航栏高度)
+    self.textFieldOffset = 10 + 64;
+    //传入需要移动和参照的View
+    self.contentView = self.containerView;
 }
 
 #pragma mark - 登录相关

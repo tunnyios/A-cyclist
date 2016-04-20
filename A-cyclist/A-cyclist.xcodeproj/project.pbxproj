@@ -9,9 +9,6 @@
 /* Begin PBXBuildFile section */
 		7CB41B3C934DDDB8F93A82C5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C1039EBBB90876E4C704CEC /* libPods.a */; };
 		A204B0941B5B30F7004C0A6C /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = A204B0931B5B30F7004C0A6C /* NSString+Extension.m */; };
-		A204B15F1B5B506B004C0A6C /* HCBaseKeyboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A204B15A1B5B506B004C0A6C /* HCBaseKeyboardViewController.m */; };
-		A204B1601B5B506B004C0A6C /* HCKeyboardTool.m in Sources */ = {isa = PBXBuildFile; fileRef = A204B15D1B5B506B004C0A6C /* HCKeyboardTool.m */; };
-		A204B1611B5B506B004C0A6C /* HCKeyboardTool.xib in Resources */ = {isa = PBXBuildFile; fileRef = A204B15E1B5B506B004C0A6C /* HCKeyboardTool.xib */; };
 		A204B1661B5B8232004C0A6C /* ACDataBaseTool.m in Sources */ = {isa = PBXBuildFile; fileRef = A204B1651B5B8232004C0A6C /* ACDataBaseTool.m */; };
 		A204B16A1B5BE144004C0A6C /* ACUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A204B1691B5BE144004C0A6C /* ACUserModel.m */; };
 		A2082E6A1B62259800CA3325 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A2082E691B62259800CA3325 /* mapapi.bundle */; };
@@ -119,6 +116,9 @@
 		A28DE43F1B808E9000093B17 /* ACAnnotationEndModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A28DE43E1B808E9000093B17 /* ACAnnotationEndModel.m */; };
 		A28E461B1B7DC599002B97D6 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A28E461A1B7DC599002B97D6 /* libiconv.dylib */; };
 		A28E461D1B7DC5AC002B97D6 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A28E461C1B7DC5AC002B97D6 /* libstdc++.dylib */; };
+		A2A0330B1CC72E0F00B639D7 /* HCBaseKeyboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A033061CC72E0F00B639D7 /* HCBaseKeyboardViewController.m */; };
+		A2A0330C1CC72E0F00B639D7 /* HCKeyboardTool.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A033091CC72E0F00B639D7 /* HCKeyboardTool.m */; };
+		A2A0330D1CC72E0F00B639D7 /* HCKeyboardTool.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2A0330A1CC72E0F00B639D7 /* HCKeyboardTool.xib */; };
 		A2A43CD81B7324990099011F /* ACProfileHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A43CD71B7324990099011F /* ACProfileHeaderView.m */; };
 		A2A43CDA1B7324A90099011F /* ACProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2A43CD91B7324A90099011F /* ACProfileHeaderView.xib */; };
 		A2AA766D1B7F2D02004F648B /* ACSettingFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2AA766C1B7F2D02004F648B /* ACSettingFeedbackViewController.m */; };
@@ -183,11 +183,6 @@
 		941DF1548197C37F282CB1BF /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		A204B0921B5B30F7004C0A6C /* NSString+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extension.h"; sourceTree = "<group>"; };
 		A204B0931B5B30F7004C0A6C /* NSString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extension.m"; sourceTree = "<group>"; };
-		A204B1591B5B506B004C0A6C /* HCBaseKeyboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCBaseKeyboardViewController.h; sourceTree = "<group>"; };
-		A204B15A1B5B506B004C0A6C /* HCBaseKeyboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCBaseKeyboardViewController.m; sourceTree = "<group>"; };
-		A204B15C1B5B506B004C0A6C /* HCKeyboardTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCKeyboardTool.h; sourceTree = "<group>"; };
-		A204B15D1B5B506B004C0A6C /* HCKeyboardTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCKeyboardTool.m; sourceTree = "<group>"; };
-		A204B15E1B5B506B004C0A6C /* HCKeyboardTool.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HCKeyboardTool.xib; sourceTree = "<group>"; };
 		A204B1641B5B8232004C0A6C /* ACDataBaseTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACDataBaseTool.h; sourceTree = "<group>"; };
 		A204B1651B5B8232004C0A6C /* ACDataBaseTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACDataBaseTool.m; sourceTree = "<group>"; };
 		A204B1681B5BE144004C0A6C /* ACUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACUserModel.h; sourceTree = "<group>"; };
@@ -367,6 +362,11 @@
 		A28FA7171C438A5B00507139 /* libMBProgressHUD.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMBProgressHUD.a; path = "Pods/../build/Debug-iphoneos/libMBProgressHUD.a"; sourceTree = "<group>"; };
 		A28FA7191C439CE100507139 /* libSDWebImage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDWebImage.a; path = "Pods/../build/Debug-iphoneos/libSDWebImage.a"; sourceTree = "<group>"; };
 		A28FA71B1C43A54400507139 /* libActionSheetPicker-3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libActionSheetPicker-3.0.a"; path = "Pods/../build/Debug-iphoneos/libActionSheetPicker-3.0.a"; sourceTree = "<group>"; };
+		A2A033051CC72E0F00B639D7 /* HCBaseKeyboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCBaseKeyboardViewController.h; sourceTree = "<group>"; };
+		A2A033061CC72E0F00B639D7 /* HCBaseKeyboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCBaseKeyboardViewController.m; sourceTree = "<group>"; };
+		A2A033081CC72E0F00B639D7 /* HCKeyboardTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCKeyboardTool.h; sourceTree = "<group>"; };
+		A2A033091CC72E0F00B639D7 /* HCKeyboardTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCKeyboardTool.m; sourceTree = "<group>"; };
+		A2A0330A1CC72E0F00B639D7 /* HCKeyboardTool.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HCKeyboardTool.xib; sourceTree = "<group>"; };
 		A2A43CD61B7324990099011F /* ACProfileHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACProfileHeaderView.h; sourceTree = "<group>"; };
 		A2A43CD71B7324990099011F /* ACProfileHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACProfileHeaderView.m; sourceTree = "<group>"; };
 		A2A43CD91B7324A90099011F /* ACProfileHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ACProfileHeaderView.xib; sourceTree = "<group>"; };
@@ -480,26 +480,6 @@
 				754E0B905E744CE1129C1304 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		A204B1581B5B506B004C0A6C /* HCKeyboard */ = {
-			isa = PBXGroup;
-			children = (
-				A204B1591B5B506B004C0A6C /* HCBaseKeyboardViewController.h */,
-				A204B15A1B5B506B004C0A6C /* HCBaseKeyboardViewController.m */,
-				A204B15B1B5B506B004C0A6C /* View */,
-			);
-			path = HCKeyboard;
-			sourceTree = "<group>";
-		};
-		A204B15B1B5B506B004C0A6C /* View */ = {
-			isa = PBXGroup;
-			children = (
-				A204B15C1B5B506B004C0A6C /* HCKeyboardTool.h */,
-				A204B15D1B5B506B004C0A6C /* HCKeyboardTool.m */,
-				A204B15E1B5B506B004C0A6C /* HCKeyboardTool.xib */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		A204B1631B5B8210004C0A6C /* DataBaseTool */ = {
@@ -1185,6 +1165,26 @@
 			path = Tool;
 			sourceTree = "<group>";
 		};
+		A2A033041CC72E0F00B639D7 /* HCKeyboard */ = {
+			isa = PBXGroup;
+			children = (
+				A2A033051CC72E0F00B639D7 /* HCBaseKeyboardViewController.h */,
+				A2A033061CC72E0F00B639D7 /* HCBaseKeyboardViewController.m */,
+				A2A033071CC72E0F00B639D7 /* View */,
+			);
+			path = HCKeyboard;
+			sourceTree = "<group>";
+		};
+		A2A033071CC72E0F00B639D7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A2A033081CC72E0F00B639D7 /* HCKeyboardTool.h */,
+				A2A033091CC72E0F00B639D7 /* HCKeyboardTool.m */,
+				A2A0330A1CC72E0F00B639D7 /* HCKeyboardTool.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		A2AA76671B7F2CCD004F648B /* Feedback */ = {
 			isa = PBXGroup;
 			children = (
@@ -1209,7 +1209,7 @@
 				A2158CE61B7CE6F400BE27E1 /* HCProgressView */,
 				A2158C961B7A1BEF00BE27E1 /* HCStarViewBigSize */,
 				A2158C901B7A1BD600BE27E1 /* HCStarViewSmailSize */,
-				A204B1581B5B506B004C0A6C /* HCKeyboard */,
+				A2A033041CC72E0F00B639D7 /* HCKeyboard */,
 				A2C256DD1B804C0800295882 /* HCDropDownMenuView.h */,
 				A2C256DE1B804C0800295882 /* HCDropDownMenuView.m */,
 				A2D483B71B5525B200BC8406 /* HCTabBar5ContentView.h */,
@@ -1395,9 +1395,9 @@
 				A28BFECA1B53A2CC00A712F1 /* LaunchScreen.xib in Resources */,
 				A28BFF161B53F98200A712F1 /* cycling.storyboard in Resources */,
 				A261B04D1B57AC56006C8917 /* ACLogoutSettingViewCell.xib in Resources */,
-				A204B1611B5B506B004C0A6C /* HCKeyboardTool.xib in Resources */,
 				A218F7051B5A3FB2007CBADA /* ACLogin.storyboard in Resources */,
 				A28BFF181B53F9AD00A712F1 /* profile.storyboard in Resources */,
+				A2A0330D1CC72E0F00B639D7 /* HCKeyboardTool.xib in Resources */,
 				A28BFF1E1B53F9FD00A712F1 /* setting.storyboard in Resources */,
 				A2C3435F1C9014A60009DD30 /* ACRankingHeaderView.xib in Resources */,
 				A21DE5E41B71AD3A00BC0D31 /* ACProfileCellView.xib in Resources */,
@@ -1500,10 +1500,10 @@
 				A2158C6F1B78EE1E00BE27E1 /* ACHotRoutesDetailController.m in Sources */,
 				A261B04B1B57AA87006C8917 /* ACLogoutSettingViewCell.m in Sources */,
 				A204B0941B5B30F7004C0A6C /* NSString+Extension.m in Sources */,
-				A204B15F1B5B506B004C0A6C /* HCBaseKeyboardViewController.m in Sources */,
 				A26E8EDA1B78474D003FFC37 /* ACHotRoutesController.m in Sources */,
 				A2AB7E371C86C93400D79C6A /* ACCommonRequestHttp.m in Sources */,
 				A2AA766D1B7F2D02004F648B /* ACSettingFeedbackViewController.m in Sources */,
+				A2A0330C1CC72E0F00B639D7 /* HCKeyboardTool.m in Sources */,
 				A2A43CD81B7324990099011F /* ACProfileHeaderView.m in Sources */,
 				A2AA76701B7F5FC5004F648B /* ACWeatherModel.m in Sources */,
 				A2082E701B62996F00CA3325 /* ACCyclingArgumentsViewController.mm in Sources */,
@@ -1520,7 +1520,6 @@
 				A204B16A1B5BE144004C0A6C /* ACUserModel.m in Sources */,
 				A2845EB41B5AB825006E0CE0 /* MBProgressHUD+MJ.m in Sources */,
 				A246F1561C873F7A007C6C5E /* ACNavUtility.m in Sources */,
-				A204B1601B5B506B004C0A6C /* HCKeyboardTool.m in Sources */,
 				A2158C771B79010C00BE27E1 /* ACHotRoutesCellView.m in Sources */,
 				A2FEDF5F1B7E285000BCD092 /* ACSharedTitleView.m in Sources */,
 				A218F7031B5A3F33007CBADA /* ACLoginViewController.m in Sources */,
@@ -1559,6 +1558,7 @@
 				A24CABA01C8449D800869C82 /* ACBaseViewController.m in Sources */,
 				A26E8EE81B788990003FFC37 /* ACSharedRoutePhotoModel.m in Sources */,
 				A2D3C4771B7781D900060BA6 /* ACUserDetailController.m in Sources */,
+				A2A0330B1CC72E0F00B639D7 /* HCBaseKeyboardViewController.m in Sources */,
 				A28DE43C1B808E7E00093B17 /* ACAnnotationStartModel.m in Sources */,
 				A266D9861B5C7D5900D4B326 /* NSDate+Extension.m in Sources */,
 				A2C256E81B805D2800295882 /* ACHotRoutesCitiesController.m in Sources */,

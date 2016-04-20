@@ -38,9 +38,9 @@
 @implementation ACRegisterViewController
 
 - (void)viewDidLoad {
-    self.contentView = _containterView;
     [super viewDidLoad];
-
+    [self initSomethingForSuper];
+    
     if (RegisterPushFromTypeRegister == self.from) {    //登录
         [self.registerBtn setTitle:@"注册" forState:UIControlStateNormal];
     } else if (RegisterPushFromTypeRestPwd == self.from) {  //重置
@@ -53,9 +53,14 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewWillDisappear:(BOOL)animated
+-  (void)viewDidAppear:(BOOL)animated
 {
-    [super viewWillDisappear:animated];
+    [super viewDidAppear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
     
     /* 手动移除通知，并退出键盘 */
     [self.view endEditing:YES];
@@ -64,6 +69,19 @@
     [self.timer invalidate];
     // 置nil
     self.timer = nil;
+}
+
+/**
+ *  设置基类属性
+ */
+- (void)initSomethingForSuper
+{
+    //传入textField数组
+    self.textFieldArray = [NSMutableArray arrayWithArray:@[self.registerPhone, self.registerSms, self.registerPwd]];
+    //传入textField与键盘的偏移位置(64为多余的导航栏高度)
+    self.textFieldOffset = 10 + 64;
+    //传入需要移动和参照的View
+    self.contentView = self.containterView;
 }
 
 /**
