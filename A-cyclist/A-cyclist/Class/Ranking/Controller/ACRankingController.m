@@ -10,7 +10,7 @@
 #import "ACUserModel.h"
 #import "ACCacheDataTool.h"
 #import "ACDataBaseTool.h"
-#import "MBProgressHUD+MJ.h"
+//#import "MBProgressHUD+MJ.h"
 #import "ACGlobal.h"
 #import "ACRankingFormerCellView.h"
 #import "ACRankingBehindCellView.h"
@@ -70,14 +70,14 @@
  */
 - (void)setRankingData
 {
-    [MBProgressHUD showMessage:@"正在加载"];
+    [self showHUD_Msg:@"正在加载"];
     __weak typeof (self)weakSelf = self;
     [ACDataBaseTool getUserListWithPageIndex:self.pageIndex result:^(NSArray *userList, NSError *error) {
         if (error) {
             DLog(@"从服务器中获取用户列表失败， error is %@", error);
             [weakSelf.tableView.mj_header endRefreshing];
             [weakSelf.tableView.mj_footer endRefreshing];
-            [MBProgressHUD hideHUD];
+            [weakSelf.HUD hide:YES];
             [weakSelf showMsgCenter:ACRankGetListError];
         } else {
             if (1 == weakSelf.pageIndex) {
@@ -102,7 +102,7 @@
             [weakSelf.tableView reloadData];
             [weakSelf.tableView.mj_header endRefreshing];
             [weakSelf.tableView.mj_footer endRefreshing];
-            [MBProgressHUD hideHUD];
+            [weakSelf.HUD hide:YES];
         }
 
     }];

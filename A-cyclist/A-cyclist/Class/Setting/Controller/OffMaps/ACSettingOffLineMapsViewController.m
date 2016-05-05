@@ -12,7 +12,6 @@
 #import "ACSettingGroupModel.h"
 #import "ACGlobal.h"
 #import "ACCacheDataTool.h"
-#import "ACShowAlertTool.h"
 #import "MRCircularProgressView.h"
 
 

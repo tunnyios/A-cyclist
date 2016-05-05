@@ -9,74 +9,46 @@
 
 @implementation MBProgressHUD (MJ)
 
-#pragma mark 显示信息
-+ (void)show:(NSString *)text icon:(NSString *)icon view:(UIView *)view
++ (instancetype)initDefaultHUDWithView:(UIView *)view
 {
-    if (view == nil) view = [[UIApplication sharedApplication].windows lastObject];
-    // 快速显示一个提示信息
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
-    hud.labelText = text;
-    hud.labelFont = [UIFont boldSystemFontOfSize:14.f];
+    MBProgressHUD *HUD = [[self alloc] initWithView:view];
+    HUD.mode = MBProgressHUDModeIndeterminate;
+    [view addSubview:HUD];
     
-    // 设置图片
-    hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"MBProgressHUD.bundle/%@", icon]]];
-    // 再设置模式
-    hud.mode = MBProgressHUDModeCustomView;
-    
-    // 隐藏时候从父控件中移除
-    hud.removeFromSuperViewOnHide = YES;
-    
-    // 1秒之后再消失
-    [hud hide:YES afterDelay:0.7];
+    return HUD;
 }
 
-#pragma mark 显示错误信息
-+ (void)showError:(NSString *)error toView:(UIView *)view{
-    [self show:error icon:@"error.png" view:view];
-}
-
-+ (void)showSuccess:(NSString *)success toView:(UIView *)view
+/**
+ *  延迟隐藏HUDMessage
+ */
+- (void)hideHUDWithText:(NSString *)text icon:(NSString *)icon afterDelay:(CGFloat)delay
 {
-    [self show:success icon:@"success.png" view:view];
+    self.labelText = text;
+    self.labelFont = [UIFont boldSystemFontOfSize:14.f];
+    self.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"MBProgressHUD.bundle/%@", icon]]];
+    self.mode = MBProgressHUDModeCustomView;
+    [self hide:YES afterDelay:delay];
 }
 
-#pragma mark 显示一些信息
-+ (MBProgressHUD *)showMessage:(NSString *)message toView:(UIView *)view {
-    if (view == nil) view = [[UIApplication sharedApplication].windows lastObject];
-    // 快速显示一个提示信息
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
-    hud.labelText = message;
-    
-    // 隐藏时候从父控件中移除
-    hud.removeFromSuperViewOnHide = YES;
-    // YES代表需要蒙版效果
-    hud.dimBackground = YES;
-    return hud;
-}
-
-+ (void)showSuccess:(NSString *)success
+/**
+ *  延迟隐藏加载成功
+ */
+- (void)hideSuccessMessage:(NSString *)success
 {
-    [self showSuccess:success toView:nil];
+    if (success == nil || [success isEqualToString:@""]) {
+        [self hide:true];
+    }else{
+        [self hideHUDWithText:success icon:@"success.png" afterDelay:2.0f];
+    }
 }
 
-+ (void)showError:(NSString *)error
+/**
+ *  延迟隐藏加载失败
+ */
+- (void)hideErrorMessage:(NSString *)error
 {
-    [self showError:error toView:nil];
+    [self hideHUDWithText:error icon:@"error.png" afterDelay:2.0f];
 }
 
-+ (MBProgressHUD *)showMessage:(NSString *)message
-{
-    return [self showMessage:message toView:nil];
-}
 
-+ (void)hideHUDForView:(UIView *)view
-{
-    if (view == nil) view = [[UIApplication sharedApplication].windows lastObject];
-    [self hideHUDForView:view animated:YES];
-}
-
-+ (void)hideHUD
-{
-    [self hideHUDForView:nil];
-}
 @end

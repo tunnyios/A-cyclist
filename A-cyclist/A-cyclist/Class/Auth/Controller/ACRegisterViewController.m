@@ -13,7 +13,6 @@
 #import "ACUtility.h"
 #import "ACUserModel.h"
 #import "NSString+Extension.h"
-#import "ACShowAlertTool.h"
 #import "ACSettingProfileInfoViewController.h"
 
 @interface ACRegisterViewController ()
@@ -148,26 +147,26 @@
 {
     __block NSString *phoneNum = self.registerPhone.text;
     if (![phoneNum isAvailPhoneNumber]) {
-        [ACShowAlertTool showError:ACInvalidPhone];
+        [self.HUD hideErrorMessage:ACInvalidPhone];
         return;
     }
     if (self.registerSms.text.length <= 0) {
-        [ACShowAlertTool showError:ACInvalidSMSMask];
+        [self.HUD hideErrorMessage:ACInvalidSMSMask];
         return;
     }
     
     __block NSString *pwd = self.registerPwd.text;
     if (!pwd) {
-        [ACShowAlertTool showError:ACPasswordError];
+        [self.HUD hideErrorMessage:ACPasswordError];
         return;
     }
     //验证用户
     __weak typeof (self)weakSelf = self;
     if (RegisterPushFromTypeRegister == self.from) {    //注册
         //注册登录
-        [ACShowAlertTool showMessage:@"注册登录中..." onView:nil];
+        [self showHUD_Msg:@"注册登录中"];
         [ACDataBaseTool signUpWithPhone:phoneNum smsMask:self.registerSms.text passWord:pwd success:^(ACUserModel *user) {
-            [ACShowAlertTool hideMessage];
+            [weakSelf.HUD hide:YES];
             UIWindow *window = [UIApplication sharedApplication].keyWindow;
             user.password = pwd;
             //本地缓存
@@ -178,19 +177,19 @@
             UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:setProfileVC];
             window.rootViewController = nav;
         } failure:^(NSError *error) {
-            [ACShowAlertTool hideMessage];
-            [ACShowAlertTool showError:ACLoginError];
+            [weakSelf.HUD hide:YES];
+            [weakSelf.HUD hideErrorMessage:ACLoginError];
         }];
     } else if (RegisterPushFromTypeRestPwd == self.from) {  //重置密码
-        [ACShowAlertTool showMessage:@"正在加载" onView:nil];
+        [self showHUD_Msg:@"正在加载"];
         [ACDataBaseTool resetPasswordWithCode:weakSelf.registerSms.text password:pwd block:^(BOOL isSuccessful, NSError *error) {
             if (isSuccessful) {
-                [ACShowAlertTool hideMessage];
-                [ACShowAlertTool showSuccess:ACRestPasswordSuccess];
+                [weakSelf.HUD hide:YES];
+                [weakSelf.HUD hideSuccessMessage:ACRestPasswordSuccess];
                 [weakSelf dismissViewControllerAnimated:YES completion:nil];
             } else {
-                [ACShowAlertTool hideMessage];
-                [ACShowAlertTool showSuccess:ACRestPasswordError];
+                [weakSelf.HUD hide:YES];
+                [weakSelf.HUD hideErrorMessage:ACRestPasswordError];
             }
         }];
     }

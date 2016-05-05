@@ -8,7 +8,6 @@
 
 #import "ACSettingFeedbackViewController.h"
 #import <BmobSDK/Bmob.h>
-#import "ACShowAlertTool.h"
 #import "ACGlobal.h"
 
 @interface ACSettingFeedbackViewController () <UIScrollViewDelegate>
@@ -31,7 +30,7 @@
 - (IBAction)sendMessage:(id)sender
 {
     if (0 == [self.contactTextField.text length] || 0 == [self.messageTextView.text length]) {
-        [ACShowAlertTool showError:@"联系方式和留言不能为空"];
+        [self.HUD hideErrorMessage:@"联系方式和留言不能为空"];
         return;
     }
     
@@ -52,11 +51,9 @@
                 DLog(@"push error =====>%@",[error description]);
             }];
             [self.navigationController popViewControllerAnimated:YES];
-            [ACShowAlertTool showSuccess:@"发送成功"];
+            [self.HUD hideSuccessMessage:@"发送成功"];
         }
     }];
-
-
 }
 
 #pragma mark - scrollView代理

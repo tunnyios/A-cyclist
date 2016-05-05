@@ -19,7 +19,6 @@
 #import "ACChangeNameController.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "VPImageCropperViewController.h"
-#import "ACShowAlertTool.h"
 #import "ActionSheetMultipleStringPicker.h"
 #import "ACNavUtility.h"
 #import "ACTabBarController.h"
@@ -579,9 +578,10 @@
     [ACCacheDataTool updateUserInfo:self.user withObjectId:self.user.objectId];
     
     //2. 保存到数据库
+    __weak typeof (self)weakSelf = self;
     [ACDataBaseTool updateUserInfoWith:self.user withResultBlock:^(BOOL isSuccessful, NSError *error) {
         DLog(@"保存用户信息成功到数据库");
-        [ACShowAlertTool showSuccess:@"保存成功"];
+        [weakSelf.HUD hideSuccessMessage:@"保存成功"];
         if (PushFromTypeLogin == self.pushFromType) {
             UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
             keyWindow.rootViewController = [[ACTabBarController alloc] init];

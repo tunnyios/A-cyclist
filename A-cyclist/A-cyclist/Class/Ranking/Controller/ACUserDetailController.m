@@ -24,7 +24,6 @@
 #import "ACCyclingArgumentsViewController.h"
 #import "ACNavigationViewController.h"
 #import "ACRouteHistoryController.h"
-#import "ACShowAlertTool.h"
 
 
 @interface ACUserDetailController ()
@@ -112,7 +111,7 @@
 #pragma mark - 获取请求数据
 - (void)getRequestData
 {
-    [ACShowAlertTool showMessage:@"加载中..." onView:nil];
+    [self showHUD_Msg:@"正在加载"];
     //从数据库中获取该用户的数据
     __weak typeof (self)weakSelf = self;
     [ACDataBaseTool getShareAllMaxRoutesWithUserId:self.userModel.objectId success:^(NSDictionary *result) {
@@ -141,9 +140,9 @@
         } else {
             DLog(@"获取数据为空");
         }
-        [ACShowAlertTool hideMessage];
+        [weakSelf.HUD hide:YES];
     } failure:^(NSString *error) {
-        [ACShowAlertTool hideMessage];
+        [weakSelf.HUD hide:YES];
         [weakSelf showMsgCenter:ACRequestError];
     }];
 }

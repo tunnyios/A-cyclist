@@ -15,7 +15,6 @@
 #import "ACUserModel.h"
 #import "ACCacheDataTool.h"
 #import "ACDataBaseTool.h"
-#import "ACShowAlertTool.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "VPImageCropperViewController.h"
 
@@ -490,7 +489,7 @@ typedef enum : NSUInteger {
     }
     //参数
     if (0 == self.nameCNLabel.text.length || 0 == self.nameENLabel.text.length || 0 == self.descriptionTextView.text.length) {
-        [ACShowAlertTool showError:@"路线名称和描述不能为空"];
+        [self.HUD hideErrorMessage:@"路线名称和描述不能为空"];
         return;
     }
     self.sharedRoute.nameCN = self.nameCNLabel.text;
@@ -513,7 +512,7 @@ typedef enum : NSUInteger {
     [ACDataBaseTool addPersonSharedRouteWith:self.sharedRoute userObjectId:self.user.objectId resultBlock:^(BOOL isSuccessful, NSString *objectId, NSError *error) {
         if (isSuccessful) {
             DLog(@"上传共享路线到服务器成功");
-            [ACShowAlertTool showSuccess:@"上传成功"];
+            [weakSelf.HUD hideSuccessMessage:@"上传成功"];
             
             //更新该路线的isShared为1，到personRoute数据库
             NSArray *keys = @[@"isShared", @"personSharedRouteId"];
@@ -538,7 +537,7 @@ typedef enum : NSUInteger {
             [ACCacheDataTool updateRouteWith:weakSelf.route routeOne:weakSelf.route.routeOne];
             
         } else {
-            [ACShowAlertTool showError:@"上传失败,请检查网络"];
+            [weakSelf.HUD hideErrorMessage:@"上传失败,请检查网络"];
             DLog(@"上传共享路线到服务器失败, error is %@", error);
         }
     }];

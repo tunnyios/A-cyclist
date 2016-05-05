@@ -25,7 +25,6 @@
 #import "ACNavigationViewController.h"
 #import "ACRouteHistoryController.h"
 #import "MJRefresh.h"
-#import "ACShowAlertTool.h"
 
 typedef enum : NSUInteger {
     RouteTypeMaxDistance,
@@ -271,7 +270,7 @@ typedef enum : NSUInteger {
 
 - (void)getDataFromDataBase
 {
-    [ACShowAlertTool showMessage:@"加载中..." onView:nil];
+    [self showHUD_Msg:@"正在加载"];
     __weak typeof (self)weakSelf = self;
     [ACDataBaseTool getPersonalAllMaxRoutesWithUserId:self.userModel.objectId success:^(NSDictionary *result) {
 //        DLog(@"resutl is %@", result);
@@ -311,9 +310,9 @@ typedef enum : NSUInteger {
         } else {
             DLog(@"获取数据为空");
         }
-        [ACShowAlertTool hideMessage];
+        [weakSelf.HUD hide:YES];
     } failure:^(NSString *error) {
-        [ACShowAlertTool hideMessage];
+        [weakSelf.HUD hide:YES];
         [weakSelf showMsgCenter:ACRequestError];
     }];
 }

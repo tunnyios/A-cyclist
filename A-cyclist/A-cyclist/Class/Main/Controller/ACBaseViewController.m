@@ -135,6 +135,33 @@
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
+#pragma mark 是否加载蒙版
+/**
+ *  设置蒙版
+ *
+ *  @param msg 显示文字
+ */
+- (void)showHUD_Msg:(NSString *)msg
+{
+    if (!self.HUD)
+    {
+        if (self.navigationController.view == nil)
+        {
+            self.HUD = [MBProgressHUD initDefaultHUDWithView:self.view];
+        }else
+        {
+            self.HUD = [MBProgressHUD initDefaultHUDWithView:self.navigationController.view];
+        }
+    }
+    self.HUD.mode = MBProgressHUDModeIndeterminate;
+    if (msg.length) {
+        self.HUD.labelText = msg;
+    } else {
+        self.HUD.labelText = @"正在加载";
+    }
+    [self.HUD show:YES];
+}
+
 #pragma mark 中间弹框
 - (void)showMsgCenter:(NSString *)msg
 {

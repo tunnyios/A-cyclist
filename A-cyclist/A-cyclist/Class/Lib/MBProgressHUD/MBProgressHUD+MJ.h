@@ -10,19 +10,17 @@
 @interface MBProgressHUD (MJ)
 
 /**
- *  加载成功提示，1s后消失
+ *  创建默认的HUD
  */
-+ (void)showSuccess:(NSString *)success toView:(UIView *)view;
-+ (void)showError:(NSString *)error toView:(UIView *)view;
++ (instancetype)initDefaultHUDWithView:(UIView *)view;
 
-+ (MBProgressHUD *)showMessage:(NSString *)message toView:(UIView *)view;
-+ (void)showSuccess:(NSString *)success;
-+ (void)showError:(NSString *)error;
+/**
+ *  延迟隐藏加载成功
+ */
+- (void)hideSuccessMessage:(NSString *)success;
 
-+ (MBProgressHUD *)showMessage:(NSString *)message;
-
-+ (void)hideHUDForView:(UIView *)view;
-
-+ (void)hideHUD;
-
+/**
+ *  延迟隐藏加载失败
+ */
+- (void)hideErrorMessage:(NSString *)error;
 @end

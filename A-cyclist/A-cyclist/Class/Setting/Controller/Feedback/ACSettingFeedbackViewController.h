@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ACBaseViewController.h"
 
-@interface ACSettingFeedbackViewController : UIViewController
+@interface ACSettingFeedbackViewController : ACBaseViewController
 
 @end

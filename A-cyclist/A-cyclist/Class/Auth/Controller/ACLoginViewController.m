@@ -10,7 +10,6 @@
 #import "ACDataBaseTool.h"
 #import "ACGlobal.h"
 #import "NSString+Extension.h"
-#import "ACShowAlertTool.h"
 #import "ACUserModel.h"
 #import "ACTabBarController.h"
 #import "ACCacheDataTool.h"
@@ -97,18 +96,19 @@
 {
     NSString *email = _loginEmail.text;
     if (![email isAvailPhoneNumber] && ![email isAvailEmail] &&![email isAvailUserName]) {
-        [ACShowAlertTool showError:ACErrorEmail];
+        [self.HUD hideErrorMessage:ACErrorEmail];
         return;
     }
     
     NSString *pwd = _loginPwd.text;
     if (!pwd) {
-        [ACShowAlertTool showError:ACPasswordError];
+        [self.HUD hideErrorMessage:ACPasswordError];
         return;
     }
     
     //登录
-    [ACShowAlertTool showMessage:@"登录中..." onView:nil];
+    [self showHUD_Msg:@"正在登录"];
+    __weak typeof (self)weakSelf = self;
     [ACDataBaseTool loginWithAccount:email passWord:pwd block:^(ACUserModel *user, NSError *error) {
         if (!error) {
             UIWindow *window = [UIApplication sharedApplication].keyWindow;
@@ -125,10 +125,10 @@
                 UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:setProfileVC];
                 window.rootViewController = nav;
             }
-            [ACShowAlertTool hideMessage];
+            [weakSelf.HUD hide:YES];
         } else {
-            [ACShowAlertTool hideMessage];
-            [ACShowAlertTool showError:ACLoginError];
+            [weakSelf.HUD hide:YES];
+            [weakSelf.HUD hideErrorMessage:ACLoginError];
             return;
         }
     }];
@@ -154,25 +154,6 @@
     ACRegisterViewController *registerVc = [loginSB instantiateViewControllerWithIdentifier:@"register"];
     registerVc.from = RegisterPushFromTypeRestPwd;
     [self presentViewController:registerVc animated:YES completion:nil];
-    
-//    NSString *email = self.loginEmail.text;
-//    if ([email isAvailEmail]) {
-//        //从数据库中查找匹配的邮箱地址
-//        NSString *sql = [NSString stringWithFormat:@"select * from _User where email = '%@'", email];
-//        DLog(@"sql #%@#",sql);
-//        
-//        [ACDataBaseTool queryWithSQL:sql pValues:nil block:^(NSArray *result, NSError *error) {
-//            DLog(@"result #%@# error #%@#", result, error);
-//            if (result.count > 0) {    //找到匹配的邮箱地址
-//                [ACDataBaseTool restPasswordWithEmail:email];
-//                [ACShowAlertTool showSuccess:ACRegisterSuccess];
-//            } else {
-//                [ACShowAlertTool showError:ACRegisterError];
-//            }
-//        }];
-//    } else {
-//        [ACShowAlertTool showError:ACEmptyEmail];
-//    }
 }
 
 #pragma mark - 第三方登录
@@ -186,7 +167,7 @@
         [self.tencentOAuth authorize:permissions inSafari:NO];
 
     } else {
-        [ACShowAlertTool showError:ACSinaLoginError];
+        [self.HUD hideErrorMessage:ACSinaLoginError];
     }
 }
 
@@ -200,7 +181,7 @@
         [WeiboSDK sendRequest:request];
         DLog(@"微博按钮点击");
     } else {
-        [ACShowAlertTool showError:ACSinaLoginError];
+        [self.HUD hideErrorMessage:ACSinaLoginError];
     }
 }
 
@@ -257,7 +238,7 @@
  */
 - (void)getUserInfoResponse:(APIResponse*) response
 {
-    [ACShowAlertTool showMessage:@"登录中..." onView:nil];
+    [self showHUD_Msg:@"正在登录"];
     DLog(@"%@", response.jsonResponse);
     
     NSString *gender = @"m";
@@ -279,7 +260,7 @@
     [ACCacheDataTool saveUserInfo:self.tempUserModel withObjectId:self.tempUserModel.objectId];
     
     //跳转至settingProfileVC
-    [ACShowAlertTool hideMessage];
+    [self.HUD hide:YES];
     ACSettingProfileInfoViewController *setProfileVC = [[ACSettingProfileInfoViewController alloc] init];
     setProfileVC.pushFromType = PushFromTypeLogin;
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:setProfileVC];

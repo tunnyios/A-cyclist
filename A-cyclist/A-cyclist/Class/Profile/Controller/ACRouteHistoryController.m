@@ -17,7 +17,6 @@
 #import "ACGlobal.h"
 #import "ACDataBaseTool.h"
 #import "ACCacheDataTool.h"
-#import "ACShowAlertTool.h"
 #import <MJRefresh.h>
 
 @interface ACRouteHistoryController ()
@@ -101,11 +100,11 @@
 
 - (void)getRouteDataWithRouteType:(RouteListType)routeType
 {
-    [ACShowAlertTool showMessage:@"正在加载" onView:nil];
+    [self showHUD_Msg:@"正在加载"];
     __weak typeof (self)weakSelf = self;
     if (RouteListTypePersonal == routeType) {   //个人路线
         [ACDataBaseTool getRouteListWithUserObjectId:self.userInfo.objectId pageIndex:self.pageIndex resultBlock:^(NSArray *routes, NSError *error) {
-            [ACShowAlertTool hideMessage];
+            [weakSelf.HUD hide:YES];
             [weakSelf.tableView.mj_header endRefreshing];
             [weakSelf.tableView.mj_footer endRefreshing];
             
@@ -113,20 +112,20 @@
                 [weakSelf addDataWithRouteList:routes pageIndex:self.pageIndex];
                 [weakSelf.tableView reloadData];
             } else {
-                [ACShowAlertTool showError:ACRequestError];
+                [weakSelf.HUD hideErrorMessage:ACRequestError];
                 weakSelf.pageIndex--;
             }
         }];
     } else {    //个人已共享路线
         [ACDataBaseTool getSharedRouteListWithUserObjectId:self.userInfo.objectId pageIndex:self.pageIndex resultBlock:^(NSArray *routes, NSError *error) {
-            [ACShowAlertTool hideMessage];
+            [weakSelf.HUD hide:YES];
             [weakSelf.tableView.mj_header endRefreshing];
             [weakSelf.tableView.mj_footer endRefreshing];
             if (!error) {
                 [weakSelf addDataWithRouteList:routes pageIndex:self.pageIndex];
                 [weakSelf.tableView reloadData];
             } else {
-                [ACShowAlertTool showError:ACRequestError];
+                [weakSelf.HUD hideErrorMessage:ACRequestError];
                 weakSelf.pageIndex--;
             }
         }];

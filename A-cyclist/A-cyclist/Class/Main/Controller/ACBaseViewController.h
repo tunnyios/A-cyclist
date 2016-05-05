@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MBProgressHUD+MJ.h"
 
 @interface ACBaseViewController : UIViewController
+/** 蒙板加载框 */
+@property (nonatomic, strong) MBProgressHUD *HUD;
+
 /**
  *  新浪微博SSO登录
  */
@@ -42,6 +46,14 @@
             cancelBtnTitle:(NSString *)cancelBtnTitle
              otherBtnTitle:(NSString *)otherBtnTitle
                    handler:(void (^)())handler;
+
+#pragma mark 是否加载蒙版
+/**
+ *  设置蒙版
+ *
+ *  @param msg 显示文字
+ */
+- (void)showHUD_Msg:(NSString *)msg;
 
 /**
  *  中间弹框

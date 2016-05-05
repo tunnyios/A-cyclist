@@ -17,7 +17,6 @@
 #import "ACSettingOffLineMapsViewController.h"
 #import "SDImageCache.h"
 #import "NSFileManager+Extension.h"
-#import "ACShowAlertTool.h"
 #import "ACCacheDataTool.h"
 #import "ACLoginViewController.h"
 #import "ACSettingFeedbackViewController.h"
@@ -84,7 +83,7 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (1 == buttonIndex) { //清理缓存
-        [ACShowAlertTool showMessage:@"清理缓存" onView:nil];
+        [self showHUD_Msg:@"清理缓存"];
         NSString *cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
         [NSFileManager clearCache:cachePath];
         
@@ -93,7 +92,7 @@
         ACBlankSettingCellModel *blank = group.cellList[0];
         blank.subTitle = @"0 M";
         [self.tableView reloadData];
-        [ACShowAlertTool hideMessage];
+        [self.HUD hide:YES];
     }
 }
 
@@ -145,7 +144,7 @@
 {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction *logoutAction = [UIAlertAction actionWithTitle:@"退出" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
-        [ACShowAlertTool showSuccess:@"退出成功"];
+        [self.HUD hideSuccessMessage:@"退出成功"];
         //删除用户数据
         [ACCacheDataTool deleteUserData];
         

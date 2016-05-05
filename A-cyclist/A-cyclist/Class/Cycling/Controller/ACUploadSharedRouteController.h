@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ACBaseViewController.h"
 
 @class ACRouteModel;
 
 //成功上传路线后
 typedef void(^uploadSharedRoute)(BOOL);
 
-@interface ACUploadSharedRouteController : UIViewController
+@interface ACUploadSharedRouteController : ACBaseViewController
 /** 路线地图Image */
 @property (nonatomic, strong) UIImage *routeMapImage;
 /** 路线对象 */

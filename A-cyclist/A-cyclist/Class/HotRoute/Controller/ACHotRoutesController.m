@@ -32,6 +32,9 @@
 /** pageIndex */
 @property (nonatomic, assign) NSUInteger pageIndex;
 
+/** 蒙板加载框 */
+@property (nonatomic, strong) MBProgressHUD *HUD;
+
 @end
 
 @implementation ACHotRoutesController
@@ -140,14 +143,14 @@
  */
 - (void)setHotRoutesDataWithCityName:(NSString *)cityName
 {
-    [MBProgressHUD showMessage:@"正在加载"];
+    [self showHUD_Msg:@"正在加载"];
     __weak typeof (self)weakSelf = self;
     [ACDataBaseTool getSharedRouteListClass:cityName pageIndex:self.pageIndex resultBlock:^(NSArray *sharedRoutes, NSError *error) {
         if (error) {
             DLog(@"从服务器获取共享路线失败");
             [weakSelf.tableView.mj_header endRefreshing];
             [weakSelf.tableView.mj_footer endRefreshing];
-            [MBProgressHUD hideHUD];
+            [weakSelf.HUD hide:YES];
             [weakSelf.view makeToast:ACSharedRouteGetListError duration:2.5f position:CSToastPositionCenter];
         } else {
             DLog(@"从服务器获取共享路线成功, sharedRoutes is %@", sharedRoutes);
@@ -178,7 +181,7 @@
             }];
             [weakSelf.tableView.mj_header endRefreshing];
             [weakSelf.tableView.mj_footer endRefreshing];
-            [MBProgressHUD hideHUD];
+            [weakSelf.HUD hide:YES];
         }
     }];
 }
@@ -236,6 +239,34 @@
     //从数据库中获取热门路线，并刷新界面
     self.pageIndex = 1;
     [self setHotRoutesDataWithCityName:self.selectedCityName];
+}
+
+#pragma mark 是否加载蒙版
+/**
+ *  设置蒙版
+ *
+ *  @param msg 显示文字
+ */
+- (void)showHUD_Msg:(NSString *)msg
+{
+    if (!self.HUD)
+    {
+        if (self.navigationController.view == nil)
+        {
+            self.HUD = [MBProgressHUD initDefaultHUDWithView:self.view];
+        }else
+        {
+            self.HUD = [MBProgressHUD initDefaultHUDWithView:self.navigationController.view];
+        }
+    }
+    self.HUD.mode = MBProgressHUDModeIndeterminate;
+    if (msg.length) {
+        self.HUD.labelText = msg;
+    } else {
+        self.HUD.labelText = @"正在加载";
+    }
+    [self.HUD show:YES];
+    
 }
 
 @end

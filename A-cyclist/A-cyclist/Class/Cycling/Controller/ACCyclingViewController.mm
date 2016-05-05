@@ -848,7 +848,7 @@ typedef enum : NSUInteger {
     self.route.routeName = timeName;
     self.route.steps = [self.locationArrayM copy];
 
-    self.route.distance = [NSNumber numberWithDouble:self.totleDistance * 0.001];
+    self.route.distance = [NSNumber numberWithDouble:[NSString stringWithFormat:@"%.3f",self.totleDistance * 0.001].doubleValue];
     self.route.time = self.currentTimeConsuming.text;
     self.route.timeNumber = [NSNumber numberWithDouble:[NSString stringWithFormat:@"%.2f", self.totleTime].doubleValue];
     self.route.averageSpeed = [NSNumber numberWithDouble:self.currentAverageSpeed.text.doubleValue];
