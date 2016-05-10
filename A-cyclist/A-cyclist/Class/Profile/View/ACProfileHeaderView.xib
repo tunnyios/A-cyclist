@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -145,14 +145,14 @@
                     </constraints>
                 </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="signup_avatar_default" translatesAutoresizingMaskIntoConstraints="NO" id="XMa-lb-moR" userLabel="IconImageView">
-                    <rect key="frame" x="20" y="88" width="80" height="80"/>
+                    <rect key="frame" x="20" y="83" width="80" height="80"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="80" id="cYm-tp-b9F"/>
                         <constraint firstAttribute="width" constant="80" id="olj-lT-5wD"/>
                     </constraints>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rgc-SH-v6F" userLabel="iconView">
-                    <rect key="frame" x="108" y="88" width="202" height="80"/>
+                    <rect key="frame" x="108" y="83" width="202" height="80"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Axw-cc-e22">
                             <rect key="frame" x="0.0" y="10" width="202" height="30"/>
@@ -191,10 +191,10 @@
                 <constraint firstItem="JXo-ia-lT1" firstAttribute="top" secondItem="Mtr-Aa-bwO" secondAttribute="top" id="NWT-Z7-J9z"/>
                 <constraint firstAttribute="trailing" secondItem="JXo-ia-lT1" secondAttribute="trailing" id="bj4-Mo-zfi"/>
                 <constraint firstItem="JXo-ia-lT1" firstAttribute="leading" secondItem="Mtr-Aa-bwO" secondAttribute="leading" id="d4f-3z-Xtc"/>
-                <constraint firstItem="GkP-XO-koF" firstAttribute="top" secondItem="XMa-lb-moR" secondAttribute="bottom" constant="5" id="ewf-qn-ZBa"/>
+                <constraint firstItem="GkP-XO-koF" firstAttribute="top" secondItem="XMa-lb-moR" secondAttribute="bottom" constant="10" id="ewf-qn-ZBa"/>
                 <constraint firstAttribute="trailing" secondItem="rgc-SH-v6F" secondAttribute="trailing" constant="10" id="jAp-6y-xBx"/>
                 <constraint firstItem="GkP-XO-koF" firstAttribute="top" secondItem="JXo-ia-lT1" secondAttribute="bottom" id="kOA-v6-60L"/>
-                <constraint firstItem="GkP-XO-koF" firstAttribute="top" secondItem="rgc-SH-v6F" secondAttribute="bottom" constant="5" id="pFc-4E-cTQ"/>
+                <constraint firstItem="GkP-XO-koF" firstAttribute="top" secondItem="rgc-SH-v6F" secondAttribute="bottom" constant="10" id="pFc-4E-cTQ"/>
                 <constraint firstAttribute="trailing" secondItem="GkP-XO-koF" secondAttribute="trailing" id="q4A-0S-jI8"/>
                 <constraint firstItem="GkP-XO-koF" firstAttribute="leading" secondItem="Mtr-Aa-bwO" secondAttribute="leading" id="rtd-wc-Ihy"/>
                 <constraint firstItem="XMa-lb-moR" firstAttribute="leading" secondItem="Mtr-Aa-bwO" secondAttribute="leading" constant="20" id="wXe-Aa-biN"/>

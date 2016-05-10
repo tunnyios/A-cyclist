@@ -2,17 +2,18 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "tab_route_iphone_4.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "tab_route_iphone_4.png"
+      "filename" : "tab_route_iphone_4@2x.png",
+      "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "scale" : "3x",
-      "filename" : "tab_route_iphone_4-1.png"
+      "filename" : "tab_route_iphone_4@3x.png",
+      "scale" : "3x"
     }
   ],
   "info" : {
