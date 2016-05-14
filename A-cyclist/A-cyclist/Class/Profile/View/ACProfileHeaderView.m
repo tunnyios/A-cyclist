@@ -26,6 +26,9 @@
 /** 个性签名 */
 @property (weak, nonatomic) IBOutlet UILabel *signatureLabel;
 
+/** 约束 */
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *signatureLabelHeight;
+
 @end
 
 @implementation ACProfileHeaderView
@@ -47,6 +50,7 @@
     }
     self.userNameLabel.text = user.username;
     self.signatureLabel.text = user.signature;
+
     //根据URL下载图片
     NSURL *url = [NSURL URLWithString:user.profile_image_url];
     [self.iconView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"signup_avatar_default"]];
@@ -60,6 +64,17 @@
     ACProfileHeaderView *profileView = [[[NSBundle mainBundle] loadNibNamed:@"ACProfileHeaderView" owner:self options:nil] lastObject];
     
     return profileView;
+}
+
+- (void)updateConstraints
+{
+    [super updateConstraints];
+    
+    NSDictionary *dict = @{NSFontAttributeName : [UIFont systemFontOfSize:12.0f]};
+    CGRect signatureLabelRect = [self.signatureLabel.text boundingRectWithSize:CGSizeMake(ACScreenBounds.size.width - 118, CGFLOAT_MAX) options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading) attributes:dict context:nil];
+    
+    self.signatureLabelHeight.constant = (signatureLabelRect.size.height > 15) ? 29 : signatureLabelRect.size.height;
+    
 }
 
 @end

@@ -211,6 +211,7 @@
         if (self.routeCount > 0) {
             ACRouteHistoryController *routeHistoryVC = [[ACRouteHistoryController alloc] init];
             routeHistoryVC.routeType = RouteListTypeShared;
+            routeHistoryVC.userObjectId = @"";
             [self.navigationController pushViewController:routeHistoryVC animated:YES];
         }
     } else {

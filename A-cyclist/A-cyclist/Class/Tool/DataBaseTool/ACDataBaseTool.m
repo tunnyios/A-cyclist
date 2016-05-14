@@ -500,9 +500,10 @@
         ACRouteModel *routeModel = [[ACRouteModel alloc] init];
         if (error == nil) {
             routeModel = [ACRouteModel routeModelWithBmobObject:(BmobObject *)array.firstObject];
+        } else {
+            DLog(@"maxDistanceRouteModel error is %@", error);
         }
         if (block) {
-            DLog(@"maxDistanceRouteModel error is %@", error);
             block(routeModel, error);
         }
     }];
@@ -528,9 +529,10 @@
         ACRouteModel *routeModel = [[ACRouteModel alloc] init];
         if (error == nil) {
             routeModel = [ACRouteModel routeModelWithBmobObject:(BmobObject *)array.firstObject];
+        } else {
+            DLog(@"maxSpeedRouteModel error is %@", error);
         }
         if (block) {
-            DLog(@"maxSpeedRouteModel error is %@", error);
             block(routeModel, error);
         }
     }];
@@ -556,9 +558,10 @@
         ACRouteModel *routeModel = [[ACRouteModel alloc] init];
         if (error == nil) {
             routeModel = [ACRouteModel routeModelWithBmobObject:(BmobObject *)array.firstObject];
+        } else {
+            DLog(@"maxAverageSpeedRouteModel error is %@", error);
         }
         if (block) {
-            DLog(@"maxAverageSpeedRouteModel error is %@", error);
             block(routeModel, error);
         }
     }];
@@ -584,9 +587,10 @@
         ACRouteModel *routeModel = [[ACRouteModel alloc] init];
         if (error == nil) {
             routeModel = [ACRouteModel routeModelWithBmobObject:(BmobObject *)array.firstObject];
+        } else {
+            DLog(@"maxTimeRouteModel error is %@", error);
         }
         if (block) {
-            DLog(@"maxTimeRouteModel error is %@", error);
             block(routeModel, error);
         }
     }];

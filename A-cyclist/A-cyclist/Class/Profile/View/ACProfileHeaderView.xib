@@ -163,7 +163,7 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="成为更好的自己。" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FyR-gF-FeZ">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="成为更好的自己。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FyR-gF-FeZ">
                             <rect key="frame" x="0.0" y="40" width="202" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="fce-Ml-Zh2"/>
@@ -203,6 +203,7 @@
             <connections>
                 <outlet property="iconView" destination="XMa-lb-moR" id="hOQ-Mb-Zan"/>
                 <outlet property="signatureLabel" destination="FyR-gF-FeZ" id="Flk-sL-qPM"/>
+                <outlet property="signatureLabelHeight" destination="fce-Ml-Zh2" id="G6X-T9-Ox3"/>
                 <outlet property="totalDistanceLabel" destination="nuJ-QQ-Zv9" id="wYB-jR-cRt"/>
                 <outlet property="totalTimeLabel" destination="wFz-WF-eEL" id="EEO-Zs-SZl"/>
                 <outlet property="userNameLabel" destination="Axw-cc-e22" id="DBj-l8-uiT"/>

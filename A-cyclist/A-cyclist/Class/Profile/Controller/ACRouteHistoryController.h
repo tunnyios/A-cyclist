@@ -16,5 +16,7 @@ typedef enum : NSUInteger {
 @interface ACRouteHistoryController : ACBaseTableViewController
 /** 路线来源类别 */
 @property (nonatomic, assign) RouteListType routeType;
+/**	当前登录用户对象的id */
+@property(nonatomic, copy)NSString *userObjectId;
 
 @end

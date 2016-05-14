@@ -79,8 +79,16 @@
 {
     if (1 == pageIndex) {
         [self.dataList removeAllObjects];
+        if (![self.userObjectId isEqualToString:@""]) {
+            [ACCacheDataTool clearPersonRoute];
+        }
     }
     [routes enumerateObjectsUsingBlock:^(ACRouteModel *route, NSUInteger idx, BOOL *stop) {
+        //此处唯一本地记录个人骑行路线
+        if ([route.userObjectId isEqualToString:self.userObjectId]) {
+            [ACCacheDataTool addRouteWith:route withUserObjectId:self.userObjectId];
+        }
+        
         NSString *subTitle = [NSString stringWithFormat:@"%@", route.distance];
         ACProfileCellModel *profileCellM = [ACProfileCellModel profileCellWithTitle:route.routeName subTitle:subTitle route:route];
         
@@ -180,6 +188,11 @@
         __weak typeof (self)weakSelf = self;
         [ACDataBaseTool delRouteWithRouteObjectId:cellModel.route.objectId success:^(BOOL isSuccessful) {
             if (isSuccessful) {
+                //此处唯一本地删除个人骑行路线
+                if ([cellModel.route.objectId isEqualToString:weakSelf.userObjectId]) {
+                    [ACCacheDataTool addRouteWith:cellModel.route withUserObjectId:weakSelf.userObjectId];
+                }
+                
                 [weakSelf.dataList removeObject:group];
 
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
