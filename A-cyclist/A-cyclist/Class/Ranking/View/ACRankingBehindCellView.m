@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *distanceLabelWidth;
 @end
 
 @implementation ACRankingBehindCellView
@@ -65,6 +66,15 @@
     }
     
     return cell;
+}
+
+- (void)updateConstraints
+{
+    [super updateConstraints];
+    
+    NSDictionary *dict = @{NSFontAttributeName : [UIFont systemFontOfSize:19.0f]};
+    CGRect distanceLabelRect = [self.distanceLabel.text boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX) options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading) attributes:dict context:nil];
+    self.distanceLabelWidth.constant = distanceLabelRect.size.width + 1;
 }
 
 @end

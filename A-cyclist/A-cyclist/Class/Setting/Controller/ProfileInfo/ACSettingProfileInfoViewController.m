@@ -76,6 +76,18 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)dealloc
+{
+    //视图销毁时，停止定位
+    //    [self.bmkLocationService stopUserLocationService];
+    DLog(@"SettingProfileInfo dealloc");
+}
+
+- (BOOL)willDealloc
+{
+    return NO;
+}
+
 /**
  *  添加一组数据
  *
@@ -151,7 +163,7 @@
     };
     
     //邮箱
-    ACBlankSettingCellModel *cell5 = [ACBlankSettingCellModel blankSettingCellWithTitle:@"邮箱" subTitle:(user.email ? user.email : @"未填写") icon:nil];
+//    ACBlankSettingCellModel *cell5 = [ACBlankSettingCellModel blankSettingCellWithTitle:@"邮箱" subTitle:(user.email ? user.email : @"未填写") icon:nil];
     
     ACSettingGroupModel *group = [[ACSettingGroupModel alloc] init];
     [group.cellList addObject:cell0];
@@ -160,7 +172,7 @@
     [group.cellList addObject:cell2];
     [group.cellList addObject:cell3];
     [group.cellList addObject:cell4];
-    [group.cellList addObject:cell5];
+//    [group.cellList addObject:cell5];
 
     [self.dataList addObject:group];
 }
@@ -190,12 +202,6 @@
     }
 }
 
-- (void)dealloc
-{
-    //视图销毁时，停止定位
-//    [self.bmkLocationService stopUserLocationService];
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -210,15 +216,17 @@
 {
     //1. 弹出UIAlertController选择图片或者相机
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    __weak typeof (self)weakSelf = self;
     UIAlertAction *photoAction = [UIAlertAction actionWithTitle:@"相册" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        if ([self isPhotoLibraryAvailable]) {
+        if ([weakSelf isPhotoLibraryAvailable]) {
             UIImagePickerController *controller = [[UIImagePickerController alloc] init];
             controller.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
             NSMutableArray *mediaTypes = [[NSMutableArray alloc] init];
             [mediaTypes addObject:(__bridge NSString *)kUTTypeImage];
             controller.mediaTypes = mediaTypes;
-            controller.delegate = self;
-            [self presentViewController:controller
+            controller.delegate = weakSelf;
+            [weakSelf presentViewController:controller
                                animated:YES
                              completion:^(void){
                                  DLog(@"Picker View Controller is presented");
@@ -226,17 +234,17 @@
         }
     }];
     UIAlertAction *cameraAction = [UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        if ([self isCameraAvailable] && [self doesCameraSupportTakingPhotos]) {
+        if ([weakSelf isCameraAvailable] && [weakSelf doesCameraSupportTakingPhotos]) {
             UIImagePickerController *controller = [[UIImagePickerController alloc] init];
             controller.sourceType = UIImagePickerControllerSourceTypeCamera;
-            if ([self isFrontCameraAvailable]) {
+            if ([weakSelf isFrontCameraAvailable]) {
                 controller.cameraDevice = UIImagePickerControllerCameraDeviceFront;
             }
             NSMutableArray *mediaTypes = [[NSMutableArray alloc] init];
             [mediaTypes addObject:(__bridge NSString *)kUTTypeImage];
             controller.mediaTypes = mediaTypes;
-            controller.delegate = self;
-            [self presentViewController:controller
+            controller.delegate = weakSelf;
+            [weakSelf presentViewController:controller
                                animated:YES
                              completion:^(void){
                                  DLog(@"Picker View Controller is presented");
@@ -324,13 +332,14 @@
 
 #pragma mark - UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    __weak typeof (self)weakSelf = self;
     [picker dismissViewControllerAnimated:YES completion:^() {
         UIImage *portraitImg = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
-        portraitImg = [self imageByScalingToMaxSize:portraitImg];
+        portraitImg = [weakSelf imageByScalingToMaxSize:portraitImg];
         // 裁剪
-        VPImageCropperViewController *imgEditorVC = [[VPImageCropperViewController alloc] initWithImage:portraitImg cropFrame:CGRectMake(0, 100.0f, self.view.frame.size.width, self.view.frame.size.width) limitScaleRatio:3.0];
-        imgEditorVC.delegate = self;
-        [self presentViewController:imgEditorVC animated:YES completion:^{
+        VPImageCropperViewController *imgEditorVC = [[VPImageCropperViewController alloc] initWithImage:portraitImg cropFrame:CGRectMake(0, 100.0f, weakSelf.view.frame.size.width, weakSelf.view.frame.size.width) limitScaleRatio:3.0];
+        imgEditorVC.delegate = weakSelf;
+        [weakSelf presentViewController:imgEditorVC animated:YES completion:^{
             // TO DO
             DLog(@"....TO..DO");
         }];
@@ -353,22 +362,24 @@
     __block ACPhotoSettingCellModel *model = [self.dataList[0] cellList][0];
     model.photoImage = editedImage;
 
+    __weak typeof (self)weakSelf = self;
     [cropperViewController dismissViewControllerAnimated:YES completion:^{
         //上传图片到数据库，并获得url
         NSData *data = UIImageJPEGRepresentation(model.photoImage, 1.0f);
+//        __strong typeof (weakSelf)strongSelf = weakSelf;
         [ACDataBaseTool uploadFileWithFilename:@"image.jpg" fileData:data block:^(BOOL isSuccessful, NSError *error, NSString *filename, NSString *url) {
             //获取大图的完整url, 并设置到用户数据模型中,点击保存按钮后
-            self.user.avatar_large = [ACDataBaseTool signUrlWithFilename:filename url:url];
+            weakSelf.user.avatar_large = [ACDataBaseTool signUrlWithFilename:filename url:url];
             
             //对服务器上的图片进行缩略图设置
-            [ACDataBaseTool thumbnailImageBySpecifiesTheWidth:180 height:180 quality:100 sourceImageUrl:self.user.avatar_large resultBlock:^(NSString *filename, NSString *url, NSError *error) {
+            [ACDataBaseTool thumbnailImageBySpecifiesTheWidth:180 height:180 quality:100 sourceImageUrl:weakSelf.user.avatar_large resultBlock:^(NSString *filename, NSString *url, NSError *error) {
                 if (error == nil) {
-                    self.user.profile_image_url = url;
+                    weakSelf.user.profile_image_url = url;
                     //将url直接保存到数据库和缓存中(因为是异步的，防止出现未上传完成，就点击了保存按钮)
-                    [ACCacheDataTool updateUserInfo:self.user withObjectId:self.user.objectId];
+                    [ACCacheDataTool updateUserInfo:weakSelf.user withObjectId:weakSelf.user.objectId];
                     
-                    NSDictionary *dict = @{@"profile_image_url" : self.user.profile_image_url,
-                                           @"avatar_large" : self.user.avatar_large
+                    NSDictionary *dict = @{@"profile_image_url" : weakSelf.user.profile_image_url,
+                                           @"avatar_large" : weakSelf.user.avatar_large
                                            };
                     NSArray *array = @[@"profile_image_url", @"avatar_large"];
                     [ACDataBaseTool updateUserInfoWithDict:dict andKeys:array withResultBlock:^(BOOL isSuccessful, NSError *error) {
@@ -383,7 +394,7 @@
             
         }];
         // TO DO
-        [self.tableView reloadData];
+        [weakSelf.tableView reloadData];
     }];
 }
 
@@ -434,7 +445,7 @@
         self.user.location = [NSString stringWithFormat:@"%@ %@", result.addressDetail.city, result.addressDetail.district];
         
         //设置tableView的数据
-        ACArrowWithSubtitleSettingCellModel *model = [self.dataList[0] cellList][3];
+        ACArrowWithSubtitleSettingCellModel *model = [self.dataList[0] cellList][4];
         model.subTitle = self.user.location;
         [self.tableView reloadData];
     }
@@ -582,11 +593,11 @@
     [ACDataBaseTool updateUserInfoWith:self.user withResultBlock:^(BOOL isSuccessful, NSError *error) {
         DLog(@"保存用户信息成功到数据库");
         [weakSelf.HUD hideSuccessMessage:@"保存成功"];
-        if (PushFromTypeLogin == self.pushFromType) {
+        if (PushFromTypeLogin == weakSelf.pushFromType) {
             UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
             keyWindow.rootViewController = [[ACTabBarController alloc] init];
         }
-        [self.bmkLocationService stopUserLocationService];
+        [weakSelf.bmkLocationService stopUserLocationService];
     }];
 }
 

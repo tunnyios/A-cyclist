@@ -161,6 +161,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)dealloc
+{
+    DLog(@"cyclistArguments dealloc");
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [_bmkMapView viewWillAppear];
@@ -256,18 +261,17 @@
             __weak typeof (self)weakSelf = self;
             [ACDataBaseTool delPersonSharedRouteWithObjectId:self.route.personSharedRouteId resultBlock:^(BOOL isSuccessful, NSError *error) {
                 if (isSuccessful) {
-                    __strong __typeof(weakSelf)strongSelf = weakSelf;
                     NSDictionary *dict = @{@"isShared" : @0,
                                            @"personSharedRoute" : @""
                                            };
-                    [ACDataBaseTool updateRouteWithUserObjectId:strongSelf.route.userObjectId routeStartDate:strongSelf.route.cyclingStartTime dict:dict andKeys:@[@"isShared", @"personSharedRoute"] withResultBlock:^(BOOL isSuccessful, NSError *error) {
+                    [ACDataBaseTool updateRouteWithUserObjectId:weakSelf.route.userObjectId routeStartDate:weakSelf.route.cyclingStartTime dict:dict andKeys:@[@"isShared", @"personSharedRoute"] withResultBlock:^(BOOL isSuccessful, NSError *error) {
                         if (isSuccessful) {
-                            strongSelf.route.isShared = @0;
+                            weakSelf.route.isShared = @0;
                             //更新缓存
-                            [ACCacheDataTool updateRouteWith:strongSelf.route routeOne:strongSelf.route.routeOne];
-                            [strongSelf showMsgCenter:@"移除已分享路线成功"];
+                            [ACCacheDataTool updateRouteWith:weakSelf.route routeOne:weakSelf.route.routeOne];
+                            [weakSelf showMsgCenter:@"移除已分享路线成功"];
                         } else {
-                            [strongSelf showMsgCenter:@"移除已分享路线失败，请稍后再试"];
+                            [weakSelf showMsgCenter:@"移除已分享路线失败，请稍后再试"];
                         }
                     }];
                 } else {
@@ -278,22 +282,35 @@
         
     } else {
         //1. 截屏:截取路线地图图片
-        //    UIImage *newImage = [UIImage imageWithCaptureView:self.bmkMapView];
         UIImage *newImage = [self.bmkMapView takeSnapshot];
-        DLog(@"newImage is %@", newImage);
-        NSArray *array = @[newImage, self.route];
-        [self performSegueWithIdentifier:@"route2share" sender:array];
+//        DLog(@"newImage is %@", newImage);
+//        NSArray *array = @[newImage, self.route];
+//        [self performSegueWithIdentifier:@"route2share" sender:array];
+        
+        ACUploadSharedRouteController *sharedRoute = [[UIStoryboard storyboardWithName:@"cycling" bundle:nil] instantiateViewControllerWithIdentifier:@"ACUploadSharedRouteController"];
+        __weak typeof (self)weakSelf = self;
+        sharedRoute.option = ^(BOOL isShared) {
+            if (isShared) {
+                //设置已共享
+                weakSelf.route.isShared = @1;
+                [weakSelf.sharedBtn setTitle:@"删除已上传路线" forState:UIControlStateNormal];
+            }
+        };
+        sharedRoute.routeMapImage = newImage;
+        sharedRoute.route = self.route;
+        [self.navigationController pushViewController:sharedRoute animated:YES];
     }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     ACUploadSharedRouteController *sharedRoute = segue.destinationViewController;
+    __weak typeof (self)weakSelf = self;
     sharedRoute.option = ^(BOOL isShared) {
         if (isShared) {
             //设置已共享
-            self.route.isShared = @1;
-            [self.sharedBtn setTitle:@"删除已上传路线" forState:UIControlStateNormal];
+            weakSelf.route.isShared = @1;
+            [weakSelf.sharedBtn setTitle:@"删除已上传路线" forState:UIControlStateNormal];
         }
     };
     sharedRoute.routeMapImage = sender[0];

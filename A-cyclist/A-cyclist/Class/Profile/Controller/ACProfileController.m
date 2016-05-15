@@ -95,11 +95,11 @@ typedef enum : NSUInteger {
             self.maxTimeRoute = [ACCacheDataTool getmaxTimeRouteWithId:self.userModel.objectId];
         }
         //    DLog(@"本地：最长距离路线:%@\n 最快极速路线:%@\n 最快平均速度路线:%@\n 最长时间路线:%@", self.maxDistanceRoute, self.maxSpeedRoute, self.maxAverageRoute, self.maxTimeRoute);
+        //本地计算个人路线数量
+        self.routeCount = (int)[[ACCacheDataTool getUserRouteWithid:self.userModel.objectId] count];
         [self addGroup0];
         [self addGroup1];
         
-        //本地计算个人路线数量
-        self.routeCount = (int)[[ACCacheDataTool getUserRouteWithid:self.userModel.objectId] count];
         if (self.routeCount <= 0) {
             //下拉刷新
             [self.tableView.mj_header beginRefreshing];

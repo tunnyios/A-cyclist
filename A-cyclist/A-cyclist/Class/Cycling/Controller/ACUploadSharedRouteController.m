@@ -16,7 +16,7 @@
 #import "ACCacheDataTool.h"
 #import "ACDataBaseTool.h"
 #import <MobileCoreServices/MobileCoreServices.h>
-#import "VPImageCropperViewController.h"
+//#import "VPImageCropperViewController.h"
 
 
 typedef enum : NSUInteger {
@@ -28,7 +28,7 @@ typedef enum : NSUInteger {
 
 #define ORIGINAL_MAX_WIDTH  ACScreenBounds.size.width * 3.0f
 
-@interface ACUploadSharedRouteController () <UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIScrollViewDelegate, VPImageCropperDelegate>
+@interface ACUploadSharedRouteController () <UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIScrollViewDelegate, UITextFieldDelegate, UITextViewDelegate>
 /** 路线类别 */
 @property (nonatomic, copy) NSString *routeClass;
 @property (weak, nonatomic) IBOutlet UIPickerView *routeClasspickerView;
@@ -105,6 +105,12 @@ typedef enum : NSUInteger {
     self.nameCNLabel.text = nil;
     self.nameENLabel.text = nil;
     self.descriptionTextView.text = nil;
+    self.nameCNLabel.delegate = self;
+    self.nameENLabel.delegate = self;
+    self.descriptionTextView.delegate = self;
+    [self.nameCNLabel setReturnKeyType:UIReturnKeyDone];
+    [self.nameENLabel setReturnKeyType:UIReturnKeyDone];
+    [self.descriptionTextView setReturnKeyType:UIReturnKeyDone];
     //等级
     self.difficultyView = [HCStarViewBigSize starViewBigSize];
     self.difficultyView.frame = self.difficultyContentView.bounds;
@@ -113,6 +119,10 @@ typedef enum : NSUInteger {
     self.sceneryView = [HCStarViewBigSize starViewBigSize];
     self.sceneryView.frame = self.sceneryContentView.bounds;
     [self.sceneryContentView addSubview:self.sceneryView];
+}
+
+- (BOOL)willDealloc {
+    return NO;
 }
 
 - (void)dealloc
@@ -206,14 +216,14 @@ typedef enum : NSUInteger {
     __weak typeof(self) appsVc = self;
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction *photoAction = [UIAlertAction actionWithTitle:@"相册" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        if ([self isPhotoLibraryAvailable]) {
+        if ([appsVc isPhotoLibraryAvailable]) {
             UIImagePickerController *controller = [[UIImagePickerController alloc] init];
             controller.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
             NSMutableArray *mediaTypes = [[NSMutableArray alloc] init];
             [mediaTypes addObject:(__bridge NSString *)kUTTypeImage];
             controller.mediaTypes = mediaTypes;
             controller.delegate = appsVc;
-            [self presentViewController:controller
+            [appsVc presentViewController:controller
                                animated:YES
                              completion:^(void){
                                  DLog(@"Picker View Controller is presented");
@@ -221,17 +231,17 @@ typedef enum : NSUInteger {
         }
     }];
     UIAlertAction *cameraAction = [UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        if ([self isCameraAvailable] && [self doesCameraSupportTakingPhotos]) {
+        if ([appsVc isCameraAvailable] && [appsVc doesCameraSupportTakingPhotos]) {
             UIImagePickerController *controller = [[UIImagePickerController alloc] init];
             controller.sourceType = UIImagePickerControllerSourceTypeCamera;
-            if ([self isFrontCameraAvailable]) {
+            if ([appsVc isFrontCameraAvailable]) {
                 controller.cameraDevice = UIImagePickerControllerCameraDeviceFront;
             }
             NSMutableArray *mediaTypes = [[NSMutableArray alloc] init];
             [mediaTypes addObject:(__bridge NSString *)kUTTypeImage];
             controller.mediaTypes = mediaTypes;
             controller.delegate = appsVc;
-            [self presentViewController:controller
+            [appsVc presentViewController:controller
                                animated:YES
                              completion:^(void){
                                  DLog(@"Picker View Controller is presented");
@@ -255,15 +265,16 @@ typedef enum : NSUInteger {
     [picker dismissViewControllerAnimated:YES completion:^() {
         UIImage *portraitImg = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
         //设置image到对应的imageView
-        if (ACImageClickedFirst == self.imageClicked) {
+        if (ACImageClickedFirst == appsVc.imageClicked) {
             appsVc.leftImageView.image = portraitImg;
-        } else if (ACImageClickedSecond == self.imageClicked) {
+        } else if (ACImageClickedSecond == appsVc.imageClicked) {
             appsVc.middleImageView.image = portraitImg;
-        } else if (ACImageClickedThird == self.imageClicked) {
+        } else if (ACImageClickedThird == appsVc.imageClicked) {
             appsVc.rightImageView.image = portraitImg;
         } else {
             DLog(@"未知错误");
         }
+        DLog(@"picker dismissed");
 //        portraitImg = [self imageByScalingToMaxSize:portraitImg];
 //        // 裁剪
 //        VPImageCropperViewController *imgEditorVC = [[VPImageCropperViewController alloc] initWithImage:portraitImg cropFrame:CGRectMake(0, 100.0f, self.view.frame.size.width, self.view.frame.size.width * 0.75) limitScaleRatio:3.0];
@@ -278,8 +289,8 @@ typedef enum : NSUInteger {
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     [picker dismissViewControllerAnimated:YES completion:^(){
+        DLog(@"picker dismissed");
     }];
-    DLog(@"picker dismissed");
 }
 
 #pragma mark VPImageCropperDelegate
@@ -288,27 +299,27 @@ typedef enum : NSUInteger {
  *  裁剪完图片后调用的操作
  *  @param editedImage       裁减后的图片
  */
-- (void)imageCropper:(VPImageCropperViewController *)cropperViewController didFinished:(UIImage *)editedImage
-{
-    //设置image到对应的imageView
-    if (ACImageClickedFirst == self.imageClicked) {
-        self.leftImageView.image = editedImage;
-    } else if (ACImageClickedSecond == self.imageClicked) {
-        self.middleImageView.image = editedImage;
-    } else if (ACImageClickedThird == self.imageClicked) {
-        self.rightImageView.image = editedImage;
-    } else {
-        DLog(@"未知错误");
-    }
-    
-    [cropperViewController dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)imageCropperDidCancel:(VPImageCropperViewController *)cropperViewController
-{
-    [cropperViewController dismissViewControllerAnimated:YES completion:^{
-    }];
-}
+//- (void)imageCropper:(VPImageCropperViewController *)cropperViewController didFinished:(UIImage *)editedImage
+//{
+//    //设置image到对应的imageView
+//    if (ACImageClickedFirst == self.imageClicked) {
+//        self.leftImageView.image = editedImage;
+//    } else if (ACImageClickedSecond == self.imageClicked) {
+//        self.middleImageView.image = editedImage;
+//    } else if (ACImageClickedThird == self.imageClicked) {
+//        self.rightImageView.image = editedImage;
+//    } else {
+//        DLog(@"未知错误");
+//    }
+//    
+//    [cropperViewController dismissViewControllerAnimated:YES completion:nil];
+//}
+//
+//- (void)imageCropperDidCancel:(VPImageCropperViewController *)cropperViewController
+//{
+//    [cropperViewController dismissViewControllerAnimated:YES completion:^{
+//    }];
+//}
 
 
 #pragma mark camera utility
@@ -423,6 +434,11 @@ typedef enum : NSUInteger {
 #pragma mark - 保存到sharedRoute
 - (IBAction)uploadData:(id)sender
 {
+    if (![self checkUploadAvaliable]) {
+        return;
+    }
+
+    [self showHUD_Msg:@"正在上传，请稍候"];
     //1. 上传图片到数据库，并获取URL
     //构造上传文件data字典数组
     NSData *data1 = UIImageJPEGRepresentation(self.leftImageView.image, 0.2f);
@@ -452,6 +468,7 @@ typedef enum : NSUInteger {
         [dataArray addObject:dict4];
     }
 
+    __weak typeof (self)weakSelf = self;
     //上传多个文件
     [ACDataBaseTool uploadFilesWithDatas:dataArray block:^(NSError *error, NSArray *fileNameArray, NSArray *urlArray) {
         if (!error) {
@@ -463,15 +480,26 @@ typedef enum : NSUInteger {
                 ACSharedRoutePhotoModel *photoModel = [ACSharedRoutePhotoModel routePhotoModelWithphoto:comURL];
                 [imageArray addObject:photoModel];
             }
-            
             //保存数据到服务器
-            [self saveDataWith:imageArray];
+            [weakSelf saveDataWith:imageArray];
+        } else {
+            [weakSelf.HUD hide:YES];
+            [weakSelf.HUD hideSuccessMessage:@"上传失败, 请稍候再试"];
         }
     } progress:^(NSUInteger index, CGFloat progress) {
         DLog(@"正在上传中...");
     }];
+}
 
-    [self.navigationController popViewControllerAnimated:YES];
+- (BOOL)checkUploadAvaliable
+{
+    //参数
+    if (0 == self.nameCNLabel.text.length || 0 == self.nameENLabel.text.length || 0 == self.descriptionTextView.text.length) {
+        [self showMsgCenter:@"路线名称和描述不能为空"];
+        return false;
+    }
+    
+    return true;
 }
 
 /**
@@ -487,11 +515,7 @@ typedef enum : NSUInteger {
     } else {
         self.sharedRoute.classification = self.routeClass;
     }
-    //参数
-    if (0 == self.nameCNLabel.text.length || 0 == self.nameENLabel.text.length || 0 == self.descriptionTextView.text.length) {
-        [self.HUD hideErrorMessage:@"路线名称和描述不能为空"];
-        return;
-    }
+    
     self.sharedRoute.nameCN = self.nameCNLabel.text;
     self.sharedRoute.nameEN = self.nameENLabel.text;
     self.sharedRoute.routeDesc = self.descriptionTextView.text;
@@ -512,31 +536,37 @@ typedef enum : NSUInteger {
     [ACDataBaseTool addPersonSharedRouteWith:self.sharedRoute userObjectId:self.user.objectId resultBlock:^(BOOL isSuccessful, NSString *objectId, NSError *error) {
         if (isSuccessful) {
             DLog(@"上传共享路线到服务器成功");
-            [weakSelf.HUD hideSuccessMessage:@"上传成功"];
             
             //更新该路线的isShared为1，到personRoute数据库
             NSArray *keys = @[@"isShared", @"personSharedRouteId"];
             NSDictionary *dict = @{@"isShared" : @1,
                                    @"personSharedRouteId" : objectId
                                    };
-            __strong typeof (weakSelf)strongSelf = weakSelf;
+//            __strong typeof (weakSelf)strongSelf = weakSelf;
             [ACDataBaseTool updateRouteWithUserObjectId:weakSelf.user.objectId routeStartDate:weakSelf.route.cyclingStartTime dict:dict andKeys:keys withResultBlock:^(BOOL isSuccessful, NSError *error) {
                 if (isSuccessful) {
                     DLog(@"更新路线的isShared成功");
-                    if (strongSelf.option) {
-                        strongSelf.option(YES);
+                    //更新该路线到本地缓存
+                    weakSelf.route.isShared = @1;
+                    weakSelf.route.personSharedRouteId = objectId;
+                    [ACCacheDataTool updateRouteWith:weakSelf.route routeOne:weakSelf.route.routeOne];
+                    
+                    [weakSelf.HUD hide:YES];
+                    [weakSelf.HUD hideSuccessMessage:@"上传成功"];
+                    if (weakSelf.option) {
+                        weakSelf.option(YES);
                     }
+                    [weakSelf.navigationController popViewControllerAnimated:YES];
                     
                 } else {
+                    [weakSelf.HUD hide:YES];
+                    [weakSelf.HUD hideSuccessMessage:@"上传失败"];
                     DLog(@"更新路线的isShared失败, error is %@", error);
                 }
             }];
-            //更新该路线到本地缓存
-            weakSelf.route.isShared = @1;
-            weakSelf.route.personSharedRouteId = objectId;
-            [ACCacheDataTool updateRouteWith:weakSelf.route routeOne:weakSelf.route.routeOne];
             
         } else {
+            [weakSelf.HUD hide:YES];
             [weakSelf.HUD hideErrorMessage:@"上传失败,请检查网络"];
             DLog(@"上传共享路线到服务器失败, error is %@", error);
         }
@@ -545,13 +575,30 @@ typedef enum : NSUInteger {
 }
 
 
-#pragma mark - scrollView的代理事件
+#pragma mark - scrollView的代理事件 键盘处理
 /**
  *  滚动scrollView时，退出键盘
  */
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     [self.view endEditing:YES];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self.view endEditing:YES];
+    return YES;
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if ([text isEqualToString:@"\n"]) {
+        
+        [self.view endEditing:YES];
+        return NO;
+    }
+    
+    return YES;
 }
 
 @end

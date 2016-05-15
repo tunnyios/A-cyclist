@@ -14,4 +14,5 @@
 /** 图片url数组 */
 @property (nonatomic, strong) NSArray *photoArray;
 
+- (void)stopTimer;
 @end

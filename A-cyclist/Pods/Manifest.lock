@@ -15,16 +15,17 @@ PODS:
   - AFNetworking/Serialization (3.0.4)
   - AFNetworking/UIKit (3.0.4):
     - AFNetworking/NSURLSession
-  - BaiduMapKit (2.10.0)
-  - FMDB (2.6):
-    - FMDB/standard (= 2.6)
-  - FMDB/standard (2.6)
+  - BaiduMapKit (2.10.2)
+  - FMDB (2.6.2):
+    - FMDB/standard (= 2.6.2)
+  - FMDB/standard (2.6.2)
   - MBProgressHUD (0.9.2)
   - MJExtension (3.0.10)
   - MJRefresh (3.1.0)
-  - SDWebImage (3.7.5):
-    - SDWebImage/Core (= 3.7.5)
-  - SDWebImage/Core (3.7.5)
+  - MLeaksFinder (0.1.0)
+  - SDWebImage (3.7.6):
+    - SDWebImage/Core (= 3.7.6)
+  - SDWebImage/Core (3.7.6)
   - Toast (3.0)
   - UMengSocial (5.0)
 
@@ -36,6 +37,7 @@ DEPENDENCIES:
   - MBProgressHUD (= 0.9.2)
   - MJExtension
   - MJRefresh
+  - MLeaksFinder
   - SDWebImage (~> 3.7)
   - Toast (= 3.0)
   - UMengSocial (= 5.0)
@@ -43,12 +45,13 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: 860466cb4a66854e6acb590071ecee404b48f49d
   AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
-  BaiduMapKit: 5df028c6b455d29e68e89694adbcf9d37a4bcc99
-  FMDB: c1968bab3ab0aed38f66cb778ae1e7fa9a652b6e
+  BaiduMapKit: b1706a062597c70ec62a0cca93212cba1d3017e1
+  FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MJExtension: d86aacb740c87519d20e3cca55b6fa4be6cc7548
   MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
-  SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
+  MLeaksFinder: c45f1ee2c4e170b5e47a3dbd5b3515d80b948b37
+  SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
   Toast: 32c59229abfcf41850162b83bb9259dc84372473
   UMengSocial: 48b67179c492a8cf7803fbb0438b8f55432e2fc1
 

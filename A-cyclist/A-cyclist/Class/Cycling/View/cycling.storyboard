@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Dop-uh-c46">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Dop-uh-c46">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -857,9 +857,9 @@
                                                                 <rect key="frame" x="0.0" y="106" width="320" height="44"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gMb-Yy-xIF">
-                                                                        <rect key="frame" x="107" y="0.0" width="105" height="44"/>
+                                                                        <rect key="frame" x="104.5" y="0.0" width="110" height="44"/>
                                                                         <constraints>
-                                                                            <constraint firstAttribute="width" constant="105" id="bYs-Tj-Bjn"/>
+                                                                            <constraint firstAttribute="width" constant="110" id="bYs-Tj-Bjn"/>
                                                                         </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                                         <state key="normal" title="热门路线上传" image="xingzhe_cloudupload_small">
@@ -871,7 +871,7 @@
                                                                         </connections>
                                                                     </button>
                                                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n2B-ch-arB">
-                                                                        <rect key="frame" x="212" y="0.0" width="107.5" height="44"/>
+                                                                        <rect key="frame" x="214.5" y="0.0" width="105" height="44"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                                         <state key="normal" title="编辑" image="xingzhe_data_icon_edit-82">
                                                                             <color key="titleColor" red="0.22670059970000001" green="0.22670059970000001" blue="0.22670059970000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -879,7 +879,7 @@
                                                                         </state>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CAF-nT-2yh">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="107.5" height="44"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="105" height="44"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                                         <state key="normal" title="分享" image="xingzhe_data_icon_share-80">
                                                                             <color key="titleColor" red="0.22670059970000001" green="0.22670059970000001" blue="0.22670059970000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -1624,17 +1624,16 @@
                         <outlet property="speedView" destination="LcW-Kr-Abo" id="xMi-1s-WBA"/>
                         <outlet property="timeLabel" destination="1HQ-9P-weo" id="Mng-Jj-P2L"/>
                         <outlet property="trailBtn" destination="Y57-gt-TAS" id="Nge-GY-d19"/>
-                        <segue destination="LXR-HH-gh3" kind="show" identifier="route2share" id="ukE-Mm-M5f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NTM-G8-PFl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1131" y="467"/>
+            <point key="canvasLocation" x="1102" y="454"/>
         </scene>
         <!--Upload Shared Route Controller-->
         <scene sceneID="RyI-Hx-sYe">
             <objects>
-                <viewController id="LXR-HH-gh3" customClass="ACUploadSharedRouteController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ACUploadSharedRouteController" id="LXR-HH-gh3" customClass="ACUploadSharedRouteController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="GLE-gd-fDC"/>
                         <viewControllerLayoutGuide type="bottom" id="Ejg-lJ-eGj"/>

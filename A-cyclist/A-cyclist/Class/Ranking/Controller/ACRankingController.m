@@ -135,7 +135,7 @@
  */
 - (ACRankingFormerCellModel *)creatFormerCellModelWithData:(ACUserModel *)user idx:(NSUInteger)idx
 {
-    NSString *distance = [NSString stringWithFormat:@"%.0f", user.accruedDistance.doubleValue];
+    NSString *distance = [NSString stringWithFormat:@"%.2f", user.accruedDistance.doubleValue];
     NSString *suffxIcon = [NSString stringWithFormat:@"Ranklist_No%lu", idx + 1];
     ACRankingFormerCellModel *formerModel = [ACRankingFormerCellModel settingCellWithTitle:user.username icon:user.profile_image_url location:user.location distance:distance suffixIcon:suffxIcon];
     __weak typeof (self)weakSelf = self;
@@ -155,7 +155,7 @@
  */
 - (ACRankingBehindCellModel *)creatBehindCellModelWithData:(ACUserModel *)user idx:(NSUInteger)idx
 {
-    NSString *distance = [NSString stringWithFormat:@"%.0f", user.accruedDistance.doubleValue];
+    NSString *distance = [NSString stringWithFormat:@"%.2f", user.accruedDistance.doubleValue];
     NSString *suffxNum = [NSString stringWithFormat:@"%lu", (30 * (self.pageIndex - 1))+ idx + 1];
     ACRankingBehindCellModel *behindModel = [ACRankingBehindCellModel settingCellWithTitle:user.username icon:user.profile_image_url location:user.location distance:distance suffixNum:suffxNum];
     __weak typeof (self)weakSelf = self;

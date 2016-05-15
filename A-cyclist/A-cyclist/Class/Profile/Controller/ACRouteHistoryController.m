@@ -92,12 +92,13 @@
         NSString *subTitle = [NSString stringWithFormat:@"%@", route.distance];
         ACProfileCellModel *profileCellM = [ACProfileCellModel profileCellWithTitle:route.routeName subTitle:subTitle route:route];
         
+        __weak typeof (self)weakSelf = self;
         profileCellM.option = ^(NSIndexPath *indexPath){
             UIStoryboard *ArgumentsSB = [UIStoryboard storyboardWithName:@"cycling" bundle:nil];
             ACNavigationViewController *cellNav = [ArgumentsSB instantiateViewControllerWithIdentifier:@"ACNavigationController"];
             ACCyclingArgumentsViewController *cellVC = (ACCyclingArgumentsViewController *)cellNav.topViewController;
             cellVC.route = route;
-            [self.navigationController pushViewController:cellVC animated:YES];
+            [weakSelf.navigationController pushViewController:cellVC animated:YES];
         };
         
         ACSettingGroupModel *group = [[ACSettingGroupModel alloc] init];
@@ -117,7 +118,7 @@
             [weakSelf.tableView.mj_footer endRefreshing];
             
             if (!error) {
-                [weakSelf addDataWithRouteList:routes pageIndex:self.pageIndex];
+                [weakSelf addDataWithRouteList:routes pageIndex:weakSelf.pageIndex];
                 [weakSelf.tableView reloadData];
             } else {
                 [weakSelf.HUD hideErrorMessage:ACRequestError];
@@ -130,7 +131,7 @@
             [weakSelf.tableView.mj_header endRefreshing];
             [weakSelf.tableView.mj_footer endRefreshing];
             if (!error) {
-                [weakSelf addDataWithRouteList:routes pageIndex:self.pageIndex];
+                [weakSelf addDataWithRouteList:routes pageIndex:weakSelf.pageIndex];
                 [weakSelf.tableView reloadData];
             } else {
                 [weakSelf.HUD hideErrorMessage:ACRequestError];

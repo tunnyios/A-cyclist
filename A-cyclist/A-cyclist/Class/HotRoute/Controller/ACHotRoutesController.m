@@ -96,12 +96,12 @@
     __weak typeof (self)weakSelf = self;
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         weakSelf.pageIndex = 1;
-        [weakSelf setHotRoutesDataWithCityName:self.selectedCityName];
+        [weakSelf setHotRoutesDataWithCityName:weakSelf.selectedCityName];
     }];
     
     self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         weakSelf.pageIndex++;
-        [weakSelf setHotRoutesDataWithCityName:self.selectedCityName];
+        [weakSelf setHotRoutesDataWithCityName:weakSelf.selectedCityName];
     }];
 }
 
@@ -125,9 +125,9 @@
                 ACHotRoutesDetailController *hotRoutesDetailController = [hotRoutesSB instantiateViewControllerWithIdentifier:@"hotRoutesDetail"];
                 hotRoutesDetailController.sharedRoute = sharedRoute;
                 
-                [self.navigationController pushViewController:hotRoutesDetailController animated:YES];
+                [weakSelf.navigationController pushViewController:hotRoutesDetailController animated:YES];
             };
-            [self.dataList addObject:hotRouteCellModel];
+            [weakSelf.dataList addObject:hotRouteCellModel];
         }];
         
         //2. 回到主线程刷新数据
@@ -154,7 +154,7 @@
             [weakSelf.view makeToast:ACSharedRouteGetListError duration:2.5f position:CSToastPositionCenter];
         } else {
             DLog(@"从服务器获取共享路线成功, sharedRoutes is %@", sharedRoutes);
-            if (1 == self.pageIndex) {
+            if (1 == weakSelf.pageIndex) {
                 [weakSelf.dataList removeAllObjects];
             }
             

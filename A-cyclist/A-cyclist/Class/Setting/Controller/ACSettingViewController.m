@@ -65,10 +65,11 @@
     //数据部分
     ACBlankSettingCellModel *cell0 = [ACBlankSettingCellModel blankSettingCellWithTitle:@"清除缓存" subTitle:sutTitle icon:@"setting_icon_clean"];
     
+    __weak typeof (self)weakSelf = self;
     cell0.option = ^(NSIndexPath *indexPath){
         //弹出alert
         NSString *message = [NSString stringWithFormat:@"缓存大小为%@, 确定要清理缓存吗？", sutTitle];
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:weakSelf cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
         [alertView show];
     };
     
@@ -101,12 +102,13 @@
     //数据部分
 //    ACArrowSettingCellModel *cell0 = [ACArrowSettingCellModel arrowSettingCellModelWithTitle:@"检查新版本" icon:@"MoreUpdate" destClass:[UIViewController class]];
     ACArrowSettingCellModel *cell1 = [ACArrowSettingCellModel arrowSettingCellModelWithTitle:@"反馈" icon:@"setting_icon_feedback" destClass:nil];
+    __weak typeof (self)weakSelf = self;
     cell1.option = ^(NSIndexPath *indexPath){
         UIStoryboard *settingSB = [UIStoryboard storyboardWithName:@"setting" bundle:nil];
         ACSettingFeedbackViewController *feedBackVC = [settingSB instantiateViewControllerWithIdentifier:@"settingFeedback"];
         
         [feedBackVC setHidesBottomBarWhenPushed:YES];
-        [self.navigationController pushViewController:feedBackVC animated:YES];
+        [weakSelf.navigationController pushViewController:feedBackVC animated:YES];
     };
     
 //    ACArrowSettingCellModel *cell1 = [ACArrowSettingCellModel arrowSettingCellModelWithTitle:@"分享" icon:@"MoreShare" destClass:[UIViewController class]];
@@ -126,9 +128,10 @@
 {
     //数据部分
     ACBlankSettingCellModel *cell0 = [ACBlankSettingCellModel settingCellWithTitle:nil icon:nil];
+    __weak typeof (self)weakSelf = self;
     cell0.option = ^(NSIndexPath *indexPath){
         //退出登录
-        [self logout];
+        [weakSelf logout];
     };
     
     ACSettingGroupModel *group = [[ACSettingGroupModel alloc] init];

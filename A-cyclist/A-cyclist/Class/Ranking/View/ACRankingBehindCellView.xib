@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -55,12 +55,11 @@
                         </variation>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="615-fS-8Ut">
-                        <rect key="frame" x="84" y="10" width="135" height="44"/>
+                        <rect key="frame" x="84" y="10" width="144" height="44"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AppTips" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qHo-Ye-g7z">
-                                <rect key="frame" x="0.0" y="0.0" width="135" height="20"/>
+                                <rect key="frame" x="0.0" y="0.0" width="144" height="20"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="135" id="OJk-ya-QZn"/>
                                     <constraint firstAttribute="height" constant="20" id="p3V-vN-HPn"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -68,10 +67,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上海市 浦东新区" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E85-Mi-7nD">
-                                <rect key="frame" x="0.0" y="29" width="135" height="15"/>
+                                <rect key="frame" x="0.0" y="29" width="144" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="QiO-6U-cqO"/>
-                                    <constraint firstAttribute="width" constant="135" id="WiX-kb-1qe"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.35615924869999999" green="0.35615924869999999" blue="0.35615924869999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -79,23 +77,20 @@
                             </label>
                         </subviews>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="qHo-Ye-g7z" secondAttribute="trailing" id="5C8-4W-n3o"/>
                             <constraint firstAttribute="height" constant="44" id="Ahi-xi-qjS"/>
                             <constraint firstItem="E85-Mi-7nD" firstAttribute="leading" secondItem="615-fS-8Ut" secondAttribute="leading" id="BfO-E2-sR2"/>
-                            <constraint firstAttribute="width" constant="135" id="Kt7-oD-ts2"/>
-                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="135" id="cAW-LG-xzT"/>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="nDq-NE-9Os"/>
+                            <constraint firstAttribute="trailing" secondItem="E85-Mi-7nD" secondAttribute="trailing" id="jfn-uG-dte"/>
                             <constraint firstItem="qHo-Ye-g7z" firstAttribute="leading" secondItem="615-fS-8Ut" secondAttribute="leading" id="pM2-Q1-Msv"/>
                             <constraint firstAttribute="bottom" secondItem="E85-Mi-7nD" secondAttribute="bottom" id="qgQ-RY-nE4"/>
                             <constraint firstItem="qHo-Ye-g7z" firstAttribute="top" secondItem="615-fS-8Ut" secondAttribute="top" id="uKO-cF-MDX"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="568" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gdt-2c-d3G">
-                        <rect key="frame" x="198" y="22" width="84" height="21"/>
+                        <rect key="frame" x="238" y="22" width="44" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="EUF-qd-Fdg"/>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="Eb6-9g-PWM"/>
-                            <constraint firstAttribute="width" constant="84" id="FVQ-BA-eCs"/>
-                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="84" id="R4e-co-Gsc"/>
+                            <constraint firstAttribute="width" constant="44" id="FVQ-BA-eCs"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="19"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -125,6 +120,7 @@
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="Gdt-2c-d3G" firstAttribute="leading" secondItem="615-fS-8Ut" secondAttribute="trailing" constant="10" id="BbL-79-GrN"/>
                     <constraint firstItem="xwq-t0-SHL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="DBp-7x-ISu"/>
                     <constraint firstItem="Z4F-cA-tYs" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="JJb-xM-L0z"/>
                     <constraint firstAttribute="trailing" secondItem="xwq-t0-SHL" secondAttribute="trailing" id="RhG-sB-OWL"/>
@@ -140,6 +136,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="distanceLabel" destination="Gdt-2c-d3G" id="mF9-sm-XWO"/>
+                <outlet property="distanceLabelWidth" destination="FVQ-BA-eCs" id="JS6-8v-Awp"/>
                 <outlet property="iconView" destination="YKy-VN-ESR" id="pZI-3B-AYd"/>
                 <outlet property="locationLabel" destination="E85-Mi-7nD" id="eTY-5j-Ly1"/>
                 <outlet property="suffixLabel" destination="tX2-Tz-Kix" id="R6c-LA-ZcE"/>

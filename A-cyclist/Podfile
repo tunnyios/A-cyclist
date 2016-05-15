@@ -34,3 +34,5 @@ pod 'BaiduMapKit'
 
 pod 'Toast', '3.0'
 
+pod 'MLeaksFinder'
+

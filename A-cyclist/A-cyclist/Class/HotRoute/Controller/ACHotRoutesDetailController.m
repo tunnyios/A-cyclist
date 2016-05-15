@@ -59,7 +59,13 @@
             DLog(@"从网络上下载图片成功");
         }
     }];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
     
+    [self.topView stopTimer];
 }
 
 - (void)didReceiveMemoryWarning {

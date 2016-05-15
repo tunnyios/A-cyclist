@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -40,12 +40,11 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CdW-pG-I97">
-                        <rect key="frame" x="84" y="10" width="135" height="44"/>
+                        <rect key="frame" x="84" y="10" width="144" height="44"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AppTips" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="els-Hv-kMM">
-                                <rect key="frame" x="0.0" y="0.0" width="135" height="20"/>
+                                <rect key="frame" x="0.0" y="0.0" width="144" height="20"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="135" id="2WD-Th-6dE"/>
                                     <constraint firstAttribute="height" constant="20" id="cBy-DK-lah"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -53,9 +52,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上海市 浦东新区" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vEp-36-8XE">
-                                <rect key="frame" x="0.0" y="29" width="135" height="15"/>
+                                <rect key="frame" x="0.0" y="29" width="144" height="15"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="135" id="VRx-yI-iZQ"/>
                                     <constraint firstAttribute="height" constant="15" id="biF-7L-2gT"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -68,8 +66,9 @@
                             <constraint firstItem="els-Hv-kMM" firstAttribute="leading" secondItem="CdW-pG-I97" secondAttribute="leading" id="DMY-vl-F1g"/>
                             <constraint firstItem="vEp-36-8XE" firstAttribute="leading" secondItem="CdW-pG-I97" secondAttribute="leading" id="HMo-Zo-IRy"/>
                             <constraint firstAttribute="bottom" secondItem="vEp-36-8XE" secondAttribute="bottom" id="MKF-4g-fER"/>
-                            <constraint firstAttribute="width" constant="135" id="YG3-Cr-FRd"/>
+                            <constraint firstAttribute="trailing" secondItem="vEp-36-8XE" secondAttribute="trailing" id="Ybv-9y-d1v"/>
                             <constraint firstAttribute="height" constant="44" id="lE0-E8-5d7"/>
+                            <constraint firstAttribute="trailing" secondItem="els-Hv-kMM" secondAttribute="trailing" id="vEF-h3-dU0"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="km" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mt6-Kr-23s">
@@ -83,9 +82,9 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="568" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pje-DM-pfA">
-                        <rect key="frame" x="198" y="21" width="84" height="21"/>
+                        <rect key="frame" x="238" y="21" width="44" height="21"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="84" id="ek2-uE-t7h"/>
+                            <constraint firstAttribute="width" constant="44" id="ek2-uE-t7h"/>
                             <constraint firstAttribute="height" constant="21" id="yxt-4w-eem"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="19"/>
@@ -113,12 +112,14 @@
                     <constraint firstAttribute="bottom" secondItem="XUZ-Tq-W21" secondAttribute="bottom" id="bsK-f7-RfO"/>
                     <constraint firstItem="mt6-Kr-23s" firstAttribute="leading" secondItem="pje-DM-pfA" secondAttribute="trailing" constant="10" id="mA4-lc-ZC3"/>
                     <constraint firstItem="CdW-pG-I97" firstAttribute="leading" secondItem="9jb-Op-UmD" secondAttribute="trailing" constant="30" id="rEA-4K-7fc"/>
+                    <constraint firstItem="pje-DM-pfA" firstAttribute="leading" secondItem="CdW-pG-I97" secondAttribute="trailing" constant="10" id="rrD-KP-ArO"/>
                     <constraint firstAttribute="trailing" secondItem="XUZ-Tq-W21" secondAttribute="trailing" id="w3H-LB-iSQ"/>
                     <constraint firstAttribute="centerY" secondItem="pje-DM-pfA" secondAttribute="centerY" id="w9j-K1-Nt7"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="distanceLabel" destination="pje-DM-pfA" id="seU-jX-xbs"/>
+                <outlet property="distanceLabelWidth" destination="ek2-uE-t7h" id="cFx-4G-nfa"/>
                 <outlet property="iconView" destination="6l6-nJ-Bk7" id="BjE-Dg-gnO"/>
                 <outlet property="locationLabel" destination="vEp-36-8XE" id="ebS-7N-afi"/>
                 <outlet property="suffixView" destination="x2S-wz-Y41" id="uPV-08-UUp"/>

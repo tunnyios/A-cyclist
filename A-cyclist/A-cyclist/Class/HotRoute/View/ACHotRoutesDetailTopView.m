@@ -108,6 +108,7 @@
      想要启动，需要再次创建时钟
      */
     [self.timer invalidate];
+    self.timer = nil;
 }
 
 #pragma mark - pageControl部分
