@@ -65,6 +65,7 @@ typedef enum : NSUInteger {
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     self.userModel = [ACCacheDataTool getUserInfo];
 }
 

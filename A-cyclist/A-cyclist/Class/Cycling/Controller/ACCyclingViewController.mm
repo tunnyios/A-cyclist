@@ -208,6 +208,7 @@ typedef enum : NSUInteger {
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     [_bmkMapView viewWillAppear];
     _bmkMapView.delegate = self; // 此处记得不用的时候需要置nil，否则影响内存的释放
     _bmkLocationService.delegate = self;
@@ -215,6 +216,7 @@ typedef enum : NSUInteger {
 
 - (void)viewWillDisappear:(BOOL)animated
 {
+    [super viewWillDisappear:animated];
     [_bmkMapView viewWillDisappear];
     _bmkMapView.delegate = nil; // 不用时，置nil
     _bmkLocationService.delegate = nil;

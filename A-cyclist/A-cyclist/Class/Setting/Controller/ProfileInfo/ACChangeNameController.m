@@ -44,8 +44,8 @@
  */
 - (IBAction)changeSave:(id)sender
 {
-    NSDictionary *dict = @{};
-    NSArray *array = @[];
+    NSDictionary *dict;
+    NSArray *array;
     __block ACUserModel *user = [ACCacheDataTool getUserInfo];
     if (ChangeTextPushFromName == self.pushFrom) {
         //昵称

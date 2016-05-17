@@ -168,12 +168,13 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     [_bmkMapView viewWillAppear];
-    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
+    [super viewWillDisappear:animated];
     [_bmkMapView viewWillDisappear];
     _bmkMapView.delegate = nil; // 不用时，置nil
 }

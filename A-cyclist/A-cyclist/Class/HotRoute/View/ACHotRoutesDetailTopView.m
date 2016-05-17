@@ -107,8 +107,10 @@
      唯一停止时钟的方法，会删除时钟，
      想要启动，需要再次创建时钟
      */
-    [self.timer invalidate];
-    self.timer = nil;
+    if (self.timer) {
+        [self.timer invalidate];
+        self.timer = nil;
+    }
 }
 
 #pragma mark - pageControl部分

@@ -111,7 +111,7 @@ NSString *deviceId = nil;
 #pragma mark - 设置字号
 + (UIFont *)setFontWithSize:(CGFloat)size
 {
-    UIFont *font = [[UIFont alloc] init];
+    UIFont *font;
     if (isiOS9) {
         font = [UIFont fontWithName:@"PingFangSC-Light" size:size];
     } else {
