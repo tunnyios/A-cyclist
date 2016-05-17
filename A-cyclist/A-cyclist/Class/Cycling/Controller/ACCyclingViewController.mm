@@ -928,7 +928,8 @@ typedef enum : NSUInteger {
     [self setUserZoneWith:self.currentLocation];
     
     //获取天气和温度
-    NSString *url = [NSString stringWithFormat:@"http://api.openweathermap.org/data/2.5/weather?lat=%f&lon=%f", self.currentLocation.location.coordinate.latitude, self.currentLocation.location.coordinate.longitude];
+//    api.openweathermap.org/data/2.5/forecast/city?id=524901&APPID=1111111111 
+    NSString *url = [NSString stringWithFormat:@"http://api.openweathermap.org/data/2.5/weather?lat=%f&lon=%f&APPID=49a9bf0ab67afa57d73fda683ca5d987", self.currentLocation.location.coordinate.latitude, self.currentLocation.location.coordinate.longitude];
     DLog(@"天气url is %@, currentLocation is %@", url, self.currentLocation);
     [HCHttpTool GET:url parameters:nil success:^(id responseObject) {
 //        DLog(@"天气responseObject is %@", responseObject);

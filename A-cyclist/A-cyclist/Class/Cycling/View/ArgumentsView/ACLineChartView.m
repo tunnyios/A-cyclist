@@ -194,7 +194,6 @@
     NSUInteger count = self.route.steps.count;
     double trueHInterval = 0;
     double accruedDistance = 0;
-    double trueVIntervalAltitude = 0;
     double trueVintervalSpeed = 0;
 
     CGPoint basePoint = CGPointMake(30, viewH - 30);
@@ -203,12 +202,13 @@
     for (int i = 0; i < count; i++) {
         ACStepModel *step = self.route.steps[i];
         if (totleAltitude <= 0) {
-            return;
+            break;
         }
-        trueVIntervalAltitude = (step.altitude.doubleValue / totleAltitude) * (viewH - 2 * AClineHeight);
+        //计算每一米海拔对应了几个像素点
+        CGFloat pixPerAltitude = (viewH - 2 * AClineHeight) / totleAltitude * (step.altitude.doubleValue + - self.route.minAltitude.doubleValue);
         accruedDistance += step.distanceInterval.doubleValue;
         trueHInterval = (accruedDistance / (self.route.distance.doubleValue * 1000)) * (viewW - 2 * AClineHeight);
-        CGPoint tempPoint = CGPointMake(basePoint.x + trueHInterval, basePoint.y - trueVIntervalAltitude);
+        CGPoint tempPoint = CGPointMake(basePoint.x + trueHInterval, basePoint.y - pixPerAltitude);
 //        DLog(@"<%f : %f>, trueVIntervalAltitude is %f, trueHInterval is %f, viewH is %f, totleAltitude is %f", basePoint.x + trueHInterval, basePoint.y - trueVIntervalAltitude, trueVIntervalAltitude, trueHInterval, viewH, totleAltitude);
         if (0 == i) {
             [pathAltitude moveToPoint:tempPoint];
