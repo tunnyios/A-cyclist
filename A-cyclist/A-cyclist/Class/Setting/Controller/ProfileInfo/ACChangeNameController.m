@@ -59,11 +59,13 @@
         array = @[@"signature"];
     }
     
+    [self showHUD_Msg:@"保存中..."];
     //1. 保存到数据库
     __weak typeof (self)weakSelf = self;
     [ACDataBaseTool updateUserInfoWithDict:dict andKeys:array withResultBlock:^(BOOL isSuccessful, NSError *error) {
         if (isSuccessful) {
             DLog(@"保存成功");
+            [weakSelf.HUD hide:YES];
             //2. 更新到本地缓存
             [ACCacheDataTool updateUserInfo:user withObjectId:user.objectId];
             //3. 使ProfileInfo控制器修改name
@@ -75,7 +77,9 @@
             [weakSelf dismissViewControllerAnimated:YES completion:nil];
         } else {
             DLog(@"保存失败");
-            [weakSelf showMsgCenter:@"保存失败"];
+            [weakSelf.HUD hide:YES];
+            [weakSelf.HUD hideErrorMessage:@"保存失败"];
+//            [weakSelf showMsgCenter:@"保存失败"];
         }
     }];
 }

@@ -20,6 +20,7 @@
 #import "ACCacheDataTool.h"
 #import "ACLoginViewController.h"
 #import "ACSettingFeedbackViewController.h"
+#import "ACSettingAboutViewController.h"
 
 @interface ACSettingViewController () <UIAlertViewDelegate>
 
@@ -112,8 +113,15 @@
     };
     
 //    ACArrowSettingCellModel *cell1 = [ACArrowSettingCellModel arrowSettingCellModelWithTitle:@"分享" icon:@"MoreShare" destClass:[UIViewController class]];
-    ACArrowSettingCellModel *cell2 = [ACArrowSettingCellModel arrowSettingCellModelWithTitle:@"打赏与好评" icon:@"setting_icon_rate" destClass:[UIViewController class]];
-    ACArrowSettingCellModel *cell3 = [ACArrowSettingCellModel arrowSettingCellModelWithTitle:@"关于Acyclist" icon:@"setting_icon_about" destClass:[UIViewController class]];
+    ACArrowSettingCellModel *cell2 = [ACArrowSettingCellModel arrowSettingCellModelWithTitle:@"打赏与好评" icon:@"setting_icon_rate" destClass:nil];
+    cell2.option = ^(NSIndexPath *indexPath){
+        NSString *appid = @"1114690746";
+        NSString *str = [NSString stringWithFormat:
+                         @"itms-apps://itunes.apple.com/cn/app/id%@?mt=8", appid];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+    };
+    
+    ACArrowSettingCellModel *cell3 = [ACArrowSettingCellModel arrowSettingCellModelWithTitle:@"关于Acyclist" icon:@"setting_icon_about" destClass:[ACSettingAboutViewController class]];
     
     ACSettingGroupModel *group = [[ACSettingGroupModel alloc] init];
 //    group.cellList = @[cell1, cell2, cell3];

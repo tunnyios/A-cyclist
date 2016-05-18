@@ -113,6 +113,7 @@ typedef enum : NSUInteger {
     UIStoryboard *settingSB = [UIStoryboard storyboardWithName:@"setting" bundle:nil];
     UINavigationController *settingNav = [settingSB instantiateInitialViewController];
     UIViewController *settingVc = settingNav.topViewController;
+    [settingVc setHidesBottomBarWhenPushed:YES];
     [self.navigationController pushViewController:settingVc animated:YES];
 }
 

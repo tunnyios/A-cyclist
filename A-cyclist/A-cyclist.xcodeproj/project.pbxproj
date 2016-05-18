@@ -125,6 +125,8 @@
 		A2AB7E371C86C93400D79C6A /* ACCommonRequestHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = A2AB7E361C86C93400D79C6A /* ACCommonRequestHttp.m */; };
 		A2AD90BF1B5FAAE200847F72 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AD90BE1B5FAAE200847F72 /* OpenGLES.framework */; };
 		A2B52EA41CB4059D006EF676 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2B52EA31CB4059D006EF676 /* Launch Screen.storyboard */; };
+		A2B95B321CEADD8B0015FE56 /* ACSettingAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2B95B301CEADD8B0015FE56 /* ACSettingAboutViewController.m */; };
+		A2B95B331CEADD8B0015FE56 /* ACSettingAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2B95B311CEADD8B0015FE56 /* ACSettingAboutViewController.xib */; };
 		A2C256DF1B804C0800295882 /* HCDropDownMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C256DE1B804C0800295882 /* HCDropDownMenuView.m */; };
 		A2C256E21B804D2900295882 /* HCNewTypeButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C256E11B804D2900295882 /* HCNewTypeButtonView.m */; };
 		A2C256E81B805D2800295882 /* ACHotRoutesCitiesController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C256E71B805D2800295882 /* ACHotRoutesCitiesController.m */; };
@@ -375,6 +377,9 @@
 		A2AB7E361C86C93400D79C6A /* ACCommonRequestHttp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACCommonRequestHttp.m; sourceTree = "<group>"; };
 		A2AD90BE1B5FAAE200847F72 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		A2B52EA31CB4059D006EF676 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		A2B95B2F1CEADD8B0015FE56 /* ACSettingAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACSettingAboutViewController.h; sourceTree = "<group>"; };
+		A2B95B301CEADD8B0015FE56 /* ACSettingAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACSettingAboutViewController.m; sourceTree = "<group>"; };
+		A2B95B311CEADD8B0015FE56 /* ACSettingAboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ACSettingAboutViewController.xib; sourceTree = "<group>"; };
 		A2C256DD1B804C0800295882 /* HCDropDownMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCDropDownMenuView.h; sourceTree = "<group>"; };
 		A2C256DE1B804C0800295882 /* HCDropDownMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCDropDownMenuView.m; sourceTree = "<group>"; };
 		A2C256E01B804D2900295882 /* HCNewTypeButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCNewTypeButtonView.h; sourceTree = "<group>"; };
@@ -560,6 +565,9 @@
 		A261B0391B5780E7006C8917 /* About */ = {
 			isa = PBXGroup;
 			children = (
+				A2B95B2F1CEADD8B0015FE56 /* ACSettingAboutViewController.h */,
+				A2B95B301CEADD8B0015FE56 /* ACSettingAboutViewController.m */,
+				A2B95B311CEADD8B0015FE56 /* ACSettingAboutViewController.xib */,
 			);
 			path = About;
 			sourceTree = "<group>";
@@ -1375,6 +1383,7 @@
 				A2D207131B67435B00214B09 /* silence.mp3 in Resources */,
 				A2C256F31B80610700295882 /* ACHotRoutesCitiesCellView.xib in Resources */,
 				A26E8ED71B78471F003FFC37 /* hotRoutes.storyboard in Resources */,
+				A2B95B331CEADD8B0015FE56 /* ACSettingAboutViewController.xib in Resources */,
 				A2B52EA41CB4059D006EF676 /* Launch Screen.storyboard in Resources */,
 				A28BFF161B53F98200A712F1 /* cycling.storyboard in Resources */,
 				A261B04D1B57AC56006C8917 /* ACLogoutSettingViewCell.xib in Resources */,
@@ -1508,6 +1517,7 @@
 				A2CE5A4B1B6879860071AC59 /* ACRouteModel.m in Sources */,
 				A21D7B6F1B775EE50014466C /* ACRankingBehindCellModel.m in Sources */,
 				A2C256DF1B804C0800295882 /* HCDropDownMenuView.m in Sources */,
+				A2B95B321CEADD8B0015FE56 /* ACSettingAboutViewController.m in Sources */,
 				A26143211B5DFA6C007EA45C /* ACArrowWithSubtitleSettingCellModel.m in Sources */,
 				A266D9E81B5CFA0B00D4B326 /* HCFileParamsModel.m in Sources */,
 				A2F7FE401B5FD6BF0000D6EA /* VPImageCropperViewController.m in Sources */,

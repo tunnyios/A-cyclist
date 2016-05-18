@@ -460,6 +460,7 @@
  */
 - (void)changeNameWith:(NSString *)name withType:(ChangeTextPushFrom)pushForm
 {
+    [self showMsgCenter:@"修改成功"];
     if (ChangeTextPushFromName == pushForm) {
         ACArrowWithSubtitleSettingCellModel *model = [self.dataList[0] cellList][1];
         model.subTitle = name;
@@ -585,19 +586,26 @@
         self.user.accruedDistance = @0;
     }
     
-    //1. 保存到本地缓存
-    [ACCacheDataTool updateUserInfo:self.user withObjectId:self.user.objectId];
-    
     //2. 保存到数据库
+    [self showHUD_Msg:@"保存中..."];
     __weak typeof (self)weakSelf = self;
     [ACDataBaseTool updateUserInfoWith:self.user withResultBlock:^(BOOL isSuccessful, NSError *error) {
-        DLog(@"保存用户信息成功到数据库");
-        [weakSelf.HUD hideSuccessMessage:@"保存成功"];
-        if (PushFromTypeLogin == weakSelf.pushFromType) {
-            UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
-            keyWindow.rootViewController = [[ACTabBarController alloc] init];
+        if (isSuccessful) {
+            DLog(@"保存用户信息成功到数据库");
+            [weakSelf.HUD hide:YES];
+            [weakSelf.HUD hideSuccessMessage:@"保存成功"];
+            //1. 保存到本地缓存
+            [ACCacheDataTool updateUserInfo:weakSelf.user withObjectId:weakSelf.user.objectId];
+            
+            if (PushFromTypeLogin == weakSelf.pushFromType) {
+                UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
+                keyWindow.rootViewController = [[ACTabBarController alloc] init];
+            }
+            [weakSelf.bmkLocationService stopUserLocationService];
+        } else {
+            [weakSelf.HUD hide:YES];
+            [weakSelf.HUD hideErrorMessage:@"保存失败"];
         }
-        [weakSelf.bmkLocationService stopUserLocationService];
     }];
 }
 

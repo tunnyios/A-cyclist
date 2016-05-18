@@ -121,7 +121,7 @@
         if (arrowModel.destClass) {
             //弹出下一个控制器
             UIViewController *vc = [[arrowModel.destClass alloc] init];
-            
+            [vc setHidesBottomBarWhenPushed:YES];
             [self.navigationController pushViewController:vc animated:YES];
         }
     }
