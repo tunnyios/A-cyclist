@@ -34,6 +34,10 @@
 @property (nonatomic, strong) BMKLocationService *bmkLocationService;
 /** 头像view */
 //@property (nonatomic, strong) UIImageView *portraitImageView;
+/** 是否修改了头像 */
+@property (nonatomic, assign, getter = isChangeAvatar) BOOL changeAvatar;
+/** 头像数据模型 */
+@property (nonatomic, strong) ACPhotoSettingCellModel *photoModel;
 /** 体重 */
 @property (nonatomic, strong) NSNumber *weight;
 
@@ -55,6 +59,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.changeAvatar = NO;
     [ACNavUtility setNav:self.navigationController setNavItem:self.navigationItem setTitle:@"个人信息"];
     if (PushFromTypeLogin != self.pushFromType) {
         self.navigationItem.leftBarButtonItem = [ACNavUtility setNavButtonWithImage:@"back_icon.png" target:self action:@selector(goBack) frame:CGRectMake(0, 0, 20, 20)];
@@ -359,41 +364,13 @@
  */
 - (void)imageCropper:(VPImageCropperViewController *)cropperViewController didFinished:(UIImage *)editedImage {
     //设置tableView数据
-    __block ACPhotoSettingCellModel *model = [self.dataList[0] cellList][0];
-    model.photoImage = editedImage;
+    self.photoModel = [self.dataList[0] cellList][0];
+    self.photoModel.photoImage = editedImage;
 
     __weak typeof (self)weakSelf = self;
     [cropperViewController dismissViewControllerAnimated:YES completion:^{
-        //上传图片到数据库，并获得url
-        NSData *data = UIImageJPEGRepresentation(model.photoImage, 1.0f);
-//        __strong typeof (weakSelf)strongSelf = weakSelf;
-        [ACDataBaseTool uploadFileWithFilename:@"image.jpg" fileData:data block:^(BOOL isSuccessful, NSError *error, NSString *filename, NSString *url) {
-            //获取大图的完整url, 并设置到用户数据模型中,点击保存按钮后
-            weakSelf.user.avatar_large = [ACDataBaseTool signUrlWithFilename:filename url:url];
-            
-            //对服务器上的图片进行缩略图设置
-            [ACDataBaseTool thumbnailImageBySpecifiesTheWidth:180 height:180 quality:100 sourceImageUrl:weakSelf.user.avatar_large resultBlock:^(NSString *filename, NSString *url, NSError *error) {
-                if (error == nil) {
-                    weakSelf.user.profile_image_url = url;
-                    //将url直接保存到数据库和缓存中(因为是异步的，防止出现未上传完成，就点击了保存按钮)
-                    [ACCacheDataTool updateUserInfo:weakSelf.user withObjectId:weakSelf.user.objectId];
-                    
-                    NSDictionary *dict = @{@"profile_image_url" : weakSelf.user.profile_image_url,
-                                           @"avatar_large" : weakSelf.user.avatar_large
-                                           };
-                    NSArray *array = @[@"profile_image_url", @"avatar_large"];
-                    [ACDataBaseTool updateUserInfoWithDict:dict andKeys:array withResultBlock:^(BOOL isSuccessful, NSError *error) {
-                        if (isSuccessful) {
-                            DLog(@"更新头像的大图小图URL到用户表成功");
-                        }
-                    }];
-                    
-                }
-            }];
-        } progress:^(CGFloat progress) {
-            
-        }];
         // TO DO
+        weakSelf.changeAvatar = YES;
         [weakSelf.tableView reloadData];
     }];
 }
@@ -588,6 +565,18 @@
     
     //2. 保存到数据库
     [self showHUD_Msg:@"保存中..."];
+    if (self.isChangeAvatar) {
+        [self uploadPhoto];
+    } else {
+        [self uplaodUser];
+    }
+}
+
+/**
+ *  更新用户数据到数据库
+ */
+- (void)uplaodUser
+{
     __weak typeof (self)weakSelf = self;
     [ACDataBaseTool updateUserInfoWith:self.user withResultBlock:^(BOOL isSuccessful, NSError *error) {
         if (isSuccessful) {
@@ -606,6 +595,44 @@
             [weakSelf.HUD hide:YES];
             [weakSelf.HUD hideErrorMessage:@"保存失败"];
         }
+    }];
+}
+
+/**
+ *  上传照片
+ */
+- (void)uploadPhoto
+{
+    __weak typeof (self)weakSelf = self;
+    //上传图片到数据库，并获得url
+    NSData *data = UIImageJPEGRepresentation(self.photoModel.photoImage, 1.0f);
+    [ACDataBaseTool uploadFileWithFilename:@"image.jpg" fileData:data block:^(BOOL isSuccessful, NSError *error, NSString *filename, NSString *url) {
+        //获取大图的完整url, 并设置到用户数据模型中,点击保存按钮后
+        weakSelf.user.avatar_large = [ACDataBaseTool signUrlWithFilename:filename url:url];
+
+        //对服务器上的图片进行缩略图设置
+        [ACDataBaseTool thumbnailImageBySpecifiesTheWidth:180 height:180 quality:100 sourceImageUrl:weakSelf.user.avatar_large resultBlock:^(NSString *filename, NSString *url, NSError *error) {
+            if (error == nil) {
+                weakSelf.user.profile_image_url = url;
+                //将url直接保存到数据库和缓存中(因为是异步的，防止出现未上传完成，就点击了保存按钮)
+                [ACCacheDataTool updateUserInfo:weakSelf.user withObjectId:weakSelf.user.objectId];
+
+                NSDictionary *dict = @{@"profile_image_url" : weakSelf.user.profile_image_url,
+                                       @"avatar_large" : weakSelf.user.avatar_large
+                                       };
+                NSArray *array = @[@"profile_image_url", @"avatar_large"];
+                [ACDataBaseTool updateUserInfoWithDict:dict andKeys:array withResultBlock:^(BOOL isSuccessful, NSError *error) {
+                    if (isSuccessful) {
+                        DLog(@"更新头像的大图小图URL到用户表成功");
+                        weakSelf.changeAvatar = NO;
+                        [weakSelf uplaodUser];
+                    }
+                }];
+
+            }
+        }];
+    } progress:^(CGFloat progress) {
+        DLog(@"头像上传中...");
     }];
 }
 
