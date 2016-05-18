@@ -35,15 +35,6 @@
 
 @implementation ACRankingController
 
-- (ACUserModel *)user
-{
-    if (_user == nil) {
-        _user = [ACCacheDataTool getUserInfo];
-    }
-    
-    return _user;
-}
-
 - (NSMutableArray *)dataList
 {
     if (_dataList == nil) {
@@ -51,6 +42,13 @@
     }
     
     return _dataList;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    self.user = [ACCacheDataTool getUserInfo];
 }
 
 - (void)viewDidLoad {
