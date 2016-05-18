@@ -7,7 +7,7 @@
 		<string>location</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
-	<string>en</string>
+	<string>zh_CN</string>
 	<key>CFBundleDisplayName</key>
 	<string>Acyclist</string>
 	<key>CFBundleExecutable</key>
